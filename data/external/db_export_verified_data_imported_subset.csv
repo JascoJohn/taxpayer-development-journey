@@ -1,0 +1,27 @@
+id,indicator_name,indicator_code,country,country_code,value,unit,year,source,source_type,confidence,api_verified,url,retrieved_at
+26497,afro_trust_president,Q41A,Tanzania,TZ,64.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26498,afro_trust_parliament,Q41B,Tanzania,TZ,55.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26499,afro_trust_local_government,Q41F,Tanzania,TZ,57.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26500,afro_corrupt_officials,Q48A,Tanzania,TZ,42.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26501,afro_govt_handling_economy,Q68B,Tanzania,TZ,49.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26502,afro_tax_avoidance_common,Q43,Tanzania,TZ,38.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26503,afro_civic_duty_pay_tax,Q57,Tanzania,TZ,71.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26504,afro_government_listens,Q24,Tanzania,TZ,43.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26505,afro_satisfied_democracy,Q43,Tanzania,TZ,52.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+26506,afro_basic_needs_met,Q7,Tanzania,TZ,41.0,percent,2021,Afrobarometer Round 8 Tanzania,national_survey,HIGH,0,https://www.afrobarometer.org/,2026-07-14 09:24:38
+27152,ilfs_formal_employment_rate_pct,ILFS_2024,Tanzania,TZ,3.68,percent,2024,ILFS Tanzania 2024,nationally_representative_survey,HIGH,0,https://www.nbs.go.tz/,2026-07-14 09:29:15
+27153,ilfs_business_registration_rate_pct,ILFS_2024,Tanzania,TZ,46.88,percent,2024,ILFS Tanzania 2024,nationally_representative_survey,HIGH,0,https://www.nbs.go.tz/,2026-07-14 09:29:15
+27154,ilfs_social_security_coverage_pct,ILFS_2024,Tanzania,TZ,2.23,percent,2024,ILFS Tanzania 2024,nationally_representative_survey,HIGH,0,https://www.nbs.go.tz/,2026-07-14 09:29:15
+27155,ilfs_self_employment_rate_pct,ILFS_2024,Tanzania,TZ,27.73,percent,2024,ILFS Tanzania 2024,nationally_representative_survey,HIGH,0,https://www.nbs.go.tz/,2026-07-14 09:29:15
+27156,ilfs_youth_15_24_pct,ILFS_2024,Tanzania,TZ,17.46,percent,2024,ILFS Tanzania 2024,nationally_representative_survey,HIGH,0,https://www.nbs.go.tz/,2026-07-14 09:29:15
+27186,tax_exemption_total_million_tzs_2023_24_q1,TAX_EXEMPTIONS_2024,Tanzania,TZ,576624.2,TZS million,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27187,tax_exemption_pct_of_collection_2023_24_q1,TAX_EXEMPTIONS_2024,Tanzania,TZ,8.77,percent,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27188,tax_exemption_ltd_pct_of_collection,TAX_EXEMPTIONS_2024,Tanzania,TZ,1.81,percent,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27189,tax_exemption_drd_pct_of_collection,TAX_EXEMPTIONS_2024,Tanzania,TZ,2.44,percent,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27190,tax_exemption_mainland_customs_pct_2022_23_q1,TAX_EXEMPTIONS_2024,Tanzania,TZ,12.46,percent,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27191,tax_exemption_mainland_customs_pct_2023_24_q1,TAX_EXEMPTIONS_2024,Tanzania,TZ,19.11,percent,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27192,tax_exemption_zanzibar_customs_pct_2023_24_q1,TAX_EXEMPTIONS_2024,Tanzania,TZ,14.51,percent,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27193,tax_exemption_drd_beneficiaries_count,TAX_EXEMPTIONS_2024,Tanzania,TZ,188.0,count,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27194,tax_exemption_ltd_beneficiaries_count,TAX_EXEMPTIONS_2024,Tanzania,TZ,1004.0,count,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27195,tax_exemption_mainland_customs_records_count,TAX_EXEMPTIONS_2024,Tanzania,TZ,9927.0,count,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12
+27196,tax_exemption_zanzibar_customs_records_count,TAX_EXEMPTIONS_2024,Tanzania,TZ,404.0,count,2024,Ministry of Finance Tax Exemptions/Reliefs Report FY2023/24 Q1,official_government_data,HIGH,0,,2026-07-15 09:32:12

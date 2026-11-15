@@ -1,0 +1,99 @@
+{
+  "source_file": "en-1709023578-All_Reliefs and Exemptions FY2023_24 MoF-Q1.XLSX",
+  "sheet": "Summary",
+  "period": "2023/24 - Q1",
+  "period_note": "Single quarter (Q1 2023/24 = July-September 2023), not an annual rate. The total is dominated by customs and excise; domestic reliefs are the part that applies to the domestic compliance funnel.",
+  "header_rows_found": {
+    "measure_groups": 2,
+    "periods": 3
+  },
+  "components": {
+    "domestic": {
+      "exemption_million_tzs": {
+        "value": 79429.6895365685,
+        "sheet": "Summary",
+        "cell": "D6"
+      },
+      "gross_collection_million_tzs": {
+        "value": 3947853.54,
+        "sheet": "Summary",
+        "cell": "F6"
+      },
+      "workbook_ratio": {
+        "value": 0.020119715367295135,
+        "sheet": "Summary",
+        "cell": "H6"
+      },
+      "rate_pct": 2.0119715367295137,
+      "rate_pct_recomputed": 2.0119715367295137
+    },
+    "customs_excise": {
+      "exemption_million_tzs": {
+        "value": 497194.500626,
+        "sheet": "Summary",
+        "cell": "D9"
+      },
+      "gross_collection_million_tzs": {
+        "value": 2630203.98,
+        "sheet": "Summary",
+        "cell": "F9"
+      },
+      "workbook_ratio": {
+        "value": 0.18903267746785174,
+        "sheet": "Summary",
+        "cell": "H9"
+      },
+      "rate_pct": 18.903267746785176,
+      "rate_pct_recomputed": 18.903267746785176
+    },
+    "total": {
+      "exemption_million_tzs": {
+        "value": 576624.1901625685,
+        "sheet": "Summary",
+        "cell": "D10"
+      },
+      "gross_collection_million_tzs": {
+        "value": 6578057.52,
+        "sheet": "Summary",
+        "cell": "F10"
+      },
+      "workbook_ratio": {
+        "value": 0.08765873335850194,
+        "sheet": "Summary",
+        "cell": "H10"
+      },
+      "rate_pct": 8.765873335850195,
+      "rate_pct_recomputed": 8.765873335850195
+    }
+  },
+  "domestic_sub_lines_pct": {
+    "large_taxpayers_ltd": {
+      "rate_pct": 1.806011554714914,
+      "cell": "H4"
+    },
+    "other_taxpayers_drd": {
+      "rate_pct": 2.43957366426713,
+      "cell": "H5"
+    },
+    "mainland": {
+      "rate_pct": 19.106820693392585,
+      "cell": "H7"
+    },
+    "zanzibar": {
+      "rate_pct": 14.514730583215233,
+      "cell": "H8"
+    }
+  },
+  "prior_year_same_quarter": {
+    "period": "2022/23 - Q1",
+    "total_rate_pct": 7.544830159355233,
+    "total_rate_cell": "G10",
+    "domestic_rate_pct": 4.037971231369853,
+    "customs_excise_rate_pct": 12.395026712736739
+  },
+  "funnel_rate": "domestic",
+  "funnel_rate_pct": 2.0119715367295137,
+  "sensitivity_rate": "total",
+  "sensitivity_rate_pct": 8.765873335850195,
+  "previous_typed_constant_pct": 8.77
+}

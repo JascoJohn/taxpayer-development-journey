@@ -1,0 +1,120 @@
+{
+  "type": "COMPUTED (2024 values) / CITED (2020/21 and NBS comparison figures)",
+  "headline": {
+    "informal_employment_pct": 88.53748918083754,
+    "registration_share_pct_headline_nonag_self_employed": 20.848858911879844
+  },
+  "registration_bases": {
+    "Registered (any authority) - non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]": 20.8489,
+    "With a business licence - non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]": 8.9047,
+    "Registered with TRA/ZRB - non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]": 9.1886,
+    "Registered (any authority) - all workers with Q38A answered": 13.7112,
+    "With a business licence - all workers with Q38A answered": 6.4389,
+    "Registered with TRA/ZRB - all workers with Q38A answered": 5.5864,
+    "Registered (any authority) - non-agricultural private-business owners/workers (Q37 = 6), Q38A answered": 32.2338,
+    "With a business licence - non-agricultural private-business owners/workers (Q37 = 6), Q38A answered": 15.1783,
+    "Registered with TRA/ZRB - non-agricultural private-business owners/workers (Q37 = 6), Q38A answered": 14.3142
+  },
+  "status_shares_pct": {
+    "Share of employed: employee": 17.1088,
+    "Share of employed: employer": 7.2987,
+    "Share of employed: own-account": 52.8834,
+    "Share of employed: contributing family worker": 22.4804,
+    "Share of employed: other (trainee)": 0.2287,
+    "Self-employed (employers + own-account), without contributing family workers": 60.1821,
+    "Self-employed incl. contributing family workers": 82.6625,
+    "Share of employed: status as in 13th-ICLS base, employees": 14.4381
+  },
+  "informality_pct": {
+    "Informal employment rate, ICLS-17 (headline)": 88.5375,
+    "Informal employment, employees' leave test": 86.8539,
+    "Informal employment, NBS-consistent rule": 94.5152,
+    "Informal employment, 13th-ICLS employed base": 90.2826,
+    "Informal employment, non-agricultural workers": 76.6824,
+    "Informal employment among employees": 69.9319,
+    "Informal employment among employers and own-account workers": 89.6158,
+    "Informal employment among contributing family workers": 100.0
+  },
+  "design": {
+    "description": "RECONSTRUCTED: PSU = enumeration area (composite of the 8 geography columns), strata = region; linearised variance, logit CI, Student-t",
+    "n_psu": 593,
+    "n_strata": 31,
+    "strata_with_one_psu": 0,
+    "degrees_of_freedom": 562,
+    "published_first_stage_EAs": 593
+  },
+  "base": {
+    "employed_15plus_19th_icls_unweighted": 23815,
+    "employed_15plus_19th_icls_weighted": 25604248.664689302,
+    "base_with_status_unweighted": 23815,
+    "status_not_stated_in_base_unweighted": 0,
+    "persons_15plus_weighted": 37286717.36154087,
+    "q38a_missing_among_self_employed_unweighted": 62,
+    "employed_13th_icls_15plus_unweighted": 27441
+  },
+  "published_cross_check": {
+    "informal_employment_2024": {
+      "computed_pct": 88.53748918083754,
+      "published_pct": 94.6,
+      "gap_pp": -6.062510819162455,
+      "nbs_consistent_rule_pct": 94.5152325604652,
+      "nbs_consistent_rule_gap_pp": -0.08476743953480081,
+      "explanation": "NBS does not state its operational definition. The headline applies the ICLS-17 rules to the items in the file (self-employed are formal if their enterprise is registered with any authority, Q38A 1-5). NBS's 94.6% is reproduced to within 0.1 pp by a stricter rule: only employees with social-security contributions and self-employed with a legal-entity registration (Q38C = 1) are formal. The gap is therefore a definition difference (what counts as a registered enterprise), not rounding or a base difference."
+    },
+    "employment_to_population_ratio": {
+      "computed_pct": 68.66855136756723,
+      "published_pct": 68.7,
+      "note": "agreement shows the 19th-ICLS employed flag is the base NBS uses"
+    },
+    "employees_vs_nbs_paid_employment": {
+      "computed_q25_paid_employee_pct": 17.10879912627779,
+      "published_pct": 7.7,
+      "explanation": "Q25 'paid employee' is wider than NBS's 'wage and salaried' class (ICSE-18); wage/salary earners (Q28A = 1) are about 7.1% of the employed (checked, not reported as a headline)."
+    },
+    "contributing_family_workers": {
+      "computed_pct": 22.480372901714098,
+      "published_pct": 16.9,
+      "explanation": "Q25 4, 5 and 7 (incl. unpaid helpers in agriculture) vs NBS's ICSE-18 class; different category boundaries."
+    },
+    "self_employed_vs_dependent_contractors": {
+      "computed_self_employed_without_cfw_pct": 60.18207942805138,
+      "computed_self_employed_with_cfw_pct": 82.66245232976547,
+      "published_dependent_contractors_pct": 74.8,
+      "explanation": "The report's '74.8% self-employed' is NBS's 'dependent contractors' share (ICSE-18), not a self-employed total; NBS publishes no 'self-employed' figure and its six classes do not map onto Q25."
+    }
+  },
+  "cited_source": {
+    "title": "The Labour Market: Key Findings from the ILFS 2024",
+    "publisher": "National Bureau of Statistics (NBS), United Republic of Tanzania, with OCGS Zanzibar",
+    "published": "07 November 2025",
+    "url": "https://www.nbs.go.tz/uploads/statistics/documents/en-1762517636-THE%20LABOUR%20MARKET%20KEY%20FINDINGS%20FROM%20THE%20ILFS%202024.pdf",
+    "figures": {
+      "informal_employment_2024_pct": {
+        "value": 94.6,
+        "where": "Figure 3.3 (the key message calls it Figure 2.3), printed p. 20; Executive Summary p. 1"
+      },
+      "informal_employment_2020_21_pct": {
+        "value": 92.5,
+        "where": "same Figure 3.3, 2020/21 bars (URT total); Executive Summary p. 1; Annex A summary of findings"
+      },
+      "dependent_contractors_pct": {
+        "value": 74.8,
+        "where": "Table 3.3 (the key message calls it Table 2.3), printed p. 16, URT total"
+      },
+      "contributing_family_workers_pct": {
+        "value": 16.9,
+        "where": "Table 3.3, printed p. 16, URT total"
+      },
+      "employees_paid_employment_pct": {
+        "value": 7.7,
+        "where": "Table 3.3, printed p. 16, URT total"
+      },
+      "employment_to_population_ratio_pct": {
+        "value": 68.7,
+        "where": "Table 3.2 key message, printed p. 16 (65.8% in 2020/21)"
+      }
+    }
+  },
+  "informality_2020_21_cited_pct": 92.5,
+  "informality_2020_21_note": "CITED from the 2024 report (NBS 2025); the 2020/21 microdata are not held and the 2020/21 Analytical Report (NBS 2022) does not itself state 92.5% (it gives the informal SECTOR share, 29.0% of employment, Table 6.1)."
+}

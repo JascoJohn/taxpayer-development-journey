@@ -1,0 +1,586 @@
+{
+ "label": "aggregate cell distributions from survey data; no respondent-level rows; no record linkage across surveys",
+ "type": "COMPUTED (survey data), aggregates only",
+ "source": "Afrobarometer Round 8 Tanzania 2021 (afrobarometer_release-data_tan_r8_en_2021-06-10.sav), weight withinwt_hh; see data/processed/afrobarometer_morale.json",
+ "method": "EMPIRICAL cell distribution (weighted shares of each answer level, used by the simulations); a method-of-moments Beta (beta_a, beta_b from the weighted mean and variance) is published as a check with its maximum CDF difference and is not used",
+ "items": {
+  "trust": {
+   "variable": "Q41J",
+   "rescale": "(code - 0) / 3",
+   "meaning": "trust in the tax/revenue office (0 = not at all, 1 = a lot)"
+  },
+  "morale": {
+   "variable": "Q76E_TAN",
+   "rescale": "(code - 1) / 2",
+   "meaning": "civic duty to pay tax: good citizens should pay the taxes they owe (0 = never do, 0.5 = only if they choose, 1 = always do)"
+  }
+ },
+ "age_band_note": "the 16-24 agent band is calibrated on respondents aged 18-24 (Afrobarometer interviews adults 18+)",
+ "no_linkage": "cells only; no respondent is linked to a FinScope or ILFS record (data terms, clause 4)",
+ "cells": [
+  {
+   "age_band": "18-24",
+   "band_index": 0,
+   "age_from": 18,
+   "urban": true,
+   "n_unweighted": 137,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 134,
+    "mean": 0.7588581425160589,
+    "variance": 0.07838109182258214,
+    "beta_a": 1.0128104655509051,
+    "beta_b": 0.3218401217022614,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.05323153092954694,
+     0.09297981362569122,
+     0.3777713524117998,
+     0.47601730303296197
+    ],
+    "fit_check_max_abs_cdf_difference": 0.08854209588752265
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 115,
+    "mean": 0.7191051207789578,
+    "variance": 0.1784043982731323,
+    "beta_a": 0.09507974949693956,
+    "beta_b": 0.037139792193913806,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.23371778367043008,
+     0.0943541911012241,
+     0.6719280252283458
+    ],
+    "fit_check_max_abs_cdf_difference": 0.021091980996118143
+   }
+  },
+  {
+   "age_band": "18-24",
+   "band_index": 0,
+   "age_from": 18,
+   "urban": false,
+   "n_unweighted": 264,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 251,
+    "mean": 0.8189830314936515,
+    "variance": 0.06556005699609135,
+    "beta_a": 1.032969165728978,
+    "beta_b": 0.22831357885372863,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.035890090181364374,
+     0.06327667617132281,
+     0.30882728263230663,
+     0.5920059510150062
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07850794290698121
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 233,
+    "mean": 0.8434514627352727,
+    "variance": 0.11390091019658621,
+    "beta_a": 0.13433047618617178,
+    "beta_b": 0.024932364796455102,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.12026817216789655,
+     0.07256073019366152,
+     0.8071710976384419
+    ],
+    "fit_check_max_abs_cdf_difference": 0.016582781144764636
+   }
+  },
+  {
+   "age_band": "25-34",
+   "band_index": 1,
+   "age_from": 25,
+   "urban": true,
+   "n_unweighted": 240,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 231,
+    "mean": 0.7046945537595718,
+    "variance": 0.09781921708709858,
+    "beta_a": 0.7944693060907638,
+    "beta_b": 0.33292596304001115,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.0930150839038106,
+     0.1106069354265326,
+     0.38565721615678805,
+     0.41072076451286893
+    ],
+    "fit_check_max_abs_cdf_difference": 0.08949548139554969
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 213,
+    "mean": 0.6993926782537594,
+    "variance": 0.16881196955866148,
+    "beta_a": 0.17164808625477196,
+    "beta_b": 0.07377639643118089,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.217746141145978,
+     0.16572236120052522,
+     0.6165314976534968
+    ],
+    "fit_check_max_abs_cdf_difference": 0.036583587470735146
+   }
+  },
+  {
+   "age_band": "25-34",
+   "band_index": 1,
+   "age_from": 25,
+   "urban": false,
+   "n_unweighted": 428,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 398,
+    "mean": 0.7842239505817621,
+    "variance": 0.07657184087813752,
+    "beta_a": 0.9488390588056284,
+    "beta_b": 0.2610692309140998,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.05650110350232018,
+     0.06092276507873974,
+     0.35597930759027413,
+     0.5265968238286661
+    ],
+    "fit_check_max_abs_cdf_difference": 0.08902960522218895
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 385,
+    "mean": 0.8174984015281076,
+    "variance": 0.114973077552836,
+    "beta_a": 0.24332805038593475,
+    "beta_b": 0.05432152291120464,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.11405822352337132,
+     0.13688674989704203,
+     0.7490550265795867
+    ],
+    "fit_check_max_abs_cdf_difference": 0.03140087354882179
+   }
+  },
+  {
+   "age_band": "35-44",
+   "band_index": 2,
+   "age_from": 35,
+   "urban": true,
+   "n_unweighted": 168,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 163,
+    "mean": 0.7041116303087891,
+    "variance": 0.10794839620431136,
+    "beta_a": 0.6548110167436401,
+    "beta_b": 0.27517080511104486,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.10073983990219545,
+     0.13369038160935062,
+     0.31806482614834525,
+     0.4475049523401087
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07420871764464265
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 144,
+    "mean": 0.6860332162185143,
+    "variance": 0.18118727279069047,
+    "beta_a": 0.12950873079479625,
+    "beta_b": 0.05927036580443506,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.24555804443607562,
+     0.13681747869082025,
+     0.6176244768731041
+    ],
+    "fit_check_max_abs_cdf_difference": 0.030256655730121762
+   }
+  },
+  {
+   "age_band": "35-44",
+   "band_index": 2,
+   "age_from": 35,
+   "urban": false,
+   "n_unweighted": 332,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 295,
+    "mean": 0.8148035848360932,
+    "variance": 0.0729475907918762,
+    "beta_a": 0.8706914780701588,
+    "beta_b": 0.19789915441375217,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.04403920327602916,
+     0.0726916308425248,
+     0.2780883739785831,
+     0.6051807919028628
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07102448068780082
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 294,
+    "mean": 0.8451781436849077,
+    "variance": 0.10636654087389023,
+    "beta_a": 0.19455945674738642,
+    "beta_b": 0.03563989022001511,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.10585083981839027,
+     0.09794203299340427,
+     0.7962071271882054
+    ],
+    "fit_check_max_abs_cdf_difference": 0.02254611153019298
+   }
+  },
+  {
+   "age_band": "45-54",
+   "band_index": 3,
+   "age_from": 45,
+   "urban": true,
+   "n_unweighted": 126,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 116,
+    "mean": 0.7159451333785054,
+    "variance": 0.089157232749564,
+    "beta_a": 0.9171261291562365,
+    "beta_b": 0.3638744481203617,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.08757667305700206,
+     0.07548748090088792,
+     0.4384596188917023,
+     0.3984762271504078
+    ],
+    "fit_check_max_abs_cdf_difference": 0.10317432289503875
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 112,
+    "mean": 0.7357444592688935,
+    "variance": 0.16469529922716422,
+    "beta_a": 0.13280968905041862,
+    "beta_b": 0.04770093169199391,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.20479703933740095,
+     0.11891700278741112,
+     0.6762859578751881
+    ],
+    "fit_check_max_abs_cdf_difference": 0.026600043237569926
+   }
+  },
+  {
+   "age_band": "45-54",
+   "band_index": 3,
+   "age_from": 45,
+   "urban": false,
+   "n_unweighted": 266,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 249,
+    "mean": 0.8225483603507778,
+    "variance": 0.06761307228050097,
+    "beta_a": 0.9531624072814174,
+    "beta_b": 0.2056295291281803,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.03926263005597279,
+     0.06199435548439107,
+     0.2905783178109666,
+     0.6081646966486697
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07480141692173009
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 239,
+    "mean": 0.8642486442198444,
+    "variance": 0.09016651165814553,
+    "beta_a": 0.26029501574354696,
+    "beta_b": 0.04088568900434973,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.0814385287284362,
+     0.10862565410343883,
+     0.809935817168125
+    ],
+    "fit_check_max_abs_cdf_difference": 0.025367773026192975
+   }
+  },
+  {
+   "age_band": "55-64",
+   "band_index": 4,
+   "age_from": 55,
+   "urban": true,
+   "n_unweighted": 85,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 84,
+    "mean": 0.8111187588348152,
+    "variance": 0.06627156915854625,
+    "beta_a": 1.064007281741871,
+    "beta_b": 0.24777014930945138,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.027617848340890972,
+     0.09258920913146115,
+     0.29861176020995867,
+     0.5811811823176891
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07270950716178376
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 79,
+    "mean": 0.8073730004854074,
+    "variance": 0.1390345017837941,
+    "beta_a": 0.09574192306518148,
+    "beta_b": 0.022842576302049885,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.15965232593698536,
+     0.06594934715521458,
+     0.7743983269078001
+    ],
+    "fit_check_max_abs_cdf_difference": 0.01493861494304749
+   }
+  },
+  {
+   "age_band": "55-64",
+   "band_index": 4,
+   "age_from": 55,
+   "urban": false,
+   "n_unweighted": 155,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 144,
+    "mean": 0.8220271872130307,
+    "variance": 0.06852992074562592,
+    "beta_a": 0.932846238753161,
+    "beta_b": 0.2019656668187787,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.040424558718170925,
+     0.06268619743122517,
+     0.28727236734394507,
+     0.609616876506659
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07402355000564181
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 139,
+    "mean": 0.9124598583107909,
+    "variance": 0.06129864736569603,
+    "beta_a": 0.27654571212097284,
+    "beta_b": 0.02653141461743895,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.050383705856116456,
+     0.0743128716661857,
+     0.875303422477698
+    ],
+    "fit_check_max_abs_cdf_difference": 0.017684863196292408
+   }
+  },
+  {
+   "age_band": "65+",
+   "band_index": 5,
+   "age_from": 65,
+   "urban": true,
+   "n_unweighted": 60,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 56,
+    "mean": 0.8472090900359178,
+    "variance": 0.04515154979673251,
+    "beta_a": 1.5816709686609303,
+    "beta_b": 0.28524829278593944,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.012521732109197593,
+     0.04148319256601542,
+     0.3378411484326232,
+     0.608153926892164
+    ],
+    "fit_check_max_abs_cdf_difference": 0.08716812870515128
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 54,
+    "mean": 0.8178699695371088,
+    "variance": 0.1308571504405288,
+    "beta_a": 0.1131363429266025,
+    "beta_b": 0.025194133971374894,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.14592696641099379,
+     0.07240612810379501,
+     0.7816669054852113
+    ],
+    "fit_check_max_abs_cdf_difference": 0.016445001875998816
+   }
+  },
+  {
+   "age_band": "65+",
+   "band_index": 5,
+   "age_from": 65,
+   "urban": false,
+   "n_unweighted": 137,
+   "trust": {
+    "variable": "Q41J",
+    "n_unweighted_valid": 116,
+    "mean": 0.8077757628630801,
+    "variance": 0.07372499081451922,
+    "beta_a": 0.8935013329056394,
+    "beta_b": 0.21262412168675102,
+    "levels": [
+     0.0,
+     0.333333,
+     0.666667,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.048764398297864095,
+     0.06340861610928289,
+     0.3035622842986011,
+     0.5842647012942518
+    ],
+    "fit_check_max_abs_cdf_difference": 0.07770527187975529
+   },
+   "morale": {
+    "variable": "Q76E_TAN",
+    "n_unweighted_valid": 117,
+    "mean": 0.7939773683804284,
+    "variance": 0.1374009376112821,
+    "beta_a": 0.1512613024855952,
+    "beta_b": 0.039249546449735474,
+    "levels": [
+     0.0,
+     0.5,
+     1.0
+    ],
+    "weighted_shares_by_level": [
+     0.15366989308190007,
+     0.10470547707534288,
+     0.7416246298427568
+    ],
+    "fit_check_max_abs_cdf_difference": 0.023725622364639876
+   }
+  }
+ ]
+}

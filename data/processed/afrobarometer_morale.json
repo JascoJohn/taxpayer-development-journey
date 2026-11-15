@@ -1,0 +1,2819 @@
+{
+ "label": "weighted survey estimates, Afrobarometer Round 8 Tanzania 2021; components only, no composite",
+ "type": "COMPUTED (survey data)",
+ "source": {
+  "dataset": "Afrobarometer Round 8, Tanzania, respondent-level data",
+  "file": "afrobarometer_release-data_tan_r8_en_2021-06-10.sav",
+  "n_respondents": 2398,
+  "fieldwork": {
+   "from": "2021-02-23",
+   "to": "2021-03-25",
+   "from_variable": "DATEINTR"
+  },
+  "citation": "Afrobarometer Data, Tanzania, Round 8, 2021, available at http://www.afrobarometer.org (form required by the Afrobarometer data usage and access policy, https://www.afrobarometer.org/data/data-usage-and-access-policy/)",
+  "provenance": "data/raw/SOURCES.csv"
+ },
+ "estimation": {
+  "weight": "withinwt_hh",
+  "weight_note": "withinwt_hh: within-country weight to household level ('new AB withinwt'), adjusting for region, gender, urban-rural distribution and size of household, enumeration area and number of adults (codebook note); withinwt_ea (weights to EA level) is the alternative. Chosen because it includes household selection.",
+  "strata": "REGION x URBRUR (59 strata)",
+  "psu": "INFERRED from identical region, urban/rural and EA_* items: 285 clusters (not a documented design)",
+  "interval": "95%, logit scale, Student-t, Taylor-linearised on the inferred design",
+  "bases": "pct: respondents asked (don't know and refused stay in the base); pct_of_valid: substantive answers only"
+ },
+ "disclosure_rule": "base < 10 suppressed; numerator < 10 withheld and the row flagged low_precision",
+ "composite": {
+  "published": false,
+  "note": "the 59.8% composite (assumed weights 30/35/20/15) is retired; the WVS 61.8% stays removed; only components are published"
+ },
+ "indicators": [
+  {
+   "id": "civic_duty_always_pay",
+   "group": "civic_duty",
+   "variable": "Q76E_TAN",
+   "question": "For each of the following actions, please tell me whether you think it is something a good citizen in a democracy should always do, never do, or do only if they choose: Good citizens should pay taxes they owe to the government (Tanzania-specific item Q76e-tan; wording from the Tanzania Round 8 codebook)",
+   "answer_codes_counted": [
+    3
+   ],
+   "code_labels": "1=Never do, 2=Do only if they choose, 3=Always do, 8=Refused, 9=Don't know",
+   "meaning": "Good citizens should ALWAYS pay the taxes they owe (civic duty to pay tax)"
+  },
+  {
+   "id": "civic_duty_tax_authority_right",
+   "group": "civic_duty",
+   "variable": "Q39A",
+   "question": "For each of the following statements, please tell me whether you disagree or agree: The tax authorities always have the right to make people pay taxes.",
+   "answer_codes_counted": [
+    4,
+    5
+   ],
+   "code_labels": "1=Strongly disagree, 2=Disagree, 3=Neither agree nor disagree, 4=Agree, 5=Strongly agree, 8=Refused, 9=Don't know",
+   "meaning": "Agree or strongly agree that the tax authorities always have the right to make people pay taxes"
+  },
+  {
+   "id": "trust_tax_office_a_lot",
+   "group": "trust_in_tax_authority",
+   "variable": "Q41J",
+   "question": "How much do you trust each of the following, or haven't you heard enough about them to say: The tax/revenue office?",
+   "answer_codes_counted": [
+    3
+   ],
+   "code_labels": "0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 8=Refused, 9=Don't know/Haven't heard",
+   "meaning": "Trusts the tax/revenue office A LOT"
+  },
+  {
+   "id": "trust_tax_office_somewhat_or_a_lot",
+   "group": "trust_in_tax_authority",
+   "variable": "Q41J",
+   "question": "How much do you trust each of the following, or haven't you heard enough about them to say: The tax/revenue office?",
+   "answer_codes_counted": [
+    2,
+    3
+   ],
+   "code_labels": "0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 8=Refused, 9=Don't know/Haven't heard",
+   "meaning": "Trusts the tax/revenue office somewhat or a lot"
+  },
+  {
+   "id": "tax_officials_corrupt_most_or_all",
+   "group": "trust_in_tax_authority",
+   "variable": "Q42G",
+   "question": "How many of the following people do you think are involved in corruption, or haven't you heard enough about them to say: Tax officials?",
+   "answer_codes_counted": [
+    2,
+    3
+   ],
+   "code_labels": "0=None, 1=Some of them, 2=Most of them, 3=All of them, 8=Refused, 9=Don't know/Haven't heard",
+   "meaning": "Thinks most or all tax officials are involved in corruption (supporting indicator)"
+  },
+  {
+   "id": "not_paying_acceptable_never_or_if_choose",
+   "group": "acceptability_of_not_paying",
+   "variable": "Q76E_TAN",
+   "question": "Q76e-tan, as above (Good citizens should pay taxes they owe to the government)",
+   "answer_codes_counted": [
+    1,
+    2
+   ],
+   "code_labels": "1=Never do, 2=Do only if they choose, 3=Always do, 8=Refused, 9=Don't know",
+   "meaning": "Says good citizens should never pay, or pay only if they choose (does not hold paying tax to be a duty)"
+  },
+  {
+   "id": "has_refused_to_pay_tax_or_fee",
+   "group": "acceptability_of_not_paying",
+   "variable": "Q80D_TAN",
+   "question": "Not published in the codebook (the Tanzania Round 8 codebook carries a placeholder for Q80); the data-file variable label is 'Q80d_tan. Refused to pay a tax or fee' and the answer codes are those shown",
+   "answer_codes_counted": [
+    2,
+    3,
+    4
+   ],
+   "code_labels": "0=No, would never do this, 1=No, would if had the chance, 2=Yes, once or twice, 3=Yes, several times, 4=Yes, often, 8=Refused, 9=Don't know",
+   "meaning": "Has refused to pay a tax or fee (once or twice, several times or often)"
+  },
+  {
+   "id": "would_never_refuse_to_pay",
+   "group": "acceptability_of_not_paying",
+   "variable": "Q80D_TAN",
+   "question": "Q80d_tan, as above (data-file label 'Refused to pay a tax or fee')",
+   "answer_codes_counted": [
+    0
+   ],
+   "code_labels": "0=No, would never do this, 1=No, would if had the chance, 2=Yes, once or twice, 3=Yes, several times, 4=Yes, often, 8=Refused, 9=Don't know",
+   "meaning": "Would never refuse to pay a tax or fee"
+  },
+  {
+   "id": "others_avoid_tax_often_or_always",
+   "group": "perceived_avoidance",
+   "variable": "Q47D",
+   "question": "In your opinion, how often, in this country, do people avoid paying the taxes that they owe the government?",
+   "answer_codes_counted": [
+    2,
+    3
+   ],
+   "code_labels": "0=Never, 1=Rarely, 2=Often, 3=Always, 8=Refused, 9=Don't know",
+   "meaning": "Thinks people in this country often or always avoid paying the taxes they owe (perceived behaviour of others)"
+  },
+  {
+   "id": "reciprocity_taxes_used_for_wellbeing",
+   "group": "reciprocity",
+   "variable": "Q47C",
+   "question": "Do you agree or disagree with each of the following statements: The government usually uses the tax revenues it collects for the well-being of citizens.",
+   "answer_codes_counted": [
+    4,
+    5
+   ],
+   "code_labels": "1=Strongly disagree, 2=Disagree, 3=Neither agree nor disagree, 4=Agree, 5=Strongly agree, 8=Refused, 9=Don't know",
+   "meaning": "Agree or strongly agree that the government usually uses tax revenues for the well-being of citizens"
+  },
+  {
+   "id": "listen_mps_often_always",
+   "group": "reciprocity",
+   "variable": "Q38A",
+   "question": "How much of the time do you think the following try their best to listen to what people like you have to say: Members of Parliament?",
+   "answer_codes_counted": [
+    2,
+    3
+   ],
+   "code_labels": "0=Never, 1=Only sometimes, 2=Often, 3=Always, 8=Refused, 9=Don't know",
+   "meaning": "Thinks Members of Parliament often or always try their best to listen to what people like them have to say"
+  },
+  {
+   "id": "listen_councillors_often_always",
+   "group": "reciprocity",
+   "variable": "Q38B",
+   "question": "How much of the time do you think the following try their best to listen to what people like you have to say: Local government councilors?",
+   "answer_codes_counted": [
+    2,
+    3
+   ],
+   "code_labels": "0=Never, 1=Only sometimes, 2=Often, 3=Always, 8=Refused, 9=Don't know",
+   "meaning": "Thinks local government councillors often or always try their best to listen to what people like them have to say"
+  },
+  {
+   "id": "prefers_higher_taxes_more_services",
+   "group": "fiscal_exchange",
+   "variable": "Q45",
+   "question": "Now let us talk about the tax system in this country. Which of the following statements is closest to your view? Statement 1: It is better to pay higher taxes if it means that there will be more services provided by government. Statement 2: It is better to pay lower taxes, even if it means there will be fewer services provided by government.",
+   "answer_codes_counted": [
+    1,
+    2
+   ],
+   "code_labels": "1=Agree very strongly with Statement 1, 2=Agree with Statement 1, 3=Agree with Statement 2, 4=Agree very strongly with Statement 2, 5=Agree with neither, 8=Refused, 9=Don't know",
+   "meaning": "Prefers paying higher taxes if that means more government services (supporting indicator)"
+  },
+  {
+   "id": "finding_out_taxes_difficult",
+   "group": "fiscal_exchange",
+   "variable": "Q46A",
+   "question": "Based on your experience, how easy or difficult is it to do each of the following: To find out what taxes and fees you are supposed to pay to the government?",
+   "answer_codes_counted": [
+    3,
+    4
+   ],
+   "code_labels": "1=Very easy, 2=Easy, 3=Difficult, 4=Very difficult, 8=Refused, 9=Don't know",
+   "meaning": "Finds it difficult or very difficult to find out what taxes or fees one has to pay (supporting indicator; candidate for the 'simplicity' baseline, not mapped)"
+  }
+ ],
+ "estimates": [
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1608,
+   "pct": 65.66093999379035,
+   "ci95_low_pct": 63.27176632618655,
+   "ci95_high_pct": 67.97336553195741,
+   "pct_of_valid": 75.1888270525675,
+   "ci95_low_pct_of_valid": 72.76180393247266,
+   "ci95_high_pct_of_valid": 77.46656553864365,
+   "n_unweighted_valid": 2124,
+   "pct_dont_know_or_refused": 12.67194533054199
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 486,
+   "pct": 56.80450473590379,
+   "ci95_low_pct": 52.23964571531378,
+   "ci95_high_pct": 61.25664365848503,
+   "pct_of_valid": 66.69507500684043,
+   "ci95_low_pct_of_valid": 61.929013545492275,
+   "ci95_high_pct_of_valid": 71.14250757455682,
+   "n_unweighted_valid": 717,
+   "pct_dont_know_or_refused": 14.82953616878343
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 1122,
+   "pct": 70.03246812447219,
+   "ci95_low_pct": 67.23623979838594,
+   "ci95_high_pct": 72.68699515198783,
+   "pct_of_valid": 79.22848737274968,
+   "ci95_low_pct_of_valid": 76.41275416954232,
+   "ci95_high_pct_of_valid": 81.7882028454862,
+   "n_unweighted_valid": 1407,
+   "pct_dont_know_or_refused": 11.60696051789124
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 273,
+   "pct": 65.89315110864085,
+   "ci95_low_pct": 59.958685526830266,
+   "ci95_high_pct": 71.3680819126754,
+   "pct_of_valid": 76.27896799418515,
+   "ci95_low_pct_of_valid": 69.93199032008539,
+   "ci95_high_pct_of_valid": 81.63796125131371,
+   "n_unweighted_valid": 348,
+   "pct_dont_know_or_refused": 13.615570790543497
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 434,
+   "pct": 61.68211087147492,
+   "ci95_low_pct": 56.84044093299777,
+   "ci95_high_pct": 66.30263586384707,
+   "pct_of_valid": 70.28871946369087,
+   "ci95_low_pct_of_valid": 65.23644452858893,
+   "ci95_high_pct_of_valid": 74.88936388583069,
+   "n_unweighted_valid": 598,
+   "pct_dont_know_or_refused": 12.244651286700257
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 332,
+   "pct": 63.937330578126115,
+   "ci95_low_pct": 59.69794719321396,
+   "ci95_high_pct": 67.97003498340386,
+   "pct_of_valid": 74.44646717456796,
+   "ci95_low_pct_of_valid": 70.47171794988432,
+   "ci95_high_pct_of_valid": 78.05280951070239,
+   "n_unweighted_valid": 438,
+   "pct_dont_know_or_refused": 14.11636709610302
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 271,
+   "pct": 66.77684523999623,
+   "ci95_low_pct": 61.040734521109115,
+   "ci95_high_pct": 72.05504903809586,
+   "pct_of_valid": 76.74158480463002,
+   "ci95_low_pct_of_valid": 71.4156842961506,
+   "ci95_high_pct_of_valid": 81.33451097763597,
+   "n_unweighted_valid": 351,
+   "pct_dont_know_or_refused": 12.984797733852124
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 172,
+   "pct": 76.7153778555775,
+   "ci95_low_pct": 69.7369813890873,
+   "ci95_high_pct": 82.48868326048726,
+   "pct_of_valid": 84.55575852875438,
+   "ci95_low_pct_of_valid": 78.65137338009869,
+   "ci95_high_pct_of_valid": 89.05442324135493,
+   "n_unweighted_valid": 218,
+   "pct_dont_know_or_refused": 9.272438459067994
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_always_pay",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 126,
+   "pct": 66.42852727730596,
+   "ci95_low_pct": 58.21384402734699,
+   "ci95_high_pct": 73.75632438432508,
+   "pct_of_valid": 75.52949777792858,
+   "ci95_low_pct_of_valid": 67.49858368864793,
+   "ci95_high_pct_of_valid": 82.10219698806182,
+   "n_unweighted_valid": 171,
+   "pct_dont_know_or_refused": 12.04955781300341
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1850,
+   "pct": 76.82746594703625,
+   "ci95_low_pct": 74.80879548218499,
+   "ci95_high_pct": 78.7303651358848,
+   "pct_of_valid": 80.27513872198149,
+   "ci95_low_pct_of_valid": 78.28221671425541,
+   "ci95_high_pct_of_valid": 82.1269354756901,
+   "n_unweighted_valid": 2302,
+   "pct_dont_know_or_refused": 4.294820077341301
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 669,
+   "pct": 82.46940466143636,
+   "ci95_low_pct": 79.20924887376472,
+   "ci95_high_pct": 85.31313140439853,
+   "pct_of_valid": 85.06431065556303,
+   "ci95_low_pct_of_valid": 81.98224324060855,
+   "ci95_high_pct_of_valid": 87.69827786756778,
+   "n_unweighted_valid": 793,
+   "pct_dont_know_or_refused": 3.0505225683116555
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 1181,
+   "pct": 74.04261029310712,
+   "ci95_low_pct": 71.44156902422208,
+   "ci95_high_pct": 76.48472991736607,
+   "pct_of_valid": 77.86500671169549,
+   "ci95_low_pct_of_valid": 75.24902644795137,
+   "ci95_high_pct_of_valid": 80.2769672802661,
+   "n_unweighted_valid": 1509,
+   "pct_dont_know_or_refused": 4.909004159906194
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 306,
+   "pct": 75.6870835778525,
+   "ci95_low_pct": 70.43320080864689,
+   "ci95_high_pct": 80.26891095865507,
+   "pct_of_valid": 77.91975077001133,
+   "ci95_low_pct_of_valid": 72.62382985244228,
+   "ci95_high_pct_of_valid": 82.43890794675501,
+   "n_unweighted_valid": 392,
+   "pct_dont_know_or_refused": 2.865341803708795
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 508,
+   "pct": 74.23734628694912,
+   "ci95_low_pct": 69.68794111266766,
+   "ci95_high_pct": 78.31640624169823,
+   "pct_of_valid": 77.81331780734074,
+   "ci95_low_pct_of_valid": 73.39362105585788,
+   "ci95_high_pct_of_valid": 81.6820789006698,
+   "n_unweighted_valid": 642,
+   "pct_dont_know_or_refused": 4.595577750900488
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 384,
+   "pct": 77.37208574354439,
+   "ci95_low_pct": 73.06680327592198,
+   "ci95_high_pct": 81.1665553869605,
+   "pct_of_valid": 80.25930203546083,
+   "ci95_low_pct_of_valid": 75.92585073087876,
+   "ci95_high_pct_of_valid": 83.97732558744929,
+   "n_unweighted_valid": 479,
+   "pct_dont_know_or_refused": 3.5973603291999683
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 305,
+   "pct": 76.53579327702481,
+   "ci95_low_pct": 70.8085429196353,
+   "ci95_high_pct": 81.43400408840198,
+   "pct_of_valid": 81.45538531693724,
+   "ci95_low_pct_of_valid": 75.93488885568121,
+   "ci95_high_pct_of_valid": 85.94390744647107,
+   "n_unweighted_valid": 376,
+   "pct_dont_know_or_refused": 6.039615454239964
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 191,
+   "pct": 80.69391983457706,
+   "ci95_low_pct": 73.91361622379416,
+   "ci95_high_pct": 86.04464181321286,
+   "pct_of_valid": 83.20340729959543,
+   "ci95_low_pct_of_valid": 76.76490897515839,
+   "ci95_high_pct_of_valid": 88.13357479760008,
+   "n_unweighted_valid": 231,
+   "pct_dont_know_or_refused": 3.0160873772660595
+  },
+  {
+   "group": "civic_duty",
+   "indicator": "civic_duty_tax_authority_right",
+   "variable": "Q39A",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 156,
+   "pct": 82.29089492424474,
+   "ci95_low_pct": 76.37814913535101,
+   "ci95_high_pct": 86.97600238079062,
+   "pct_of_valid": 87.44270149053412,
+   "ci95_low_pct_of_valid": 81.82855998316143,
+   "ci95_high_pct_of_valid": 91.50245248123846,
+   "n_unweighted_valid": 182,
+   "pct_dont_know_or_refused": 5.891637013121176
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1187,
+   "pct": 50.47965167842724,
+   "ci95_low_pct": 47.899526053994144,
+   "ci95_high_pct": 53.05722514326976,
+   "pct_of_valid": 54.03957629533696,
+   "ci95_low_pct_of_valid": 51.4250732447358,
+   "ci95_high_pct_of_valid": 56.63203129361002,
+   "n_unweighted_valid": 2237,
+   "pct_dont_know_or_refused": 6.587624961109993
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 351,
+   "pct": 44.09755621175921,
+   "ci95_low_pct": 39.65982734232095,
+   "ci95_high_pct": 48.631638403217146,
+   "pct_of_valid": 45.97162550973694,
+   "ci95_low_pct_of_valid": 41.57137781772738,
+   "ci95_high_pct_of_valid": 50.43558880657402,
+   "n_unweighted_valid": 784,
+   "pct_dont_know_or_refused": 4.076578274528921
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 836,
+   "pct": 53.62984801056799,
+   "ci95_low_pct": 50.54510286361336,
+   "ci95_high_pct": 56.68706237650475,
+   "pct_of_valid": 58.18394952237876,
+   "ci95_low_pct_of_valid": 55.027985342442754,
+   "ci95_high_pct_of_valid": 61.274301185629156,
+   "n_unweighted_valid": 1453,
+   "pct_dont_know_or_refused": 7.82707524874909
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 214,
+   "pct": 52.899119593786324,
+   "ci95_low_pct": 47.50083019351007,
+   "ci95_high_pct": 58.23043454336918,
+   "pct_of_valid": 55.17224824423729,
+   "ci95_low_pct_of_valid": 49.754693084885716,
+   "ci95_high_pct_of_valid": 60.469765760424984,
+   "n_unweighted_valid": 385,
+   "pct_dont_know_or_refused": 4.120058041478108
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 307,
+   "pct": 45.61254385278525,
+   "ci95_low_pct": 40.777221835037004,
+   "ci95_high_pct": 50.53200591991695,
+   "pct_of_valid": 48.36786291404705,
+   "ci95_low_pct_of_valid": 43.5053040954638,
+   "ci95_high_pct_of_valid": 53.26152517731584,
+   "n_unweighted_valid": 629,
+   "pct_dont_know_or_refused": 5.696590453372282
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 240,
+   "pct": 50.55399593013266,
+   "ci95_low_pct": 45.06713099861182,
+   "ci95_high_pct": 56.02754885666224,
+   "pct_of_valid": 55.42717944180053,
+   "ci95_low_pct_of_valid": 49.890426911608174,
+   "ci95_high_pct_of_valid": 60.83244479162443,
+   "n_unweighted_valid": 458,
+   "pct_dont_know_or_refused": 8.792046719217963
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 202,
+   "pct": 50.11005632968551,
+   "ci95_low_pct": 44.123916992937424,
+   "ci95_high_pct": 56.093042318273746,
+   "pct_of_valid": 54.156602629049566,
+   "ci95_low_pct_of_valid": 47.93089531384583,
+   "ci95_high_pct_of_valid": 60.255177224936375,
+   "n_unweighted_valid": 365,
+   "pct_dont_know_or_refused": 7.471935281984394
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 128,
+   "pct": 57.33515547402319,
+   "ci95_low_pct": 48.73044849612933,
+   "ci95_high_pct": 65.51761400967433,
+   "pct_of_valid": 60.10910820143278,
+   "ci95_low_pct_of_valid": 51.09648556424209,
+   "ci95_high_pct_of_valid": 68.48519730699827,
+   "n_unweighted_valid": 228,
+   "pct_dont_know_or_refused": 4.61486255645941
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 96,
+   "pct": 53.23143479042809,
+   "ci95_low_pct": 44.30402011702079,
+   "ci95_high_pct": 61.95663861044686,
+   "pct_of_valid": 59.26559183964686,
+   "ci95_low_pct_of_valid": 50.03352001963535,
+   "ci95_high_pct_of_valid": 67.88671837381395,
+   "n_unweighted_valid": 172,
+   "pct_dont_know_or_refused": 10.181551996553432
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1911,
+   "pct": 81.24535573516651,
+   "ci95_low_pct": 79.05901651906493,
+   "ci95_high_pct": 83.25178716462098,
+   "pct_of_valid": 86.9749384932585,
+   "ci95_low_pct_of_valid": 84.97541505418596,
+   "ci95_high_pct_of_valid": 88.74360825677272,
+   "n_unweighted_valid": 2237,
+   "pct_dont_know_or_refused": 6.587624961109993
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 635,
+   "pct": 79.4761379880791,
+   "ci95_low_pct": 74.7910092183331,
+   "ci95_high_pct": 83.4828261826536,
+   "pct_of_valid": 82.85373536354504,
+   "ci95_low_pct_of_valid": 78.42965405964803,
+   "ci95_high_pct_of_valid": 86.52631857970367,
+   "n_unweighted_valid": 784,
+   "pct_dont_know_or_refused": 4.076578274528921
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 1276,
+   "pct": 82.11863995454894,
+   "ci95_low_pct": 79.74271878479264,
+   "ci95_high_pct": 84.27086215602728,
+   "pct_of_valid": 89.09193255629492,
+   "ci95_low_pct_of_valid": 87.01930972467335,
+   "ci95_high_pct_of_valid": 90.86834807357948,
+   "n_unweighted_valid": 1453,
+   "pct_dont_know_or_refused": 7.82707524874909
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 334,
+   "pct": 84.80527209572716,
+   "ci95_low_pct": 80.7430629987214,
+   "ci95_high_pct": 88.1364728545696,
+   "pct_of_valid": 88.4494403766059,
+   "ci95_low_pct_of_valid": 84.80580362519437,
+   "ci95_high_pct_of_valid": 91.3088620592632,
+   "n_unweighted_valid": 385,
+   "pct_dont_know_or_refused": 4.120058041478108
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 520,
+   "pct": 80.21919962981823,
+   "ci95_low_pct": 76.00209438114533,
+   "ci95_high_pct": 83.8526866802287,
+   "pct_of_valid": 85.06500455866801,
+   "ci95_low_pct_of_valid": 81.08267772130885,
+   "ci95_high_pct_of_valid": 88.32966475967253,
+   "n_unweighted_valid": 629,
+   "pct_dont_know_or_refused": 5.696590453372282
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 386,
+   "pct": 77.09511098867233,
+   "ci95_low_pct": 71.9903580207683,
+   "ci95_high_pct": 81.50849159670156,
+   "pct_of_valid": 84.52674160041332,
+   "ci95_low_pct_of_valid": 79.73171845044638,
+   "ci95_high_pct_of_valid": 88.3530776759081,
+   "n_unweighted_valid": 458,
+   "pct_dont_know_or_refused": 8.792046719217963
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 319,
+   "pct": 81.34258592709706,
+   "ci95_low_pct": 76.33461682101589,
+   "ci95_high_pct": 85.4922036245529,
+   "pct_of_valid": 87.91125824904378,
+   "ci95_low_pct_of_valid": 83.20241506424503,
+   "ci95_high_pct_of_valid": 91.43594852458774,
+   "n_unweighted_valid": 365,
+   "pct_dont_know_or_refused": 7.471935281984394
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 198,
+   "pct": 85.06096567593605,
+   "ci95_low_pct": 77.80770326932276,
+   "ci95_high_pct": 90.24093188383468,
+   "pct_of_valid": 89.17633077405218,
+   "ci95_low_pct_of_valid": 81.944828521026,
+   "ci95_high_pct_of_valid": 93.73296508917684,
+   "n_unweighted_valid": 228,
+   "pct_dont_know_or_refused": 4.61486255645941
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "trust_tax_office_somewhat_or_a_lot",
+   "variable": "Q41J",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 154,
+   "pct": 81.57839898080633,
+   "ci95_low_pct": 74.14054949529869,
+   "ci95_high_pct": 87.24497487114013,
+   "pct_of_valid": 90.82588353973333,
+   "ci95_low_pct_of_valid": 84.65569203995483,
+   "ci95_high_pct_of_valid": 94.67112385774232,
+   "n_unweighted_valid": 172,
+   "pct_dont_know_or_refused": 10.181551996553432
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 253,
+   "pct": 9.360897816474868,
+   "ci95_low_pct": 8.112468291813386,
+   "ci95_high_pct": 10.778911576241354,
+   "pct_of_valid": 11.350342119232979,
+   "ci95_low_pct_of_valid": 9.824230566571405,
+   "ci95_high_pct_of_valid": 13.079137716130926,
+   "n_unweighted_valid": 1992,
+   "pct_dont_know_or_refused": 17.527615307621673
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 123,
+   "pct": 12.964414164169272,
+   "ci95_low_pct": 10.732036983792485,
+   "ci95_high_pct": 15.58010412615457,
+   "pct_of_valid": 15.449672169894827,
+   "ci95_low_pct_of_valid": 12.735004359182444,
+   "ci95_high_pct_of_valid": 18.61954389158194,
+   "n_unweighted_valid": 704,
+   "pct_dont_know_or_refused": 16.086153663301154
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 130,
+   "pct": 7.5822055294974255,
+   "ci95_low_pct": 6.1386837154922596,
+   "ci95_high_pct": 9.331427107802185,
+   "pct_of_valid": 9.27363486782976,
+   "ci95_low_pct_of_valid": 7.506544742406282,
+   "ci95_high_pct_of_valid": 11.405414381797971,
+   "n_unweighted_valid": 1288,
+   "pct_dont_know_or_refused": 18.239119422308757
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 49,
+   "pct": 10.616416025015774,
+   "ci95_low_pct": 7.67027118887103,
+   "ci95_high_pct": 14.516258467180268,
+   "pct_of_valid": 12.49829682894345,
+   "ci95_low_pct_of_valid": 9.057674118039042,
+   "ci95_high_pct_of_valid": 17.00153335045722,
+   "n_unweighted_valid": 342,
+   "pct_dont_know_or_refused": 15.057098016504405
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 64,
+   "pct": 9.133147180184741,
+   "ci95_low_pct": 6.847228781451771,
+   "ci95_high_pct": 12.083219285630179,
+   "pct_of_valid": 11.166780142874021,
+   "ci95_low_pct_of_valid": 8.386818076023705,
+   "ci95_high_pct_of_valid": 14.720151751277937,
+   "n_unweighted_valid": 556,
+   "pct_dont_know_or_refused": 18.211453406173
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 58,
+   "pct": 10.210391202252412,
+   "ci95_low_pct": 7.541590919439586,
+   "ci95_high_pct": 13.683844740156381,
+   "pct_of_valid": 12.406729531814571,
+   "ci95_low_pct_of_valid": 9.15857502571065,
+   "ci95_high_pct_of_valid": 16.596402533481474,
+   "n_unweighted_valid": 413,
+   "pct_dont_know_or_refused": 17.70279850084658
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 39,
+   "pct": 8.66458478533456,
+   "ci95_low_pct": 5.9524053815835964,
+   "ci95_high_pct": 12.448973207228429,
+   "pct_of_valid": 10.44509795418686,
+   "ci95_low_pct_of_valid": 7.171573273543719,
+   "ci95_high_pct_of_valid": 14.97185353299128,
+   "n_unweighted_valid": 331,
+   "pct_dont_know_or_refused": 17.046399915652223
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 25,
+   "pct": 6.796180291312984,
+   "ci95_low_pct": 4.325913457828561,
+   "ci95_high_pct": 10.521931257813119,
+   "pct_of_valid": 7.949937858071832,
+   "ci95_low_pct_of_valid": 5.063728195860059,
+   "ci95_high_pct_of_valid": 12.268628131446661,
+   "n_unweighted_valid": 207,
+   "pct_dont_know_or_refused": 14.51278723628514
+  },
+  {
+   "group": "trust_in_tax_authority",
+   "indicator": "tax_officials_corrupt_most_or_all",
+   "variable": "Q42G",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 18,
+   "pct": 9.883067762650711,
+   "ci95_low_pct": 5.394478296781651,
+   "ci95_high_pct": 17.418824497001303,
+   "pct_of_valid": 13.135553755536453,
+   "ci95_low_pct_of_valid": 7.243395784436101,
+   "ci95_high_pct_of_valid": 22.65029843821149,
+   "n_unweighted_valid": 143,
+   "pct_dont_know_or_refused": 24.760935499311273
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 516,
+   "pct": 21.667114675667644,
+   "ci95_low_pct": 19.64880104935644,
+   "ci95_high_pct": 23.831259544271187,
+   "pct_of_valid": 24.811172947432524,
+   "ci95_low_pct_of_valid": 22.533434461356368,
+   "ci95_high_pct_of_valid": 27.238196067527365,
+   "n_unweighted_valid": 2124,
+   "pct_dont_know_or_refused": 12.67194533054199
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 231,
+   "pct": 28.365959095312782,
+   "ci95_low_pct": 24.543887452108034,
+   "ci95_high_pct": 32.52665283331555,
+   "pct_of_valid": 33.30492499315957,
+   "ci95_low_pct_of_valid": 28.857492425443194,
+   "ci95_high_pct_of_valid": 38.07098645450773,
+   "n_unweighted_valid": 717,
+   "pct_dont_know_or_refused": 14.82953616878343
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 285,
+   "pct": 18.36057135763657,
+   "ci95_low_pct": 16.07054246473701,
+   "ci95_high_pct": 20.89568161763526,
+   "pct_of_valid": 20.771512627250303,
+   "ci95_low_pct_of_valid": 18.211797154513796,
+   "ci95_high_pct_of_valid": 23.587245830457654,
+   "n_unweighted_valid": 1407,
+   "pct_dont_know_or_refused": 11.60696051789124
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 75,
+   "pct": 20.491278100815656,
+   "ci95_low_pct": 15.773051096798932,
+   "ci95_high_pct": 26.18214974429975,
+   "pct_of_valid": 23.72103200581486,
+   "ci95_low_pct_of_valid": 18.362038748686295,
+   "ci95_high_pct_of_valid": 30.068009679914613,
+   "n_unweighted_valid": 348,
+   "pct_dont_know_or_refused": 13.615570790543497
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 164,
+   "pct": 26.07323784182481,
+   "ci95_low_pct": 21.980779542885614,
+   "ci95_high_pct": 30.6285212842069,
+   "pct_of_valid": 29.711280536309104,
+   "ci95_low_pct_of_valid": 25.1106361141693,
+   "ci95_high_pct_of_valid": 34.763555471411046,
+   "n_unweighted_valid": 598,
+   "pct_dont_know_or_refused": 12.244651286700257
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 106,
+   "pct": 21.946302325770873,
+   "ci95_low_pct": 18.682958144266784,
+   "ci95_high_pct": 25.600204031927877,
+   "pct_of_valid": 25.553532825432047,
+   "ci95_low_pct_of_valid": 21.9471904892976,
+   "ci95_high_pct_of_valid": 29.528282050115678,
+   "n_unweighted_valid": 438,
+   "pct_dont_know_or_refused": 14.11636709610302
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 80,
+   "pct": 20.238357026151643,
+   "ci95_low_pct": 16.213026536382838,
+   "ci95_high_pct": 24.965304081998987,
+   "pct_of_valid": 23.258415195369956,
+   "ci95_low_pct_of_valid": 18.665489022364,
+   "ci95_high_pct_of_valid": 28.584315703849366,
+   "n_unweighted_valid": 351,
+   "pct_dont_know_or_refused": 12.984797733852124
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 46,
+   "pct": 14.012183685354508,
+   "ci95_low_pct": 9.936533252815622,
+   "ci95_high_pct": 19.39945580731871,
+   "pct_of_valid": 15.444241471245615,
+   "ci95_low_pct_of_valid": 10.945576758645085,
+   "ci95_high_pct_of_valid": 21.34862661990132,
+   "n_unweighted_valid": 218,
+   "pct_dont_know_or_refused": 9.272438459067994
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "not_paying_acceptable_never_or_if_choose",
+   "variable": "Q76E_TAN",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 45,
+   "pct": 21.52191490969063,
+   "ci95_low_pct": 15.763373239063602,
+   "ci95_high_pct": 28.66818075354618,
+   "pct_of_valid": 24.470502222071406,
+   "ci95_low_pct_of_valid": 17.897803011938166,
+   "ci95_high_pct_of_valid": 32.501416311352074,
+   "n_unweighted_valid": 171,
+   "pct_dont_know_or_refused": 12.04955781300341
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 134,
+   "pct": 5.501037127974502,
+   "ci95_low_pct": 4.427391478108233,
+   "ci95_high_pct": 6.81647312408188,
+   "pct_of_valid": 5.555598940396314,
+   "ci95_low_pct_of_valid": 4.470109202146173,
+   "ci95_high_pct_of_valid": 6.88568188984246,
+   "n_unweighted_valid": 2374,
+   "pct_dont_know_or_refused": 0.982104954068542
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 66,
+   "pct": 7.960315438351557,
+   "ci95_low_pct": 5.690997434421503,
+   "ci95_high_pct": 11.028715518353081,
+   "pct_of_valid": 8.045959182379917,
+   "ci95_low_pct_of_valid": 5.749357873049548,
+   "ci95_high_pct_of_valid": 11.151404173083616,
+   "n_unweighted_valid": 807,
+   "pct_dont_know_or_refused": 1.0644317487455603
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 68,
+   "pct": 4.287139662240141,
+   "ci95_low_pct": 3.2500982526330797,
+   "ci95_high_pct": 5.6358049644546275,
+   "pct_of_valid": 4.327885340540518,
+   "ci95_low_pct_of_valid": 3.2802587572680126,
+   "ci95_high_pct_of_valid": 5.690410820274891,
+   "n_unweighted_valid": 1567,
+   "pct_dont_know_or_refused": 0.9414685254875315
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 28,
+   "pct": 6.00130527775631,
+   "ci95_low_pct": 3.955309569351393,
+   "ci95_high_pct": 9.006405468582996,
+   "pct_of_valid": 6.010939941001217,
+   "ci95_low_pct_of_valid": 3.962064849319636,
+   "ci95_high_pct_of_valid": 9.019826042536994,
+   "n_unweighted_valid": 398,
+   "pct_dont_know_or_refused": 0.16028546848702865
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 48,
+   "pct": 8.39522770842905,
+   "ci95_low_pct": 6.095807821558162,
+   "ci95_high_pct": 11.456201057277712,
+   "pct_of_valid": 8.432543918749758,
+   "ci95_low_pct_of_valid": 6.125070234304053,
+   "ci95_high_pct_of_valid": 11.502786858653886,
+   "n_unweighted_valid": 664,
+   "pct_dont_know_or_refused": 0.4425261306701564
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 20,
+   "pct": 3.7939828421287554,
+   "ci95_low_pct": 2.2194438839952415,
+   "ci95_high_pct": 6.412293497300511,
+   "pct_of_valid": 3.8126272229049767,
+   "ci95_low_pct_of_valid": 2.230230387889805,
+   "ci95_high_pct_of_valid": 6.443771507705874,
+   "n_unweighted_valid": 497,
+   "pct_dont_know_or_refused": 0.48901661993630957
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 20,
+   "pct": 5.324477021097095,
+   "ci95_low_pct": 2.845140984181061,
+   "ci95_high_pct": 9.747605733013627,
+   "pct_of_valid": 5.410580353523625,
+   "ci95_low_pct_of_valid": 2.8930513529062307,
+   "ci95_high_pct_of_valid": 9.895612583043018,
+   "n_unweighted_valid": 385,
+   "pct_dont_know_or_refused": 1.5913881099733806
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 12,
+   "pct": 3.3980233745986492,
+   "ci95_low_pct": 1.7779771589431232,
+   "ci95_high_pct": 6.398059123252864,
+   "pct_of_valid": 3.501319795119182,
+   "ci95_low_pct_of_valid": 1.8325227761373692,
+   "ci95_high_pct_of_valid": 6.587831950276338,
+   "n_unweighted_valid": 237,
+   "pct_dont_know_or_refused": 2.950213821214718
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "has_refused_to_pay_tax_or_fee",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    2,
+    3,
+    4
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": null,
+   "pct": 1.982580256230024,
+   "ci95_low_pct": 0.884906645761044,
+   "ci95_high_pct": 4.3816588879633525,
+   "pct_of_valid": 2.0233230926616357,
+   "ci95_low_pct_of_valid": 0.9039318140834615,
+   "ci95_high_pct_of_valid": 4.466442702244324,
+   "n_unweighted_valid": 193,
+   "pct_dont_know_or_refused": 2.013659438741212,
+   "low_precision": true,
+   "low_precision_fields": [
+    "pct",
+    "ci95_low_pct",
+    "ci95_high_pct",
+    "pct_of_valid",
+    "ci95_low_pct_of_valid",
+    "ci95_high_pct_of_valid",
+    "pct_dont_know_or_refused",
+    "n_unweighted_valid"
+   ]
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1874,
+   "pct": 78.73239364487341,
+   "ci95_low_pct": 76.82098270801885,
+   "ci95_high_pct": 80.52614023444607,
+   "pct_of_valid": 79.51329768053725,
+   "ci95_low_pct_of_valid": 77.643853144004,
+   "ci95_high_pct_of_valid": 81.26413930324465,
+   "n_unweighted_valid": 2374,
+   "pct_dont_know_or_refused": 0.982104954068542
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 625,
+   "pct": 78.20818915379085,
+   "ci95_low_pct": 74.60435102425895,
+   "ci95_high_pct": 81.42792635765097,
+   "pct_of_valid": 79.04961838918756,
+   "ci95_low_pct_of_valid": 75.4996441420744,
+   "ci95_high_pct_of_valid": 82.20644582592836,
+   "n_unweighted_valid": 807,
+   "pct_dont_know_or_refused": 1.0644317487455603
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 1249,
+   "pct": 78.99114048965575,
+   "ci95_low_pct": 76.71518557576869,
+   "ci95_high_pct": 81.09944255967265,
+   "pct_of_valid": 79.74188524082854,
+   "ci95_low_pct_of_valid": 77.52209353692905,
+   "ci95_high_pct_of_valid": 81.79394521106099,
+   "n_unweighted_valid": 1567,
+   "pct_dont_know_or_refused": 0.9414685254875315
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 309,
+   "pct": 78.84122405194734,
+   "ci95_low_pct": 73.83223197665804,
+   "ci95_high_pct": 83.11073330562967,
+   "pct_of_valid": 78.96779795685637,
+   "ci95_low_pct_of_valid": 73.94583636012368,
+   "ci95_high_pct_of_valid": 83.24115381424126,
+   "n_unweighted_valid": 398,
+   "pct_dont_know_or_refused": 0.16028546848702865
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 505,
+   "pct": 75.04078241611313,
+   "ci95_low_pct": 70.89781772339448,
+   "ci95_high_pct": 78.77056259274552,
+   "pct_of_valid": 75.37433353783655,
+   "ci95_low_pct_of_valid": 71.20482459913198,
+   "ci95_high_pct_of_valid": 79.11716621297458,
+   "n_unweighted_valid": 664,
+   "pct_dont_know_or_refused": 0.4425261306701564
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 414,
+   "pct": 83.73649569664752,
+   "ci95_low_pct": 79.56894754533742,
+   "ci95_high_pct": 87.19079422906088,
+   "pct_of_valid": 84.14799336956762,
+   "ci95_low_pct_of_valid": 79.94549827597689,
+   "ci95_high_pct_of_valid": 87.60636351787959,
+   "n_unweighted_valid": 497,
+   "pct_dont_know_or_refused": 0.48901661993630957
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 302,
+   "pct": 76.79782676987472,
+   "ci95_low_pct": 71.28829886154936,
+   "ci95_high_pct": 81.52412755321306,
+   "pct_of_valid": 78.03974194422909,
+   "ci95_low_pct_of_valid": 72.44865354084435,
+   "ci95_high_pct_of_valid": 82.76611174489007,
+   "n_unweighted_valid": 385,
+   "pct_dont_know_or_refused": 1.5913881099733806
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 185,
+   "pct": 78.3529700147582,
+   "ci95_low_pct": 70.54914888844344,
+   "ci95_high_pct": 84.54203447983247,
+   "pct_of_valid": 80.7348198278523,
+   "ci95_low_pct_of_valid": 73.60197989299418,
+   "ci95_high_pct_of_valid": 86.2991081441547,
+   "n_unweighted_valid": 237,
+   "pct_dont_know_or_refused": 2.950213821214718
+  },
+  {
+   "group": "acceptability_of_not_paying",
+   "indicator": "would_never_refuse_to_pay",
+   "variable": "Q80D_TAN",
+   "answer_codes": [
+    0
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 159,
+   "pct": 83.23310809320446,
+   "ci95_low_pct": 76.15366582475814,
+   "ci95_high_pct": 88.52744794078035,
+   "pct_of_valid": 84.94358256105,
+   "ci95_low_pct_of_valid": 78.04651411607108,
+   "ci95_high_pct_of_valid": 89.95276240665525,
+   "n_unweighted_valid": 193,
+   "pct_dont_know_or_refused": 2.013659438741212
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1149,
+   "pct": 45.49167426188488,
+   "ci95_low_pct": 43.2606028272478,
+   "ci95_high_pct": 47.740993690545345,
+   "pct_of_valid": 49.82316349312806,
+   "ci95_low_pct_of_valid": 47.53618920172198,
+   "ci95_high_pct_of_valid": 52.11087795277535,
+   "n_unweighted_valid": 2195,
+   "pct_dont_know_or_refused": 8.693725824616896
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 472,
+   "pct": 55.28488531899131,
+   "ci95_low_pct": 51.22679966630075,
+   "ci95_high_pct": 59.27375977186804,
+   "pct_of_valid": 59.36580893824522,
+   "ci95_low_pct_of_valid": 55.415596619150776,
+   "ci95_high_pct_of_valid": 63.19845927002261,
+   "n_unweighted_valid": 763,
+   "pct_dont_know_or_refused": 6.87419862079041
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 677,
+   "pct": 40.657754475961774,
+   "ci95_low_pct": 38.03790616753204,
+   "ci95_high_pct": 43.331856313790766,
+   "pct_of_valid": 44.971334125433444,
+   "ci95_low_pct_of_valid": 42.206379910287026,
+   "ci95_high_pct_of_valid": 47.76771090695034,
+   "n_unweighted_valid": 1432,
+   "pct_dont_know_or_refused": 9.591842744625463
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 166,
+   "pct": 39.06579098812518,
+   "ci95_low_pct": 33.51738192010319,
+   "ci95_high_pct": 44.912200761094695,
+   "pct_of_valid": 44.64125815040171,
+   "ci95_low_pct_of_valid": 38.7769713345235,
+   "ci95_high_pct_of_valid": 50.65857919553244,
+   "n_unweighted_valid": 364,
+   "pct_dont_know_or_refused": 12.489493785081311
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 333,
+   "pct": 48.42754130448297,
+   "ci95_low_pct": 44.082585686910754,
+   "ci95_high_pct": 52.79639991701326,
+   "pct_of_valid": 51.76118066739407,
+   "ci95_low_pct_of_valid": 47.257129074236175,
+   "ci95_high_pct_of_valid": 56.23679491431216,
+   "n_unweighted_valid": 623,
+   "pct_dont_know_or_refused": 6.440423730541074
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 251,
+   "pct": 47.17777181911716,
+   "ci95_low_pct": 41.947896556561844,
+   "ci95_high_pct": 52.47034106394235,
+   "pct_of_valid": 51.28138121754472,
+   "ci95_low_pct_of_valid": 45.74400229058078,
+   "ci95_high_pct_of_valid": 56.787484786618045,
+   "n_unweighted_valid": 458,
+   "pct_dont_know_or_refused": 8.002142884996278
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 197,
+   "pct": 46.469651539669975,
+   "ci95_low_pct": 40.74698871444723,
+   "ci95_high_pct": 52.286804556515996,
+   "pct_of_valid": 50.38375562190196,
+   "ci95_low_pct_of_valid": 44.24295510897432,
+   "ci95_high_pct_of_valid": 56.51300027493096,
+   "n_unweighted_valid": 358,
+   "pct_dont_know_or_refused": 7.76858341328274
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 121,
+   "pct": 48.21255996312109,
+   "ci95_low_pct": 40.84124290682449,
+   "ci95_high_pct": 55.66250461211541,
+   "pct_of_valid": 53.347958601258505,
+   "ci95_low_pct_of_valid": 44.881422807512486,
+   "ci95_high_pct_of_valid": 61.6259335679171,
+   "n_unweighted_valid": 218,
+   "pct_dont_know_or_refused": 9.62623270464986
+  },
+  {
+   "group": "perceived_avoidance",
+   "indicator": "others_avoid_tax_often_or_always",
+   "variable": "Q47D",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 81,
+   "pct": 41.03988874774571,
+   "ci95_low_pct": 33.28491602221196,
+   "ci95_high_pct": 49.26738899369757,
+   "pct_of_valid": 45.61474336461589,
+   "ci95_low_pct_of_valid": 36.99938670883429,
+   "ci95_high_pct_of_valid": 54.50075674111775,
+   "n_unweighted_valid": 174,
+   "pct_dont_know_or_refused": 10.029333236189975
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1816,
+   "pct": 76.46131102576787,
+   "ci95_low_pct": 74.42536286513271,
+   "ci95_high_pct": 78.38225872097689,
+   "pct_of_valid": 80.96273586048078,
+   "ci95_low_pct_of_valid": 78.95573143223787,
+   "ci95_high_pct_of_valid": 82.81997991345276,
+   "n_unweighted_valid": 2272,
+   "pct_dont_know_or_refused": 5.559872436215579
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 631,
+   "pct": 79.13254608100694,
+   "ci95_low_pct": 75.65835875863603,
+   "ci95_high_pct": 82.22735632148327,
+   "pct_of_valid": 82.56050807067518,
+   "ci95_low_pct_of_valid": 78.96781036159204,
+   "ci95_high_pct_of_valid": 85.65101833491838,
+   "n_unweighted_valid": 783,
+   "pct_dont_know_or_refused": 4.152060191700597
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 1185,
+   "pct": 75.14279190971129,
+   "ci95_low_pct": 72.62179970948715,
+   "ci95_high_pct": 77.50355972976818,
+   "pct_of_valid": 80.15638736646812,
+   "ci95_low_pct_of_valid": 77.69428228307166,
+   "ci95_high_pct_of_valid": 82.40825951757176,
+   "n_unweighted_valid": 1489,
+   "pct_dont_know_or_refused": 6.254767238741825
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 288,
+   "pct": 72.23850289120878,
+   "ci95_low_pct": 66.41094227373212,
+   "ci95_high_pct": 77.39908829847427,
+   "pct_of_valid": 77.1282461169802,
+   "ci95_low_pct_of_valid": 71.10645312079383,
+   "ci95_high_pct_of_valid": 82.20902725274426,
+   "n_unweighted_valid": 376,
+   "pct_dont_know_or_refused": 6.33975679721169
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 490,
+   "pct": 72.69621246996346,
+   "ci95_low_pct": 68.15225775353709,
+   "ci95_high_pct": 76.81242642389333,
+   "pct_of_valid": 77.57975393713151,
+   "ci95_low_pct_of_valid": 73.06763344922123,
+   "ci95_high_pct_of_valid": 81.52705167134005,
+   "n_unweighted_valid": 634,
+   "pct_dont_know_or_refused": 6.294865888754344
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 388,
+   "pct": 79.33239360327646,
+   "ci95_low_pct": 75.21837752987794,
+   "ci95_high_pct": 82.91853571555619,
+   "pct_of_valid": 84.02883552895803,
+   "ci95_low_pct_of_valid": 80.25808648754504,
+   "ci95_high_pct_of_valid": 87.19427937770328,
+   "n_unweighted_valid": 471,
+   "pct_dont_know_or_refused": 5.589083671239364
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 314,
+   "pct": 80.47320454113964,
+   "ci95_low_pct": 75.3483975758818,
+   "ci95_high_pct": 84.74827114623038,
+   "pct_of_valid": 83.0659135949111,
+   "ci95_low_pct_of_valid": 77.9156476261024,
+   "ci95_high_pct_of_valid": 87.21221863474995,
+   "n_unweighted_valid": 380,
+   "pct_dont_know_or_refused": 3.1212671257856255
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 180,
+   "pct": 77.01414270112042,
+   "ci95_low_pct": 69.38493631215798,
+   "ci95_high_pct": 83.20242937940738,
+   "pct_of_valid": 81.29955403120064,
+   "ci95_low_pct_of_valid": 73.93191637903807,
+   "ci95_high_pct_of_valid": 86.95236346391479,
+   "n_unweighted_valid": 231,
+   "pct_dont_know_or_refused": 5.271137561757853
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "reciprocity_taxes_used_for_wellbeing",
+   "variable": "Q47C",
+   "answer_codes": [
+    4,
+    5
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 156,
+   "pct": 82.00269728141176,
+   "ci95_low_pct": 74.58326554341402,
+   "ci95_high_pct": 87.61593280317868,
+   "pct_of_valid": 88.03006959329089,
+   "ci95_low_pct_of_valid": 80.92863271197382,
+   "ci95_high_pct_of_valid": 92.72491646938622,
+   "n_unweighted_valid": 180,
+   "pct_dont_know_or_refused": 6.846947116736699
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 355,
+   "pct": 15.15258772744368,
+   "ci95_low_pct": 13.334170860372321,
+   "ci95_high_pct": 17.169857810697067,
+   "pct_of_valid": 15.444346615864282,
+   "ci95_low_pct_of_valid": 13.599602048975177,
+   "ci95_high_pct_of_valid": 17.48867423042291,
+   "n_unweighted_valid": 2362,
+   "pct_dont_know_or_refused": 1.8890982938760883
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 125,
+   "pct": 15.358722040566066,
+   "ci95_low_pct": 12.439503652024264,
+   "ci95_high_pct": 18.815790417897073,
+   "pct_of_valid": 15.84158422852599,
+   "ci95_low_pct_of_valid": 12.881519292035554,
+   "ci95_high_pct_of_valid": 19.330916540238892,
+   "n_unweighted_valid": 796,
+   "pct_dont_know_or_refused": 3.0480675480071766
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 230,
+   "pct": 15.05084002396323,
+   "ci95_low_pct": 12.811807591134752,
+   "ci95_high_pct": 17.60217438987159,
+   "pct_of_valid": 15.251709948606928,
+   "ci95_low_pct_of_valid": 12.981895116654874,
+   "ci95_high_pct_of_valid": 17.837040051980406,
+   "n_unweighted_valid": 1566,
+   "pct_dont_know_or_refused": 1.3170321578404023
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 84,
+   "pct": 21.06867835357835,
+   "ci95_low_pct": 16.61415425409905,
+   "ci95_high_pct": 26.340262684650824,
+   "pct_of_valid": 21.79452888598637,
+   "ci95_low_pct_of_valid": 17.267244463328755,
+   "ci95_high_pct_of_valid": 27.11971914106125,
+   "n_unweighted_valid": 392,
+   "pct_dont_know_or_refused": 3.3304254301855276
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 84,
+   "pct": 11.50987171331619,
+   "ci95_low_pct": 8.803728834256287,
+   "ci95_high_pct": 14.911829420286427,
+   "pct_of_valid": 11.726293466235987,
+   "ci95_low_pct_of_valid": 8.9816656474923,
+   "ci95_high_pct_of_valid": 15.169842310070797,
+   "n_unweighted_valid": 658,
+   "pct_dont_know_or_refused": 1.845610921668896
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 67,
+   "pct": 13.463444493804587,
+   "ci95_low_pct": 10.172022254502897,
+   "ci95_high_pct": 17.611090033361847,
+   "pct_of_valid": 13.68927922164285,
+   "ci95_low_pct_of_valid": 10.334552921823178,
+   "ci95_high_pct_of_valid": 17.9154094393848,
+   "n_unweighted_valid": 492,
+   "pct_dont_know_or_refused": 1.6497196395937113
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 54,
+   "pct": 15.21650565730398,
+   "ci95_low_pct": 11.060389781109995,
+   "ci95_high_pct": 20.573096410240485,
+   "pct_of_valid": 15.306927585902356,
+   "ci95_low_pct_of_valid": 11.131466938965033,
+   "ci95_high_pct_of_valid": 20.684081775448774,
+   "n_unweighted_valid": 390,
+   "pct_dont_know_or_refused": 0.5907255266671146
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 34,
+   "pct": 14.478529059479103,
+   "ci95_low_pct": 9.69616722372011,
+   "ci95_high_pct": 21.06931892806481,
+   "pct_of_valid": 14.799938926121131,
+   "ci95_low_pct_of_valid": 9.933485178954328,
+   "ci95_high_pct_of_valid": 21.481854763177246,
+   "n_unweighted_valid": 237,
+   "pct_dont_know_or_refused": 2.171697249876866
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_mps_often_always",
+   "variable": "Q38A",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 32,
+   "pct": 18.41069272174081,
+   "ci95_low_pct": 12.623340613882947,
+   "ci95_high_pct": 26.05999725404726,
+   "pct_of_valid": 18.750742575251813,
+   "ci95_low_pct_of_valid": 12.864412273489636,
+   "ci95_high_pct_of_valid": 26.510999342177588,
+   "n_unweighted_valid": 193,
+   "pct_dont_know_or_refused": 1.8135273957620177
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 539,
+   "pct": 23.069643712247746,
+   "ci95_low_pct": 20.851145157974603,
+   "ci95_high_pct": 25.44829066541346,
+   "pct_of_valid": 23.414089913884713,
+   "ci95_low_pct_of_valid": 21.154353790291964,
+   "ci95_high_pct_of_valid": 25.83611610115202,
+   "n_unweighted_valid": 2371,
+   "pct_dont_know_or_refused": 1.471106512804079
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 181,
+   "pct": 22.744745194194905,
+   "ci95_low_pct": 19.36106300741557,
+   "ci95_high_pct": 26.525264371642887,
+   "pct_of_valid": 23.330574418828224,
+   "ci95_low_pct_of_valid": 19.79998390426653,
+   "ci95_high_pct_of_valid": 27.276600118121554,
+   "n_unweighted_valid": 800,
+   "pct_dont_know_or_refused": 2.510993574854065
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 358,
+   "pct": 23.23001331581032,
+   "ci95_low_pct": 20.41594873798616,
+   "ci95_high_pct": 26.303758259029266,
+   "pct_of_valid": 23.454666624244716,
+   "ci95_low_pct_of_valid": 20.61857863609145,
+   "ci95_high_pct_of_valid": 26.550382272455263,
+   "n_unweighted_valid": 1571,
+   "pct_dont_know_or_refused": 0.9578192350096055
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 100,
+   "pct": 25.194117453126637,
+   "ci95_low_pct": 20.41782387246646,
+   "ci95_high_pct": 30.65729993390568,
+   "pct_of_valid": 26.15515825577831,
+   "ci95_low_pct_of_valid": 21.329227025180057,
+   "ci95_high_pct_of_valid": 31.63393710327027,
+   "n_unweighted_valid": 391,
+   "pct_dont_know_or_refused": 3.6743834361596943
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 131,
+   "pct": 18.76541267611558,
+   "ci95_low_pct": 15.42705782488655,
+   "ci95_high_pct": 22.63284869843899,
+   "pct_of_valid": 18.980535333627646,
+   "ci95_low_pct_of_valid": 15.609011610399474,
+   "ci95_high_pct_of_valid": 22.88283793322535,
+   "n_unweighted_valid": 662,
+   "pct_dont_know_or_refused": 1.1333856170586047
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 112,
+   "pct": 23.067712500269685,
+   "ci95_low_pct": 19.314225049165028,
+   "ci95_high_pct": 27.303803249051867,
+   "pct_of_valid": 23.197359835651117,
+   "ci95_low_pct_of_valid": 19.42978564321615,
+   "ci95_high_pct_of_valid": 27.446625002889736,
+   "n_unweighted_valid": 496,
+   "pct_dont_know_or_refused": 0.5588883230676354
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 99,
+   "pct": 26.083782732194187,
+   "ci95_low_pct": 20.70773355288435,
+   "ci95_high_pct": 32.28721679446948,
+   "pct_of_valid": 26.206830251130715,
+   "ci95_low_pct_of_valid": 20.817546201617354,
+   "ci95_high_pct_of_valid": 32.42006335389536,
+   "n_unweighted_valid": 390,
+   "pct_dont_know_or_refused": 0.4695246153670709
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 41,
+   "pct": 18.509527480336224,
+   "ci95_low_pct": 13.183550994785028,
+   "ci95_high_pct": 25.358648379414113,
+   "pct_of_valid": 18.88163050248956,
+   "ci95_low_pct_of_valid": 13.479227300606109,
+   "ci95_high_pct_of_valid": 25.803533404403424,
+   "n_unweighted_valid": 238,
+   "pct_dont_know_or_refused": 1.9707144576538276
+  },
+  {
+   "group": "reciprocity",
+   "indicator": "listen_councillors_often_always",
+   "variable": "Q38B",
+   "answer_codes": [
+    2,
+    3
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 56,
+   "pct": 31.189899448884685,
+   "ci95_low_pct": 23.65921131464844,
+   "ci95_high_pct": 39.865855065536294,
+   "pct_of_valid": 31.61576593731053,
+   "ci95_low_pct_of_valid": 23.992049186322987,
+   "ci95_high_pct_of_valid": 40.375165134586005,
+   "n_unweighted_valid": 194,
+   "pct_dont_know_or_refused": 1.3470067094698228
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1042,
+   "pct": 45.95633520833726,
+   "ci95_low_pct": 43.639845047733026,
+   "ci95_high_pct": 48.290431510630924,
+   "pct_of_valid": 46.57061748524751,
+   "ci95_low_pct_of_valid": 44.22813171090444,
+   "ci95_high_pct_of_valid": 48.92832698807027,
+   "n_unweighted_valid": 2366,
+   "pct_dont_know_or_refused": 1.3190339962849789
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 337,
+   "pct": 44.24475774784143,
+   "ci95_low_pct": 39.7947451264318,
+   "ci95_high_pct": 48.78912888734311,
+   "pct_of_valid": 44.73042191929924,
+   "ci95_low_pct_of_valid": 40.225133926763235,
+   "ci95_high_pct_of_valid": 49.32393336576453,
+   "n_unweighted_valid": 809,
+   "pct_dont_know_or_refused": 1.0857580827965836
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 705,
+   "pct": 46.80116823635897,
+   "ci95_low_pct": 44.15165507446179,
+   "ci95_high_pct": 49.46884331241435,
+   "pct_of_valid": 47.482147108895006,
+   "ci95_low_pct_of_valid": 44.805291193713884,
+   "ci95_high_pct_of_valid": 50.17355181959644,
+   "n_unweighted_valid": 1557,
+   "pct_dont_know_or_refused": 1.4341787682311096
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 198,
+   "pct": 50.71081693425964,
+   "ci95_low_pct": 44.16750501122088,
+   "ci95_high_pct": 57.22986736563539,
+   "pct_of_valid": 52.13634557298539,
+   "ci95_low_pct_of_valid": 45.55415374804011,
+   "ci95_high_pct_of_valid": 58.6451825219921,
+   "n_unweighted_valid": 392,
+   "pct_dont_know_or_refused": 2.7342319893329776
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 282,
+   "pct": 44.380518439139685,
+   "ci95_low_pct": 39.787811906879675,
+   "ci95_high_pct": 49.07131439351544,
+   "pct_of_valid": 44.52724798350075,
+   "ci95_low_pct_of_valid": 39.91604424581661,
+   "ci95_high_pct_of_valid": 49.23464061572573,
+   "n_unweighted_valid": 665,
+   "pct_dont_know_or_refused": 0.3295275387678054
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 218,
+   "pct": 45.25475994288616,
+   "ci95_low_pct": 40.081664255903334,
+   "ci95_high_pct": 50.53244106601351,
+   "pct_of_valid": 45.78562141757988,
+   "ci95_low_pct_of_valid": 40.586249754614975,
+   "ci95_high_pct_of_valid": 51.0784384288251,
+   "n_unweighted_valid": 493,
+   "pct_dont_know_or_refused": 1.1594501903820447
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 162,
+   "pct": 43.347336181566,
+   "ci95_low_pct": 37.30932170861998,
+   "ci95_high_pct": 49.58956033873221,
+   "pct_of_valid": 43.80196668475641,
+   "ci95_low_pct_of_valid": 37.6879240353865,
+   "ci95_high_pct_of_valid": 50.110235542702156,
+   "n_unweighted_valid": 387,
+   "pct_dont_know_or_refused": 1.0379225811078099
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 92,
+   "pct": 43.072354657392445,
+   "ci95_low_pct": 35.74504599807952,
+   "ci95_high_pct": 50.716143844365135,
+   "pct_of_valid": 44.20011350317431,
+   "ci95_low_pct_of_valid": 36.94459005280171,
+   "ci95_high_pct_of_valid": 51.711972581181854,
+   "n_unweighted_valid": 235,
+   "pct_dont_know_or_refused": 2.551484049245415
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "prefers_higher_taxes_more_services",
+   "variable": "Q45",
+   "answer_codes": [
+    1,
+    2
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 90,
+   "pct": 51.01981884713973,
+   "ci95_low_pct": 42.891783466531294,
+   "ci95_high_pct": 59.09428772653307,
+   "pct_of_valid": 51.48622542539809,
+   "ci95_low_pct_of_valid": 43.30584281571042,
+   "ci95_high_pct_of_valid": 59.587740471911964,
+   "n_unweighted_valid": 194,
+   "pct_dont_know_or_refused": 0.9058861363495498
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "All adults 18+",
+   "n_unweighted_base": 2398,
+   "n_unweighted_numerator": 1560,
+   "pct": 64.89915754821523,
+   "ci95_low_pct": 62.697809697225125,
+   "ci95_high_pct": 67.03889082884812,
+   "pct_of_valid": 69.1838593202531,
+   "ci95_low_pct_of_valid": 66.98415948413623,
+   "ci95_high_pct_of_valid": 71.2997967422498,
+   "n_unweighted_valid": 2257,
+   "pct_dont_know_or_refused": 6.193210113075544
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Urban",
+   "n_unweighted_base": 816,
+   "n_unweighted_numerator": 495,
+   "pct": 60.71523256020064,
+   "ci95_low_pct": 56.68914575617634,
+   "ci95_high_pct": 64.60076528550303,
+   "pct_of_valid": 63.746055816097616,
+   "ci95_low_pct_of_valid": 59.521244337512144,
+   "ci95_high_pct_of_valid": 67.76869664355742,
+   "n_unweighted_valid": 781,
+   "pct_dont_know_or_refused": 4.754526718705025
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Rural",
+   "n_unweighted_base": 1582,
+   "n_unweighted_numerator": 1065,
+   "pct": 66.96433899528576,
+   "ci95_low_pct": 64.37485674891937,
+   "ci95_high_pct": 69.45490856243873,
+   "pct_of_valid": 71.92990712161222,
+   "ci95_low_pct_of_valid": 69.44549025309348,
+   "ci95_high_pct_of_valid": 74.28711000105105,
+   "n_unweighted_valid": 1476,
+   "pct_dont_know_or_refused": 6.90334288619496
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Age 18-24",
+   "n_unweighted_base": 401,
+   "n_unweighted_numerator": 247,
+   "pct": 64.33277729675568,
+   "ci95_low_pct": 59.12347328238346,
+   "ci95_high_pct": 69.22378142220379,
+   "pct_of_valid": 69.5384509955184,
+   "ci95_low_pct_of_valid": 64.2079393364942,
+   "ci95_high_pct_of_valid": 74.39171285822658,
+   "n_unweighted_valid": 375,
+   "pct_dont_know_or_refused": 7.486036321255159
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Age 25-34",
+   "n_unweighted_base": 668,
+   "n_unweighted_numerator": 410,
+   "pct": 58.20844134496367,
+   "ci95_low_pct": 53.70890511713823,
+   "ci95_high_pct": 62.5753724657382,
+   "pct_of_valid": 62.55199032595573,
+   "ci95_low_pct_of_valid": 58.00091182133161,
+   "ci95_high_pct_of_valid": 66.8914182219027,
+   "n_unweighted_valid": 631,
+   "pct_dont_know_or_refused": 6.9439021178351075
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Age 35-44",
+   "n_unweighted_base": 500,
+   "n_unweighted_numerator": 336,
+   "pct": 67.79856212377396,
+   "ci95_low_pct": 62.99314309632136,
+   "ci95_high_pct": 72.25482385580865,
+   "pct_of_valid": 71.31267994945823,
+   "ci95_low_pct_of_valid": 66.43329486841625,
+   "ci95_high_pct_of_valid": 75.74177586076134,
+   "n_unweighted_valid": 474,
+   "pct_dont_know_or_refused": 4.927760151735784
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Age 45-54",
+   "n_unweighted_base": 392,
+   "n_unweighted_numerator": 274,
+   "pct": 71.0749241897706,
+   "ci95_low_pct": 66.28314967882521,
+   "ci95_high_pct": 75.438052064247,
+   "pct_of_valid": 75.01187307535895,
+   "ci95_low_pct_of_valid": 70.1056442663799,
+   "ci95_high_pct_of_valid": 79.35007364875194,
+   "n_unweighted_valid": 371,
+   "pct_dont_know_or_refused": 5.248434313369535
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Age 55-64",
+   "n_unweighted_base": 240,
+   "n_unweighted_numerator": 168,
+   "pct": 69.71521560998029,
+   "ci95_low_pct": 62.91597799901146,
+   "ci95_high_pct": 75.74835720718353,
+   "pct_of_valid": 71.33302659100616,
+   "ci95_low_pct_of_valid": 64.54558763779963,
+   "ci95_high_pct_of_valid": 77.27848635639897,
+   "n_unweighted_valid": 232,
+   "pct_dont_know_or_refused": 2.2679690717481154
+  },
+  {
+   "group": "fiscal_exchange",
+   "indicator": "finding_out_taxes_difficult",
+   "variable": "Q46A",
+   "answer_codes": [
+    3,
+    4
+   ],
+   "level": "Age 65+",
+   "n_unweighted_base": 197,
+   "n_unweighted_numerator": 125,
+   "pct": 62.361405009473444,
+   "ci95_low_pct": 53.45391589336222,
+   "ci95_high_pct": 70.50486035244175,
+   "pct_of_valid": 69.6142178675811,
+   "ci95_low_pct_of_valid": 60.700163029217244,
+   "ci95_high_pct_of_valid": 77.26370960739956,
+   "n_unweighted_valid": 174,
+   "pct_dont_know_or_refused": 10.41857982503492
+  }
+ ],
+ "civic_duty_minus_reciprocity_gap": {
+  "report_value": "28 pp (71% civic duty minus 43% 'government listens'; hand-typed from published figures, not reproducible from the file)",
+  "recomputed": [
+   {
+    "civic_duty_indicator": "civic_duty_always_pay",
+    "civic_duty_variable": "Q76E_TAN",
+    "civic_duty_pct": 65.66093999379035,
+    "reciprocity_indicator": "listen_mps_often_always",
+    "reciprocity_variable": "Q38A",
+    "reciprocity_pct": 15.15258772744368,
+    "gap_percentage_points": 50.50835226634668,
+    "ci95_percentage_points": [
+     47.528432270017596,
+     53.48827226267576
+    ]
+   },
+   {
+    "civic_duty_indicator": "civic_duty_always_pay",
+    "civic_duty_variable": "Q76E_TAN",
+    "civic_duty_pct": 65.66093999379035,
+    "reciprocity_indicator": "listen_councillors_often_always",
+    "reciprocity_variable": "Q38B",
+    "reciprocity_pct": 23.069643712247746,
+    "gap_percentage_points": 42.59129628154261,
+    "ci95_percentage_points": [
+     39.09759424772634,
+     46.08499831535888
+    ]
+   },
+   {
+    "civic_duty_indicator": "civic_duty_always_pay",
+    "civic_duty_variable": "Q76E_TAN",
+    "civic_duty_pct": 65.66093999379035,
+    "reciprocity_indicator": "reciprocity_taxes_used_for_wellbeing",
+    "reciprocity_variable": "Q47C",
+    "reciprocity_pct": 76.46131102576787,
+    "gap_percentage_points": -10.800371031977507,
+    "ci95_percentage_points": [
+     -13.900060203437782,
+     -7.700681860517232
+    ]
+   }
+  ]
+ },
+ "baseline_scores": {
+  "trust": {
+   "mapped": true,
+   "variable": "Q41J",
+   "label": null,
+   "score": "weighted mean of the item rescaled to 0-1 ((code - 0) / 3), don't know / refused excluded",
+   "value": 0.7852115476909747,
+   "ci95": [
+    0.7703814153932925,
+    0.8000416799886568
+   ],
+   "n_unweighted_base": 2237,
+   "previous_typed_value": 0.35,
+   "mapping_rationale": "Direct match: the driver is trust in the tax system; Q41J asks how much the respondent trusts the tax/revenue office."
+  },
+  "social_norm": {
+   "mapped": true,
+   "variable": "Q47D",
+   "label": null,
+   "score": "weighted mean of the item rescaled to 0-1 (1 - (code - 0) / 3, i.e. 1 = people never avoid paying tax), don't know / refused excluded",
+   "value": 0.5351267177299509,
+   "ci95": [
+    0.5230233116331228,
+    0.547230123826779
+   ],
+   "n_unweighted_base": 2195,
+   "previous_typed_value": 0.3,
+   "mapping_rationale": "The driver is the community norm of compliance; Q47D records how often people in the country avoid paying the taxes they owe, a descriptive norm (reversed so that 1 = others comply). The injunctive norm (Q76e-tan) is reported as a component but not used."
+  },
+  "fairness": {
+   "mapped": true,
+   "variable": "Q47C",
+   "label": null,
+   "score": "weighted mean of the item rescaled to 0-1 ((code - 1) / 4), don't know / refused excluded",
+   "value": 0.7511631191756918,
+   "ci95": [
+    0.7371316841125671,
+    0.7651945542388164
+   ],
+   "n_unweighted_base": 2272,
+   "previous_typed_value": 0.3,
+   "mapping_rationale": "The code's own gloss for the driver is 'perceived value for tax paid'; Q47C asks whether the government usually uses tax revenues for the well-being of citizens."
+  },
+  "simplicity": {
+   "mapped": true,
+   "variable": "Q46A",
+   "label": "information burden only (does not cover registration or filing costs)",
+   "score": "weighted mean of the item rescaled to 0-1 (1 - (code - 1) / 3, i.e. 1 = very easy to find out what taxes and fees to pay, 0 = very difficult), don't know / refused excluded",
+   "value": 0.3646399079258213,
+   "ci95": [
+    0.3510264636640306,
+    0.37825335218761197
+   ],
+   "n_unweighted_base": 2257,
+   "previous_typed_value": 0.25,
+   "mapping_rationale": "Decision of the owner (Block E2.0): the simplicity driver is mapped to Afrobarometer Q46a (how easy or difficult it is to find out what taxes and fees you are supposed to pay to the government), reversed and rescaled 0-1. It measures the information burden only; it does not cover the cost of registering or filing, which the model's simplification interventions (USSD registration, presumptive tax) target."
+  },
+  "enforcement": {
+   "mapped": false,
+   "candidate_variable": "Q40G",
+   "rationale": "NOT MAPPED after the Block E2.1 search (kept as an ASSUMPTION for the owner's sign-off). Searched: the Afrobarometer Round 8 merged and Tanzania codebooks (every item mentioning tax with audit, penalty, punish, caught, enforce, detect, inspect, fine, prosecute, likely, evade, avoid: only Q47D 'how often do people avoid paying taxes' and, without the word tax, Q40G 'how often do ordinary people who break the law go unpunished' and Q40F 'officials who commit crimes go unpunished'); the FinScope 2023 data map (no item on audit, penalty or enforcement; the only tax item is the TIN document c27__13); the ILFS 2024 variable labels (no item on audit, inspection or penalty); TRA publications reachable on 2026-11-12 (Sixth Corporate Plan revised June 2024: KPI 'share of tax revenue from additional assessments raised in tax audits' 17.0% baseline, 14.5% actual 2022/23; no audit count, audit coverage rate or penalty amount; the TRA annual reports could not be located) and the NBS Tax Statistics Reports 2022/23 and 2023/24 (no audit data). Q40G is the closest survey item (perceived impunity of lawbreakers, general, reversed: unpunished -> weak enforcement) but it is not about tax; the audit-yield KPI is an outcome share of revenue, not a probability of being audited. Neither measures the perceived or actual likelihood of detection and penalty for not paying tax."
+  }
+ }
+}

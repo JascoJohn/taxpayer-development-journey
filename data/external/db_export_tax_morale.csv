@@ -1,0 +1,11 @@
+id,indicator_name,description,value,year,source,question_code,confidence,country,retrieved_at
+701,trust_president,% who trust the President,64.0,2021,Afrobarometer Round 8 Tanzania,Q41A,HIGH,Tanzania,2026-07-14 09:24:38
+702,trust_parliament,% who trust Parliament,55.0,2021,Afrobarometer Round 8 Tanzania,Q41B,HIGH,Tanzania,2026-07-14 09:24:38
+703,trust_local_government,% who trust local government,57.0,2021,Afrobarometer Round 8 Tanzania,Q41F,HIGH,Tanzania,2026-07-14 09:24:38
+704,corrupt_officials,% who think most/all government officials are corrupt,42.0,2021,Afrobarometer Round 8 Tanzania,Q48A,HIGH,Tanzania,2026-07-14 09:24:38
+705,govt_handling_economy,% who approve of govt handling of the economy,49.0,2021,Afrobarometer Round 8 Tanzania,Q68B,HIGH,Tanzania,2026-07-14 09:24:38
+706,tax_avoidance_common,% who say tax avoidance is sometimes/always justified,38.0,2021,Afrobarometer Round 8 Tanzania,Q43,HIGH,Tanzania,2026-07-14 09:24:38
+707,civic_duty_pay_tax,% who agree citizens should pay taxes,71.0,2021,Afrobarometer Round 8 Tanzania,Q57,HIGH,Tanzania,2026-07-14 09:24:38
+708,government_listens,% who say government listens to ordinary citizens,43.0,2021,Afrobarometer Round 8 Tanzania,Q24,HIGH,Tanzania,2026-07-14 09:24:38
+709,satisfied_democracy,% satisfied with democracy in Tanzania,52.0,2021,Afrobarometer Round 8 Tanzania,Q43,HIGH,Tanzania,2026-07-14 09:24:38
+710,basic_needs_met,% who say government meets their basic needs,41.0,2021,Afrobarometer Round 8 Tanzania,Q7,HIGH,Tanzania,2026-07-14 09:24:38

@@ -1,0 +1,28 @@
+group,indicator,base_definition,n_unweighted_base,n_unweighted_numerator,base_weighted_persons,estimate_pct,se_pct,ci95_low_pct,ci95_high_pct,note
+informality,"Informal employment rate, ICLS-17 (headline)","employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,19740,25604249,88.5375,0.5461,87.4203,89.5673,contributing family workers; employees without social security (Q34 != 1); self-employed in unregistered enterprises (Q38A = 6)
+informality,"Informal employment, employees' leave test","employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,19207,25604249,86.8539,0.6091,85.6105,88.0048,"employee informal only if no social security, no paid annual leave and no paid sick leave"
+informality,"Informal employment, NBS-consistent rule","employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,21868,25604249,94.5152,0.3464,93.7938,95.1572,formal = employees with social security + self-employed with a legal-entity registration (Q38C = 1); all others informal
+informality,"Informal employment, 13th-ICLS employed base","employed 15+ (ILO_LFS = 1, 13th ICLS), main job, agriculture included, status stated",27106,23005,30616744,90.2826,0.4662,89.3275,91.1607,sensitivity: includes own-use farmers
+informality,"Informal employment, non-agricultural workers","employed 15+ (ILO_LFS19 = 1), main job, agriculture included, excluding ISIC section A",13680,9969,11720739,76.6824,0.7228,75.2327,78.0719,
+informality_by_status,Informal employment among employees,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included, status = employees",5089,3236,4439149,69.9319,1.3459,67.2240,72.5076,
+informality_by_status,Informal employment among employers and own-account workers,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included, status = employers and own-account workers",15052,12830,15409169,89.6158,0.5097,88.5712,90.5751,
+informality_by_status,Informal employment among contributing family workers,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included, status = contributing family workers",3674,3674,5755931,100.0000,0.0000,100.0000,100.0000,
+status,Share of employed: employee,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,5029,25604249,17.1088,0.7156,15.7486,18.5606,
+status,Share of employed: employer,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,1793,25604249,7.2987,0.3236,6.6880,7.9603,
+status,Share of employed: own-account,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,13259,25604249,52.8834,0.7981,51.3135,54.4477,
+status,Share of employed: contributing family worker,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,3674,25604249,22.4804,1.0344,20.5139,24.5770,
+status,Share of employed: other (trainee),"employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,60,25604249,0.2287,0.0414,0.1603,0.3264,
+status,"Self-employed (employers + own-account), without contributing family workers","employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,15052,25604249,60.1821,0.7915,58.6176,61.7261,
+status,Self-employed incl. contributing family workers,"employed 15+ (ILO_LFS19 = 1), main job, agriculture included",23815,18726,25604249,82.6625,0.7235,81.1951,84.0378,the 'self-employed' reading that includes unpaid family helpers
+status,"Share of employed: status as in 13th-ICLS base, employees","employed 15+ (ILO_LFS = 1, 13th ICLS), main job, agriculture included, status stated",27106,5054,30616744,14.4381,0.6044,13.2910,15.6663,
+registration,"Registered (any authority) - non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]","non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]",7975,1862,6654403,20.8489,0.8155,19.2923,22.4960,headline
+registration,"With a business licence - non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]","non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]",7975,893,6654403,8.9047,0.5941,7.8047,10.1428,
+registration,"Registered with TRA/ZRB - non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]","non-agricultural self-employed (Q25 = 2), Q38A answered [HEADLINE BASE]",7975,735,6654403,9.1886,0.6357,8.0138,10.5158,
+registration,Registered (any authority) - all workers with Q38A answered,all workers with Q38A answered,22088,4354,24250618,13.7112,0.6558,12.4732,15.0510,
+registration,With a business licence - all workers with Q38A answered,all workers with Q38A answered,22088,2235,24250618,6.4389,0.4177,5.6656,7.3097,
+registration,Registered with TRA/ZRB - all workers with Q38A answered,all workers with Q38A answered,22088,1661,24250618,5.5864,0.3982,4.8539,6.4220,
+registration,"Registered (any authority) - non-agricultural private-business owners/workers (Q37 = 6), Q38A answered","non-agricultural private-business owners/workers (Q37 = 6), Q38A answered",8948,3087,7444046,32.2338,0.9807,30.3384,34.1895,
+registration,"With a business licence - non-agricultural private-business owners/workers (Q37 = 6), Q38A answered","non-agricultural private-business owners/workers (Q37 = 6), Q38A answered",8948,1566,7444046,15.1783,0.8472,13.5880,16.9183,
+registration,"Registered with TRA/ZRB - non-agricultural private-business owners/workers (Q37 = 6), Q38A answered","non-agricultural private-business owners/workers (Q37 = 6), Q38A answered",8948,1248,7444046,14.3142,0.8696,12.6895,16.1084,
+context,"Employment-to-population ratio, 15+ (19th ICLS)",all persons 15-97,35824,23815,37286717,68.6686,1.1759,66.3138,70.9308,NBS publishes 68.7%
+context,"Employment-to-population ratio, 15+ (13th ICLS)",all persons 15-97,35824,27441,37286717,83.2291,0.5518,82.1172,84.2850,

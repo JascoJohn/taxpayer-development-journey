@@ -1,0 +1,2834 @@
+{
+  "total": 96,
+  "assumptions": [
+    {
+      "assumption_id": "ASS-3F6B1844",
+      "key": "agents.conversion_rate",
+      "assumption_text": "agents.conversion_rate = read from data/processed/agent_calibration.json: Share of the compliance probability that becomes a registration each year. CALIBRATED (Block E2.4) so that the no-intervention simulation reproduces the growth of TRA's registered taxpayers 2017/18-2023/24 (index anchored to the FinScope 2023 adult TIN rate); 2 free parameters (this and agents.p_comply.intercept) against 6 points; Nelder-Mead; fit and identifiability in data/processed/agent_calibration.json. Replaced the typed 0.15 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Share of the compliance probability that becomes a registration each year. CALIBRATED (Block E2.4) so that the no-intervention simulation reproduces the growth of TRA's registered taxpayers 2017/18-2023/24 (index anchored to the FinScope 2023 adult TIN rate); 2 free parameters (this and agents.p_comply.intercept) against 6 points; Nelder-Mead; fit and identifiability in data/processed/agent_calibration.json. Replaced the typed 0.15 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "CALIBRATED",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-93C382B2",
+      "key": "agents.edu.min_age",
+      "assumption_text": "agents.edu.min_age = 18: Education programmes reach non-compliant urban agents aged 18 and over.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Education programmes reach non-compliant urban agents aged 18 and over.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.556,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.011
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.011,
+          "most_affected": "year10_not_registered_pct",
+          "headline_max_rel_change_pct": 0.011
+        },
+        "max_rel_change_pct": 0.556,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.011,
+        "headline_most_affected": "year10_not_registered_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 18,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-288456D1",
+      "key": "agents.income_lognormal_sigma",
+      "assumption_text": "agents.income_lognormal_sigma = read from data/processed/agent_income.json: Spread of agents' income: replaced by the percentile distribution of annual earnings per age band, ILFS 2024 (Q86B_CASH + net Q87D + net Q88D, persons 16+), data/processed/agent_income.json. Replaced the typed log-normal sigma 0.8.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Spread of agents' income: replaced by the percentile distribution of annual earnings per age band, ILFS 2024 (Q86B_CASH + net Q87D + net Q88D, persons 16+), data/processed/agent_income.json. Replaced the typed log-normal sigma 0.8.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-F32F4500",
+      "key": "agents.income_scale_tzs",
+      "assumption_text": "agents.income_scale_tzs = read from data/processed/agent_income.json: Scale of agents' income in the compliance probability: replaced by the agent's RANK in the national ILFS 2024 distribution of annual earnings (all persons 16+, zeros included), so the income term is a percentile in 0-1 and no scale constant remains. Replaced the typed TZS 5,000,000 saturation point.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Scale of agents' income in the compliance probability: replaced by the agent's RANK in the national ILFS 2024 distribution of annual earnings (all persons 16+, zeros included), so the income term is a percentile in 0-1 and no scale constant remains. Replaced the typed TZS 5,000,000 saturation point.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-1E28EF9B",
+      "key": "agents.morale_beta_a",
+      "assumption_text": "agents.morale_beta_a = read from data/processed/agent_trust_morale.json: Initial tax morale of agents: EMPIRICAL weighted distribution of Q76e-tan (good citizens should pay the taxes they owe; 0 / 0.5 / 1) per age band x urban/rural cell, Afrobarometer Round 8 Tanzania. One item, no composite. Replaced the typed Beta(1.5,4).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Initial tax morale of agents: EMPIRICAL weighted distribution of Q76e-tan (good citizens should pay the taxes they owe; 0 / 0.5 / 1) per age band x urban/rural cell, Afrobarometer Round 8 Tanzania. One item, no composite. Replaced the typed Beta(1.5,4).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-2BBB7D98",
+      "key": "agents.morale_beta_b",
+      "assumption_text": "agents.morale_beta_b = read from data/processed/agent_trust_morale.json: Second shape parameter of the former Beta(1.5,4) morale draw: replaced by the empirical cell distributions of Q76e-tan (see agents.morale_beta_a).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Second shape parameter of the former Beta(1.5,4) morale draw: replaced by the empirical cell distributions of Q76e-tan (see agents.morale_beta_a).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-C61DF499",
+      "key": "agents.non_earners_zero_income",
+      "assumption_text": "agents.non_earners_zero_income = true: Persons aged 16+ with no earnings in ILFS 2024 (students, home-makers, the unemployed, unpaid helpers; 31.8% of the population 16+) enter the simulation with zero income: they can register but yield no income-tax revenue. ILFS has self-employment and agricultural income items, so this concerns only persons with none of the three; their treatment (zero rather than imputed) is the owner's decision.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Persons aged 16+ with no earnings in ILFS 2024 (students, home-makers, the unemployed, unpaid helpers; 31.8% of the population 16+) enter the simulation with zero income: they can register but yield no income-tax revenue. ILFS has self-employment and agricultural income items, so this concerns only persons with none of the three; their treatment (zero rather than imputed) is the owner's decision.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 2.778,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.173
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.778,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.173
+        },
+        "max_rel_change_pct": 2.778,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.173,
+        "headline_most_affected": "year10_not_registered_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": true,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-DDAB0DB3",
+      "key": "agents.p_comply.income_weight",
+      "assumption_text": "agents.p_comply.income_weight = 0.2: Weight of income in the yearly compliance probability; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Weight of income in the yearly compliance probability; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 2.03,
+          "most_affected": "year10_level_3_silver_pct",
+          "headline_max_rel_change_pct": 0.14
+        },
+        "minus20": {
+          "max_rel_change_pct": 5.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.184
+        },
+        "max_rel_change_pct": 5.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.184,
+        "headline_most_affected": "year10_not_registered_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.2,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-A09EAB02",
+      "key": "agents.p_comply.intercept",
+      "assumption_text": "agents.p_comply.intercept = read from data/processed/agent_calibration.json: Intercept added to the yearly compliance-probability formula (trust, morale, income rank and mobile-money terms plus this constant, clipped to 0-1). New in Block E2.4; CALIBRATED together with agents.conversion_rate to the TRA registration trend (previous implicit value 0).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Intercept added to the yearly compliance-probability formula (trust, morale, income rank and mobile-money terms plus this constant, clipped to 0-1). New in Block E2.4; CALIBRATED together with agents.conversion_rate to the TRA registration trend (previous implicit value 0).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "CALIBRATED",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-857AB52A",
+      "key": "agents.p_comply.mm_weight",
+      "assumption_text": "agents.p_comply.mm_weight = 0.15: Weight of mobile-money use in the yearly compliance probability; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Weight of mobile-money use in the yearly compliance probability; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 2.222,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.14
+        },
+        "minus20": {
+          "max_rel_change_pct": 5.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.173
+        },
+        "max_rel_change_pct": 5.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.173,
+        "headline_most_affected": "year10_not_registered_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.15,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-2A33F1A6",
+      "key": "agents.p_comply.morale_weight",
+      "assumption_text": "agents.p_comply.morale_weight = 0.35: Weight of morale in the yearly compliance probability; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Weight of morale in the yearly compliance probability; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 7.222,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.432
+        },
+        "minus20": {
+          "max_rel_change_pct": 7.778,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.464
+        },
+        "max_rel_change_pct": 7.778,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.464,
+        "headline_most_affected": "year10_not_registered_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.35,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-057BD015",
+      "key": "agents.p_comply.trust_weight",
+      "assumption_text": "agents.p_comply.trust_weight = 0.3: Weight of trust in the yearly compliance probability; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Weight of trust in the yearly compliance probability; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 5.556,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.346
+        },
+        "minus20": {
+          "max_rel_change_pct": 6.111,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.367
+        },
+        "max_rel_change_pct": 6.111,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.367,
+        "headline_most_affected": "year10_not_registered_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.3,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-E14FA97A",
+      "key": "agents.trust_beta_a",
+      "assumption_text": "agents.trust_beta_a = read from data/processed/agent_trust_morale.json: Initial trust of agents: EMPIRICAL weighted distribution of Q41J (trust in the tax/revenue office, rescaled 0-1) per age band x urban/rural cell, Afrobarometer Round 8 Tanzania (data/processed/agent_trust_morale.json). The Beta shape parameters (a, b) are published there as a check only and are not used (poor fit to the 4-level item). Replaced the typed Beta(2,4).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Initial trust of agents: EMPIRICAL weighted distribution of Q41J (trust in the tax/revenue office, rescaled 0-1) per age band x urban/rural cell, Afrobarometer Round 8 Tanzania (data/processed/agent_trust_morale.json). The Beta shape parameters (a, b) are published there as a check only and are not used (poor fit to the 4-level item). Replaced the typed Beta(2,4).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-8C63C160",
+      "key": "agents.trust_beta_b",
+      "assumption_text": "agents.trust_beta_b = read from data/processed/agent_trust_morale.json: Second shape parameter of the former Beta(2,4) trust draw: replaced by the empirical cell distributions of Q41J (see agents.trust_beta_a).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Second shape parameter of the former Beta(2,4) trust draw: replaced by the empirical cell distributions of Q41J (see agents.trust_beta_a).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-66A2D738",
+      "key": "base.adult_population",
+      "assumption_text": "base.adult_population = read from data/processed/twin_inputs.json: FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the twin's registrations and mobile-money users, which can never exceed it (Block E3.3).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the twin's registrations and mobile-money users, which can never exceed it (Block E3.3).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-70DE91B2",
+      "key": "base.gdp_growth_rate",
+      "assumption_text": "base.gdp_growth_rate = read from data/processed/twin_inputs.json: GDP growth: mean of the last 5 years of World Bank WDI NY.GDP.MKTP.KD.ZG (annual %), Tanzania. Replaced the typed 5.53% (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "GDP growth: mean of the last 5 years of World Bank WDI NY.GDP.MKTP.KD.ZG (annual %), Tanzania. Replaced the typed 5.53% (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-504915E1",
+      "key": "base.informal_worker_avg_income_tzs",
+      "assumption_text": "base.informal_worker_avg_income_tzs = read from data/processed/twin_inputs.json: ILFS 2024: weighted mean annual earnings of employed persons in informal employment with positive earnings (median in data/processed/twin_inputs.json). Replaced the typed 2,400,000 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "ILFS 2024: weighted mean annual earnings of employed persons in informal employment with positive earnings (median in data/processed/twin_inputs.json). Replaced the typed 2,400,000 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-AC1642BB",
+      "key": "base.mobile_money_gdp_pct",
+      "assumption_text": "base.mobile_money_gdp_pct = read from data/processed/twin_inputs.json: Value of mobile payments 2024 (BoT: TZS 198.86 trillion) divided by nominal GDP 2024 (WDI NY.GDP.MKTP.CN); a gross flow over GDP (0.97). Replaced the typed 0.49 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Value of mobile payments 2024 (BoT: TZS 198.86 trillion) divided by nominal GDP 2024 (WDI NY.GDP.MKTP.CN); a gross flow over GDP (0.97). Replaced the typed 0.49 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-48BF6BB8",
+      "key": "base.mobile_money_users",
+      "assumption_text": "base.mobile_money_users = read from data/processed/twin_inputs.json: FinScope Tanzania 2023, weighted number of ADULTS (16+) who use mobile money (about 24.5 million, 71.7% of adults): persons, not accounts, computed in the pipeline (src/03_features/twin_inputs.py). Bank of Tanzania ACTIVE accounts (63.2 million in 2024) are kept as a context figure only (Block E3.3). Replaced the typed 35,000,000 (UNKNOWN) and, in Block E2, the BoT account count.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "FinScope Tanzania 2023, weighted number of ADULTS (16+) who use mobile money (about 24.5 million, 71.7% of adults): persons, not accounts, computed in the pipeline (src/03_features/twin_inputs.py). Bank of Tanzania ACTIVE accounts (63.2 million in 2024) are kept as a context figure only (Block E3.3). Replaced the typed 35,000,000 (UNKNOWN) and, in Block E2, the BoT account count.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-82129CAF",
+      "key": "base.msme_avg_revenue_tzs",
+      "assumption_text": "base.msme_avg_revenue_tzs = read from data/processed/twin_inputs.json: ILFS 2024: weighted mean annual gross receipts of self-employed persons in non-agricultural main jobs, winsorised at the 99th percentile; describes household enterprises, not registered MSMEs (no published MSME revenue figure was found). Replaced the typed 12,000,000 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "ILFS 2024: weighted mean annual gross receipts of self-employed persons in non-agricultural main jobs, winsorised at the 99th percentile; describes household enterprises, not registered MSMEs (no published MSME revenue figure was found). Replaced the typed 12,000,000 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-A93F66BC",
+      "key": "base.msme_mean_presumptive_tax_tzs",
+      "assumption_text": "base.msme_mean_presumptive_tax_tzs = read from data/processed/twin_inputs.json: Mean presumptive tax per household enterprise (Block F1): the presumptive schedule applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual gross receipts of non-agricultural self-employed with turnover. Replaces the flat 3% rate on mean receipts (retired).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Mean presumptive tax per household enterprise (Block F1): the presumptive schedule applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual gross receipts of non-agricultural self-employed with turnover. Replaces the flat 3% rate on mean receipts (retired).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-226049AD",
+      "key": "base.new_taxpayer_mean_tax_tzs",
+      "assumption_text": "base.new_taxpayer_mean_tax_tzs = read from data/processed/twin_inputs.json: Mean statutory income tax per new taxpayer in the twin (Block F1): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Mean statutory income tax per new taxpayer in the twin (Block F1): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-ECF96BF7",
+      "key": "base.population",
+      "assumption_text": "base.population = read from data/processed/twin_inputs.json: Census 2022 10% sample total (x10: 61.7 million) projected to the base year 2024 with the mean WDI population growth SP.POP.GROW. Replaced the typed 68,560,157 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Census 2022 10% sample total (x10: 61.7 million) projected to the base year 2024 with the mean WDI population growth SP.POP.GROW. Replaced the typed 68,560,157 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-2A7EC23E",
+      "key": "base.registered_taxpayers",
+      "assumption_text": "base.registered_taxpayers = read from data/processed/twin_inputs.json: TRA registered taxpayers (Mainland TIN registrations, stock at the end of fiscal year 2023/24: 6,272,000), NBS Tax Statistics Report 2023/24 Table 3.1 (source TRA); series 2011/12-2023/24 in data/processed/tra_registered_taxpayers.csv. NOT comparable with FinScope's 1.31 million adult TIN holders. Replaced the typed 3,200,000 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "TRA registered taxpayers (Mainland TIN registrations, stock at the end of fiscal year 2023/24: 6,272,000), NBS Tax Statistics Report 2023/24 Table 3.1 (source TRA); series 2011/12-2023/24 in data/processed/tra_registered_taxpayers.csv. NOT comparable with FinScope's 1.31 million adult TIN holders. Replaced the typed 3,200,000 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-41E8DDF7",
+      "key": "base.working_age_population",
+      "assumption_text": "base.working_age_population = read from data/processed/twin_inputs.json: Census 2022 10% sample, ages 15-64 (x10), projected to 2024 with the same growth. Replaced the typed 28,000,000 (UNKNOWN).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Census 2022 10% sample, ages 15-64 (x10), projected to 2024 with the same growth. Replaced the typed 28,000,000 (UNKNOWN).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-E4C97DA4",
+      "key": "macro.gdp_usd",
+      "assumption_text": "macro.gdp_usd = read from outputs/stats/macro_inputs.json: GDP, current US$ (WDI NY.GDP.MKTP.CD, latest year 2024): outputs/stats/macro_inputs.json tanzania.gdp_usd. Replaced the typed 78,844,405,385.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "GDP, current US$ (WDI NY.GDP.MKTP.CD, latest year 2024): outputs/stats/macro_inputs.json tanzania.gdp_usd. Replaced the typed 78,844,405,385.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C003, C005, C010",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C003, C005, C010",
+      "group": "macro"
+    },
+    {
+      "assumption_id": "ASS-B2F2044A",
+      "key": "macro.tax_to_gdp_current",
+      "assumption_text": "macro.tax_to_gdp_current = read from outputs/stats/macro_inputs.json: Tax revenue % of GDP, Tanzania, latest year 2024 (WDI GC.TAX.TOTL.GD.ZS): macro_inputs.json tanzania.tax_to_gdp_pct. Replaced the typed 0.128.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Tax revenue % of GDP, Tanzania, latest year 2024 (WDI GC.TAX.TOTL.GD.ZS): macro_inputs.json tanzania.tax_to_gdp_pct. Replaced the typed 0.128.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C003, C005, C010, C011",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C003, C005, C010, C011",
+      "group": "macro"
+    },
+    {
+      "assumption_id": "ASS-85BDF557",
+      "key": "macro.tax_to_gdp_target",
+      "assumption_text": "macro.tax_to_gdp_target = read from outputs/stats/macro_inputs.json: Benchmark = simple mean of GHA, KEN, RWA, UGA tax-to-GDP in 2023, the latest year all five countries report (macro_inputs.json benchmark.benchmark_pct); policy switch macro.benchmark_source. Replaced the typed 0.165.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Benchmark = simple mean of GHA, KEN, RWA, UGA tax-to-GDP in 2023, the latest year all five countries report (macro_inputs.json benchmark.benchmark_pct); policy switch macro.benchmark_source. Replaced the typed 0.165.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C003, C005, C010, C079",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C003, C005, C010, C079",
+      "group": "macro"
+    },
+    {
+      "assumption_id": "ASS-EBD4ABBA",
+      "key": "macro.tzs_per_usd",
+      "assumption_text": "macro.tzs_per_usd = read from outputs/stats/macro_inputs.json: Official exchange rate, LCU per US$, period average (WDI PA.NUS.FCRF, 2024): macro_inputs.json tanzania.fx_tzs_per_usd. Replaced the typed 2,500.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Official exchange rate, LCU per US$, period average (WDI PA.NUS.FCRF, 2024): macro_inputs.json tanzania.fx_tzs_per_usd. Replaced the typed 2,500.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C005, C010",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C005, C010",
+      "group": "macro"
+    },
+    {
+      "assumption_id": "ASS-E70A62C8",
+      "key": "stage.cost.active_tzs",
+      "assumption_text": "stage.cost.active_tzs = 600000000: Active (Band calculator) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 600M); whole programme cost at the start of year 1.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Active (Band calculator) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 600M); whole programme cost at the start of year 1.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 16.667,
+          "most_affected": "roi_median_20y_active",
+          "headline_max_rel_change_pct": 16.667
+        },
+        "minus20": {
+          "max_rel_change_pct": 25.0,
+          "most_affected": "roi_median_10y_active",
+          "headline_max_rel_change_pct": 25.0
+        },
+        "max_rel_change_pct": 25.0,
+        "most_affected_value": "roi_median_10y_active",
+        "headline_max_rel_change_pct": 25.0,
+        "headline_most_affected": "roi_median_10y_active",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 600000000,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-2FB5392B",
+      "key": "stage.cost.enterprise_tzs",
+      "assumption_text": "stage.cost.enterprise_tzs = 750000000: Enterprise (Tier tool, Ngazi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 750M); whole programme cost at the start of year 1.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Enterprise (Tier tool, Ngazi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 750M); whole programme cost at the start of year 1.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 16.667,
+          "most_affected": "roi_median_20y_enterprise",
+          "headline_max_rel_change_pct": 16.667
+        },
+        "minus20": {
+          "max_rel_change_pct": 25.0,
+          "most_affected": "roi_median_10y_enterprise",
+          "headline_max_rel_change_pct": 25.0
+        },
+        "max_rel_change_pct": 25.0,
+        "most_affected_value": "roi_median_10y_enterprise",
+        "headline_max_rel_change_pct": 25.0,
+        "headline_most_affected": "roi_median_10y_enterprise",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 750000000,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-55A4315C",
+      "key": "stage.cost.entry_tzs",
+      "assumption_text": "stage.cost.entry_tzs = 420000000: Entry (Targeting tool) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 420M); treated as the whole programme cost, incurred at the start of year 1. Report-stated figure, not independently sourced.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Entry (Targeting tool) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 420M); treated as the whole programme cost, incurred at the start of year 1. Report-stated figure, not independently sourced.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 16.667,
+          "most_affected": "roi_median_20y_entry",
+          "headline_max_rel_change_pct": 16.667
+        },
+        "minus20": {
+          "max_rel_change_pct": 25.0,
+          "most_affected": "roi_median_20y_entry",
+          "headline_max_rel_change_pct": 25.0
+        },
+        "max_rel_change_pct": 25.0,
+        "most_affected_value": "roi_median_20y_entry",
+        "headline_max_rel_change_pct": 25.0,
+        "headline_most_affected": "roi_median_10y_entry",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 420000000,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-356ED31A",
+      "key": "stage.cost.legacy_tzs",
+      "assumption_text": "stage.cost.legacy_tzs = 700000000: Legacy (Urithi wa Kodi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 700M); whole programme cost at the start of year 1.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Legacy (Urithi wa Kodi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 700M); whole programme cost at the start of year 1.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 16.667,
+          "most_affected": "roi_median_10y_legacy",
+          "headline_max_rel_change_pct": 16.667
+        },
+        "minus20": {
+          "max_rel_change_pct": 25.0,
+          "most_affected": "roi_median_10y_legacy",
+          "headline_max_rel_change_pct": 25.0
+        },
+        "max_rel_change_pct": 25.0,
+        "most_affected_value": "roi_median_10y_legacy",
+        "headline_max_rel_change_pct": 25.0,
+        "headline_most_affected": "roi_median_10y_legacy",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 700000000,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-969F34E3",
+      "key": "stage.cost.seed_tzs",
+      "assumption_text": "stage.cost.seed_tzs = [260000000, 1060000000]: Seed (Michezo ya Kodi) cost range stated in the report's Table 40 (submission_v1 PDF p. 52: 260M-1.06B); drawn uniformly between the bounds. Report-stated figure, not independently sourced.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Seed (Michezo ya Kodi) cost range stated in the report's Table 40 (submission_v1 PDF p. 52: 260M-1.06B); drawn uniformly between the bounds. Report-stated figure, not independently sourced.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 4.168,
+          "most_affected": "portfolio_roi_median_20y",
+          "headline_max_rel_change_pct": 3.876
+        },
+        "minus20": {
+          "max_rel_change_pct": 4.518,
+          "most_affected": "portfolio_roi_median_10y",
+          "headline_max_rel_change_pct": 4.518
+        },
+        "max_rel_change_pct": 4.518,
+        "most_affected_value": "portfolio_roi_median_10y",
+        "headline_max_rel_change_pct": 4.518,
+        "headline_most_affected": "portfolio_roi_median_10y",
+        "flag": "<=5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": [
+        260000000,
+        1060000000
+      ],
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-AB3080F4",
+      "key": "stage.cost_overrun_sigma",
+      "assumption_text": "stage.cost_overrun_sigma = 0.25: Cost risk: each stated cost (except Seed, which has its own range) is multiplied by a log-normal factor with median 1 and this log-standard-deviation in the Monte Carlo. A design choice; no cost-overrun data are held.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Cost risk: each stated cost (except Seed, which has its own range) is multiplied by a log-normal factor with median 1 and this log-standard-deviation in the Monte Carlo. A design choice; no cost-overrun data are held.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 1.406,
+          "most_affected": "roi_median_20y_entry",
+          "headline_max_rel_change_pct": 0.972
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.197,
+          "most_affected": "roi_median_10y_entry",
+          "headline_max_rel_change_pct": 2.197
+        },
+        "max_rel_change_pct": 2.197,
+        "most_affected_value": "roi_median_10y_entry",
+        "headline_max_rel_change_pct": 2.197,
+        "headline_most_affected": "roi_median_10y_entry",
+        "flag": "<=5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 0.25,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-A65B2E5D",
+      "key": "stage.discount_rate",
+      "assumption_text": "stage.discount_rate = 0.1: Discount rate 10% (brief E2.5), with sensitivities at 5% and 12%. Annuity factors are computed from the formula, never typed (the 4.33 used earlier for '10%' is the 5-year factor at 5%).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Discount rate 10% (brief E2.5), with sensitivities at 5% and 12%. Annuity factors are computed from the formula, never typed (the 4.33 used earlier for '10%' is the 5-year factor at 5%).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 11.086,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 7.686
+        },
+        "minus20": {
+          "max_rel_change_pct": 12.244,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 8.976
+        },
+        "max_rel_change_pct": 12.244,
+        "most_affected_value": "portfolio_npv_median_10y",
+        "headline_max_rel_change_pct": 8.976,
+        "headline_most_affected": "roi_median_10y_legacy",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 0.1,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-8D56DD59",
+      "key": "stage.discount_sensitivities",
+      "assumption_text": "stage.discount_sensitivities = [0.05, 0.12]: Alternative discount rates reported next to the 10% base case.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Alternative discount rates reported next to the 10% base case.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": [
+        0.05,
+        0.12
+      ],
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-BD066F7A",
+      "key": "stage.horizon_years",
+      "assumption_text": "stage.horizon_years = 10: Evaluation horizon of Table 40: 10 years (brief E2.5).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Evaluation horizon of Table 40: 10 years (brief E2.5).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 3.726,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 2.633
+        },
+        "minus20": {
+          "max_rel_change_pct": 8.651,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 5.854
+        },
+        "max_rel_change_pct": 8.651,
+        "most_affected_value": "portfolio_npv_median_10y",
+        "headline_max_rel_change_pct": 5.854,
+        "headline_most_affected": "roi_median_10y_legacy",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 10,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-8EFECFA1",
+      "key": "stage.intervention_for_uptake",
+      "assumption_text": "stage.intervention_for_uptake = {\"entry\": \"USSD_registration_nudge\", \"active\": \"presumptive_tax_simplification\", \"enterprise\": \"community_compliance_norms\", \"asset\": \"visible_tax_returns\", \"legacy\": \"civic_tax_education\"}: Which of the six morale-model interventions stands for each stage's tool when converting the recalibrated morale model into registrations (odds ratio at the stage's observed TIN rate, E2.3). A judgement mapping; Seed has no registrations claimed. For the owner's sign-off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Which of the six morale-model interventions stands for each stage's tool when converting the recalibrated morale model into registrations (odds ratio at the stage's observed TIN rate, E2.3). A judgement mapping; Seed has no registrations claimed. For the owner's sign-off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": {
+        "entry": "USSD_registration_nudge",
+        "active": "presumptive_tax_simplification",
+        "enterprise": "community_compliance_norms",
+        "asset": "visible_tax_returns",
+        "legacy": "civic_tax_education"
+      },
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-DC0AF925",
+      "key": "stage.persistence",
+      "assumption_text": "stage.persistence = [0.5, 0.75, 0.9]: Yearly persistence of a new registrant (share still compliant the next year): triangular (low, mode, high). No filing-persistence data exist in the project; for the owner's sign-off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Yearly persistence of a new registrant (share still compliant the next year): triangular (low, mode, high). No filing-persistence data exist in the project; for the owner's sign-off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 81.527,
+          "most_affected": "roi_median_20y_entry",
+          "headline_max_rel_change_pct": 42.587
+        },
+        "minus20": {
+          "max_rel_change_pct": 37.476,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 25.665
+        },
+        "max_rel_change_pct": 81.527,
+        "most_affected_value": "roi_median_20y_entry",
+        "headline_max_rel_change_pct": 42.587,
+        "headline_most_affected": "roi_median_10y_enterprise",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": [
+        0.5,
+        0.75,
+        0.9
+      ],
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-E851CEA9",
+      "key": "stage.ramp_years",
+      "assumption_text": "stage.ramp_years = 5: The reach of a tool is spread evenly over the first 5 years; registrants then persist (with the persistence rate) to the end of the horizon.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "The reach of a tool is spread evenly over the first 5 years; registrants then persist (with the persistence rate) to the end of the horizon.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 7.898,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 5.518
+        },
+        "minus20": {
+          "max_rel_change_pct": 7.996,
+          "most_affected": "portfolio_npv_median_10y",
+          "headline_max_rel_change_pct": 5.917
+        },
+        "max_rel_change_pct": 7.996,
+        "most_affected_value": "portfolio_npv_median_10y",
+        "headline_max_rel_change_pct": 5.917,
+        "headline_most_affected": "roi_median_10y_legacy",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 5,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-6AA17FDF",
+      "key": "stage.reach_share",
+      "assumption_text": "stage.reach_share = {\"entry\": [0.02, 0.05, 0.1], \"active\": [0.01, 0.03, 0.08], \"enterprise\": [0.01, 0.03, 0.08], \"asset\": [0.005, 0.02, 0.05], \"legacy\": [0.005, 0.02, 0.05]}: Share of each stage's adult population (FinScope 2023: Entry 10.6M, Active 12.1M, Enterprise 3.5M, Asset 5.6M, Legacy 2.3M) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Share of each stage's adult population (FinScope 2023: Entry 10.6M, Active 12.1M, Enterprise 3.5M, Asset 5.6M, Legacy 2.3M) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": {
+        "entry": [
+          0.02,
+          0.05,
+          0.1
+        ],
+        "active": [
+          0.01,
+          0.03,
+          0.08
+        ],
+        "enterprise": [
+          0.01,
+          0.03,
+          0.08
+        ],
+        "asset": [
+          0.005,
+          0.02,
+          0.05
+        ],
+        "legacy": [
+          0.005,
+          0.02,
+          0.05
+        ]
+      },
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-6CE2BC50",
+      "key": "stage.uptake_log_odds_sd",
+      "assumption_text": "stage.uptake_log_odds_sd = 0.3: Uncertainty of the uptake effect: the log odds ratio of the mapped intervention gets a normal error with this standard deviation in the Monte Carlo (the odds ratios themselves are ASSUMPTION uplifts of the morale model).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Uncertainty of the uptake effect: the log odds ratio of the mapped intervention gets a normal error with this standard deviation in the Monte Carlo (the odds ratios themselves are ASSUMPTION uplifts of the morale model).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 4.655,
+          "most_affected": "roi_median_20y_entry",
+          "headline_max_rel_change_pct": 3.555
+        },
+        "minus20": {
+          "max_rel_change_pct": 8.496,
+          "most_affected": "roi_median_10y_entry",
+          "headline_max_rel_change_pct": 8.496
+        },
+        "max_rel_change_pct": 8.496,
+        "most_affected_value": "roi_median_10y_entry",
+        "headline_max_rel_change_pct": 8.496,
+        "headline_most_affected": "roi_median_10y_entry",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "ASSUMPTION",
+      "value": 0.3,
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-DD248E35",
+      "key": "tax.pit_schedule",
+      "assumption_text": "tax.pit_schedule = [[0, 0, 0.0], [3240000, 0, 0.08], [6240000, 240000, 0.2], [9120000, 816000, 0.25], [12000000, 1536000, 0.3]]: Resident individual income tax, annual total income: [lower bound, tax at the bound, marginal rate]: nil to 3,240,000; 8% of the excess to 6,240,000; 240,000 + 20% to 9,120,000; 816,000 + 25% to 12,000,000; 1,536,000 + 30% above. Income Tax Act Cap. 332 R.E. 2023, First Schedule para 1(1), printed p. 675 (PDF p. 131), data/raw/tra/The_Income_Tax_Act.pdf. Amendments by later Finance Acts were not checked (the Finance Act 2025 text holds no change to this paragraph). Checked against the Finance Acts 2024, 2025 and 2026 (data/raw/tra/): none amends paragraph 1 of the First Schedule, so the schedule is unchanged in 2026/27. (TRA, Taxes and Duties at a Glance 2025/26, p. 7 shows the same table monthly.)",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "HIGH",
+      "evidence_support": "Resident individual income tax, annual total income: [lower bound, tax at the bound, marginal rate]: nil to 3,240,000; 8% of the excess to 6,240,000; 240,000 + 20% to 9,120,000; 816,000 + 25% to 12,000,000; 1,536,000 + 30% above. Income Tax Act Cap. 332 R.E. 2023, First Schedule para 1(1), printed p. 675 (PDF p. 131), data/raw/tra/The_Income_Tax_Act.pdf. Amendments by later Finance Acts were not checked (the Finance Act 2025 text holds no change to this paragraph). Checked against the Finance Acts 2024, 2025 and 2026 (data/raw/tra/): none amends paragraph 1 of the First Schedule, so the schedule is unchanged in 2026/27. (TRA, Taxes and Duties at a Glance 2025/26, p. 7 shows the same table monthly.)",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "DATA",
+      "value": [
+        [
+          0,
+          0,
+          0.0
+        ],
+        [
+          3240000,
+          0,
+          0.08
+        ],
+        [
+          6240000,
+          240000,
+          0.2
+        ],
+        [
+          9120000,
+          816000,
+          0.25
+        ],
+        [
+          12000000,
+          1536000,
+          0.3
+        ]
+      ],
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-4BFDDCD6",
+      "key": "tax.presumptive_schedule",
+      "assumption_text": "tax.presumptive_schedule = {\"threshold_turnover\": 200000000, \"bands\": [[4000000, 7000000, 100000, 0, 0.03], [7000000, 11000000, 250000, 90000, 0.03]], \"above_11m_rate\": 0.04}: Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 40 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "HIGH",
+      "evidence_support": "Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 40 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "stage_economics",
+        "published_values_compared": 23,
+        "plus20": {
+          "max_rel_change_pct": 15.7,
+          "most_affected": "roi_median_10y_enterprise",
+          "headline_max_rel_change_pct": 15.7
+        },
+        "minus20": {
+          "max_rel_change_pct": 11.759,
+          "most_affected": "roi_median_10y_enterprise",
+          "headline_max_rel_change_pct": 11.759
+        },
+        "max_rel_change_pct": 15.7,
+        "most_affected_value": "roi_median_10y_enterprise",
+        "headline_max_rel_change_pct": 15.7,
+        "headline_most_affected": "roi_median_10y_enterprise",
+        "flag": ">5%"
+      },
+      "section_reference": "C041-C053 (Table 40)",
+      "basis": "DATA",
+      "value": {
+        "threshold_turnover": 200000000,
+        "bands": [
+          [
+            4000000,
+            7000000,
+            100000,
+            0,
+            0.03
+          ],
+          [
+            7000000,
+            11000000,
+            250000,
+            90000,
+            0.03
+          ]
+        ],
+        "above_11m_rate": 0.04
+      },
+      "feeds": "C041-C053 (Table 40)",
+      "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-DF599D5F",
+      "key": "tax_morale.baseline.enforcement",
+      "assumption_text": "tax_morale.baseline.enforcement = 0.4: Starting score (0-1) of the enforcement driver. No defensible measure found (Block E2.1): no Afrobarometer, FinScope or ILFS item asks about the likelihood of audit, detection or penalty for not paying or registering, and the TRA publications reachable give only an audit-yield share of revenue (17.0% baseline, 14.5% actual 2022/23, TRA Sixth Corporate Plan p. 48) and no audit coverage rate. Closest item Q40G (ordinary people who break the law go unpunished) is general, not about tax. Kept at the former typed 0.40 as an ASSUMPTION for the owner's sign-off; the full search list is in config.yaml afrobarometer.baseline_mapping.enforcement.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Starting score (0-1) of the enforcement driver. No defensible measure found (Block E2.1): no Afrobarometer, FinScope or ILFS item asks about the likelihood of audit, detection or penalty for not paying or registering, and the TRA publications reachable give only an audit-yield share of revenue (17.0% baseline, 14.5% actual 2022/23, TRA Sixth Corporate Plan p. 48) and no audit coverage rate. Closest item Q40G (ordinary people who break the law go unpunished) is general, not about tax. Kept at the former typed 0.40 as an ASSUMPTION for the owner's sign-off; the full search list is in config.yaml afrobarometer.baseline_mapping.enforcement.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.4,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-17F7F68F",
+      "key": "tax_morale.baseline.fairness",
+      "assumption_text": "tax_morale.baseline.fairness = read from data/processed/afrobarometer_morale.json: Starting score (0-1) of the fairness driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47C: the government usually uses tax revenues for the well-being of citizens), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Starting score (0-1) of the fairness driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47C: the government usually uses tax revenues for the well-being of citizens), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-E82308B2",
+      "key": "tax_morale.baseline.simplicity",
+      "assumption_text": "tax_morale.baseline.simplicity = read from data/processed/afrobarometer_morale.json: Starting score (0-1) of the simplicity driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q46A: how easy or difficult to find out what taxes and fees you are supposed to pay), reversed and rescaled 0-1, weighted mean (withinwt_hh), computed in src/03_features/afrobarometer_morale.py. LABEL: information burden only (does not cover registration or filing costs). Mapping decided by the owner in Block E2.0; replaced the typed 0.25.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Starting score (0-1) of the simplicity driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q46A: how easy or difficult to find out what taxes and fees you are supposed to pay), reversed and rescaled 0-1, weighted mean (withinwt_hh), computed in src/03_features/afrobarometer_morale.py. LABEL: information burden only (does not cover registration or filing costs). Mapping decided by the owner in Block E2.0; replaced the typed 0.25.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-CD0686B7",
+      "key": "tax_morale.baseline.social_norm",
+      "assumption_text": "tax_morale.baseline.social_norm = read from data/processed/afrobarometer_morale.json: Starting score (0-1) of the social norm driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47D: perceived behaviour of others (how often people avoid paying the taxes they owe), reversed), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Starting score (0-1) of the social norm driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47D: perceived behaviour of others (how often people avoid paying the taxes they owe), reversed), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-7F271568",
+      "key": "tax_morale.baseline.trust",
+      "assumption_text": "tax_morale.baseline.trust = read from data/processed/afrobarometer_morale.json: Starting score (0-1) of the trust driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q41J: trust in the tax/revenue office), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.35 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "HIGH",
+      "evidence_support": "Starting score (0-1) of the trust driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q41J: trust in the tax/revenue office), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.35 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-C5CBABD5",
+      "key": "tax_morale.combined_discount",
+      "assumption_text": "tax_morale.combined_discount = 0.6: Diminishing-returns factor: when all six interventions run together each solo shift counts at 60%. No empirical basis; it alone decides how far 58.2% sits below the naive sum of the solo effects.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Diminishing-returns factor: when all six interventions run together each solo shift counts at 60%. No empirical basis; it alone decides how far 58.2% sits below the naive sum of the solo effects.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 14.394,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 14.394
+        },
+        "minus20": {
+          "max_rel_change_pct": 12.928,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 12.928
+        },
+        "max_rel_change_pct": 14.394,
+        "most_affected_value": "combined_intervention_probability",
+        "headline_max_rel_change_pct": 14.394,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": ">5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.6,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-9EBFD103",
+      "key": "tax_morale.effect.USSD_registration_nudge.simplicity",
+      "assumption_text": "tax_morale.effect.USSD_registration_nudge.simplicity = 0.15: Assumed rise of the simplicity score (0-1 scale) caused by 'USSD registration nudge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the simplicity score (0-1 scale) caused by 'USSD registration nudge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 2.524,
+          "most_affected": "solo_USSD_registration_nudge",
+          "headline_max_rel_change_pct": 1.422
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.468,
+          "most_affected": "solo_USSD_registration_nudge",
+          "headline_max_rel_change_pct": 1.411
+        },
+        "max_rel_change_pct": 2.524,
+        "most_affected_value": "solo_USSD_registration_nudge",
+        "headline_max_rel_change_pct": 1.422,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.15,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-F7ECA91C",
+      "key": "tax_morale.effect.USSD_registration_nudge.trust",
+      "assumption_text": "tax_morale.effect.USSD_registration_nudge.trust = 0.05: Assumed rise of the trust score (0-1 scale) caused by 'USSD registration nudge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the trust score (0-1 scale) caused by 'USSD registration nudge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 1.253,
+          "most_affected": "solo_USSD_registration_nudge",
+          "headline_max_rel_change_pct": 0.483
+        },
+        "minus20": {
+          "max_rel_change_pct": 1.24,
+          "most_affected": "solo_USSD_registration_nudge",
+          "headline_max_rel_change_pct": 0.483
+        },
+        "max_rel_change_pct": 1.253,
+        "most_affected_value": "solo_USSD_registration_nudge",
+        "headline_max_rel_change_pct": 0.483,
+        "headline_most_affected": "naive_sum_of_solo_effects_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.05,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-FB3B86ED",
+      "key": "tax_morale.effect.civic_tax_education.fairness",
+      "assumption_text": "tax_morale.effect.civic_tax_education.fairness = 0.1: Assumed rise of the fairness score (0-1 scale) caused by 'civic tax education'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the fairness score (0-1 scale) caused by 'civic tax education'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 1.252,
+          "most_affected": "solo_civic_tax_education",
+          "headline_max_rel_change_pct": 0.703
+        },
+        "minus20": {
+          "max_rel_change_pct": 1.236,
+          "most_affected": "solo_civic_tax_education",
+          "headline_max_rel_change_pct": 0.7
+        },
+        "max_rel_change_pct": 1.252,
+        "most_affected_value": "solo_civic_tax_education",
+        "headline_max_rel_change_pct": 0.703,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.1,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-454C15F9",
+      "key": "tax_morale.effect.civic_tax_education.social_norm",
+      "assumption_text": "tax_morale.effect.civic_tax_education.social_norm = 0.2: Assumed rise of the social norm score (0-1 scale) caused by 'civic tax education'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the social norm score (0-1 scale) caused by 'civic tax education'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 3.366,
+          "most_affected": "solo_civic_tax_education",
+          "headline_max_rel_change_pct": 1.876
+        },
+        "minus20": {
+          "max_rel_change_pct": 3.267,
+          "most_affected": "solo_civic_tax_education",
+          "headline_max_rel_change_pct": 1.863
+        },
+        "max_rel_change_pct": 3.366,
+        "most_affected_value": "solo_civic_tax_education",
+        "headline_max_rel_change_pct": 1.876,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.2,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-6900FF2D",
+      "key": "tax_morale.effect.community_compliance_norms.social_norm",
+      "assumption_text": "tax_morale.effect.community_compliance_norms.social_norm = 0.3: Assumed rise of the social norm score (0-1 scale) caused by 'community compliance norms'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the social norm score (0-1 scale) caused by 'community compliance norms'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 4.99,
+          "most_affected": "solo_community_compliance_norms",
+          "headline_max_rel_change_pct": 2.68
+        },
+        "minus20": {
+          "max_rel_change_pct": 4.795,
+          "most_affected": "solo_community_compliance_norms",
+          "headline_max_rel_change_pct": 2.672
+        },
+        "max_rel_change_pct": 4.99,
+        "most_affected_value": "solo_community_compliance_norms",
+        "headline_max_rel_change_pct": 2.68,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.3,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-C7803D4E",
+      "key": "tax_morale.effect.community_compliance_norms.trust",
+      "assumption_text": "tax_morale.effect.community_compliance_norms.trust = 0.08: Assumed rise of the trust score (0-1 scale) caused by 'community compliance norms'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the trust score (0-1 scale) caused by 'community compliance norms'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 1.973,
+          "most_affected": "solo_community_compliance_norms",
+          "headline_max_rel_change_pct": 0.849
+        },
+        "minus20": {
+          "max_rel_change_pct": 1.942,
+          "most_affected": "solo_community_compliance_norms",
+          "headline_max_rel_change_pct": 0.84
+        },
+        "max_rel_change_pct": 1.973,
+        "most_affected_value": "solo_community_compliance_norms",
+        "headline_max_rel_change_pct": 0.849,
+        "headline_most_affected": "naive_sum_of_solo_effects_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.08,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-B9BD9B35",
+      "key": "tax_morale.effect.mobile_money_TIN_bridge.simplicity",
+      "assumption_text": "tax_morale.effect.mobile_money_TIN_bridge.simplicity = 0.25: Assumed rise of the simplicity score (0-1 scale) caused by 'mobile money TIN bridge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the simplicity score (0-1 scale) caused by 'mobile money TIN bridge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 4.159,
+          "most_affected": "solo_mobile_money_TIN_bridge",
+          "headline_max_rel_change_pct": 2.251
+        },
+        "minus20": {
+          "max_rel_change_pct": 4.021,
+          "most_affected": "solo_mobile_money_TIN_bridge",
+          "headline_max_rel_change_pct": 2.243
+        },
+        "max_rel_change_pct": 4.159,
+        "most_affected_value": "solo_mobile_money_TIN_bridge",
+        "headline_max_rel_change_pct": 2.251,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.25,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-F0335359",
+      "key": "tax_morale.effect.mobile_money_TIN_bridge.trust",
+      "assumption_text": "tax_morale.effect.mobile_money_TIN_bridge.trust = 0.1: Assumed rise of the trust score (0-1 scale) caused by 'mobile money TIN bridge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the trust score (0-1 scale) caused by 'mobile money TIN bridge'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 2.479,
+          "most_affected": "solo_mobile_money_TIN_bridge",
+          "headline_max_rel_change_pct": 1.057
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.429,
+          "most_affected": "solo_mobile_money_TIN_bridge",
+          "headline_max_rel_change_pct": 1.04
+        },
+        "max_rel_change_pct": 2.479,
+        "most_affected_value": "solo_mobile_money_TIN_bridge",
+        "headline_max_rel_change_pct": 1.057,
+        "headline_most_affected": "naive_sum_of_solo_effects_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.1,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-869DFE1C",
+      "key": "tax_morale.effect.presumptive_tax_simplification.simplicity",
+      "assumption_text": "tax_morale.effect.presumptive_tax_simplification.simplicity = 0.3: Assumed rise of the simplicity score (0-1 scale) caused by 'presumptive tax simplification'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the simplicity score (0-1 scale) caused by 'presumptive tax simplification'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 4.964,
+          "most_affected": "solo_presumptive_tax_simplification",
+          "headline_max_rel_change_pct": 2.647
+        },
+        "minus20": {
+          "max_rel_change_pct": 4.777,
+          "most_affected": "solo_presumptive_tax_simplification",
+          "headline_max_rel_change_pct": 2.639
+        },
+        "max_rel_change_pct": 4.964,
+        "most_affected_value": "solo_presumptive_tax_simplification",
+        "headline_max_rel_change_pct": 2.647,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.3,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-6FD44463",
+      "key": "tax_morale.effect.presumptive_tax_simplification.trust",
+      "assumption_text": "tax_morale.effect.presumptive_tax_simplification.trust = 0.1: Assumed rise of the trust score (0-1 scale) caused by 'presumptive tax simplification'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the trust score (0-1 scale) caused by 'presumptive tax simplification'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 2.458,
+          "most_affected": "solo_presumptive_tax_simplification",
+          "headline_max_rel_change_pct": 1.082
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.412,
+          "most_affected": "solo_presumptive_tax_simplification",
+          "headline_max_rel_change_pct": 1.065
+        },
+        "max_rel_change_pct": 2.458,
+        "most_affected_value": "solo_presumptive_tax_simplification",
+        "headline_max_rel_change_pct": 1.082,
+        "headline_most_affected": "naive_sum_of_solo_effects_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.1,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-32C5932B",
+      "key": "tax_morale.effect.visible_tax_returns.fairness",
+      "assumption_text": "tax_morale.effect.visible_tax_returns.fairness = 0.25: Assumed rise of the fairness score (0-1 scale) caused by 'visible tax returns'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the fairness score (0-1 scale) caused by 'visible tax returns'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 3.499,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 3.499
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.968,
+          "most_affected": "solo_visible_tax_returns",
+          "headline_max_rel_change_pct": 1.716
+        },
+        "max_rel_change_pct": 3.499,
+        "most_affected_value": "combined_intervention_probability",
+        "headline_max_rel_change_pct": 3.499,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.25,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-1DEFB5CA",
+      "key": "tax_morale.effect.visible_tax_returns.trust",
+      "assumption_text": "tax_morale.effect.visible_tax_returns.trust = 0.15: Assumed rise of the trust score (0-1 scale) caused by 'visible tax returns'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Assumed rise of the trust score (0-1 scale) caused by 'visible tax returns'. Scenario input: the project holds no empirical estimate of this effect size.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 3.732,
+          "most_affected": "solo_visible_tax_returns",
+          "headline_max_rel_change_pct": 1.598
+        },
+        "minus20": {
+          "max_rel_change_pct": 3.621,
+          "most_affected": "solo_visible_tax_returns",
+          "headline_max_rel_change_pct": 1.564
+        },
+        "max_rel_change_pct": 3.732,
+        "most_affected_value": "solo_visible_tax_returns",
+        "headline_max_rel_change_pct": 1.598,
+        "headline_most_affected": "naive_sum_of_solo_effects_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.15,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-3814A8B2",
+      "key": "tax_morale.weight.enforcement",
+      "assumption_text": "tax_morale.weight.enforcement = 0.15: Authors' judgement of the weight of the enforcement driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Authors' judgement of the weight of the enforcement driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 1.306,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 1.306
+        },
+        "minus20": {
+          "max_rel_change_pct": 1.485,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 1.485
+        },
+        "max_rel_change_pct": 1.485,
+        "most_affected_value": "combined_intervention_probability",
+        "headline_max_rel_change_pct": 1.485,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.15,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-8C9EB9AD",
+      "key": "tax_morale.weight.fairness",
+      "assumption_text": "tax_morale.weight.fairness = 0.15: Authors' judgement of the weight of the fairness driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Authors' judgement of the weight of the fairness driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 2.688,
+          "most_affected": "solo_visible_tax_returns",
+          "headline_max_rel_change_pct": 1.37
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.662,
+          "most_affected": "solo_visible_tax_returns",
+          "headline_max_rel_change_pct": 1.325
+        },
+        "max_rel_change_pct": 2.688,
+        "most_affected_value": "solo_visible_tax_returns",
+        "headline_max_rel_change_pct": 1.37,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.15,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-78B462A5",
+      "key": "tax_morale.weight.simplicity",
+      "assumption_text": "tax_morale.weight.simplicity = 0.2: Authors' judgement of the weight of the simplicity driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Authors' judgement of the weight of the simplicity driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 5.232,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 5.232
+        },
+        "minus20": {
+          "max_rel_change_pct": 5.078,
+          "most_affected": "combined_intervention_probability",
+          "headline_max_rel_change_pct": 5.078
+        },
+        "max_rel_change_pct": 5.232,
+        "most_affected_value": "combined_intervention_probability",
+        "headline_max_rel_change_pct": 5.232,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": ">5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.2,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-1FB8AC5D",
+      "key": "tax_morale.weight.social_norm",
+      "assumption_text": "tax_morale.weight.social_norm = 0.2: Authors' judgement of the weight of the social norm driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Authors' judgement of the weight of the social norm driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 4.416,
+          "most_affected": "solo_community_compliance_norms",
+          "headline_max_rel_change_pct": 3.197
+        },
+        "minus20": {
+          "max_rel_change_pct": 4.344,
+          "most_affected": "solo_community_compliance_norms",
+          "headline_max_rel_change_pct": 3.122
+        },
+        "max_rel_change_pct": 4.416,
+        "most_affected_value": "solo_community_compliance_norms",
+        "headline_max_rel_change_pct": 3.197,
+        "headline_most_affected": "combined_intervention_probability",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.2,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-E9904A44",
+      "key": "tax_morale.weight.trust",
+      "assumption_text": "tax_morale.weight.trust = 0.3: Authors' judgement of the weight of the trust driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Authors' judgement of the weight of the trust driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "morale",
+        "published_values_compared": 9,
+        "plus20": {
+          "max_rel_change_pct": 3.12,
+          "most_affected": "naive_sum_of_solo_effects_pct",
+          "headline_max_rel_change_pct": 3.12
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.846,
+          "most_affected": "naive_sum_of_solo_effects_pct",
+          "headline_max_rel_change_pct": 2.846
+        },
+        "max_rel_change_pct": 3.12,
+        "most_affected_value": "naive_sum_of_solo_effects_pct",
+        "headline_max_rel_change_pct": 3.12,
+        "headline_most_affected": "naive_sum_of_solo_effects_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "basis": "ASSUMPTION",
+      "value": 0.3,
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%)",
+      "group": "morale"
+    },
+    {
+      "assumption_id": "ASS-64B29FD3",
+      "key": "tier.filing.base",
+      "assumption_text": "tier.filing.base = 0.3: Intercept of the filing-reliability trait; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Intercept of the filing-reliability trait; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 50.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 85.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 85.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.3,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-14B9C492",
+      "key": "tier.filing.clip_high",
+      "assumption_text": "tier.filing.clip_high = 0.99: Upper bound of the filing-reliability trait.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Upper bound of the filing-reliability trait.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 1.667,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 116.751,
+          "most_affected": "year10_level_3_silver_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 116.751,
+        "most_affected_value": "year10_level_3_silver_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 0.99,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-84DF4479",
+      "key": "tier.filing.clip_low",
+      "assumption_text": "tier.filing.clip_low = 0.05: Lower bound of the filing-reliability trait.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Lower bound of the filing-reliability trait.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 0.05,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-F4AABD36",
+      "key": "tier.filing.morale_coef",
+      "assumption_text": "tier.filing.morale_coef = 0.3: Weight of morale in the filing-reliability trait; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Weight of morale in the filing-reliability trait; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 25.66,
+          "most_affected": "year10_level_5_platinum_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 30.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 30.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.3,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-9B245CBB",
+      "key": "tier.filing.noise_sd",
+      "assumption_text": "tier.filing.noise_sd = 0.1: Individual noise in the filing-reliability trait; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Individual noise in the filing-reliability trait; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 15.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 20.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 20.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.1,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-0C22D41D",
+      "key": "tier.filing.trust_coef",
+      "assumption_text": "tier.filing.trust_coef = 0.4: Weight of trust in the filing-reliability trait; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Weight of trust in the filing-reliability trait; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 28.679,
+          "most_affected": "year10_level_5_platinum_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 50.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 50.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 0.4,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-525B7635",
+      "key": "tier.initial_tenure_high",
+      "assumption_text": "tier.initial_tenure_high = 4: Upper bound (exclusive) of the starting tenure draw.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Upper bound (exclusive) of the starting tenure draw.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 4,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-0B6D11E7",
+      "key": "tier.initial_tenure_low",
+      "assumption_text": "tier.initial_tenure_low = 1: Already-compliant agents start with 1 to 3 years of tenure (lower bound).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Already-compliant agents start with 1 to 3 years of tenure (lower bound).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "note": "no effect (integer rounding)"
+        },
+        "max_rel_change_pct": 0.0,
+        "most_affected_value": null,
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "no effect"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 1,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-F9F5EE52",
+      "key": "tier.on_time_noise_sd",
+      "assumption_text": "tier.on_time_noise_sd = 5: Year-to-year noise (percentage points) in on-time filing; no source.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "LOW",
+      "evidence_support": "Year-to-year noise (percentage points) in on-time filing; no source.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 2.439,
+          "most_affected": "year10_level_2_bronze_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 10.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 10.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "UNKNOWN",
+      "value": 5,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-EAACD7D5",
+      "key": "tier.threshold.bronze_on_time",
+      "assumption_text": "tier.threshold.bronze_on_time = 45: Ngazi Bronze: on-time filing of at least 45% (dashboard design parameter).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ngazi Bronze: on-time filing of at least 45% (dashboard design parameter).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 130.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 65.0,
+          "most_affected": "year10_level_1_entry_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 130.0,
+        "most_affected_value": "year10_level_1_entry_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 45,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-21FD594D",
+      "key": "tier.threshold.gold_on_time",
+      "assumption_text": "tier.threshold.gold_on_time = 80: Ngazi Gold: on-time filing of at least 80% (dashboard design parameter).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ngazi Gold: on-time filing of at least 80% (dashboard design parameter).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 86.667,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 78.889,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 86.667,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 80,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-3E26E9A0",
+      "key": "tier.threshold.gold_years",
+      "assumption_text": "tier.threshold.gold_years = 3: Ngazi Gold: at least 3 years registered (dashboard design parameter).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ngazi Gold: at least 3 years registered (dashboard design parameter).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 17.222,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 17.222,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 3,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-6CF75380",
+      "key": "tier.threshold.platinum_on_time",
+      "assumption_text": "tier.threshold.platinum_on_time = 90: Ngazi Platinum: on-time filing of at least 90% (dashboard design parameter, copied from the Enterprise page).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ngazi Platinum: on-time filing of at least 90% (dashboard design parameter, copied from the Enterprise page).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 146.667,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 73.585,
+          "most_affected": "year10_level_5_platinum_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 146.667,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 90,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-7F3E05AE",
+      "key": "tier.threshold.platinum_years",
+      "assumption_text": "tier.threshold.platinum_years = 5: Ngazi Platinum: at least 5 years registered (dashboard design parameter).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ngazi Platinum: at least 5 years registered (dashboard design parameter).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 13.889,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 10.556,
+          "most_affected": "year10_level_4_gold_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 13.889,
+        "most_affected_value": "year10_level_4_gold_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 5,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-513BFA4B",
+      "key": "tier.threshold.silver_on_time",
+      "assumption_text": "tier.threshold.silver_on_time = 65: Ngazi Silver: on-time filing of at least 65% (dashboard design parameter).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "behavioral",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ngazi Silver: on-time filing of at least 65% (dashboard design parameter).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "tier",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 151.22,
+          "most_affected": "year10_level_2_bronze_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 75.61,
+          "most_affected": "year10_level_2_bronze_pct",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 151.22,
+        "most_affected_value": "year10_level_2_bronze_pct",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": ">5%"
+      },
+      "section_reference": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "basis": "ASSUMPTION",
+      "value": 65,
+      "feeds": "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "group": "tier"
+    },
+    {
+      "assumption_id": "ASS-336BC4DB",
+      "key": "twin.cap.compliance_rate",
+      "assumption_text": "twin.cap.compliance_rate = 0.8: Structural ceiling for the compliance rate.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Structural ceiling for the compliance rate.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "minus20": {
+          "max_rel_change_pct": 2.721,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 2.721,
+        "most_affected_value": "policy_final_compliance_rate",
+        "headline_max_rel_change_pct": 0.0,
+        "headline_most_affected": null,
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.8,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-1904C94C",
+      "key": "twin.cap.trust",
+      "assumption_text": "twin.cap.trust = 0.85: Structural ceiling for the trust score.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Structural ceiling for the trust score.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 7.723,
+          "most_affected": "policy_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 1.848
+        },
+        "minus20": {
+          "max_rel_change_pct": 16.933,
+          "most_affected": "policy_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 4.026
+        },
+        "max_rel_change_pct": 16.933,
+        "most_affected_value": "policy_final_registered_taxpayers",
+        "headline_max_rel_change_pct": 4.026,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.85,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-2B85DB47",
+      "key": "twin.default.formalization_policy",
+      "assumption_text": "twin.default.formalization_policy = read from data/processed/twin_inputs.json: New registrations per working-age adult per year in the no-policy scenario: slope of the least-squares line through TRA registered taxpayers 2017/18-2023/24 (608,107 a year) divided by the 2024 working-age population. Replaced the assumed 0.005.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "LOW",
+      "evidence_support": "New registrations per working-age adult per year in the no-policy scenario: slope of the least-squares line through TRA registered taxpayers 2017/18-2023/24 (608,107 a year) divided by the 2024 working-age population. Replaced the assumed 0.005.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "CALIBRATED",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-6CD05F1A",
+      "key": "twin.default.trust_improvement_annual",
+      "assumption_text": "twin.default.trust_improvement_annual = 0.01: Slow annual drift of the trust score in the no-new-policy scenario.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Slow annual drift of the trust score in the no-new-policy scenario.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.361,
+          "most_affected": "baseline_final_compliance_rate",
+          "headline_max_rel_change_pct": 0.075
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.529,
+          "most_affected": "baseline_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 0.075
+        },
+        "max_rel_change_pct": 0.529,
+        "most_affected_value": "baseline_final_registered_taxpayers",
+        "headline_max_rel_change_pct": 0.075,
+        "headline_most_affected": "baseline_final_tax_to_gdp_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.01,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-1911B447",
+      "key": "twin.growth.adult_population",
+      "assumption_text": "twin.growth.adult_population = read from data/processed/twin_inputs.json: Yearly growth factor of the adult population = 1 + the mean World Bank WDI population growth (SP.POP.GROW, last 5 years with data). Replaced the account-based mobile-money growth (Block E3.3).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Yearly growth factor of the adult population = 1 + the mean World Bank WDI population growth (SP.POP.GROW, last 5 years with data). Replaced the account-based mobile-money growth (Block E3.3).",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": null,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-09B9DF56",
+      "key": "twin.mm.penetration_cap",
+      "assumption_text": "twin.mm.penetration_cap = 0.9: Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 7.768,
+          "most_affected": "policy_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 1.848
+        },
+        "minus20": {
+          "max_rel_change_pct": 7.768,
+          "most_affected": "policy_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 1.848
+        },
+        "max_rel_change_pct": 7.768,
+        "most_affected_value": "policy_final_registered_taxpayers",
+        "headline_max_rel_change_pct": 1.848,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.9,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-B8601BCC",
+      "key": "twin.mm.penetration_gap_closure",
+      "assumption_text": "twin.mm.penetration_gap_closure = 0.1: Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin, not measured. NEW in Block E3.3, not yet signed off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin, not measured. NEW in Block E3.3, not yet signed off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 1.034,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 0.264
+        },
+        "minus20": {
+          "max_rel_change_pct": 1.186,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 0.264
+        },
+        "max_rel_change_pct": 1.186,
+        "most_affected_value": "policy_final_compliance_rate",
+        "headline_max_rel_change_pct": 0.264,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.1,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-4B5094D5",
+      "key": "twin.msme.tin_rate",
+      "assumption_text": "twin.msme.tin_rate = 0.097: Enterprise-stage TIN rate, FinScope 2023: 9.74% in outputs/tables/tin_by_segment.csv (typed 0.097 is its rounded value).",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "HIGH",
+      "evidence_support": "Enterprise-stage TIN rate, FinScope 2023: 9.74% in outputs/tables/tin_by_segment.csv (typed 0.097 is its rounded value).",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.066,
+          "most_affected": "policy_final_tax_to_gdp_pct",
+          "headline_max_rel_change_pct": 0.066
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.066,
+        "most_affected_value": "policy_final_tax_to_gdp_pct",
+        "headline_max_rel_change_pct": 0.066,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "DATA",
+      "value": 0.097,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-BC7CBCB0",
+      "key": "twin.policy.trust_improvement_annual",
+      "assumption_text": "twin.policy.trust_improvement_annual = 0.025: Policy scenario: annual trust gain of 2.5 points.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Policy scenario: annual trust gain of 2.5 points.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.106,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 0.066
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.131,
+          "most_affected": "policy_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.131,
+        "most_affected_value": "policy_final_registered_taxpayers",
+        "headline_max_rel_change_pct": 0.066,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.025,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-25B14AF4",
+      "key": "twin.policy.ussd_nudge_scale",
+      "assumption_text": "twin.policy.ussd_nudge_scale = 0.6: Policy scenario: USSD nudge deployed at 60% of full scale.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Policy scenario: USSD nudge deployed at 60% of full scale.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 5.442,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 1.32
+        },
+        "minus20": {
+          "max_rel_change_pct": 6.566,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 1.518
+        },
+        "max_rel_change_pct": 6.566,
+        "most_affected_value": "policy_final_compliance_rate",
+        "headline_max_rel_change_pct": 1.518,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.6,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-3AB8BB49",
+      "key": "twin.presumptive.uplift_factor",
+      "assumption_text": "twin.presumptive.uplift_factor = 0.5: Share of registered MSME presumptive-tax potential collected once simplification is on (0.5): a scenario input with no collection data behind it. Kept for sign-off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Share of registered MSME presumptive-tax potential collected once simplification is on (0.5): a scenario input with no collection data behind it. Kept for sign-off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 0.066,
+          "most_affected": "policy_final_tax_to_gdp_pct",
+          "headline_max_rel_change_pct": 0.066
+        },
+        "minus20": {
+          "max_rel_change_pct": 0.0,
+          "most_affected": null,
+          "headline_max_rel_change_pct": 0.0
+        },
+        "max_rel_change_pct": 0.066,
+        "most_affected_value": "policy_final_tax_to_gdp_pct",
+        "headline_max_rel_change_pct": 0.066,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.5,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-3FA49CCC",
+      "key": "twin.trust_multiplier.slope",
+      "assumption_text": "twin.trust_multiplier.slope = 2: Registration rises by 2 x (trust - baseline trust): a structural elasticity of the model; no panel or trial data link trust to registration here. Kept for sign-off.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Registration rises by 2 x (trust - baseline trust): a structural elasticity of the model; no panel or trial data link trust to registration here. Kept for sign-off.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 1.094,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 0.264
+        },
+        "minus20": {
+          "max_rel_change_pct": 1.103,
+          "most_affected": "policy_final_registered_taxpayers",
+          "headline_max_rel_change_pct": 0.264
+        },
+        "max_rel_change_pct": 1.103,
+        "most_affected_value": "policy_final_registered_taxpayers",
+        "headline_max_rel_change_pct": 0.264,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": "<=5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 2,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    },
+    {
+      "assumption_id": "ASS-3FE4AFC5",
+      "key": "twin.ussd.conversion",
+      "assumption_text": "twin.ussd.conversion = 0.15: Share of non-compliant mobile-money users who register per year when the USSD nudge is fully scaled (15%): a scenario input; the project holds no trial or administrative evidence of USSD registration conversion. Kept for sign-off; the registration trend cannot identify it because no USSD nudge was in place.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "economic",
+      "confidence": "MEDIUM",
+      "evidence_support": "Share of non-compliant mobile-money users who register per year when the USSD nudge is fully scaled (15%): a scenario input; the project holds no trial or administrative evidence of USSD registration conversion. Kept for sign-off; the registration trend cannot identify it because no USSD nudge was in place.",
+      "stress_tested": true,
+      "stress_test_result": {
+        "group": "twin",
+        "published_values_compared": 6,
+        "plus20": {
+          "max_rel_change_pct": 5.442,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 1.32
+        },
+        "minus20": {
+          "max_rel_change_pct": 6.566,
+          "most_affected": "policy_final_compliance_rate",
+          "headline_max_rel_change_pct": 1.518
+        },
+        "max_rel_change_pct": 6.566,
+        "most_affected_value": "policy_final_compliance_rate",
+        "headline_max_rel_change_pct": 1.518,
+        "headline_most_affected": "policy_final_tax_to_gdp_pct",
+        "flag": ">5%"
+      },
+      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "basis": "ASSUMPTION",
+      "value": 0.15,
+      "feeds": "C079 (Fig 5.2 digital twin)",
+      "group": "twin"
+    }
+  ]
+}

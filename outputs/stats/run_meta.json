@@ -1,0 +1,50 @@
+{
+  "run": {
+    "mode": "from-raw",
+    "clean": true,
+    "started_at": "2026-11-14 23:09:56",
+    "pipeline_run_id": "a42600b4",
+    "python": "3.14.1",
+    "finished_at": "2026-11-14 23:18:35"
+  },
+  "files": {
+    "finscope_summary.json": {
+      "generated_at": "2026-11-14 23:10:03"
+    },
+    "finscope_report.txt": {
+      "generated_at": "2026-11-14 23:10:03"
+    },
+    "finscope_feature_store.json": {
+      "generated_at": "2026-11-14 23:10:04"
+    },
+    "economic_model.json": {
+      "generated_at": "2026-11-14 23:17:02"
+    },
+    "shared_context.json": {
+      "created_at": "2026-11-14 23:17:13",
+      "last_updated": "2026-11-14 23:17:13"
+    },
+    "intervention_register.json": {
+      "items": {
+        "INT-DC4387": {
+          "created_at": "2026-11-14 23:17:13"
+        },
+        "INT-10A731": {
+          "created_at": "2026-11-14 23:17:13"
+        },
+        "INT-6F2EA3": {
+          "created_at": "2026-11-14 23:17:13"
+        },
+        "INT-852F18": {
+          "created_at": "2026-11-14 23:17:13"
+        },
+        "INT-668A76": {
+          "created_at": "2026-11-14 23:17:13"
+        },
+        "INT-695F76": {
+          "created_at": "2026-11-14 23:17:13"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+segment,label,definition,n_unweighted,tin_holders_unweighted,population_weighted,population_share_pct,tin_holders_weighted,tin_rate_pct,se_pct,ci95_low_pct,ci95_high_pct,low_precision,suppressed
+overall,All adults (16+),every respondent,9915,361,34134251.40,100.0000,1306683.33,3.8281,0.3261,3.2366,4.5226,False,False
+entry,Entry,age 16-24,1984,14,10605005.23,31.0685,81605.36,0.7695,0.2952,0.3616,1.6300,False,False
+active,Active,"age 25-44, not a business owner (BusO != 'Business owners')",3756,150,12110885.78,35.4802,559050.42,4.6161,0.5331,3.6751,5.7835,False,False
+enterprise,Enterprise,"age 25-64, business owner (BusO == 'Business owners')",1067,94,3488899.71,10.2211,339746.27,9.7379,1.4087,7.3004,12.8763,False,False
+asset,Asset,"age 45-64, not a business owner",2193,78,5590836.37,16.3790,240629.43,4.3040,0.7149,3.0994,5.9481,False,False
+legacy,Legacy,age 65+,915,25,2338624.30,6.8513,85651.84,3.6625,1.1850,1.9279,6.8488,False,False

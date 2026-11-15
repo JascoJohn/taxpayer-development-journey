@@ -1,0 +1,95 @@
+{
+  "source": "World Bank WDI snapshots named in config.yaml (CC BY 4.0)",
+  "type": "COMPUTED",
+  "tanzania": {
+    "latest_year": 2024,
+    "tax_to_gdp_pct": 12.260929249686,
+    "gdp_lcu_tzs": 205846493000000.0,
+    "gdp_usd": 79235713444.9777,
+    "fx_tzs_per_usd": 2597.90041666666,
+    "tax_revenue_tzs": 25238692869689.848,
+    "tax_revenue_usd": 9715034767.2192
+  },
+  "benchmark": {
+    "policy": "peer_average",
+    "year": 2023,
+    "benchmark_pct": 13.124876017842574,
+    "note": "simple mean of GHA, KEN, RWA, UGA in 2023 (latest year all five countries report)",
+    "peers": {
+      "GHA": {
+        "year": 2023,
+        "tax_to_gdp_pct": 12.393098457103
+      },
+      "KEN": {
+        "year": 2023,
+        "tax_to_gdp_pct": 14.0631113797385
+      },
+      "RWA": {
+        "year": 2023,
+        "tax_to_gdp_pct": 13.0749257552592
+      },
+      "UGA": {
+        "year": 2023,
+        "tax_to_gdp_pct": 12.9683684792696
+      }
+    },
+    "peer_average_pct": 13.124876017842574,
+    "common_year_all_five": 2023,
+    "tanzania_same_year_pct": 11.6781472695563,
+    "gap_pp": 1.446728748286274,
+    "gdp_lcu_tzs_that_year": 188334085000000.0,
+    "revenue_gap_tzs": 2724683350516.907,
+    "target_tax_revenue_tzs": 24718615155588.25,
+    "fx_tzs_per_usd_that_year": 2383.04258333333,
+    "revenue_gap_usd": 1143363265.7565439,
+    "target_tax_revenue_usd": 10372712316.79485,
+    "formula": "(benchmark - Tanzania, same year) / 100 x GDP in TZS of that year; no exchange-rate step in the TZS gap"
+  },
+  "context_target": {
+    "tax_to_gdp_pct": 13.5,
+    "source": "Ministry of Finance, Tanzania, 'Guideline for the Preparation of Government Plan and Budget for the Medium Term 2026/27-2028/29', 17 June 2026, printed p. 8: 'Tax revenue to GDP ratio to reach 13.5 percent in 2026/27 and an average of 13.6 percent over the medium term'. https://www.mof.go.tz/uploads/documents/en-1781678091-GUIDELINE%20FOR%20THE%20PREPARATION%20OF%20GOVERNMENT%20PLAN%20AND%20BUDGET%20FOR%20THE%20MEDIUM%20TERM%202026.27-2028.29.pdf",
+    "used_in_gap": false
+  },
+  "series_coverage": {
+    "GHA": {
+      "first_year": 1990,
+      "last_year": 2023,
+      "n_years": 27
+    },
+    "KEN": {
+      "first_year": 2014,
+      "last_year": 2023,
+      "n_years": 10
+    },
+    "RWA": {
+      "first_year": 1973,
+      "last_year": 2024,
+      "n_years": 23
+    },
+    "TZA": {
+      "first_year": 2009,
+      "last_year": 2024,
+      "n_years": 16
+    },
+    "UGA": {
+      "first_year": 2015,
+      "last_year": 2024,
+      "n_years": 10
+    }
+  },
+  "snapshots": {
+    "GC.TAX.TOTL.GD.ZS": "GC.TAX.TOTL.GD.ZS_2026-11-12.json",
+    "NY.GDP.MKTP.CN": "NY.GDP.MKTP.CN_2026-11-12.json",
+    "NY.GDP.MKTP.CD": "NY.GDP.MKTP.CD_2026-11-12.json",
+    "PA.NUS.FCRF": "PA.NUS.FCRF_2026-11-12.json",
+    "NY.GDP.MKTP.KD.ZG": "NY.GDP.MKTP.KD.ZG_2026-11-12.json",
+    "SP.POP.GROW": "SP.POP.GROW_2026-11-12.json",
+    "SP.POP.TOTL": "SP.POP.TOTL_2026-11-12.json"
+  },
+  "snapshots_lastupdated_by_wdi": {
+    "GC.TAX.TOTL.GD.ZS": "2026-11-11",
+    "NY.GDP.MKTP.CN": "2026-11-11",
+    "NY.GDP.MKTP.CD": "2026-11-11",
+    "PA.NUS.FCRF": "2026-11-11"
+  }
+}

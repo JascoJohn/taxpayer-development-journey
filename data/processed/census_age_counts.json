@@ -1,0 +1,648 @@
+{
+ "source": "TPHC2022_TenPercent_DEMOGRAPHICS.sav (NBS, 2022 Population and Housing Census, 10% sample)",
+ "type": "COMPUTED",
+ "aggregates_only": true,
+ "expansion": {
+  "method": "x10 (nominal sampling fraction)",
+  "factor": 10,
+  "why": "the sample files hold no weight, strata or cluster variable; the only supported expansion is by the sampling fraction",
+  "sample_records": 6181772,
+  "records_with_valid_age": 6181772,
+  "records_without_valid_age": 0,
+  "expanded_total": 61817720,
+  "ratio_calibrated_factor": 9.987608730959343,
+  "calibrated_total": 61741120
+ },
+ "bands": {
+  "seed_6_15": {
+   "age_from": 6,
+   "age_to": 15,
+   "sample_count": 1635437,
+   "expanded_x10": 16354370,
+   "male_expanded": 8185270,
+   "female_expanded": 8169100,
+   "calibrated_expanded": 16334105
+  },
+  "entry_16_24": {
+   "age_from": 16,
+   "age_to": 24,
+   "sample_count": 1060062,
+   "expanded_x10": 10600620,
+   "male_expanded": 5016180,
+   "female_expanded": 5584440,
+   "calibrated_expanded": 10587484
+  },
+  "ages_6_18": {
+   "age_from": 6,
+   "age_to": 18,
+   "sample_count": 2026339,
+   "expanded_x10": 20263390,
+   "male_expanded": 10114060,
+   "female_expanded": 10149330,
+   "calibrated_expanded": 20238281
+  },
+  "ages_0_14": {
+   "age_from": 0,
+   "age_to": 14,
+   "sample_count": 2643070,
+   "expanded_x10": 26430700,
+   "male_expanded": 13214860,
+   "female_expanded": 13215840,
+   "calibrated_expanded": 26397949
+  }
+ },
+ "by_age": {
+  "0": {
+   "sample": 197907,
+   "expanded": 1979070,
+   "male": 979820,
+   "female": 999250
+  },
+  "1": {
+   "sample": 177446,
+   "expanded": 1774460,
+   "male": 889660,
+   "female": 884800
+  },
+  "2": {
+   "sample": 187060,
+   "expanded": 1870600,
+   "male": 935350,
+   "female": 935250
+  },
+  "3": {
+   "sample": 193724,
+   "expanded": 1937240,
+   "male": 961750,
+   "female": 975490
+  },
+  "4": {
+   "sample": 194633,
+   "expanded": 1946330,
+   "male": 973140,
+   "female": 973190
+  },
+  "5": {
+   "sample": 184806,
+   "expanded": 1848060,
+   "male": 935370,
+   "female": 912690
+  },
+  "6": {
+   "sample": 178446,
+   "expanded": 1784460,
+   "male": 893250,
+   "female": 891210
+  },
+  "7": {
+   "sample": 180944,
+   "expanded": 1809440,
+   "male": 913430,
+   "female": 896010
+  },
+  "8": {
+   "sample": 177787,
+   "expanded": 1777870,
+   "male": 875290,
+   "female": 902580
+  },
+  "9": {
+   "sample": 170578,
+   "expanded": 1705780,
+   "male": 826490,
+   "female": 879290
+  },
+  "10": {
+   "sample": 166973,
+   "expanded": 1669730,
+   "male": 853610,
+   "female": 816120
+  },
+  "11": {
+   "sample": 143462,
+   "expanded": 1434620,
+   "male": 721940,
+   "female": 712680
+  },
+  "12": {
+   "sample": 181722,
+   "expanded": 1817220,
+   "male": 914770,
+   "female": 902450
+  },
+  "13": {
+   "sample": 147279,
+   "expanded": 1472790,
+   "male": 736560,
+   "female": 736230
+  },
+  "14": {
+   "sample": 160303,
+   "expanded": 1603030,
+   "male": 804430,
+   "female": 798600
+  },
+  "15": {
+   "sample": 127943,
+   "expanded": 1279430,
+   "male": 645500,
+   "female": 633930
+  },
+  "16": {
+   "sample": 128123,
+   "expanded": 1281230,
+   "male": 633270,
+   "female": 647960
+  },
+  "17": {
+   "sample": 129855,
+   "expanded": 1298550,
+   "male": 652580,
+   "female": 645970
+  },
+  "18": {
+   "sample": 132924,
+   "expanded": 1329240,
+   "male": 642940,
+   "female": 686300
+  },
+  "19": {
+   "sample": 110012,
+   "expanded": 1100120,
+   "male": 516690,
+   "female": 583430
+  },
+  "20": {
+   "sample": 132522,
+   "expanded": 1325220,
+   "male": 608420,
+   "female": 716800
+  },
+  "21": {
+   "sample": 90638,
+   "expanded": 906380,
+   "male": 424200,
+   "female": 482180
+  },
+  "22": {
+   "sample": 140841,
+   "expanded": 1408410,
+   "male": 639380,
+   "female": 769030
+  },
+  "23": {
+   "sample": 101250,
+   "expanded": 1012500,
+   "male": 465860,
+   "female": 546640
+  },
+  "24": {
+   "sample": 93897,
+   "expanded": 938970,
+   "male": 432840,
+   "female": 506130
+  },
+  "25": {
+   "sample": 110198,
+   "expanded": 1101980,
+   "male": 518000,
+   "female": 583980
+  },
+  "26": {
+   "sample": 91196,
+   "expanded": 911960,
+   "male": 422180,
+   "female": 489780
+  },
+  "27": {
+   "sample": 94001,
+   "expanded": 940010,
+   "male": 449120,
+   "female": 490890
+  },
+  "28": {
+   "sample": 98766,
+   "expanded": 987660,
+   "male": 462020,
+   "female": 525640
+  },
+  "29": {
+   "sample": 79245,
+   "expanded": 792450,
+   "male": 371180,
+   "female": 421270
+  },
+  "30": {
+   "sample": 115702,
+   "expanded": 1157020,
+   "male": 542050,
+   "female": 614970
+  },
+  "31": {
+   "sample": 57913,
+   "expanded": 579130,
+   "male": 283280,
+   "female": 295850
+  },
+  "32": {
+   "sample": 96535,
+   "expanded": 965350,
+   "male": 471090,
+   "female": 494260
+  },
+  "33": {
+   "sample": 59773,
+   "expanded": 597730,
+   "male": 287280,
+   "female": 310450
+  },
+  "34": {
+   "sample": 65718,
+   "expanded": 657180,
+   "male": 316760,
+   "female": 340420
+  },
+  "35": {
+   "sample": 77894,
+   "expanded": 778940,
+   "male": 377420,
+   "female": 401520
+  },
+  "36": {
+   "sample": 66723,
+   "expanded": 667230,
+   "male": 317790,
+   "female": 349440
+  },
+  "37": {
+   "sample": 58420,
+   "expanded": 584200,
+   "male": 281560,
+   "female": 302640
+  },
+  "38": {
+   "sample": 70942,
+   "expanded": 709420,
+   "male": 336110,
+   "female": 373310
+  },
+  "39": {
+   "sample": 47387,
+   "expanded": 473870,
+   "male": 222160,
+   "female": 251710
+  },
+  "40": {
+   "sample": 82184,
+   "expanded": 821840,
+   "male": 389430,
+   "female": 432410
+  },
+  "41": {
+   "sample": 35535,
+   "expanded": 355350,
+   "male": 172510,
+   "female": 182840
+  },
+  "42": {
+   "sample": 67477,
+   "expanded": 674770,
+   "male": 331940,
+   "female": 342830
+  },
+  "43": {
+   "sample": 45715,
+   "expanded": 457150,
+   "male": 222490,
+   "female": 234660
+  },
+  "44": {
+   "sample": 40199,
+   "expanded": 401990,
+   "male": 195570,
+   "female": 206420
+  },
+  "45": {
+   "sample": 61100,
+   "expanded": 611000,
+   "male": 307130,
+   "female": 303870
+  },
+  "46": {
+   "sample": 40426,
+   "expanded": 404260,
+   "male": 199960,
+   "female": 204300
+  },
+  "47": {
+   "sample": 41727,
+   "expanded": 417270,
+   "male": 202290,
+   "female": 214980
+  },
+  "48": {
+   "sample": 51157,
+   "expanded": 511570,
+   "male": 245780,
+   "female": 265790
+  },
+  "49": {
+   "sample": 34239,
+   "expanded": 342390,
+   "male": 166540,
+   "female": 175850
+  },
+  "50": {
+   "sample": 60484,
+   "expanded": 604840,
+   "male": 281960,
+   "female": 322880
+  },
+  "51": {
+   "sample": 22813,
+   "expanded": 228130,
+   "male": 115210,
+   "female": 112920
+  },
+  "52": {
+   "sample": 43605,
+   "expanded": 436050,
+   "male": 219820,
+   "female": 216230
+  },
+  "53": {
+   "sample": 26236,
+   "expanded": 262360,
+   "male": 127700,
+   "female": 134660
+  },
+  "54": {
+   "sample": 32248,
+   "expanded": 322480,
+   "male": 162580,
+   "female": 159900
+  },
+  "55": {
+   "sample": 27790,
+   "expanded": 277900,
+   "male": 137270,
+   "female": 140630
+  },
+  "56": {
+   "sample": 26783,
+   "expanded": 267830,
+   "male": 133160,
+   "female": 134670
+  },
+  "57": {
+   "sample": 22564,
+   "expanded": 225640,
+   "male": 108020,
+   "female": 117620
+  },
+  "58": {
+   "sample": 29445,
+   "expanded": 294450,
+   "male": 144700,
+   "female": 149750
+  },
+  "59": {
+   "sample": 18883,
+   "expanded": 188830,
+   "male": 93580,
+   "female": 95250
+  },
+  "60": {
+   "sample": 37009,
+   "expanded": 370090,
+   "male": 165180,
+   "female": 204910
+  },
+  "61": {
+   "sample": 19611,
+   "expanded": 196110,
+   "male": 99730,
+   "female": 96380
+  },
+  "62": {
+   "sample": 25758,
+   "expanded": 257580,
+   "male": 124470,
+   "female": 133110
+  },
+  "63": {
+   "sample": 15895,
+   "expanded": 158950,
+   "male": 78760,
+   "female": 80190
+  },
+  "64": {
+   "sample": 17086,
+   "expanded": 170860,
+   "male": 86650,
+   "female": 84210
+  },
+  "65": {
+   "sample": 19993,
+   "expanded": 199930,
+   "male": 92100,
+   "female": 107830
+  },
+  "66": {
+   "sample": 11666,
+   "expanded": 116660,
+   "male": 56870,
+   "female": 59790
+  },
+  "67": {
+   "sample": 13586,
+   "expanded": 135860,
+   "male": 60120,
+   "female": 75740
+  },
+  "68": {
+   "sample": 16653,
+   "expanded": 166530,
+   "male": 79510,
+   "female": 87020
+  },
+  "69": {
+   "sample": 8711,
+   "expanded": 87110,
+   "male": 41980,
+   "female": 45130
+  },
+  "70": {
+   "sample": 25159,
+   "expanded": 251590,
+   "male": 106600,
+   "female": 144990
+  },
+  "71": {
+   "sample": 6797,
+   "expanded": 67970,
+   "male": 34590,
+   "female": 33380
+  },
+  "72": {
+   "sample": 14891,
+   "expanded": 148910,
+   "male": 67600,
+   "female": 81310
+  },
+  "73": {
+   "sample": 7954,
+   "expanded": 79540,
+   "male": 40510,
+   "female": 39030
+  },
+  "74": {
+   "sample": 8245,
+   "expanded": 82450,
+   "male": 42000,
+   "female": 40450
+  },
+  "75": {
+   "sample": 11887,
+   "expanded": 118870,
+   "male": 51820,
+   "female": 67050
+  },
+  "76": {
+   "sample": 6292,
+   "expanded": 62920,
+   "male": 29960,
+   "female": 32960
+  },
+  "77": {
+   "sample": 7747,
+   "expanded": 77470,
+   "male": 33050,
+   "female": 44420
+  },
+  "78": {
+   "sample": 7466,
+   "expanded": 74660,
+   "male": 32850,
+   "female": 41810
+  },
+  "79": {
+   "sample": 3974,
+   "expanded": 39740,
+   "male": 18230,
+   "female": 21510
+  },
+  "80": {
+   "sample": 13823,
+   "expanded": 138230,
+   "male": 51980,
+   "female": 86250
+  },
+  "81": {
+   "sample": 2665,
+   "expanded": 26650,
+   "male": 13040,
+   "female": 13610
+  },
+  "82": {
+   "sample": 6570,
+   "expanded": 65700,
+   "male": 26570,
+   "female": 39130
+  },
+  "83": {
+   "sample": 2919,
+   "expanded": 29190,
+   "male": 13470,
+   "female": 15720
+  },
+  "84": {
+   "sample": 2838,
+   "expanded": 28380,
+   "male": 12810,
+   "female": 15570
+  },
+  "85": {
+   "sample": 5233,
+   "expanded": 52330,
+   "male": 20110,
+   "female": 32220
+  },
+  "86": {
+   "sample": 3060,
+   "expanded": 30600,
+   "male": 13400,
+   "female": 17200
+  },
+  "87": {
+   "sample": 3375,
+   "expanded": 33750,
+   "male": 13040,
+   "female": 20710
+  },
+  "88": {
+   "sample": 2133,
+   "expanded": 21330,
+   "male": 8450,
+   "female": 12880
+  },
+  "89": {
+   "sample": 2220,
+   "expanded": 22200,
+   "male": 9710,
+   "female": 12490
+  },
+  "90": {
+   "sample": 4548,
+   "expanded": 45480,
+   "male": 15900,
+   "female": 29580
+  },
+  "91": {
+   "sample": 723,
+   "expanded": 7230,
+   "male": 3390,
+   "female": 3840
+  },
+  "92": {
+   "sample": 1946,
+   "expanded": 19460,
+   "male": 7680,
+   "female": 11780
+  },
+  "93": {
+   "sample": 575,
+   "expanded": 5750,
+   "male": 2460,
+   "female": 3290
+  },
+  "94": {
+   "sample": 575,
+   "expanded": 5750,
+   "male": 2390,
+   "female": 3360
+  },
+  "95": {
+   "sample": 1149,
+   "expanded": 11490,
+   "male": 4210,
+   "female": 7280
+  },
+  "96": {
+   "sample": 587,
+   "expanded": 5870,
+   "male": 2140,
+   "female": 3730
+  },
+  "97": {
+   "sample": 8355,
+   "expanded": 83550,
+   "male": 26500,
+   "female": 57050
+  }
+ },
+ "seed_age_band": [
+  6,
+  15
+ ]
+}

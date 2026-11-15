@@ -1,0 +1,51 @@
+{
+  "identity": "sum over stages of (stage population / total population) x stage TIN rate = overall TIN rate",
+  "weight_variable": "population_wt",
+  "tin_variable": "c27__13 == 'Yes'",
+  "stage_assignment": "finscope_segments.lifecycle_stage (single definition); seed band 6-15 (config.yaml seed_age_band)",
+  "n_respondents": 9915,
+  "weighted_population": 34134251.398583904,
+  "overall_tin_rate_pct": 3.8280708472219462,
+  "population_weighted_average_of_stage_rates_pct": 3.8280708472219462,
+  "difference_pct_points": 0.0,
+  "tolerance_pct_points": 1e-09,
+  "identity_holds": true,
+  "unassigned_respondents": 0,
+  "weights_sum_equal_across_stages": true,
+  "stage_rates_pct": {
+    "entry": 0.769498538500646,
+    "active": 4.6160985194007065,
+    "enterprise": 9.737920306475136,
+    "asset": 4.30399702288895,
+    "legacy": 3.662488344640086
+  },
+  "stage_population_share_pct": {
+    "entry": 31.068515617038905,
+    "active": 35.480156400121786,
+    "enterprise": 10.22111096494957,
+    "asset": 16.378962903001906,
+    "legacy": 6.851254114887843
+  },
+  "design": "RECONSTRUCTED design: PSU = enumeration area (reg_code|dist_code|ward_code1|ea_code), strata = region x urban/rural cluster type (reg_code|clustertype); linearised variance, logit CI, Student-t",
+  "design_summary": {
+    "n_psu": 666,
+    "n_strata": 61,
+    "strata_with_one_psu": 0,
+    "degrees_of_freedom": 605
+  },
+  "report_values_pct": {
+    "overall": {
+      "report": 3.8,
+      "computed_rounded_1dp": 3.8
+    },
+    "active": {
+      "report": 4.6,
+      "computed_rounded_1dp": 4.6
+    },
+    "enterprise": {
+      "report": 9.7,
+      "computed_rounded_1dp": 9.7
+    }
+  },
+  "table": "outputs/tables/tin_by_segment.csv"
+}

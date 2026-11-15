@@ -1,0 +1,516 @@
+{
+ "label": "aggregates of ILFS 2024 earnings with the statutory schedules of config.yaml (assumptions tax.pit_schedule, tax.presumptive_schedule) applied; no respondent-level rows",
+ "schedule_year": "resident schedule: Cap. 332 R.E. 2023 (unchanged by the Finance Acts 2024-2026); presumptive schedule: Finance Act 2026 (in force 1 July 2026)",
+ "tax": {
+  "entry": {
+   "n_unweighted": 9529,
+   "mean_tax_per_person_tzs": 125887.97347965605,
+   "se_tzs": 41142.9440449189,
+   "share_paying_any_tax_pct": 8.077173481644397,
+   "share_with_earnings_pct": 40.437640317852846,
+   "tax_basis": "resident individual income tax on annual earnings (cash earnings + net business + net agricultural income)",
+   "age_earnings_multiplier_by_years_since_registration": [
+    1.0,
+    1.198978100915395,
+    1.3979562018307898,
+    1.5969343027461849,
+    1.79591240366158,
+    1.8739570703173412,
+    2.013012055926237,
+    2.1520670415351337,
+    2.29112202714403,
+    2.4301770127529263,
+    2.467560192121001,
+    2.4849815877189525,
+    2.5024029833169044,
+    2.519824378914856,
+    2.5372457745128076,
+    2.505966656260897,
+    2.5376819445094196,
+    2.569397232757942,
+    2.6011125210064647,
+    2.6328278092549877
+   ]
+  },
+  "active": {
+   "n_unweighted": 8509,
+   "mean_tax_per_person_tzs": 298594.0543717811,
+   "se_tzs": 23643.587890456423,
+   "share_paying_any_tax_pct": 23.771337954935163,
+   "share_with_earnings_pct": 69.53557435013128,
+   "tax_basis": "resident individual income tax on annual earnings (cash earnings + net business + net agricultural income)",
+   "age_earnings_multiplier_by_years_since_registration": [
+    1.0,
+    1.0504158558811278,
+    1.1008317117622555,
+    1.1512475676433835,
+    1.2016634235245114,
+    1.2520792794056392,
+    1.2653177091839805,
+    1.278556138962321,
+    1.2917945687406622,
+    1.305032998519003,
+    1.318271428297344,
+    1.332356531167576,
+    1.3464416340378083,
+    1.36052673690804,
+    1.3746118397782723,
+    1.388696942648504,
+    1.3866504157355024,
+    1.3846038888225005,
+    1.3825573619094988,
+    1.3805108349964972
+   ]
+  },
+  "enterprise": {
+   "n_unweighted": 5013,
+   "mean_tax_per_person_tzs": 299588.28648986795,
+   "se_tzs": 40303.34590059089,
+   "share_paying_any_tax_pct": 63.57426849106355,
+   "share_with_earnings_pct": 99.77959824249952,
+   "tax_basis": "presumptive income tax on annualised gross business receipts (Q87B, records kept) up to TZS 100M, income tax on annual net earnings above it",
+   "age_earnings_multiplier_by_years_since_registration": [
+    1.0,
+    1.0262141123040422,
+    1.0524282246080847,
+    1.0786423369121272,
+    1.1048564492161694,
+    1.1310705615202121,
+    1.1392427977481365,
+    1.1474150339760614,
+    1.155587270203986,
+    1.1637595064319108,
+    1.1719317426598355,
+    1.1917084045013915,
+    1.2114850663429475,
+    1.2312617281845033,
+    1.2510383900260593,
+    1.2708150518676153,
+    1.2745976160395034,
+    1.2783801802113917,
+    1.2821627443832795,
+    1.2859453085551678
+   ]
+  },
+  "asset": {
+   "n_unweighted": 4992,
+   "mean_tax_per_person_tzs": 412016.4480484175,
+   "se_tzs": 45394.41248016876,
+   "share_paying_any_tax_pct": 24.762498402263443,
+   "share_with_earnings_pct": 77.16480474757454,
+   "tax_basis": "resident individual income tax on annual earnings (cash earnings + net business + net agricultural income)",
+   "age_earnings_multiplier_by_years_since_registration": [
+    1.0,
+    0.9708316698672476,
+    0.9416633397344951,
+    0.9124950096017425,
+    0.88332667946899,
+    0.8541583493362378,
+    0.821493521873142,
+    0.7888286944100462,
+    0.7561638669469504,
+    0.7234990394838545,
+    0.6908342120207588,
+    0.6794735990849108,
+    0.668112986149063,
+    0.6567523732132152,
+    0.6453917602773673,
+    0.6340311473415196,
+    0.6093978276344117,
+    0.584764507927304,
+    0.5601311882201961,
+    0.5354978685130883
+   ]
+  },
+  "legacy": {
+   "n_unweighted": 2362,
+   "mean_tax_per_person_tzs": 230069.67713258165,
+   "se_tzs": 57898.440640073204,
+   "share_paying_any_tax_pct": 14.263361950050257,
+   "share_with_earnings_pct": 58.6277837051417,
+   "tax_basis": "resident individual income tax on annual earnings (cash earnings + net business + net agricultural income)",
+   "age_earnings_multiplier_by_years_since_registration": [
+    1.0,
+    0.8900029517472999,
+    0.7800059034946,
+    0.6700088552419,
+    0.5600118069892001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001
+   ]
+  }
+ },
+ "ageing": {
+  "band_profiles_mean_tax_per_person_tzs": {
+   "all": [
+    {
+     "band": "16-19",
+     "n_unweighted": 4826,
+     "mean_tax_per_person_tzs": 67456.9728286268,
+     "note": ""
+    },
+    {
+     "band": "20-24",
+     "n_unweighted": 4703,
+     "mean_tax_per_person_tzs": 186784.23333917803,
+     "note": ""
+    },
+    {
+     "band": "25-29",
+     "n_unweighted": 3747,
+     "mean_tax_per_person_tzs": 287105.68856081646,
+     "note": ""
+    },
+    {
+     "band": "30-34",
+     "n_unweighted": 3221,
+     "mean_tax_per_person_tzs": 335159.38800909184,
+     "note": ""
+    },
+    {
+     "band": "35-39",
+     "n_unweighted": 2673,
+     "mean_tax_per_person_tzs": 294952.070897696,
+     "note": ""
+    },
+    {
+     "band": "40-44",
+     "n_unweighted": 2415,
+     "mean_tax_per_person_tzs": 388099.6841323536,
+     "note": ""
+    },
+    {
+     "band": "45-49",
+     "n_unweighted": 2076,
+     "mean_tax_per_person_tzs": 567328.0009740771,
+     "note": ""
+    },
+    {
+     "band": "50-54",
+     "n_unweighted": 1832,
+     "mean_tax_per_person_tzs": 396014.098937967,
+     "note": ""
+    },
+    {
+     "band": "55-59",
+     "n_unweighted": 1269,
+     "mean_tax_per_person_tzs": 401733.04434404935,
+     "note": ""
+    },
+    {
+     "band": "60-64",
+     "n_unweighted": 1281,
+     "mean_tax_per_person_tzs": 294241.69806612283,
+     "note": ""
+    },
+    {
+     "band": "65-69",
+     "n_unweighted": 790,
+     "mean_tax_per_person_tzs": 513411.5779447105,
+     "note": ""
+    },
+    {
+     "band": "70-97",
+     "n_unweighted": 1572,
+     "mean_tax_per_person_tzs": 103534.75024740316,
+     "note": ""
+    }
+   ],
+   "nonowner": [
+    {
+     "band": "16-19",
+     "n_unweighted": 4554,
+     "mean_tax_per_person_tzs": 69093.79919869167,
+     "note": ""
+    },
+    {
+     "band": "20-24",
+     "n_unweighted": 3932,
+     "mean_tax_per_person_tzs": 164078.7052483333,
+     "note": ""
+    },
+    {
+     "band": "25-29",
+     "n_unweighted": 2786,
+     "mean_tax_per_person_tzs": 255476.85186705444,
+     "note": ""
+    },
+    {
+     "band": "30-34",
+     "n_unweighted": 2199,
+     "mean_tax_per_person_tzs": 309846.8716199171,
+     "note": ""
+    },
+    {
+     "band": "35-39",
+     "n_unweighted": 1849,
+     "mean_tax_per_person_tzs": 279181.87750426936,
+     "note": ""
+    },
+    {
+     "band": "40-44",
+     "n_unweighted": 1675,
+     "mean_tax_per_person_tzs": 372612.7978170794,
+     "note": ""
+    },
+    {
+     "band": "45-49",
+     "n_unweighted": 1512,
+     "mean_tax_per_person_tzs": 591405.2878778692,
+     "note": ""
+    },
+    {
+     "band": "50-54",
+     "n_unweighted": 1396,
+     "mean_tax_per_person_tzs": 384668.85395802004,
+     "note": ""
+    },
+    {
+     "band": "55-59",
+     "n_unweighted": 1012,
+     "mean_tax_per_person_tzs": 294388.2718603648,
+     "note": ""
+    },
+    {
+     "band": "60-64",
+     "n_unweighted": 1072,
+     "mean_tax_per_person_tzs": 291433.02505331254,
+     "note": ""
+    },
+    {
+     "band": "65-69",
+     "n_unweighted": 711,
+     "mean_tax_per_person_tzs": 442982.24959313805,
+     "note": ""
+    },
+    {
+     "band": "70-97",
+     "n_unweighted": 1467,
+     "mean_tax_per_person_tzs": 106080.89476538687,
+     "note": ""
+    }
+   ],
+   "owner": [
+    {
+     "band": "16-19",
+     "n_unweighted": 272,
+     "mean_tax_per_person_tzs": 110433.86396109777,
+     "note": ""
+    },
+    {
+     "band": "20-24",
+     "n_unweighted": 771,
+     "mean_tax_per_person_tzs": 328890.70657886413,
+     "note": ""
+    },
+    {
+     "band": "25-29",
+     "n_unweighted": 961,
+     "mean_tax_per_person_tzs": 248965.76076989662,
+     "note": ""
+    },
+    {
+     "band": "30-34",
+     "n_unweighted": 1022,
+     "mean_tax_per_person_tzs": 285631.8470902627,
+     "note": ""
+    },
+    {
+     "band": "35-39",
+     "n_unweighted": 824,
+     "mean_tax_per_person_tzs": 240126.7439757127,
+     "note": ""
+    },
+    {
+     "band": "40-44",
+     "n_unweighted": 740,
+     "mean_tax_per_person_tzs": 295221.2583841569,
+     "note": ""
+    },
+    {
+     "band": "45-49",
+     "n_unweighted": 564,
+     "mean_tax_per_person_tzs": 273797.5353797997,
+     "note": ""
+    },
+    {
+     "band": "50-54",
+     "n_unweighted": 436,
+     "mean_tax_per_person_tzs": 231717.07699839558,
+     "note": ""
+    },
+    {
+     "band": "55-59",
+     "n_unweighted": 257,
+     "mean_tax_per_person_tzs": 1042258.1344977961,
+     "note": ""
+    },
+    {
+     "band": "60-64",
+     "n_unweighted": 209,
+     "mean_tax_per_person_tzs": 198321.1026562056,
+     "note": ""
+    },
+    {
+     "band": "65-69",
+     "n_unweighted": 79,
+     "mean_tax_per_person_tzs": 403828.9790799567,
+     "note": ""
+    },
+    {
+     "band": "70-97",
+     "n_unweighted": 105,
+     "mean_tax_per_person_tzs": 250721.49351313736,
+     "note": ""
+    }
+   ]
+  },
+  "group_definitions": {
+   "entry": {
+    "ages": "16-24",
+    "profile_of_persons": "all"
+   },
+   "active": {
+    "ages": "25-44",
+    "profile_of_persons": "nonowner"
+   },
+   "enterprise": {
+    "ages": "25-64",
+    "profile_of_persons": "owner"
+   },
+   "asset": {
+    "ages": "45-64",
+    "profile_of_persons": "nonowner"
+   },
+   "legacy": {
+    "ages": "65-97",
+    "profile_of_persons": "all"
+   }
+  },
+  "multipliers": {
+   "entry": [
+    1.0,
+    1.198978100915395,
+    1.3979562018307898,
+    1.5969343027461849,
+    1.79591240366158,
+    1.8739570703173412,
+    2.013012055926237,
+    2.1520670415351337,
+    2.29112202714403,
+    2.4301770127529263,
+    2.467560192121001,
+    2.4849815877189525,
+    2.5024029833169044,
+    2.519824378914856,
+    2.5372457745128076,
+    2.505966656260897,
+    2.5376819445094196,
+    2.569397232757942,
+    2.6011125210064647,
+    2.6328278092549877
+   ],
+   "active": [
+    1.0,
+    1.0504158558811278,
+    1.1008317117622555,
+    1.1512475676433835,
+    1.2016634235245114,
+    1.2520792794056392,
+    1.2653177091839805,
+    1.278556138962321,
+    1.2917945687406622,
+    1.305032998519003,
+    1.318271428297344,
+    1.332356531167576,
+    1.3464416340378083,
+    1.36052673690804,
+    1.3746118397782723,
+    1.388696942648504,
+    1.3866504157355024,
+    1.3846038888225005,
+    1.3825573619094988,
+    1.3805108349964972
+   ],
+   "enterprise": [
+    1.0,
+    1.0262141123040422,
+    1.0524282246080847,
+    1.0786423369121272,
+    1.1048564492161694,
+    1.1310705615202121,
+    1.1392427977481365,
+    1.1474150339760614,
+    1.155587270203986,
+    1.1637595064319108,
+    1.1719317426598355,
+    1.1917084045013915,
+    1.2114850663429475,
+    1.2312617281845033,
+    1.2510383900260593,
+    1.2708150518676153,
+    1.2745976160395034,
+    1.2783801802113917,
+    1.2821627443832795,
+    1.2859453085551678
+   ],
+   "asset": [
+    1.0,
+    0.9708316698672476,
+    0.9416633397344951,
+    0.9124950096017425,
+    0.88332667946899,
+    0.8541583493362378,
+    0.821493521873142,
+    0.7888286944100462,
+    0.7561638669469504,
+    0.7234990394838545,
+    0.6908342120207588,
+    0.6794735990849108,
+    0.668112986149063,
+    0.6567523732132152,
+    0.6453917602773673,
+    0.6340311473415196,
+    0.6093978276344117,
+    0.584764507927304,
+    0.5601311882201961,
+    0.5354978685130883
+   ],
+   "legacy": [
+    1.0,
+    0.8900029517472999,
+    0.7800059034946,
+    0.6700088552419,
+    0.5600118069892001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001
+   ]
+  }
+ }
+}

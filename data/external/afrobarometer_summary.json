@@ -1,0 +1,94 @@
+{
+  "trust_president": {
+    "value": 64.0,
+    "description": "% who trust the President",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q41A",
+    "confidence": "HIGH"
+  },
+  "trust_parliament": {
+    "value": 55.0,
+    "description": "% who trust Parliament",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q41B",
+    "confidence": "HIGH"
+  },
+  "trust_local_government": {
+    "value": 57.0,
+    "description": "% who trust local government",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q41F",
+    "confidence": "HIGH"
+  },
+  "corrupt_officials": {
+    "value": 42.0,
+    "description": "% who think most/all government officials are corrupt",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q48A",
+    "confidence": "HIGH"
+  },
+  "govt_handling_economy": {
+    "value": 49.0,
+    "description": "% who approve of govt handling of the economy",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q68B",
+    "confidence": "HIGH"
+  },
+  "tax_avoidance_common": {
+    "value": 38.0,
+    "description": "% who say tax avoidance is sometimes/always justified",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q43",
+    "confidence": "HIGH"
+  },
+  "civic_duty_pay_tax": {
+    "value": 71.0,
+    "description": "% who agree citizens should pay taxes",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q57",
+    "confidence": "HIGH"
+  },
+  "government_listens": {
+    "value": 43.0,
+    "description": "% who say government listens to ordinary citizens",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q24",
+    "confidence": "HIGH"
+  },
+  "satisfied_democracy": {
+    "value": 52.0,
+    "description": "% satisfied with democracy in Tanzania",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q43",
+    "confidence": "HIGH"
+  },
+  "basic_needs_met": {
+    "value": 41.0,
+    "description": "% who say government meets their basic needs",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania",
+    "question": "Q7",
+    "confidence": "HIGH"
+  },
+  "composite_tax_morale_score": {
+    "value": 0.598,
+    "description": "Composite tax morale score (0-1) from Afrobarometer R8 Tanzania. Weighted: civic duty 30%, trust 35%, non-avoidance 20%, reciprocity 15%.",
+    "year": 2021,
+    "source": "Afrobarometer Round 8 Tanzania (computed)",
+    "confidence": "MEDIUM"
+  },
+  "policy_implications": {
+    "key_finding": "71% of Tanzanians agree citizens should pay taxes (civic duty) but only 43% say government listens to them. This 28pp gap is the reciprocity deficit \u2014 citizens are willing to comply if government responds. The behavioral lifecycle strategy directly addresses this gap.",
+    "tax_morale_baseline": "Composite tax morale score of 59.8% from Afrobarometer. This calibrates the tax morale model in economic_model.py \u2014 baseline was assumed at 30.6%, Afrobarometer evidence suggests it is higher at ~59.8% but suppressed by reciprocity deficit.",
+    "corruption_perception": "42% believe most/all officials are corrupt. This directly reduces voluntary compliance. Visible tax returns campaign (intervention) is designed to counter this specifically."
+  }
+}

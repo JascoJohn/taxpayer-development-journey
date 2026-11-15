@@ -1,0 +1,38 @@
+{
+  "seed_age_band": [
+    6,
+    15
+  ],
+  "seed_population_x10": 16354370,
+  "seed_population_calibrated": 16334105,
+  "seed_male_x10": 8185270,
+  "seed_female_x10": 8169100,
+  "published": {
+    "citation": "National Bureau of Statistics and Office of the Chief Government Statistician, Zanzibar. The 2022 Population and Housing Census: Age and Sex Distribution Report, Tanzania. Dodoma, December 2022",
+    "table": "Table 0 1 'United Republic of Tanzania: Population Distribution by Age, Sex and Place of Residence; 2022 PHC', printed p. 44 (PDF p. 66)",
+    "url": "https://www.nbs.go.tz/uploads/statistics/documents/en-1705484562-Age_and_Sex_Distribution_Report_Tanzania_volume2a.pdf",
+    "total_population": 61741120,
+    "ages_6_15_both": 16346387,
+    "ages_16_24_both": 10574268,
+    "sums_note": "6-15, 16-24, 6-18 and 0-14 are sums of the published single-year rows (both sexes; male; female), computed here"
+  },
+  "difference_vs_published": {
+    "total_x10_minus_published": 76600,
+    "total_x10_pct": 0.12406642445099703,
+    "ages_6_15_x10_minus_published": 7983,
+    "ages_6_15_x10_pct": 0.048836479890024265,
+    "ages_16_24_x10_minus_published": 26352,
+    "ages_16_24_x10_pct": 0.24920873955529554
+  },
+  "reference_6_18_x10": 20263390,
+  "previous_typed_value": 15000000,
+  "seed_x10_vs_previous_typed_pct": 9.029133333333327,
+  "entry_16_24_x10": 10600620,
+  "finscope_entry_check": {
+    "finscope_entry_population": 10605005,
+    "census_16_24_x10": 10600620,
+    "difference": -4385,
+    "difference_pct": -0.04134840106156945,
+    "within_1pct": true
+  }
+}

@@ -1,0 +1,6 @@
+model,n_encoded_features,logistic_C,roc_auc_weighted,roc_auc_unweighted,pr_auc_weighted,pr_auc_unweighted,brier_weighted,brier_unweighted,boosting_roc_auc_weighted,boosting_roc_auc_unweighted,entry_multiplier_top_decile,entry_multiplier_ci95_low,entry_multiplier_ci95_high,entry_observed_ratio_top_decile_low_precision
+PRIMARY: survey model without the REQUIRES_TIN feature,1293,0.0003,0.9457,0.9451,0.6488,0.5472,0.02668,0.02436,0.9424,0.9404,6.554,5.799,7.139,5.529
+SURVEY (Block D): all features (comparison),1294,0.0003,0.9461,0.9460,0.6488,0.5480,0.02662,0.02430,0.9444,0.9415,6.192,5.546,6.797,5.486
+EXTENDED: CORE + mobile money + business ownership / income source,55,0.003,0.8844,0.8676,0.3446,0.2628,0.03584,0.03075,0.8959,0.8750,4.194,3.840,4.577,7.140
+"CORE: age, sex, region, urban/rural",37,3.0,0.8291,0.8110,0.2182,0.1395,0.03833,0.03306,0.8397,0.8092,4.227,3.942,4.467,5.373
+SENSITIVITY: survey model without REQUIRES_TIN and UNCERTAIN items,1048,0.0003,0.9389,0.9408,0.6281,0.5213,0.02789,0.02513,,,5.805,5.133,6.389,6.624

@@ -1,0 +1,123 @@
+{
+  "label": "COMPUTED; observational, cross-sectional association; not a causal estimate",
+  "type": "COMPUTED (survey data); association, not causal",
+  "source": "FinScope Tanzania 2023, respondent-level; survey weight population_wt; design RECONSTRUCTED (PSU = enumeration area, strata = region x cluster type)",
+  "population": "descriptives: all 9,915 adult respondents; models: the 9911 with a stated education level",
+  "outcome": "holds a Taxpayer Identification Number (c27__13 = Yes)",
+  "disclosure_rule": "unweighted numerators below 10 are not published and the estimate is flagged low_precision; bases below 10 are suppressed",
+  "descriptives": {
+    "share_of_tin_holders_using_mobile_money": {
+      "n_unweighted_base": 361,
+      "n_unweighted_numerator": 360,
+      "share_of_tin_holders_using_mm_pct": 99.91624157082026,
+      "ci95_low_pct": 99.40020696834884,
+      "ci95_high_pct": 99.9883555181665,
+      "weighted_tin_holders": 1306683.32670664
+    },
+    "tin_rate_by_group": [
+      {
+        "group": "All adults (16+)",
+        "n_unweighted_base": 9915,
+        "n_unweighted_numerator": 361,
+        "weighted_population": 34134251.398583904,
+        "tin_rate_pct": 3.8280708472219462,
+        "ci95_low_pct": 3.2365793336778097,
+        "ci95_high_pct": 4.522606357415023
+      },
+      {
+        "group": "Mobile-money users",
+        "n_unweighted_base": 7046,
+        "n_unweighted_numerator": 360,
+        "weighted_population": 24445601.031701468,
+        "tin_rate_pct": 5.340792675069545,
+        "ci95_low_pct": 4.523665807046219,
+        "ci95_high_pct": 6.295787348811707
+      },
+      {
+        "group": "Non-users of mobile money",
+        "n_unweighted_base": 2869,
+        "n_unweighted_numerator": null,
+        "weighted_population": 9688650.366882443,
+        "tin_rate_pct": 0.01129628366551355,
+        "ci95_low_pct": 0.001580910895133099,
+        "ci95_high_pct": 0.08066860819108604,
+        "low_precision": true,
+        "low_precision_fields": [
+          "tin_rate_pct",
+          "ci95_low_pct",
+          "ci95_high_pct"
+        ]
+      }
+    ]
+  },
+  "model_specification": {
+    "covariates": [
+      "mobile money",
+      "age, age squared",
+      "sex",
+      "residence (Dar es Salaam / other urban / rural / Zanzibar)",
+      "region (each region of mainland Tanzania and Zanzibar; in the headline model only)",
+      "education",
+      "main income source (no income amount exists in FinScope 2023; it also carries business ownership, which BusO derives from it)"
+    ],
+    "covariates_note": "these are the covariates of the headline model reported here (headline_model); the other model is the same without region",
+    "estimator": "survey-weighted logistic regression, Firth-penalised (Jeffreys prior with weighted information), because almost no non-user holds a TIN",
+    "standard_errors": "Taylor-linearised sandwich, PSU totals within strata (reconstructed design), t intervals",
+    "weights": "population_wt normalised to mean 1"
+  },
+  "headline_model": "with region",
+  "average_marginal_effect_of_mobile_money": {
+    "percentage_points": 4.159258179376072,
+    "ci95_percentage_points": [
+      3.625035092370252,
+      4.693481266381892
+    ],
+    "se_pp": 0.27202252711572766,
+    "mean_predicted_tin_rate_if_all_use_mm_pct": 4.338848039812508,
+    "mean_predicted_tin_rate_if_none_use_mm_pct": 0.17958986043643765,
+    "label": "COMPUTED; observational, cross-sectional association; not a causal estimate"
+  },
+  "odds_ratio_mobile_money": {
+    "primary": 38.37805742664058,
+    "primary_ci95": [
+      17.565560449497866,
+      83.85017353002398
+    ],
+    "with_region": 38.525351608385186
+  },
+  "model_diagnostics": {
+    "primary_firth": {
+      "converged": true,
+      "iterations": 13,
+      "n": 9911,
+      "max_abs_coefficient": 7.847270888363545,
+      "design": {
+        "n_psu": 666,
+        "n_strata": 61,
+        "strata_with_one_psu": 0,
+        "degrees_of_freedom": 605
+      }
+    },
+    "with_region_firth": {
+      "converged": true,
+      "iterations": 17,
+      "n": 9911,
+      "max_abs_coefficient": 8.525373544069385,
+      "design": {
+        "n_psu": 666,
+        "n_strata": 61,
+        "strata_with_one_psu": 0,
+        "degrees_of_freedom": 605
+      }
+    },
+    "unpenalised_comparison": {
+      "converged": true,
+      "iterations": 17,
+      "max_abs_coefficient": 13.21940027906919,
+      "mobile_money_log_odds": 4.592262782228528,
+      "note": "the unpenalised weighted logit is shown only to document near-separation (a very large coefficient or non-convergence); it is not used"
+    },
+    "region_model_used_for_headline": true
+  },
+  "replaces": "the simulated propensity-score matching (planted 6 pp effect; reported 9.0 / 5.94 pp), the typed difference-in-differences and the typed synthetic control, all retired in Block D2"
+}

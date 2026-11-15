@@ -1,0 +1,235 @@
+id,indicator_name,indicator_label,category,value,unit,breakdown_type,breakdown_value,source,created_at
+469,lfs_1_-_employed,Labour force status: 1 - Employed,labour_force_status,54.93,percent,lfs_status,1 - Employed,ILFS Tanzania 2024,2026-07-13 22:33:53
+470,lfs_3_-_outside_labour_force,Labour force status: 3 - Outside Labour Force,labour_force_status,43.84,percent,lfs_status,3 - Outside Labour Force,ILFS Tanzania 2024,2026-07-13 22:33:53
+471,lfs_2_-_unemployed,Labour force status: 2 - Unemployed,labour_force_status,1.23,percent,lfs_status,2 - Unemployed,ILFS Tanzania 2024,2026-07-13 22:33:53
+472,lfs19_1_-_employed,LFS 19th ICLS: 1 - Employed,labour_force_status,44.22,percent,lfs19_status,1 - Employed,ILFS Tanzania 2024,2026-07-13 22:33:53
+473,lfs19_3_-_outside_labour_force,LFS 19th ICLS: 3 - Outside Labour Force,labour_force_status,53.12,percent,lfs19_status,3 - Outside Labour Force,ILFS Tanzania 2024,2026-07-13 22:33:53
+474,lfs19_2_-_unemployed,LFS 19th ICLS: 2 - Unemployed,labour_force_status,2.66,percent,lfs19_status,2 - Unemployed,ILFS Tanzania 2024,2026-07-13 22:33:53
+475,emp_status_self-employed_(non-agricultura,Employment status: Self-employed (non-agricultural activities),employment_formality,10.59,percent,employment_status,Self-employed (non-agricultural activities),ILFS Tanzania 2024,2026-07-13 22:33:53
+476,emp_status_self-employed_(agricultural_ac,Employment status: Self-employed (agricultural activities: crops/fishing/livestock),employment_formality,17.15,percent,employment_status,Self-employed (agricultural activities: crops/fishing/livestock),ILFS Tanzania 2024,2026-07-13 22:33:53
+477,emp_status_unpaid_helper_in_agricultural_,Employment status: Unpaid helper in agricultural household/family activities (crops/fishing/livestock),employment_formality,17.21,percent,employment_status,Unpaid helper in agricultural household/family activities (crops/fishing/livestock),ILFS Tanzania 2024,2026-07-13 22:33:53
+478,emp_status_unpaid_helper_in_non-agricultu,Employment status: Unpaid helper in non-agricultural household/family activities,employment_formality,2.07,percent,employment_status,Unpaid helper in non-agricultural household/family activities,ILFS Tanzania 2024,2026-07-13 22:33:53
+479,emp_status_paid_employee,Employment status: Paid employee,employment_formality,6.96,percent,employment_status,Paid employee,ILFS Tanzania 2024,2026-07-13 22:33:53
+480,emp_status_unpaid_helper_of_a_family_memb,Employment status: Unpaid helper of a family member working for someone else,employment_formality,0.2,percent,employment_status,Unpaid helper of a family member working for someone else,ILFS Tanzania 2024,2026-07-13 22:33:53
+481,emp_status_on-the-job_trainees_(apprentic,Employment status: On-the-job trainees (apprenticeship and internship),employment_formality,0.1,percent,employment_status,On-the-job trainees (apprenticeship and internship),ILFS Tanzania 2024,2026-07-13 22:33:53
+482,income_tax_deducted_no,Income tax deducted: No,employment_formality,30.39,percent,tax_deduction,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+483,income_tax_deducted_don't know,Income tax deducted: Don't know,employment_formality,0.81,percent,tax_deduction,Don't know,ILFS Tanzania 2024,2026-07-13 22:33:53
+484,income_tax_deducted_yes,Income tax deducted: Yes,employment_formality,3.68,percent,tax_deduction,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+485,"income_tax_deducted_no, my salary is bel","Income tax deducted: No, my salary is below the tax threshold",employment_formality,0.19,percent,tax_deduction,"No, my salary is below the tax threshold",ILFS Tanzania 2024,2026-07-13 22:33:53
+486,social_security_no,Social security contribution: No,employment_formality,31.89,percent,social_security,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+487,social_security_yes,Social security contribution: Yes,employment_formality,2.23,percent,social_security,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+488,social_security_don't know,Social security contribution: Don't know,employment_formality,0.94,percent,social_security,Don't know,ILFS Tanzania 2024,2026-07-13 22:33:53
+489,contract_verbal,Contract type: Verbal,employment_formality,4.77,percent,contract_type,Verbal,ILFS Tanzania 2024,2026-07-13 22:33:53
+490,contract_written,Contract type: Written,employment_formality,2.75,percent,contract_type,Written,ILFS Tanzania 2024,2026-07-13 22:33:53
+491,trade_union_no,Trade union membership: No,employment_formality,5.63,percent,trade_union,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+492,trade_union_yes,Trade union membership: Yes,employment_formality,1.43,percent,trade_union,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+493,biz_registered_not registered,Business registered: Not registered,business_formalization,46.88,percent,business_registration,Not registered,ILFS Tanzania 2024,2026-07-13 22:33:53
+494,biz_registered_tanzania/zanzibar re,Business registered: Tanzania/Zanzibar Revenue Authority (TRA/ZRB),business_formalization,2.11,percent,business_registration,Tanzania/Zanzibar Revenue Authority (TRA/ZRB),ILFS Tanzania 2024,2026-07-13 22:33:53
+495,biz_registered_other government aut,Business registered: Other government authorities and has a business license,business_formalization,1.64,percent,business_registration,Other government authorities and has a business license,ILFS Tanzania 2024,2026-07-13 22:33:53
+496,biz_registered_other government aut,Business registered: Other government authorities without a business license,business_formalization,0.66,percent,business_registration,Other government authorities without a business license,ILFS Tanzania 2024,2026-07-13 22:33:53
+497,biz_registered_brela/bpra and has a,Business registered: BRELA/BPRA and has a business license,business_formalization,0.8,percent,business_registration,BRELA/BPRA and has a business license,ILFS Tanzania 2024,2026-07-13 22:33:53
+498,biz_registered_brela/bpra without a,Business registered: BRELA/BPRA without a business license,business_formalization,0.06,percent,business_registration,BRELA/BPRA without a business license,ILFS Tanzania 2024,2026-07-13 22:33:53
+499,no_reg_reason_c,Non-registration reason: C,business_formalization,15.84,percent,registration_barrier,C,ILFS Tanzania 2024,2026-07-13 22:33:53
+500,no_reg_reason_e,Non-registration reason: E,business_formalization,0.87,percent,registration_barrier,E,ILFS Tanzania 2024,2026-07-13 22:33:53
+501,no_reg_reason_b,Non-registration reason: B,business_formalization,10.65,percent,registration_barrier,B,ILFS Tanzania 2024,2026-07-13 22:33:53
+502,no_reg_reason_f,Non-registration reason: F,business_formalization,12.01,percent,registration_barrier,F,ILFS Tanzania 2024,2026-07-13 22:33:53
+503,no_reg_reason_,Non-registration reason: ,business_formalization,52.37,percent,registration_barrier,,ILFS Tanzania 2024,2026-07-13 22:33:53
+504,no_reg_reason_bc,Non-registration reason: BC,business_formalization,1.12,percent,registration_barrier,BC,ILFS Tanzania 2024,2026-07-13 22:33:53
+505,no_reg_reason_cg,Non-registration reason: CG,business_formalization,0.03,percent,registration_barrier,CG,ILFS Tanzania 2024,2026-07-13 22:33:53
+506,no_reg_reason_cf,Non-registration reason: CF,business_formalization,2.0,percent,registration_barrier,CF,ILFS Tanzania 2024,2026-07-13 22:33:53
+507,no_reg_reason_bcf,Non-registration reason: BCF,business_formalization,0.51,percent,registration_barrier,BCF,ILFS Tanzania 2024,2026-07-13 22:33:53
+508,no_reg_reason_g,Non-registration reason: G,business_formalization,1.2,percent,registration_barrier,G,ILFS Tanzania 2024,2026-07-13 22:33:53
+509,no_reg_reason_ef,Non-registration reason: EF,business_formalization,0.81,percent,registration_barrier,EF,ILFS Tanzania 2024,2026-07-13 22:33:53
+510,no_reg_reason_be,Non-registration reason: BE,business_formalization,0.09,percent,registration_barrier,BE,ILFS Tanzania 2024,2026-07-13 22:33:53
+511,no_reg_reason_a,Non-registration reason: A,business_formalization,0.34,percent,registration_barrier,A,ILFS Tanzania 2024,2026-07-13 22:33:53
+512,no_reg_reason_bg,Non-registration reason: BG,business_formalization,0.02,percent,registration_barrier,BG,ILFS Tanzania 2024,2026-07-13 22:33:53
+513,no_reg_reason_bf,Non-registration reason: BF,business_formalization,1.38,percent,registration_barrier,BF,ILFS Tanzania 2024,2026-07-13 22:33:53
+514,no_reg_reason_bef,Non-registration reason: BEF,business_formalization,0.04,percent,registration_barrier,BEF,ILFS Tanzania 2024,2026-07-13 22:33:53
+515,no_reg_reason_ce,Non-registration reason: CE,business_formalization,0.2,percent,registration_barrier,CE,ILFS Tanzania 2024,2026-07-13 22:33:53
+516,no_reg_reason_d,Non-registration reason: D,business_formalization,0.06,percent,registration_barrier,D,ILFS Tanzania 2024,2026-07-13 22:33:53
+517,no_reg_reason_bce,Non-registration reason: BCE,business_formalization,0.01,percent,registration_barrier,BCE,ILFS Tanzania 2024,2026-07-13 22:33:53
+518,no_reg_reason_bcef,Non-registration reason: BCEF,business_formalization,0.01,percent,registration_barrier,BCEF,ILFS Tanzania 2024,2026-07-13 22:33:53
+519,no_reg_reason_af,Non-registration reason: AF,business_formalization,0.05,percent,registration_barrier,AF,ILFS Tanzania 2024,2026-07-13 22:33:53
+520,no_reg_reason_cef,Non-registration reason: CEF,business_formalization,0.05,percent,registration_barrier,CEF,ILFS Tanzania 2024,2026-07-13 22:33:53
+521,no_reg_reason_bde,Non-registration reason: BDE,business_formalization,0.0,percent,registration_barrier,BDE,ILFS Tanzania 2024,2026-07-13 22:33:53
+522,no_reg_reason_bd,Non-registration reason: BD,business_formalization,0.01,percent,registration_barrier,BD,ILFS Tanzania 2024,2026-07-13 22:33:53
+523,no_reg_reason_bcd,Non-registration reason: BCD,business_formalization,0.0,percent,registration_barrier,BCD,ILFS Tanzania 2024,2026-07-13 22:33:53
+524,no_reg_reason_ae,Non-registration reason: AE,business_formalization,0.01,percent,registration_barrier,AE,ILFS Tanzania 2024,2026-07-13 22:33:53
+525,no_reg_reason_ab,Non-registration reason: AB,business_formalization,0.01,percent,registration_barrier,AB,ILFS Tanzania 2024,2026-07-13 22:33:53
+526,no_reg_reason_ac,Non-registration reason: AC,business_formalization,0.0,percent,registration_barrier,AC,ILFS Tanzania 2024,2026-07-13 22:33:53
+527,no_reg_reason_df,Non-registration reason: DF,business_formalization,0.04,percent,registration_barrier,DF,ILFS Tanzania 2024,2026-07-13 22:33:53
+528,no_reg_reason_de,Non-registration reason: DE,business_formalization,0.07,percent,registration_barrier,DE,ILFS Tanzania 2024,2026-07-13 22:33:53
+529,no_reg_reason_fg,Non-registration reason: FG,business_formalization,0.05,percent,registration_barrier,FG,ILFS Tanzania 2024,2026-07-13 22:33:53
+530,no_reg_reason_cdf,Non-registration reason: CDF,business_formalization,0.01,percent,registration_barrier,CDF,ILFS Tanzania 2024,2026-07-13 22:33:53
+531,no_reg_reason_cd,Non-registration reason: CD,business_formalization,0.07,percent,registration_barrier,CD,ILFS Tanzania 2024,2026-07-13 22:33:53
+532,no_reg_reason_eg,Non-registration reason: EG,business_formalization,0.0,percent,registration_barrier,EG,ILFS Tanzania 2024,2026-07-13 22:33:53
+533,no_reg_reason_def,Non-registration reason: DEF,business_formalization,0.02,percent,registration_barrier,DEF,ILFS Tanzania 2024,2026-07-13 22:33:53
+534,no_reg_reason_acde,Non-registration reason: ACDE,business_formalization,0.0,percent,registration_barrier,ACDE,ILFS Tanzania 2024,2026-07-13 22:33:53
+535,no_reg_reason_cde,Non-registration reason: CDE,business_formalization,0.01,percent,registration_barrier,CDE,ILFS Tanzania 2024,2026-07-13 22:33:53
+536,no_reg_reason_ad,Non-registration reason: AD,business_formalization,0.01,percent,registration_barrier,AD,ILFS Tanzania 2024,2026-07-13 22:33:53
+537,no_reg_reason_ceg,Non-registration reason: CEG,business_formalization,0.0,percent,registration_barrier,CEG,ILFS Tanzania 2024,2026-07-13 22:33:53
+538,no_reg_reason_aef,Non-registration reason: AEF,business_formalization,0.01,percent,registration_barrier,AEF,ILFS Tanzania 2024,2026-07-13 22:33:53
+539,no_reg_reason_ace,Non-registration reason: ACE,business_formalization,0.0,percent,registration_barrier,ACE,ILFS Tanzania 2024,2026-07-13 22:33:53
+540,no_reg_reason_cfg,Non-registration reason: CFG,business_formalization,0.0,percent,registration_barrier,CFG,ILFS Tanzania 2024,2026-07-13 22:33:53
+541,no_reg_reason_abf,Non-registration reason: ABF,business_formalization,0.0,percent,registration_barrier,ABF,ILFS Tanzania 2024,2026-07-13 22:33:53
+542,no_reg_reason_bdf,Non-registration reason: BDF,business_formalization,0.0,percent,registration_barrier,BDF,ILFS Tanzania 2024,2026-07-13 22:33:53
+543,no_reg_reason_bfg,Non-registration reason: BFG,business_formalization,0.0,percent,registration_barrier,BFG,ILFS Tanzania 2024,2026-07-13 22:33:53
+544,biz_type_yes,Business type: Yes,business_formalization,0.54,percent,business_type,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+545,biz_type_no,Business type: No,business_formalization,0.32,percent,business_type,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+546,bureaucracy_barrier_pct,Cites bureaucracy as reason for informality,business_formalization,0.22,percent,,,ILFS Tanzania 2024,2026-07-13 22:33:53
+547,records_no_written_records,Record keeping: No written records,business_formalization,39.05,percent,record_keeping,No written records,ILFS Tanzania 2024,2026-07-13 22:33:53
+548,records_don't_know,Record keeping: Don't know,business_formalization,4.11,percent,record_keeping,Don't know,ILFS Tanzania 2024,2026-07-13 22:33:53
+549,records_complete_written_records_,"Record keeping: Complete written records (including capital, income and expenditure)",business_formalization,1.45,percent,record_keeping,"Complete written records (including capital, income and expenditure)",ILFS Tanzania 2024,2026-07-13 22:33:53
+550,records_informal_records_of_order,"Record keeping: Informal records of orders, sales and purchases",business_formalization,4.58,percent,record_keeping,"Informal records of orders, sales and purchases",ILFS Tanzania 2024,2026-07-13 22:33:53
+551,records_basic/simple_accounting_r,Record keeping: Basic/simple accounting records (non-tax),business_formalization,2.95,percent,record_keeping,Basic/simple accounting records (non-tax),ILFS Tanzania 2024,2026-07-13 22:33:53
+552,avg_wage_income_tzs_per_period,Average gross wage income,income_wages,371805.52383757936,TZS,,,ILFS Tanzania 2024,2026-07-13 22:33:53
+553,avg_business_income_tzs,Average gross business income,income_wages,893565.6000215692,TZS,,,ILFS Tanzania 2024,2026-07-13 22:33:53
+554,avg_net_business_income_tzs,Average net business income after expenses,income_wages,208171.11926198564,TZS,,,ILFS Tanzania 2024,2026-07-13 22:33:53
+555,avg_agricultural_income_tzs,Average gross agricultural income,income_wages,348052.65810148884,TZS,,,ILFS Tanzania 2024,2026-07-13 22:33:53
+556,payment_type_wages_salary,Paid via wages salary,income_wages,5.66,percent,payment_type,wages_salary,ILFS Tanzania 2024,2026-07-13 22:33:53
+557,payment_type_piece_work,Paid via piece work,income_wages,1.51,percent,payment_type,piece_work,ILFS Tanzania 2024,2026-07-13 22:33:53
+558,payment_type_commission,Paid via commission,income_wages,0.17,percent,payment_type,commission,ILFS Tanzania 2024,2026-07-13 22:33:53
+559,payment_type_food_accommodation,Paid via food accommodation,income_wages,1.12,percent,payment_type,food_accommodation,ILFS Tanzania 2024,2026-07-13 22:33:53
+560,payment_type_payment_in_kind,Paid via payment in kind,income_wages,0.07,percent,payment_type,payment_in_kind,ILFS Tanzania 2024,2026-07-13 22:33:53
+561,payment_type_no_payment,Paid via no payment,income_wages,15.46,percent,payment_type,no_payment,ILFS Tanzania 2024,2026-07-13 22:33:53
+562,avg_weekly_hours_worked,Average total weekly hours worked,income_wages,41.20668054818451,hours,,,ILFS Tanzania 2024,2026-07-13 22:33:53
+563,"sector_kilimo,_misitu_na_uvuvi","Industry sector: KILIMO, MISITU NA UVUVI",sector_industry,36.21,percent,isic_sector,"KILIMO, MISITU NA UVUVI",ILFS Tanzania 2024,2026-07-13 22:33:53
+564,"sector_biashara_jumla,_rejareja_pamoj","Industry sector: BIASHARA JUMLA, REJAREJA PAMOJA NA MATENGENEZO YA",sector_industry,5.38,percent,isic_sector,"BIASHARA JUMLA, REJAREJA PAMOJA NA MATENGENEZO YA",ILFS Tanzania 2024,2026-07-13 22:33:53
+565,sector_utengenezaji,Industry sector: UTENGENEZAJI,sector_industry,2.06,percent,isic_sector,UTENGENEZAJI,ILFS Tanzania 2024,2026-07-13 22:33:53
+566,sector_huduma_za_malazi_na_chakula,Industry sector: HUDUMA ZA MALAZI NA CHAKULA,sector_industry,1.9,percent,isic_sector,HUDUMA ZA MALAZI NA CHAKULA,ILFS Tanzania 2024,2026-07-13 22:33:53
+567,sector_usafirishaji_na_uhifadhi,Industry sector: USAFIRISHAJI NA UHIFADHI,sector_industry,1.54,percent,isic_sector,USAFIRISHAJI NA UHIFADHI,ILFS Tanzania 2024,2026-07-13 22:33:53
+568,sector_ujenzi,Industry sector: UJENZI,sector_industry,1.44,percent,isic_sector,UJENZI,ILFS Tanzania 2024,2026-07-13 22:33:53
+569,sector_shughuli_za_utoaji_wa_huduma_m,Industry sector: SHUGHULI ZA UTOAJI WA HUDUMA MBALI MBALI,sector_industry,1.13,percent,isic_sector,SHUGHULI ZA UTOAJI WA HUDUMA MBALI MBALI,ILFS Tanzania 2024,2026-07-13 22:33:53
+570,sector_shughuli_nyengine_za_utoaji_wa,Industry sector: SHUGHULI NYENGINE ZA UTOAJI WA HUDUMA,sector_industry,1.27,percent,isic_sector,SHUGHULI NYENGINE ZA UTOAJI WA HUDUMA,ILFS Tanzania 2024,2026-07-13 22:33:53
+571,sector_elimu,Industry sector: ELIMU,sector_industry,0.81,percent,isic_sector,ELIMU,ILFS Tanzania 2024,2026-07-13 22:33:53
+572,sector_shughuli_za_kaya_kama_muajiri_,Industry sector: SHUGHULI ZA KAYA KAMA MUAJIRI ; BIDHAA ZISIZOTOFAU,sector_industry,0.57,percent,isic_sector,SHUGHULI ZA KAYA KAMA MUAJIRI ; BIDHAA ZISIZOTOFAU,ILFS Tanzania 2024,2026-07-13 22:33:53
+573,sector_uchimbaji_wa_madini_na_michang,Industry sector: UCHIMBAJI WA MADINI NA MICHANGA,sector_industry,0.52,percent,isic_sector,UCHIMBAJI WA MADINI NA MICHANGA,ILFS Tanzania 2024,2026-07-13 22:33:53
+574,sector_utawala_wa_umma_na_ulinzi_na_s,Industry sector: UTAWALA WA UMMA NA ULINZI NA SHUGHULI ZA HIFADHI Y,sector_industry,0.3,percent,isic_sector,UTAWALA WA UMMA NA ULINZI NA SHUGHULI ZA HIFADHI Y,ILFS Tanzania 2024,2026-07-13 22:33:53
+575,sector_afya_ya_binaadamu_na_shughuli_,Industry sector: AFYA YA BINAADAMU NA SHUGHULI ZA KIJAMII,sector_industry,0.35,percent,isic_sector,AFYA YA BINAADAMU NA SHUGHULI ZA KIJAMII,ILFS Tanzania 2024,2026-07-13 22:33:53
+576,sector_shughuli_kifedha_na_bima,Industry sector: SHUGHULI KIFEDHA NA BIMA,sector_industry,0.19,percent,isic_sector,SHUGHULI KIFEDHA NA BIMA,ILFS Tanzania 2024,2026-07-13 22:33:53
+577,"sector_shughuli_za_kitaalamu_,_kisaya","Industry sector: SHUGHULI ZA KITAALAMU , KISAYANSI NA UHANDISI",sector_industry,0.19,percent,isic_sector,"SHUGHULI ZA KITAALAMU , KISAYANSI NA UHANDISI",ILFS Tanzania 2024,2026-07-13 22:33:53
+578,sector_sanaa_burudani_na_starehe,Industry sector: SANAA BURUDANI NA STAREHE,sector_industry,0.11,percent,isic_sector,SANAA BURUDANI NA STAREHE,ILFS Tanzania 2024,2026-07-13 22:33:53
+579,sector_habari_na_mawasiliano,Industry sector: HABARI NA MAWASILIANO,sector_industry,0.09,percent,isic_sector,HABARI NA MAWASILIANO,ILFS Tanzania 2024,2026-07-13 22:33:53
+580,"sector_umeme,_gesi,_mvuke_na_viyoyozi","Industry sector: UMEME, GESI, MVUKE NA VIYOYOZI",sector_industry,0.1,percent,isic_sector,"UMEME, GESI, MVUKE NA VIYOYOZI",ILFS Tanzania 2024,2026-07-13 22:33:53
+581,"sector_usambazaji_wa_maji,_majitaka,_","Industry sector: USAMBAZAJI WA MAJI, MAJITAKA, NA USIMAMIZI WA TAKA",sector_industry,0.08,percent,isic_sector,"USAMBAZAJI WA MAJI, MAJITAKA, NA USIMAMIZI WA TAKA",ILFS Tanzania 2024,2026-07-13 22:33:53
+582,works_online_no,Works online: No,sector_industry,45.1,percent,online_work,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+583,works_online_yes,Works online: Yes,sector_industry,1.43,percent,online_work,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+584,region_North Unguja_biz_reg_pct,Region North Unguja business registration,geography,0.0,percent,region,North Unguja,ILFS Tanzania 2024,2026-07-13 22:33:53
+585,region_North Unguja_tax_deducted_pct,Region North Unguja income tax deducted,geography,4.835056053783994,percent,region,North Unguja,ILFS Tanzania 2024,2026-07-13 22:33:53
+586,region_South Pemba_biz_reg_pct,Region South Pemba business registration,geography,0.0,percent,region,South Pemba,ILFS Tanzania 2024,2026-07-13 22:33:53
+587,region_South Pemba_tax_deducted_pct,Region South Pemba income tax deducted,geography,2.9592814092145003,percent,region,South Pemba,ILFS Tanzania 2024,2026-07-13 22:33:53
+588,region_Urban West_biz_reg_pct,Region Urban West business registration,geography,0.0,percent,region,Urban West,ILFS Tanzania 2024,2026-07-13 22:33:53
+589,region_Urban West_tax_deducted_pct,Region Urban West income tax deducted,geography,9.4851250991706,percent,region,Urban West,ILFS Tanzania 2024,2026-07-13 22:33:53
+590,region_North Pemba_biz_reg_pct,Region North Pemba business registration,geography,0.0,percent,region,North Pemba,ILFS Tanzania 2024,2026-07-13 22:33:53
+591,region_North Pemba_tax_deducted_pct,Region North Pemba income tax deducted,geography,2.759824078601125,percent,region,North Pemba,ILFS Tanzania 2024,2026-07-13 22:33:53
+592,region_South Unguja_biz_reg_pct,Region South Unguja business registration,geography,0.0,percent,region,South Unguja,ILFS Tanzania 2024,2026-07-13 22:33:53
+593,region_South Unguja_tax_deducted_pct,Region South Unguja income tax deducted,geography,6.865643214333339,percent,region,South Unguja,ILFS Tanzania 2024,2026-07-13 22:33:53
+594,region_1.0_biz_reg_pct,Region 1.0 business registration,geography,0.0,percent,region,1.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+595,region_1.0_tax_deducted_pct,Region 1.0 income tax deducted,geography,3.3688234732263616,percent,region,1.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+596,region_2.0_biz_reg_pct,Region 2.0 business registration,geography,0.0,percent,region,2.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+597,region_2.0_tax_deducted_pct,Region 2.0 income tax deducted,geography,4.929293720397303,percent,region,2.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+598,region_3.0_biz_reg_pct,Region 3.0 business registration,geography,0.0,percent,region,3.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+599,region_3.0_tax_deducted_pct,Region 3.0 income tax deducted,geography,4.72787613051014,percent,region,3.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+600,region_4.0_biz_reg_pct,Region 4.0 business registration,geography,0.0,percent,region,4.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+601,region_4.0_tax_deducted_pct,Region 4.0 income tax deducted,geography,2.0850599171373565,percent,region,4.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+602,region_5.0_biz_reg_pct,Region 5.0 business registration,geography,0.0,percent,region,5.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+603,region_5.0_tax_deducted_pct,Region 5.0 income tax deducted,geography,3.2687858747294176,percent,region,5.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+604,region_6.0_biz_reg_pct,Region 6.0 business registration,geography,0.0,percent,region,6.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+605,region_6.0_tax_deducted_pct,Region 6.0 income tax deducted,geography,2.9953105930348483,percent,region,6.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+606,region_7.0_biz_reg_pct,Region 7.0 business registration,geography,0.0,percent,region,7.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+607,region_7.0_tax_deducted_pct,Region 7.0 income tax deducted,geography,10.421569955687616,percent,region,7.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+608,region_8.0_biz_reg_pct,Region 8.0 business registration,geography,0.0,percent,region,8.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+609,region_8.0_tax_deducted_pct,Region 8.0 income tax deducted,geography,2.7153943733669457,percent,region,8.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+610,region_9.0_biz_reg_pct,Region 9.0 business registration,geography,0.0,percent,region,9.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+611,region_9.0_tax_deducted_pct,Region 9.0 income tax deducted,geography,2.2658063177257697,percent,region,9.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+612,region_10.0_biz_reg_pct,Region 10.0 business registration,geography,0.0,percent,region,10.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+613,region_10.0_tax_deducted_pct,Region 10.0 income tax deducted,geography,3.5478120211129713,percent,region,10.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+614,region_11.0_biz_reg_pct,Region 11.0 business registration,geography,0.0,percent,region,11.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+615,region_11.0_tax_deducted_pct,Region 11.0 income tax deducted,geography,6.288750466125123,percent,region,11.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+616,region_12.0_biz_reg_pct,Region 12.0 business registration,geography,0.0,percent,region,12.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+617,region_12.0_tax_deducted_pct,Region 12.0 income tax deducted,geography,4.757229486321425,percent,region,12.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+618,region_13.0_biz_reg_pct,Region 13.0 business registration,geography,0.0,percent,region,13.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+619,region_13.0_tax_deducted_pct,Region 13.0 income tax deducted,geography,1.4411177906387,percent,region,13.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+620,region_14.0_biz_reg_pct,Region 14.0 business registration,geography,0.0,percent,region,14.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+621,region_14.0_tax_deducted_pct,Region 14.0 income tax deducted,geography,1.4426025516107122,percent,region,14.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+622,region_15.0_biz_reg_pct,Region 15.0 business registration,geography,0.0,percent,region,15.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+623,region_15.0_tax_deducted_pct,Region 15.0 income tax deducted,geography,1.6282137530123069,percent,region,15.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+624,region_16.0_biz_reg_pct,Region 16.0 business registration,geography,0.0,percent,region,16.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+625,region_16.0_tax_deducted_pct,Region 16.0 income tax deducted,geography,3.0398162186764903,percent,region,16.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+626,region_17.0_biz_reg_pct,Region 17.0 business registration,geography,0.0,percent,region,17.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+627,region_17.0_tax_deducted_pct,Region 17.0 income tax deducted,geography,1.4749558403212915,percent,region,17.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+628,region_18.0_biz_reg_pct,Region 18.0 business registration,geography,0.0,percent,region,18.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+629,region_18.0_tax_deducted_pct,Region 18.0 income tax deducted,geography,2.3373839744085996,percent,region,18.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+630,region_19.0_biz_reg_pct,Region 19.0 business registration,geography,0.0,percent,region,19.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+631,region_19.0_tax_deducted_pct,Region 19.0 income tax deducted,geography,5.305658553414994,percent,region,19.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+632,region_20.0_biz_reg_pct,Region 20.0 business registration,geography,0.0,percent,region,20.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+633,region_20.0_tax_deducted_pct,Region 20.0 income tax deducted,geography,2.61659979827444,percent,region,20.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+634,region_21.0_biz_reg_pct,Region 21.0 business registration,geography,0.0,percent,region,21.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+635,region_21.0_tax_deducted_pct,Region 21.0 income tax deducted,geography,0.6612991795493647,percent,region,21.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+636,region_22.0_biz_reg_pct,Region 22.0 business registration,geography,0.0,percent,region,22.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+637,region_22.0_tax_deducted_pct,Region 22.0 income tax deducted,geography,2.4943390194977693,percent,region,22.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+638,region_23.0_biz_reg_pct,Region 23.0 business registration,geography,0.0,percent,region,23.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+639,region_23.0_tax_deducted_pct,Region 23.0 income tax deducted,geography,2.389822844723774,percent,region,23.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+640,region_24.0_biz_reg_pct,Region 24.0 business registration,geography,0.0,percent,region,24.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+641,region_24.0_tax_deducted_pct,Region 24.0 income tax deducted,geography,2.013365948824385,percent,region,24.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+642,region_25.0_biz_reg_pct,Region 25.0 business registration,geography,0.0,percent,region,25.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+643,region_25.0_tax_deducted_pct,Region 25.0 income tax deducted,geography,2.3379863929434226,percent,region,25.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+644,region_26.0_biz_reg_pct,Region 26.0 business registration,geography,0.0,percent,region,26.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+645,region_26.0_tax_deducted_pct,Region 26.0 income tax deducted,geography,3.7478796945624384,percent,region,26.0,ILFS Tanzania 2024,2026-07-13 22:33:53
+646,age_15_24_pct,Age group 15_24,demographics,15.64,percent,age_group,15_24,ILFS Tanzania 2024,2026-07-13 22:33:53
+647,age_25_34_pct,Age group 25_34,demographics,11.83,percent,age_group,25_34,ILFS Tanzania 2024,2026-07-13 22:33:53
+648,age_35_44_pct,Age group 35_44,demographics,8.91,percent,age_group,35_44,ILFS Tanzania 2024,2026-07-13 22:33:53
+649,age_45_54_pct,Age group 45_54,demographics,7.13,percent,age_group,45_54,ILFS Tanzania 2024,2026-07-13 22:33:53
+650,age_55_64_pct,Age group 55_64,demographics,4.18,percent,age_group,55_64,ILFS Tanzania 2024,2026-07-13 22:33:53
+651,age_65_plus_pct,Age group 65_plus,demographics,4.26,percent,age_group,65_plus,ILFS Tanzania 2024,2026-07-13 22:33:53
+652,sex_female,Sex: Female,demographics,51.13,percent,sex,Female,ILFS Tanzania 2024,2026-07-13 22:33:53
+653,sex_male,Sex: Male,demographics,48.87,percent,sex,Male,ILFS Tanzania 2024,2026-07-13 22:33:53
+654,marstat_never_married,Marital status: Never married,demographics,44.93,percent,marital_status,Never married,ILFS Tanzania 2024,2026-07-13 22:33:53
+655,marstat_married,Marital status: Married,demographics,26.77,percent,marital_status,Married,ILFS Tanzania 2024,2026-07-13 22:33:53
+656,marstat_living_together_(coh,Marital status: Living together (cohabiting),demographics,5.24,percent,marital_status,Living together (cohabiting),ILFS Tanzania 2024,2026-07-13 22:33:53
+657,marstat_separated,Marital status: Separated,demographics,1.2,percent,marital_status,Separated,ILFS Tanzania 2024,2026-07-13 22:33:53
+658,marstat_widower/widow,Marital status: Widower/Widow,demographics,3.3,percent,marital_status,Widower/Widow,ILFS Tanzania 2024,2026-07-13 22:33:53
+659,marstat_divorced,Marital status: Divorced,demographics,2.57,percent,marital_status,Divorced,ILFS Tanzania 2024,2026-07-13 22:33:53
+660,edu_standard_2,Education level: Standard 2,education,4.24,percent,education_level,Standard 2,ILFS Tanzania 2024,2026-07-13 22:33:53
+661,edu_pre-primary,Education level: Pre-primary,education,2.49,percent,education_level,Pre-primary,ILFS Tanzania 2024,2026-07-13 22:33:53
+662,edu_standard_1,Education level: Standard 1,education,4.26,percent,education_level,Standard 1,ILFS Tanzania 2024,2026-07-13 22:33:53
+663,edu_standard_3,Education level: Standard 3,education,4.23,percent,education_level,Standard 3,ILFS Tanzania 2024,2026-07-13 22:33:53
+664,edu_standard_4,Education level: Standard 4,education,5.61,percent,education_level,Standard 4,ILFS Tanzania 2024,2026-07-13 22:33:53
+665,edu_standard_5,Education level: Standard 5,education,3.26,percent,education_level,Standard 5,ILFS Tanzania 2024,2026-07-13 22:33:53
+666,edu_standard_7,Education level: Standard 7,education,27.2,percent,education_level,Standard 7,ILFS Tanzania 2024,2026-07-13 22:33:53
+667,edu_standard_6,Education level: Standard 6,education,3.37,percent,education_level,Standard 6,ILFS Tanzania 2024,2026-07-13 22:33:53
+668,edu_form_1,Education level: Form 1,education,2.12,percent,education_level,Form 1,ILFS Tanzania 2024,2026-07-13 22:33:53
+669,edu_form_2,Education level: Form 2,education,3.16,percent,education_level,Form 2,ILFS Tanzania 2024,2026-07-13 22:33:53
+670,edu_form_3,Education level: Form 3,education,1.69,percent,education_level,Form 3,ILFS Tanzania 2024,2026-07-13 22:33:53
+671,edu_form_4,Education level: Form 4,education,7.93,percent,education_level,Form 4,ILFS Tanzania 2024,2026-07-13 22:33:53
+672,edu_standard_8,Education level: Standard 8,education,0.16,percent,education_level,Standard 8,ILFS Tanzania 2024,2026-07-13 22:33:53
+673,edu_form_5,Education level: Form 5,education,0.16,percent,education_level,Form 5,ILFS Tanzania 2024,2026-07-13 22:33:53
+674,edu_post-form_4_training,Education level: Post-Form 4 training,education,0.7,percent,education_level,Post-Form 4 training,ILFS Tanzania 2024,2026-07-13 22:33:53
+675,edu_non-university_higher_educatio,Education level: Non-university higher education (at least one year),education,1.16,percent,education_level,Non-university higher education (at least one year),ILFS Tanzania 2024,2026-07-13 22:33:53
+676,edu_form_6,Education level: Form 6,education,0.45,percent,education_level,Form 6,ILFS Tanzania 2024,2026-07-13 22:33:53
+677,edu_bachelor's_degree,Education level: Bachelor's degree,education,1.36,percent,education_level,Bachelor's degree,ILFS Tanzania 2024,2026-07-13 22:33:53
+678,edu_adult_education,Education level: Adult education,education,0.1,percent,education_level,Adult education,ILFS Tanzania 2024,2026-07-13 22:33:53
+679,edu_post-form_6_training,Education level: Post-Form 6 training,education,0.1,percent,education_level,Post-Form 6 training,ILFS Tanzania 2024,2026-07-13 22:33:53
+680,edu_post-primary_training,Education level: Post-primary training,education,0.13,percent,education_level,Post-primary training,ILFS Tanzania 2024,2026-07-13 22:33:53
+681,edu_master's_degree,Education level: Master's degree,education,0.15,percent,education_level,Master's degree,ILFS Tanzania 2024,2026-07-13 22:33:53
+682,edu_doctorate_(phd),Education level: Doctorate (PhD),education,0.02,percent,education_level,Doctorate (PhD),ILFS Tanzania 2024,2026-07-13 22:33:53
+683,literacy_kiswahili and englis,Literacy: Kiswahili and English,education,17.09,percent,literacy,Kiswahili and English,ILFS Tanzania 2024,2026-07-13 22:33:53
+684,literacy_kiswahili only,Literacy: Kiswahili only,education,62.28,percent,literacy,Kiswahili only,ILFS Tanzania 2024,2026-07-13 22:33:53
+685,literacy_does not know,Literacy: Does not know,education,4.26,percent,literacy,Does not know,ILFS Tanzania 2024,2026-07-13 22:33:53
+686,literacy_other language(s),Literacy: Other language(s),education,0.16,percent,literacy,Other language(s),ILFS Tanzania 2024,2026-07-13 22:33:53
+687,literacy_english only,Literacy: English only,education,0.21,percent,literacy,English only,ILFS Tanzania 2024,2026-07-13 22:33:53
+688,pension_no,Receiving pension: No,social_protection,16.03,percent,pension,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+689,"pension_yes, from psssf/zssf","Receiving pension: Yes, from PSSSF/ZSSF",social_protection,0.34,percent,pension,"Yes, from PSSSF/ZSSF",ILFS Tanzania 2024,2026-07-13 22:33:53
+690,"pension_yes, from social pen","Receiving pension: Yes, from social pension (Universal pension)",social_protection,0.11,percent,pension,"Yes, from social pension (Universal pension)",ILFS Tanzania 2024,2026-07-13 22:33:53
+691,"pension_yes, from nssf","Receiving pension: Yes, from NSSF",social_protection,0.14,percent,pension,"Yes, from NSSF",ILFS Tanzania 2024,2026-07-13 22:33:53
+692,"pension_yes, from central go","Receiving pension: Yes, from central government",social_protection,0.16,percent,pension,"Yes, from central government",ILFS Tanzania 2024,2026-07-13 22:33:53
+693,annual_leave_no,Paid annual leave: No,social_protection,5.38,percent,annual_leave,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+694,annual_leave_yes,Paid annual leave: Yes,social_protection,2.0,percent,annual_leave,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+695,sick_leave_no,Paid sick leave: No,social_protection,4.98,percent,sick_leave,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+696,sick_leave_yes,Paid sick leave: Yes,social_protection,2.4,percent,sick_leave,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53
+697,job_security_somewhat_confident,Job security rating: Somewhat confident,work_conditions,8.48,percent,job_security,Somewhat confident,ILFS Tanzania 2024,2026-07-13 22:33:53
+698,job_security_not_confident_at_all,Job security rating: Not confident at all,work_conditions,1.36,percent,job_security,Not confident at all,ILFS Tanzania 2024,2026-07-13 22:33:53
+699,job_security_very_confident,Job security rating: Very confident,work_conditions,20.9,percent,job_security,Very confident,ILFS Tanzania 2024,2026-07-13 22:33:53
+700,job_security_confident,Job security rating: Confident,work_conditions,23.54,percent,job_security,Confident,ILFS Tanzania 2024,2026-07-13 22:33:53
+701,earnings_appropriate_no,Earnings appropriate: No,work_conditions,38.79,percent,earnings_satisfaction,No,ILFS Tanzania 2024,2026-07-13 22:33:53
+702,earnings_appropriate_yes,Earnings appropriate: Yes,work_conditions,15.37,percent,earnings_satisfaction,Yes,ILFS Tanzania 2024,2026-07-13 22:33:53

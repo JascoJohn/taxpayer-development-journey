@@ -1,0 +1,4275 @@
+{
+  "source": "FinScope Tanzania 2023 (n=9,915, weighted by Household_weight)",
+  "methodology": "For each region x business-activity (IncomeMain) cell: real respondent count and weighted population (same cells as finscope_region_activity.json), the weighted distribution across FinScope's own financial access strand (fasx: Banked / Other formal non-bank / Informal only / Excluded), and the weighted business-registration rate (D6_4a). No income, turnover, or revenue amount is estimated anywhere in this file -- FinScope 2023 has no such variable. Any mapping from these real cell characteristics to a presumptive-tax category is an illustrative interpretive step performed downstream by the dashboard, not a claim made by this loader.",
+  "strand_categories": [
+    "Banked",
+    "Other formal non-bank",
+    "Informal only",
+    "Excluded"
+  ],
+  "disclosure_rule": "cells (region, zone and national) with fewer than 10 unweighted respondents are suppressed (all estimates and counts null); registration rates with fewer than 10 valid answers are suppressed; estimates whose unweighted numerator is below 10 are kept and flagged low_precision with a 95% CI (reconstructed design)",
+  "rows": [
+    {
+      "region": "Arusha",
+      "activity": "Farmers and fishers",
+      "respondent_count": 68,
+      "weighted_population": 94495.87997262234,
+      "strand_distribution_pct": {
+        "Banked": 14.9,
+        "Other formal non-bank": 68.3,
+        "Informal only": 2.4,
+        "Excluded": 14.4
+      },
+      "registered_pct": 3.8,
+      "registered_respondent_count": 68,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.5,
+          11.9
+        ],
+        "registered_pct": [
+          1.0,
+          13.9
+        ]
+      }
+    },
+    {
+      "region": "Arusha",
+      "activity": "Service providers",
+      "respondent_count": 13,
+      "weighted_population": 18784.82788754934,
+      "strand_distribution_pct": {
+        "Banked": 69.7,
+        "Other formal non-bank": 30.3,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 55.7,
+      "registered_respondent_count": 13,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          24.4,
+          94.3
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          5.7,
+          75.6
+        ],
+        "registered_pct": [
+          14.1,
+          90.6
+        ]
+      }
+    },
+    {
+      "region": "Arusha",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Arusha",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 37,
+      "weighted_population": 98834.81163630825,
+      "strand_distribution_pct": {
+        "Banked": 42.3,
+        "Other formal non-bank": 56.6,
+        "Informal only": 0.0,
+        "Excluded": 1.1
+      },
+      "registered_pct": 33.3,
+      "registered_respondent_count": 37,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Excluded": [
+          0.1,
+          9.2
+        ]
+      }
+    },
+    {
+      "region": "Dar es Salaam",
+      "activity": "Farmers and fishers",
+      "respondent_count": 16,
+      "weighted_population": 57187.1942461365,
+      "strand_distribution_pct": {
+        "Banked": 66.6,
+        "Other formal non-bank": 33.4,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 11.4,
+      "registered_respondent_count": 16,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Other formal non-bank": [
+          11.0,
+          67.1
+        ],
+        "registered_pct": [
+          3.4,
+          32.0
+        ]
+      }
+    },
+    {
+      "region": "Dar es Salaam",
+      "activity": "Service providers",
+      "respondent_count": 25,
+      "weighted_population": 86960.4064580355,
+      "strand_distribution_pct": {
+        "Banked": 40.6,
+        "Other formal non-bank": 59.4,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 11.0,
+      "registered_respondent_count": 23,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          21.8,
+          62.6
+        ],
+        "registered_pct": [
+          2.3,
+          38.7
+        ]
+      }
+    },
+    {
+      "region": "Dar es Salaam",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 15,
+      "weighted_population": 28367.547535561087,
+      "strand_distribution_pct": {
+        "Banked": 45.8,
+        "Other formal non-bank": 54.2,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 12.8,
+      "registered_respondent_count": 10,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          21.9,
+          71.7
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          28.3,
+          78.1
+        ],
+        "registered_pct": [
+          3.0,
+          41.1
+        ]
+      }
+    },
+    {
+      "region": "Dar es Salaam",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 58,
+      "weighted_population": 176584.75628082344,
+      "strand_distribution_pct": {
+        "Banked": 49.4,
+        "Other formal non-bank": 50.6,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 25.2,
+      "registered_respondent_count": 46,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ]
+    },
+    {
+      "region": "Dodoma",
+      "activity": "Farmers and fishers",
+      "respondent_count": 157,
+      "weighted_population": 225029.75912059832,
+      "strand_distribution_pct": {
+        "Banked": 14.1,
+        "Other formal non-bank": 63.8,
+        "Informal only": 7.3,
+        "Excluded": 14.8
+      },
+      "registered_pct": 4.9,
+      "registered_respondent_count": 157,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          3.5,
+          14.8
+        ],
+        "registered_pct": [
+          1.9,
+          12.2
+        ]
+      }
+    },
+    {
+      "region": "Dodoma",
+      "activity": "Service providers",
+      "respondent_count": 12,
+      "weighted_population": 22764.971641287095,
+      "strand_distribution_pct": {
+        "Banked": 8.3,
+        "Other formal non-bank": 79.4,
+        "Informal only": 0.0,
+        "Excluded": 12.4
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          1.7,
+          31.5
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          51.0,
+          93.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          2.2,
+          47.0
+        ]
+      }
+    },
+    {
+      "region": "Dodoma",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 19,
+      "weighted_population": 33612.1454225119,
+      "strand_distribution_pct": {
+        "Banked": 34.7,
+        "Other formal non-bank": 65.3,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          12.4,
+          66.6
+        ]
+      }
+    },
+    {
+      "region": "Dodoma",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 29,
+      "weighted_population": 45835.64865270539,
+      "strand_distribution_pct": {
+        "Banked": 30.4,
+        "Other formal non-bank": 62.2,
+        "Informal only": 0.0,
+        "Excluded": 7.4
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          17.1,
+          48.1
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.8,
+          26.1
+        ]
+      }
+    },
+    {
+      "region": "Geita",
+      "activity": "Farmers and fishers",
+      "respondent_count": 83,
+      "weighted_population": 92605.1499247197,
+      "strand_distribution_pct": {
+        "Banked": 6.7,
+        "Other formal non-bank": 79.4,
+        "Informal only": 10.9,
+        "Excluded": 3.0
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 83,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          2.1,
+          19.0
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.8,
+          10.6
+        ]
+      }
+    },
+    {
+      "region": "Geita",
+      "activity": "Service providers",
+      "respondent_count": 10,
+      "weighted_population": 13603.747974910566,
+      "strand_distribution_pct": {
+        "Banked": 3.1,
+        "Other formal non-bank": 29.4,
+        "Informal only": 0.0,
+        "Excluded": 67.5
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          0.4,
+          19.1
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          4.4,
+          79.2
+        ],
+        "strand_distribution_pct:Excluded": [
+          18.0,
+          95.2
+        ]
+      }
+    },
+    {
+      "region": "Geita",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 12,
+      "weighted_population": 14265.939766713216,
+      "strand_distribution_pct": {
+        "Banked": 11.4,
+        "Other formal non-bank": 88.6,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 12,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          1.0,
+          61.6
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          38.4,
+          99.0
+        ]
+      }
+    },
+    {
+      "region": "Geita",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 30,
+      "weighted_population": 51813.26457093485,
+      "strand_distribution_pct": {
+        "Banked": 61.8,
+        "Other formal non-bank": 34.7,
+        "Informal only": 2.1,
+        "Excluded": 1.5
+      },
+      "registered_pct": 34.1,
+      "registered_respondent_count": 28,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          17.3,
+          92.6
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.2,
+          18.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.2,
+          12.8
+        ]
+      }
+    },
+    {
+      "region": "Iringa",
+      "activity": "Farmers and fishers",
+      "respondent_count": 86,
+      "weighted_population": 90136.99949397835,
+      "strand_distribution_pct": {
+        "Banked": 15.5,
+        "Other formal non-bank": 66.3,
+        "Informal only": 4.0,
+        "Excluded": 14.2
+      },
+      "registered_pct": 4.1,
+      "registered_respondent_count": 86,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          1.5,
+          10.5
+        ],
+        "registered_pct": [
+          1.4,
+          11.7
+        ]
+      }
+    },
+    {
+      "region": "Iringa",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Iringa",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Iringa",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 12,
+      "weighted_population": 19661.31946676388,
+      "strand_distribution_pct": {
+        "Banked": 21.7,
+        "Other formal non-bank": 50.2,
+        "Informal only": 18.4,
+        "Excluded": 9.6
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.4,
+          62.7
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          14.8,
+          85.5
+        ],
+        "strand_distribution_pct:Informal only": [
+          2.3,
+          68.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.1,
+          50.2
+        ]
+      }
+    },
+    {
+      "region": "Kagera",
+      "activity": "Farmers and fishers",
+      "respondent_count": 161,
+      "weighted_population": 339119.40635976405,
+      "strand_distribution_pct": {
+        "Banked": 8.7,
+        "Other formal non-bank": 57.7,
+        "Informal only": 8.9,
+        "Excluded": 24.7
+      },
+      "registered_pct": 4.1,
+      "registered_respondent_count": 161,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          1.6,
+          10.1
+        ]
+      }
+    },
+    {
+      "region": "Kagera",
+      "activity": "Service providers",
+      "respondent_count": 16,
+      "weighted_population": 27728.12773517901,
+      "strand_distribution_pct": {
+        "Banked": 16.6,
+        "Other formal non-bank": 69.3,
+        "Informal only": 14.1,
+        "Excluded": 0.0
+      },
+      "registered_pct": 7.8,
+      "registered_respondent_count": 10,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.5,
+          45.9
+        ],
+        "strand_distribution_pct:Informal only": [
+          2.6,
+          50.3
+        ],
+        "registered_pct": [
+          0.9,
+          43.9
+        ]
+      }
+    },
+    {
+      "region": "Kagera",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kagera",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kaskazini Pemba",
+      "activity": "Farmers and fishers",
+      "respondent_count": 29,
+      "weighted_population": 6970.8471626081755,
+      "strand_distribution_pct": {
+        "Banked": 28.8,
+        "Other formal non-bank": 55.0,
+        "Informal only": 5.0,
+        "Excluded": 11.1
+      },
+      "registered_pct": 23.3,
+      "registered_respondent_count": 29,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          15.9,
+          46.4
+        ],
+        "strand_distribution_pct:Informal only": [
+          1.4,
+          16.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          4.2,
+          26.6
+        ],
+        "registered_pct": [
+          6.9,
+          55.2
+        ]
+      }
+    },
+    {
+      "region": "Kaskazini Pemba",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kaskazini Pemba",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kaskazini Pemba",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 11,
+      "weighted_population": 2857.9936430855264,
+      "strand_distribution_pct": {
+        "Banked": 34.0,
+        "Other formal non-bank": 43.7,
+        "Informal only": 0.0,
+        "Excluded": 22.4
+      },
+      "registered_pct": 16.5,
+      "registered_respondent_count": 11,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          20.1,
+          51.3
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          19.5,
+          71.3
+        ],
+        "strand_distribution_pct:Excluded": [
+          6.6,
+          54.0
+        ],
+        "registered_pct": [
+          6.8,
+          34.7
+        ]
+      }
+    },
+    {
+      "region": "Kaskazini Unguja",
+      "activity": "Farmers and fishers",
+      "respondent_count": 27,
+      "weighted_population": 8163.213931578915,
+      "strand_distribution_pct": {
+        "Banked": 13.9,
+        "Other formal non-bank": 78.4,
+        "Informal only": 4.2,
+        "Excluded": 3.5
+      },
+      "registered_pct": 8.5,
+      "registered_respondent_count": 27,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          5.1,
+          32.3
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.6,
+          24.7
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.5,
+          21.6
+        ],
+        "registered_pct": [
+          1.1,
+          42.9
+        ]
+      }
+    },
+    {
+      "region": "Kaskazini Unguja",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kaskazini Unguja",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kaskazini Unguja",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 17,
+      "weighted_population": 4819.68907905379,
+      "strand_distribution_pct": {
+        "Banked": 29.2,
+        "Other formal non-bank": 63.3,
+        "Informal only": 0.0,
+        "Excluded": 7.5
+      },
+      "registered_pct": 22.8,
+      "registered_respondent_count": 17,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          12.3,
+          54.7
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.1,
+          36.8
+        ],
+        "registered_pct": [
+          9.7,
+          44.8
+        ]
+      }
+    },
+    {
+      "region": "Katavi",
+      "activity": "Farmers and fishers",
+      "respondent_count": 97,
+      "weighted_population": 100553.6192792537,
+      "strand_distribution_pct": {
+        "Banked": 23.1,
+        "Other formal non-bank": 60.5,
+        "Informal only": 5.4,
+        "Excluded": 11.0
+      },
+      "registered_pct": 2.5,
+      "registered_respondent_count": 97,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.2,
+          12.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          5.1,
+          22.1
+        ],
+        "registered_pct": [
+          0.6,
+          10.1
+        ]
+      }
+    },
+    {
+      "region": "Katavi",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Katavi",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Katavi",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kigoma",
+      "activity": "Farmers and fishers",
+      "respondent_count": 132,
+      "weighted_population": 135973.1749382827,
+      "strand_distribution_pct": {
+        "Banked": 17.2,
+        "Other formal non-bank": 53.1,
+        "Informal only": 3.3,
+        "Excluded": 26.4
+      },
+      "registered_pct": 4.9,
+      "registered_respondent_count": 132,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          1.2,
+          8.9
+        ],
+        "registered_pct": [
+          2.2,
+          10.8
+        ]
+      }
+    },
+    {
+      "region": "Kigoma",
+      "activity": "Service providers",
+      "respondent_count": 13,
+      "weighted_population": 17410.412793716856,
+      "strand_distribution_pct": {
+        "Banked": 30.6,
+        "Other formal non-bank": 68.8,
+        "Informal only": 0.0,
+        "Excluded": 0.5
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          14.4,
+          53.8
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          46.2,
+          85.0
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.1,
+          4.6
+        ]
+      }
+    },
+    {
+      "region": "Kigoma",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 16,
+      "weighted_population": 16212.618747625713,
+      "strand_distribution_pct": {
+        "Banked": 1.6,
+        "Other formal non-bank": 87.3,
+        "Informal only": 0.0,
+        "Excluded": 11.0
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 12,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          0.2,
+          12.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          2.8,
+          34.7
+        ]
+      }
+    },
+    {
+      "region": "Kigoma",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 13,
+      "weighted_population": 17475.20062178598,
+      "strand_distribution_pct": {
+        "Banked": 20.0,
+        "Other formal non-bank": 60.2,
+        "Informal only": 10.0,
+        "Excluded": 9.8
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.7,
+          56.1
+        ],
+        "strand_distribution_pct:Informal only": [
+          1.2,
+          51.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.1,
+          52.1
+        ]
+      }
+    },
+    {
+      "region": "Kilimanjaro",
+      "activity": "Farmers and fishers",
+      "respondent_count": 87,
+      "weighted_population": 171630.19831473433,
+      "strand_distribution_pct": {
+        "Banked": 18.5,
+        "Other formal non-bank": 74.2,
+        "Informal only": 0.5,
+        "Excluded": 6.8
+      },
+      "registered_pct": 4.1,
+      "registered_respondent_count": 87,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.1,
+          4.6
+        ],
+        "registered_pct": [
+          1.1,
+          13.6
+        ]
+      }
+    },
+    {
+      "region": "Kilimanjaro",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kilimanjaro",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kilimanjaro",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 24,
+      "weighted_population": 38990.62669513911,
+      "strand_distribution_pct": {
+        "Banked": 25.3,
+        "Other formal non-bank": 50.1,
+        "Informal only": 0.0,
+        "Excluded": 24.5
+      },
+      "registered_pct": 46.7,
+      "registered_respondent_count": 22,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          14.0,
+          41.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          13.1,
+          41.2
+        ],
+        "registered_pct": [
+          14.0,
+          82.4
+        ]
+      }
+    },
+    {
+      "region": "Kusini Pemba",
+      "activity": "Farmers and fishers",
+      "respondent_count": 12,
+      "weighted_population": 3158.4251800566044,
+      "strand_distribution_pct": {
+        "Banked": 40.7,
+        "Other formal non-bank": 50.6,
+        "Informal only": 0.0,
+        "Excluded": 8.7
+      },
+      "registered_pct": 10.6,
+      "registered_respondent_count": 12,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          17.8,
+          68.6
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          20.3,
+          80.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.2,
+          42.0
+        ],
+        "registered_pct": [
+          1.5,
+          47.1
+        ]
+      }
+    },
+    {
+      "region": "Kusini Pemba",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kusini Pemba",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kusini Pemba",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 21,
+      "weighted_population": 4724.258026689802,
+      "strand_distribution_pct": {
+        "Banked": 31.9,
+        "Other formal non-bank": 58.5,
+        "Informal only": 5.3,
+        "Excluded": 4.3
+      },
+      "registered_pct": 31.0,
+      "registered_respondent_count": 21,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          12.0,
+          61.7
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.7,
+          30.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.8,
+          20.7
+        ],
+        "registered_pct": [
+          16.6,
+          50.2
+        ]
+      }
+    },
+    {
+      "region": "Kusini Unguja",
+      "activity": "Farmers and fishers",
+      "respondent_count": 34,
+      "weighted_population": 7415.126678426289,
+      "strand_distribution_pct": {
+        "Banked": 14.7,
+        "Other formal non-bank": 78.6,
+        "Informal only": 6.7,
+        "Excluded": 0.0
+      },
+      "registered_pct": 12.9,
+      "registered_respondent_count": 34,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.3,
+          39.5
+        ],
+        "strand_distribution_pct:Informal only": [
+          1.2,
+          30.6
+        ],
+        "registered_pct": [
+          2.4,
+          46.7
+        ]
+      }
+    },
+    {
+      "region": "Kusini Unguja",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kusini Unguja",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Kusini Unguja",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 14,
+      "weighted_population": 3955.151987052097,
+      "strand_distribution_pct": {
+        "Banked": 41.5,
+        "Other formal non-bank": 54.8,
+        "Informal only": 0.0,
+        "Excluded": 3.6
+      },
+      "registered_pct": 23.0,
+      "registered_respondent_count": 14,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          16.5,
+          71.8
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          26.2,
+          80.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.4,
+          23.9
+        ],
+        "registered_pct": [
+          3.9,
+          68.7
+        ]
+      }
+    },
+    {
+      "region": "Lindi",
+      "activity": "Farmers and fishers",
+      "respondent_count": 105,
+      "weighted_population": 162275.89852068393,
+      "strand_distribution_pct": {
+        "Banked": 40.1,
+        "Other formal non-bank": 39.7,
+        "Informal only": 12.2,
+        "Excluded": 8.0
+      },
+      "registered_pct": 2.2,
+      "registered_respondent_count": 105,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Excluded": [
+          3.7,
+          16.7
+        ],
+        "registered_pct": [
+          0.4,
+          10.7
+        ]
+      }
+    },
+    {
+      "region": "Lindi",
+      "activity": "Service providers",
+      "respondent_count": 17,
+      "weighted_population": 22463.337945783922,
+      "strand_distribution_pct": {
+        "Banked": 24.6,
+        "Other formal non-bank": 75.4,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 6.6,
+      "registered_respondent_count": 17,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          9.6,
+          50.3
+        ],
+        "registered_pct": [
+          1.1,
+          31.5
+        ]
+      }
+    },
+    {
+      "region": "Lindi",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Lindi",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Manyara",
+      "activity": "Farmers and fishers",
+      "respondent_count": 139,
+      "weighted_population": 159158.7521123325,
+      "strand_distribution_pct": {
+        "Banked": 18.1,
+        "Other formal non-bank": 58.8,
+        "Informal only": 4.3,
+        "Excluded": 18.8
+      },
+      "registered_pct": 3.8,
+      "registered_respondent_count": 139,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          1.4,
+          12.5
+        ],
+        "registered_pct": [
+          1.6,
+          8.8
+        ]
+      }
+    },
+    {
+      "region": "Manyara",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Manyara",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Manyara",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Mara",
+      "activity": "Farmers and fishers",
+      "respondent_count": 126,
+      "weighted_population": 172339.77787464132,
+      "strand_distribution_pct": {
+        "Banked": 23.6,
+        "Other formal non-bank": 65.7,
+        "Informal only": 1.7,
+        "Excluded": 9.0
+      },
+      "registered_pct": 10.7,
+      "registered_respondent_count": 126,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.5,
+          6.0
+        ],
+        "registered_pct": [
+          3.1,
+          30.6
+        ]
+      }
+    },
+    {
+      "region": "Mara",
+      "activity": "Service providers",
+      "respondent_count": 15,
+      "weighted_population": 26136.981217435878,
+      "strand_distribution_pct": {
+        "Banked": 36.8,
+        "Other formal non-bank": 52.8,
+        "Informal only": 0.0,
+        "Excluded": 10.4
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 11,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          12.5,
+          70.5
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          21.2,
+          82.2
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.3,
+          51.6
+        ]
+      }
+    },
+    {
+      "region": "Mara",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 12,
+      "weighted_population": 15988.552236014211,
+      "strand_distribution_pct": {
+        "Banked": 33.0,
+        "Other formal non-bank": 64.5,
+        "Informal only": 2.5,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          9.7,
+          69.4
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          28.8,
+          89.0
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.3,
+          18.5
+        ]
+      }
+    },
+    {
+      "region": "Mara",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 37,
+      "weighted_population": 63387.2102189359,
+      "strand_distribution_pct": {
+        "Banked": 31.5,
+        "Other formal non-bank": 52.2,
+        "Informal only": 1.7,
+        "Excluded": 14.6
+      },
+      "registered_pct": 19.6,
+      "registered_respondent_count": 33,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.2,
+          12.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          4.9,
+          36.5
+        ],
+        "registered_pct": [
+          9.7,
+          35.5
+        ]
+      }
+    },
+    {
+      "region": "Mbeya",
+      "activity": "Farmers and fishers",
+      "respondent_count": 109,
+      "weighted_population": 189803.55730285752,
+      "strand_distribution_pct": {
+        "Banked": 29.6,
+        "Other formal non-bank": 56.0,
+        "Informal only": 6.5,
+        "Excluded": 7.9
+      },
+      "registered_pct": 7.7,
+      "registered_respondent_count": 109,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.8,
+          14.2
+        ],
+        "registered_pct": [
+          4.1,
+          13.9
+        ]
+      }
+    },
+    {
+      "region": "Mbeya",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Mbeya",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Mbeya",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 21,
+      "weighted_population": 46545.294525175676,
+      "strand_distribution_pct": {
+        "Banked": 22.8,
+        "Other formal non-bank": 74.3,
+        "Informal only": 0.0,
+        "Excluded": 2.8
+      },
+      "registered_pct": 40.1,
+      "registered_respondent_count": 19,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          5.0,
+          62.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.3,
+          21.1
+        ],
+        "registered_pct": [
+          24.1,
+          58.6
+        ]
+      }
+    },
+    {
+      "region": "Mjini Magharibi",
+      "activity": "Farmers and fishers",
+      "respondent_count": 12,
+      "weighted_population": 7049.132337004138,
+      "strand_distribution_pct": {
+        "Banked": 13.6,
+        "Other formal non-bank": 75.4,
+        "Informal only": 11.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 23.1,
+      "registered_respondent_count": 12,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          3.8,
+          38.7
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          58.0,
+          87.2
+        ],
+        "strand_distribution_pct:Informal only": [
+          2.1,
+          41.4
+        ],
+        "registered_pct": [
+          6.6,
+          56.1
+        ]
+      }
+    },
+    {
+      "region": "Mjini Magharibi",
+      "activity": "Service providers",
+      "respondent_count": 21,
+      "weighted_population": 13843.667562751907,
+      "strand_distribution_pct": {
+        "Banked": 32.2,
+        "Other formal non-bank": 58.4,
+        "Informal only": 6.2,
+        "Excluded": 3.3
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          14.0,
+          58.1
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.9,
+          32.1
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.5,
+          20.0
+        ]
+      }
+    },
+    {
+      "region": "Mjini Magharibi",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Mjini Magharibi",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 36,
+      "weighted_population": 23520.02846269096,
+      "strand_distribution_pct": {
+        "Banked": 42.7,
+        "Other formal non-bank": 51.5,
+        "Informal only": 2.0,
+        "Excluded": 3.8
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.3,
+          13.0
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.0,
+          14.1
+        ]
+      }
+    },
+    {
+      "region": "Morogoro",
+      "activity": "Farmers and fishers",
+      "respondent_count": 205,
+      "weighted_population": 309411.07917116955,
+      "strand_distribution_pct": {
+        "Banked": 11.5,
+        "Other formal non-bank": 59.6,
+        "Informal only": 10.2,
+        "Excluded": 18.7
+      },
+      "registered_pct": 0.8,
+      "registered_respondent_count": 205,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          0.2,
+          4.4
+        ]
+      }
+    },
+    {
+      "region": "Morogoro",
+      "activity": "Service providers",
+      "respondent_count": 27,
+      "weighted_population": 50412.71742588923,
+      "strand_distribution_pct": {
+        "Banked": 12.4,
+        "Other formal non-bank": 57.9,
+        "Informal only": 11.1,
+        "Excluded": 18.6
+      },
+      "registered_pct": 7.5,
+      "registered_respondent_count": 20,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          3.5,
+          35.8
+        ],
+        "strand_distribution_pct:Informal only": [
+          3.0,
+          33.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          8.1,
+          37.2
+        ],
+        "registered_pct": [
+          1.1,
+          36.8
+        ]
+      }
+    },
+    {
+      "region": "Morogoro",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 14,
+      "weighted_population": 24397.271765642447,
+      "strand_distribution_pct": {
+        "Banked": 4.8,
+        "Other formal non-bank": 79.6,
+        "Informal only": 13.2,
+        "Excluded": 2.4
+      },
+      "registered_pct": 10.3,
+      "registered_respondent_count": 10,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          0.7,
+          26.5
+        ],
+        "strand_distribution_pct:Informal only": [
+          3.0,
+          42.8
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.3,
+          17.3
+        ],
+        "registered_pct": [
+          1.3,
+          50.8
+        ]
+      }
+    },
+    {
+      "region": "Morogoro",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 16,
+      "weighted_population": 28578.352933092327,
+      "strand_distribution_pct": {
+        "Banked": 43.3,
+        "Other formal non-bank": 44.7,
+        "Informal only": 0.0,
+        "Excluded": 12.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          24.6,
+          64.1
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          26.1,
+          64.9
+        ],
+        "strand_distribution_pct:Excluded": [
+          2.2,
+          45.9
+        ]
+      }
+    },
+    {
+      "region": "Mtwara",
+      "activity": "Farmers and fishers",
+      "respondent_count": 172,
+      "weighted_population": 238090.0804495762,
+      "strand_distribution_pct": {
+        "Banked": 40.8,
+        "Other formal non-bank": 42.2,
+        "Informal only": 6.3,
+        "Excluded": 10.8
+      },
+      "registered_pct": 8.6,
+      "registered_respondent_count": 172,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.6,
+          14.5
+        ]
+      }
+    },
+    {
+      "region": "Mtwara",
+      "activity": "Service providers",
+      "respondent_count": 17,
+      "weighted_population": 22613.34236284044,
+      "strand_distribution_pct": {
+        "Banked": 24.2,
+        "Other formal non-bank": 75.8,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 10,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          8.4,
+          52.7
+        ]
+      }
+    },
+    {
+      "region": "Mtwara",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Mtwara",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 29,
+      "weighted_population": 29829.792220796764,
+      "strand_distribution_pct": {
+        "Banked": 32.6,
+        "Other formal non-bank": 64.5,
+        "Informal only": 2.9,
+        "Excluded": 0.0
+      },
+      "registered_pct": 4.7,
+      "registered_respondent_count": 17,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.4,
+          18.4
+        ],
+        "registered_pct": [
+          0.7,
+          25.0
+        ]
+      }
+    },
+    {
+      "region": "Mwanza",
+      "activity": "Farmers and fishers",
+      "respondent_count": 160,
+      "weighted_population": 206076.40848873206,
+      "strand_distribution_pct": {
+        "Banked": 10.1,
+        "Other formal non-bank": 69.4,
+        "Informal only": 5.4,
+        "Excluded": 15.2
+      },
+      "registered_pct": 2.6,
+      "registered_respondent_count": 160,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          1.0,
+          6.6
+        ]
+      }
+    },
+    {
+      "region": "Mwanza",
+      "activity": "Service providers",
+      "respondent_count": 37,
+      "weighted_population": 58359.74336605364,
+      "strand_distribution_pct": {
+        "Banked": 34.2,
+        "Other formal non-bank": 65.8,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 10.6,
+      "registered_respondent_count": 33,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          3.7,
+          26.7
+        ]
+      }
+    },
+    {
+      "region": "Mwanza",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 11,
+      "weighted_population": 13928.721951976178,
+      "strand_distribution_pct": {
+        "Banked": 22.6,
+        "Other formal non-bank": 77.4,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          6.5,
+          55.0
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          45.0,
+          93.5
+        ]
+      }
+    },
+    {
+      "region": "Mwanza",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 53,
+      "weighted_population": 73085.20740298643,
+      "strand_distribution_pct": {
+        "Banked": 39.5,
+        "Other formal non-bank": 59.9,
+        "Informal only": 0.0,
+        "Excluded": 0.6
+      },
+      "registered_pct": 20.2,
+      "registered_respondent_count": 51,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Excluded": [
+          0.1,
+          4.6
+        ]
+      }
+    },
+    {
+      "region": "Njombe",
+      "activity": "Farmers and fishers",
+      "respondent_count": 102,
+      "weighted_population": 121827.95546834567,
+      "strand_distribution_pct": {
+        "Banked": 10.2,
+        "Other formal non-bank": 67.3,
+        "Informal only": 7.8,
+        "Excluded": 14.7
+      },
+      "registered_pct": 1.3,
+      "registered_respondent_count": 102,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.7,
+          20.2
+        ],
+        "registered_pct": [
+          0.2,
+          7.6
+        ]
+      }
+    },
+    {
+      "region": "Njombe",
+      "activity": "Service providers",
+      "respondent_count": 11,
+      "weighted_population": 11992.268998686868,
+      "strand_distribution_pct": {
+        "Banked": 35.0,
+        "Other formal non-bank": 65.0,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 30.1,
+      "registered_respondent_count": 11,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          11.9,
+          68.3
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          31.7,
+          88.1
+        ],
+        "registered_pct": [
+          7.4,
+          70.0
+        ]
+      }
+    },
+    {
+      "region": "Njombe",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Njombe",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 11,
+      "weighted_population": 11600.617550583702,
+      "strand_distribution_pct": {
+        "Banked": 49.4,
+        "Other formal non-bank": 50.6,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 55.5,
+      "registered_respondent_count": 11,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          27.1,
+          72.0
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          28.0,
+          72.9
+        ],
+        "registered_pct": [
+          33.9,
+          75.1
+        ]
+      }
+    },
+    {
+      "region": "Pwani",
+      "activity": "Farmers and fishers",
+      "respondent_count": 63,
+      "weighted_population": 72128.51626867426,
+      "strand_distribution_pct": {
+        "Banked": 25.5,
+        "Other formal non-bank": 60.1,
+        "Informal only": 6.6,
+        "Excluded": 7.8
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 63,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.5,
+          16.1
+        ],
+        "strand_distribution_pct:Excluded": [
+          3.4,
+          16.8
+        ]
+      }
+    },
+    {
+      "region": "Pwani",
+      "activity": "Service providers",
+      "respondent_count": 21,
+      "weighted_population": 31280.559868421904,
+      "strand_distribution_pct": {
+        "Banked": 49.0,
+        "Other formal non-bank": 51.0,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 11.6,
+      "registered_respondent_count": 13,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          15.2,
+          83.7
+        ],
+        "registered_pct": [
+          1.3,
+          57.8
+        ]
+      }
+    },
+    {
+      "region": "Pwani",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Pwani",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 21,
+      "weighted_population": 73678.21187640767,
+      "strand_distribution_pct": {
+        "Banked": 20.8,
+        "Other formal non-bank": 77.5,
+        "Informal only": 0.0,
+        "Excluded": 1.7
+      },
+      "registered_pct": 18.5,
+      "registered_respondent_count": 18,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          14.4,
+          29.1
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.2,
+          14.1
+        ],
+        "registered_pct": [
+          10.6,
+          30.3
+        ]
+      }
+    },
+    {
+      "region": "Rukwa",
+      "activity": "Farmers and fishers",
+      "respondent_count": 110,
+      "weighted_population": 145031.35881273693,
+      "strand_distribution_pct": {
+        "Banked": 13.8,
+        "Other formal non-bank": 50.3,
+        "Informal only": 20.5,
+        "Excluded": 15.4
+      },
+      "registered_pct": 0.7,
+      "registered_respondent_count": 110,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          0.1,
+          5.0
+        ]
+      }
+    },
+    {
+      "region": "Rukwa",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Rukwa",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Rukwa",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 13,
+      "weighted_population": 18258.6432589571,
+      "strand_distribution_pct": {
+        "Banked": 24.9,
+        "Other formal non-bank": 53.7,
+        "Informal only": 12.0,
+        "Excluded": 9.4
+      },
+      "registered_pct": 5.6,
+      "registered_respondent_count": 13,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          9.1,
+          52.2
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          32.1,
+          73.9
+        ],
+        "strand_distribution_pct:Informal only": [
+          2.5,
+          42.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.5,
+          41.7
+        ],
+        "registered_pct": [
+          0.8,
+          31.8
+        ]
+      }
+    },
+    {
+      "region": "Ruvuma",
+      "activity": "Farmers and fishers",
+      "respondent_count": 124,
+      "weighted_population": 205704.44168741722,
+      "strand_distribution_pct": {
+        "Banked": 20.0,
+        "Other formal non-bank": 63.3,
+        "Informal only": 3.4,
+        "Excluded": 13.3
+      },
+      "registered_pct": 3.3,
+      "registered_respondent_count": 124,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          1.0,
+          10.9
+        ],
+        "registered_pct": [
+          1.3,
+          8.0
+        ]
+      }
+    },
+    {
+      "region": "Ruvuma",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Ruvuma",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Ruvuma",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 10,
+      "weighted_population": 14107.85339576559,
+      "strand_distribution_pct": {
+        "Banked": 22.2,
+        "Other formal non-bank": 77.8,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.1,
+          65.5
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          34.5,
+          95.9
+        ]
+      }
+    },
+    {
+      "region": "Shinyanga",
+      "activity": "Farmers and fishers",
+      "respondent_count": 104,
+      "weighted_population": 114014.59888218879,
+      "strand_distribution_pct": {
+        "Banked": 14.0,
+        "Other formal non-bank": 52.8,
+        "Informal only": 18.4,
+        "Excluded": 14.7
+      },
+      "registered_pct": 2.8,
+      "registered_respondent_count": 104,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          0.4,
+          17.1
+        ]
+      }
+    },
+    {
+      "region": "Shinyanga",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Shinyanga",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 13,
+      "weighted_population": 4386.977028571631,
+      "strand_distribution_pct": {
+        "Banked": 6.4,
+        "Other formal non-bank": 80.7,
+        "Informal only": 12.8,
+        "Excluded": 0.0
+      },
+      "registered_pct": 6.0,
+      "registered_respondent_count": 10,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          0.9,
+          34.1
+        ],
+        "strand_distribution_pct:Informal only": [
+          2.3,
+          47.8
+        ],
+        "registered_pct": [
+          0.7,
+          37.4
+        ]
+      }
+    },
+    {
+      "region": "Shinyanga",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 20,
+      "weighted_population": 30723.454678290138,
+      "strand_distribution_pct": {
+        "Banked": 7.2,
+        "Other formal non-bank": 74.8,
+        "Informal only": 8.1,
+        "Excluded": 9.8
+      },
+      "registered_pct": 36.5,
+      "registered_respondent_count": 18,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          1.8,
+          24.7
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          41.2,
+          92.7
+        ],
+        "strand_distribution_pct:Informal only": [
+          1.1,
+          40.9
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.5,
+          43.8
+        ],
+        "registered_pct": [
+          21.0,
+          55.5
+        ]
+      }
+    },
+    {
+      "region": "Simiyu",
+      "activity": "Farmers and fishers",
+      "respondent_count": 137,
+      "weighted_population": 114143.23678549766,
+      "strand_distribution_pct": {
+        "Banked": 7.8,
+        "Other formal non-bank": 51.1,
+        "Informal only": 10.9,
+        "Excluded": 30.1
+      },
+      "registered_pct": 0.3,
+      "registered_respondent_count": 137,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          3.7,
+          15.6
+        ],
+        "registered_pct": [
+          0.0,
+          2.6
+        ]
+      }
+    },
+    {
+      "region": "Simiyu",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Simiyu",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Simiyu",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 19,
+      "weighted_population": 21326.856590151892,
+      "strand_distribution_pct": {
+        "Banked": 32.7,
+        "Other formal non-bank": 59.4,
+        "Informal only": 5.8,
+        "Excluded": 2.1
+      },
+      "registered_pct": 17.7,
+      "registered_respondent_count": 19,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          13.3,
+          60.7
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.8,
+          33.0
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.3,
+          14.2
+        ],
+        "registered_pct": [
+          4.4,
+          50.0
+        ]
+      }
+    },
+    {
+      "region": "Singida",
+      "activity": "Farmers and fishers",
+      "respondent_count": 106,
+      "weighted_population": 135421.44397639597,
+      "strand_distribution_pct": {
+        "Banked": 4.1,
+        "Other formal non-bank": 45.6,
+        "Informal only": 6.5,
+        "Excluded": 43.8
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 106,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          1.7,
+          9.8
+        ],
+        "strand_distribution_pct:Informal only": [
+          3.5,
+          11.9
+        ]
+      }
+    },
+    {
+      "region": "Singida",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Singida",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Singida",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Songwe",
+      "activity": "Farmers and fishers",
+      "respondent_count": 109,
+      "weighted_population": 173340.73738716793,
+      "strand_distribution_pct": {
+        "Banked": 30.3,
+        "Other formal non-bank": 47.9,
+        "Informal only": 13.2,
+        "Excluded": 8.6
+      },
+      "registered_pct": 15.4,
+      "registered_respondent_count": 109,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          7.4,
+          29.3
+        ]
+      }
+    },
+    {
+      "region": "Songwe",
+      "activity": "Service providers",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Songwe",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Songwe",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 13,
+      "weighted_population": 15715.235348255355,
+      "strand_distribution_pct": {
+        "Banked": 25.7,
+        "Other formal non-bank": 66.7,
+        "Informal only": 0.0,
+        "Excluded": 7.6
+      },
+      "registered_pct": 12.1,
+      "registered_respondent_count": 13,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.2,
+          73.3
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          23.5,
+          92.9
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.3,
+          34.7
+        ],
+        "registered_pct": [
+          2.0,
+          48.1
+        ]
+      }
+    },
+    {
+      "region": "Tabora",
+      "activity": "Farmers and fishers",
+      "respondent_count": 146,
+      "weighted_population": 225152.35110577825,
+      "strand_distribution_pct": {
+        "Banked": 14.1,
+        "Other formal non-bank": 52.8,
+        "Informal only": 7.4,
+        "Excluded": 25.7
+      },
+      "registered_pct": 4.9,
+      "registered_respondent_count": 146,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          1.8,
+          12.5
+        ]
+      }
+    },
+    {
+      "region": "Tabora",
+      "activity": "Service providers",
+      "respondent_count": 10,
+      "weighted_population": 24402.589479889175,
+      "strand_distribution_pct": {
+        "Banked": 31.3,
+        "Other formal non-bank": 68.7,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          5.9,
+          76.8
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          23.2,
+          94.1
+        ]
+      }
+    },
+    {
+      "region": "Tabora",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 12,
+      "weighted_population": 18980.786218306905,
+      "strand_distribution_pct": {
+        "Banked": 0.0,
+        "Other formal non-bank": 100.0,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ]
+    },
+    {
+      "region": "Tabora",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 15,
+      "weighted_population": 18659.248872221444,
+      "strand_distribution_pct": {
+        "Banked": 49.6,
+        "Other formal non-bank": 47.1,
+        "Informal only": 0.0,
+        "Excluded": 3.3
+      },
+      "registered_pct": 37.2,
+      "registered_respondent_count": 10,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          21.7,
+          77.7
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          20.2,
+          75.9
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.4,
+          22.1
+        ],
+        "registered_pct": [
+          11.5,
+          72.9
+        ]
+      }
+    },
+    {
+      "region": "Tanga",
+      "activity": "Farmers and fishers",
+      "respondent_count": 217,
+      "weighted_population": 270566.13239901944,
+      "strand_distribution_pct": {
+        "Banked": 7.4,
+        "Other formal non-bank": 66.9,
+        "Informal only": 13.8,
+        "Excluded": 11.8
+      },
+      "registered_pct": 1.3,
+      "registered_respondent_count": 217,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          0.3,
+          5.1
+        ]
+      }
+    },
+    {
+      "region": "Tanga",
+      "activity": "Service providers",
+      "respondent_count": 30,
+      "weighted_population": 46197.40028046309,
+      "strand_distribution_pct": {
+        "Banked": 19.8,
+        "Other formal non-bank": 70.8,
+        "Informal only": 4.3,
+        "Excluded": 5.1
+      },
+      "registered_pct": 2.9,
+      "registered_respondent_count": 30,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          9.2,
+          37.8
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.6,
+          26.0
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.7,
+          30.1
+        ],
+        "registered_pct": [
+          0.6,
+          13.2
+        ]
+      }
+    },
+    {
+      "region": "Tanga",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "region": "Tanga",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 26,
+      "weighted_population": 39285.24417436658,
+      "strand_distribution_pct": {
+        "Banked": 17.8,
+        "Other formal non-bank": 73.3,
+        "Informal only": 0.0,
+        "Excluded": 9.0
+      },
+      "registered_pct": 11.0,
+      "registered_respondent_count": 19,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          6.7,
+          39.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          2.2,
+          30.3
+        ],
+        "registered_pct": [
+          2.9,
+          33.9
+        ]
+      }
+    }
+  ],
+  "zone_rows": [
+    {
+      "zone": "Central",
+      "activity": "Farmers and fishers",
+      "respondent_count": 402,
+      "weighted_population": 519609.9552093267,
+      "strand_distribution_pct": {
+        "Banked": 12.7,
+        "Other formal non-bank": 57.5,
+        "Informal only": 6.2,
+        "Excluded": 23.6
+      },
+      "registered_pct": 3.3,
+      "registered_respondent_count": 402
+    },
+    {
+      "zone": "Central",
+      "activity": "Service providers",
+      "respondent_count": 22,
+      "weighted_population": 32957.65834676504,
+      "strand_distribution_pct": {
+        "Banked": 16.9,
+        "Other formal non-bank": 74.6,
+        "Informal only": 0.0,
+        "Excluded": 8.5
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          7.2,
+          34.8
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.4,
+          37.6
+        ]
+      }
+    },
+    {
+      "zone": "Central",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 26,
+      "weighted_population": 38793.315012440245,
+      "strand_distribution_pct": {
+        "Banked": 35.0,
+        "Other formal non-bank": 65.0,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          14.3,
+          63.5
+        ]
+      }
+    },
+    {
+      "zone": "Central",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 43,
+      "weighted_population": 74364.6198241866,
+      "strand_distribution_pct": {
+        "Banked": 32.5,
+        "Other formal non-bank": 53.7,
+        "Informal only": 1.8,
+        "Excluded": 12.0
+      },
+      "registered_pct": 10.6,
+      "registered_respondent_count": 16,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.2,
+          11.8
+        ],
+        "strand_distribution_pct:Excluded": [
+          3.6,
+          33.4
+        ],
+        "registered_pct": [
+          2.8,
+          32.9
+        ]
+      }
+    },
+    {
+      "zone": "Eastern",
+      "activity": "Farmers and fishers",
+      "respondent_count": 284,
+      "weighted_population": 438726.7896859803,
+      "strand_distribution_pct": {
+        "Banked": 21.0,
+        "Other formal non-bank": 56.3,
+        "Informal only": 8.3,
+        "Excluded": 14.5
+      },
+      "registered_pct": 2.1,
+      "registered_respondent_count": 284,
+      "low_precision": true,
+      "low_precision_fields": [
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          0.8,
+          5.5
+        ]
+      }
+    },
+    {
+      "zone": "Eastern",
+      "activity": "Service providers",
+      "respondent_count": 73,
+      "weighted_population": 168653.68375234667,
+      "strand_distribution_pct": {
+        "Banked": 33.7,
+        "Other formal non-bank": 57.4,
+        "Informal only": 3.3,
+        "Excluded": 5.6
+      },
+      "registered_pct": 10.1,
+      "registered_respondent_count": 56,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.7,
+          15.2
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.6,
+          17.8
+        ],
+        "registered_pct": [
+          3.5,
+          26.0
+        ]
+      }
+    },
+    {
+      "zone": "Eastern",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 36,
+      "weighted_population": 78529.73016950565,
+      "strand_distribution_pct": {
+        "Banked": 19.1,
+        "Other formal non-bank": 76.0,
+        "Informal only": 4.1,
+        "Excluded": 0.8
+      },
+      "registered_pct": 8.5,
+      "registered_respondent_count": 26,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.9,
+          16.2
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.1,
+          5.5
+        ],
+        "registered_pct": [
+          2.7,
+          24.0
+        ]
+      }
+    },
+    {
+      "zone": "Eastern",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 95,
+      "weighted_population": 278841.32109032344,
+      "strand_distribution_pct": {
+        "Banked": 41.2,
+        "Other formal non-bank": 57.1,
+        "Informal only": 0.0,
+        "Excluded": 1.7
+      },
+      "registered_pct": 23.1,
+      "registered_respondent_count": 73,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Excluded": [
+          0.5,
+          6.0
+        ]
+      }
+    },
+    {
+      "zone": "Lake",
+      "activity": "Farmers and fishers",
+      "respondent_count": 771,
+      "weighted_population": 1038298.5783155435,
+      "strand_distribution_pct": {
+        "Banked": 11.8,
+        "Other formal non-bank": 62.0,
+        "Informal only": 8.4,
+        "Excluded": 17.8
+      },
+      "registered_pct": 4.0,
+      "registered_respondent_count": 771
+    },
+    {
+      "zone": "Lake",
+      "activity": "Service providers",
+      "respondent_count": 84,
+      "weighted_population": 131180.55480263467,
+      "strand_distribution_pct": {
+        "Banked": 28.2,
+        "Other formal non-bank": 59.2,
+        "Informal only": 3.6,
+        "Excluded": 9.1
+      },
+      "registered_pct": 7.2,
+      "registered_respondent_count": 69,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.7,
+          16.3
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.9,
+          33.8
+        ]
+      }
+    },
+    {
+      "zone": "Lake",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 60,
+      "weighted_population": 60405.28986497907,
+      "strand_distribution_pct": {
+        "Banked": 20.2,
+        "Other formal non-bank": 74.4,
+        "Informal only": 5.4,
+        "Excluded": 0.0
+      },
+      "registered_pct": 6.1,
+      "registered_respondent_count": 47,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          1.7,
+          15.7
+        ],
+        "registered_pct": [
+          1.7,
+          19.6
+        ]
+      }
+    },
+    {
+      "zone": "Lake",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 168,
+      "weighted_population": 261049.87035841512,
+      "strand_distribution_pct": {
+        "Banked": 38.1,
+        "Other formal non-bank": 53.0,
+        "Informal only": 2.2,
+        "Excluded": 6.6
+      },
+      "registered_pct": 25.4,
+      "registered_respondent_count": 156,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.8,
+          6.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          2.6,
+          15.8
+        ]
+      }
+    },
+    {
+      "zone": "Northern",
+      "activity": "Farmers and fishers",
+      "respondent_count": 372,
+      "weighted_population": 536692.2106863761,
+      "strand_distribution_pct": {
+        "Banked": 12.3,
+        "Other formal non-bank": 69.5,
+        "Informal only": 7.6,
+        "Excluded": 10.7
+      },
+      "registered_pct": 2.6,
+      "registered_respondent_count": 372
+    },
+    {
+      "zone": "Northern",
+      "activity": "Service providers",
+      "respondent_count": 52,
+      "weighted_population": 83904.51996505515,
+      "strand_distribution_pct": {
+        "Banked": 40.8,
+        "Other formal non-bank": 52.4,
+        "Informal only": 2.3,
+        "Excluded": 4.4
+      },
+      "registered_pct": 16.1,
+      "registered_respondent_count": 49,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.3,
+          15.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.0,
+          17.6
+        ],
+        "registered_pct": [
+          3.8,
+          48.3
+        ]
+      }
+    },
+    {
+      "zone": "Northern",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 15,
+      "weighted_population": 23512.280399419007,
+      "strand_distribution_pct": {
+        "Banked": 13.9,
+        "Other formal non-bank": 79.8,
+        "Informal only": 0.0,
+        "Excluded": 6.3
+      },
+      "registered_pct": 0.0,
+      "registered_respondent_count": 15,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          3.5,
+          42.3
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.8,
+          36.0
+        ]
+      }
+    },
+    {
+      "zone": "Northern",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 87,
+      "weighted_population": 177110.68250581392,
+      "strand_distribution_pct": {
+        "Banked": 33.1,
+        "Other formal non-bank": 58.9,
+        "Informal only": 0.0,
+        "Excluded": 8.0
+      },
+      "registered_pct": 32.4,
+      "registered_respondent_count": 78,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Excluded": [
+          3.7,
+          16.2
+        ]
+      }
+    },
+    {
+      "zone": "Southern",
+      "activity": "Farmers and fishers",
+      "respondent_count": 277,
+      "weighted_population": 400365.97897026007,
+      "strand_distribution_pct": {
+        "Banked": 40.5,
+        "Other formal non-bank": 41.2,
+        "Informal only": 8.7,
+        "Excluded": 9.7
+      },
+      "registered_pct": 6.0,
+      "registered_respondent_count": 277
+    },
+    {
+      "zone": "Southern",
+      "activity": "Service providers",
+      "respondent_count": 34,
+      "weighted_population": 45076.68030862437,
+      "strand_distribution_pct": {
+        "Banked": 24.4,
+        "Other formal non-bank": 75.6,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 3.9,
+      "registered_respondent_count": 27,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          12.2,
+          42.9
+        ],
+        "registered_pct": [
+          0.7,
+          19.2
+        ]
+      }
+    },
+    {
+      "zone": "Southern",
+      "activity": "Traders - agricultural products",
+      "respondent_count": null,
+      "weighted_population": null,
+      "strand_distribution_pct": null,
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed": true,
+      "reason": "base < 10"
+    },
+    {
+      "zone": "Southern",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 36,
+      "weighted_population": 41727.917803922755,
+      "strand_distribution_pct": {
+        "Banked": 34.1,
+        "Other formal non-bank": 63.8,
+        "Informal only": 2.1,
+        "Excluded": 0.0
+      },
+      "registered_pct": 6.8,
+      "registered_respondent_count": 24,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.3,
+          13.9
+        ],
+        "registered_pct": [
+          1.8,
+          22.7
+        ]
+      }
+    },
+    {
+      "zone": "Southern Highlands",
+      "activity": "Farmers and fishers",
+      "respondent_count": 312,
+      "weighted_population": 417669.3966497412,
+      "strand_distribution_pct": {
+        "Banked": 16.2,
+        "Other formal non-bank": 65.1,
+        "Informal only": 4.8,
+        "Excluded": 13.9
+      },
+      "registered_pct": 2.9,
+      "registered_respondent_count": 312
+    },
+    {
+      "zone": "Southern Highlands",
+      "activity": "Service providers",
+      "respondent_count": 22,
+      "weighted_population": 36486.45452914531,
+      "strand_distribution_pct": {
+        "Banked": 56.7,
+        "Other formal non-bank": 43.3,
+        "Informal only": 0.0,
+        "Excluded": 0.0
+      },
+      "registered_pct": 22.6,
+      "registered_respondent_count": 20,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "registered_pct": [
+          5.8,
+          58.0
+        ]
+      }
+    },
+    {
+      "zone": "Southern Highlands",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 11,
+      "weighted_population": 17669.844413771287,
+      "strand_distribution_pct": {
+        "Banked": 64.5,
+        "Other formal non-bank": 29.7,
+        "Informal only": 5.8,
+        "Excluded": 0.0
+      },
+      "registered_pct": null,
+      "registered_respondent_count": null,
+      "suppressed_fields": [
+        "registered_pct",
+        "registered_respondent_count"
+      ],
+      "suppressed_fields_reason": "base < 10",
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Other formal non-bank",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          40.2,
+          83.0
+        ],
+        "strand_distribution_pct:Other formal non-bank": [
+          12.4,
+          55.9
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.8,
+          32.0
+        ]
+      }
+    },
+    {
+      "zone": "Southern Highlands",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 33,
+      "weighted_population": 45369.79041311318,
+      "strand_distribution_pct": {
+        "Banked": 29.0,
+        "Other formal non-bank": 58.9,
+        "Informal only": 8.0,
+        "Excluded": 4.1
+      },
+      "registered_pct": 26.9,
+      "registered_respondent_count": 25,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          1.1,
+          40.7
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.5,
+          25.6
+        ],
+        "registered_pct": [
+          12.8,
+          47.9
+        ]
+      }
+    },
+    {
+      "zone": "Southwest Highlands",
+      "activity": "Farmers and fishers",
+      "respondent_count": 425,
+      "weighted_population": 608729.272782016,
+      "strand_distribution_pct": {
+        "Banked": 25.0,
+        "Other formal non-bank": 53.1,
+        "Informal only": 11.6,
+        "Excluded": 10.4
+      },
+      "registered_pct": 7.4,
+      "registered_respondent_count": 425
+    },
+    {
+      "zone": "Southwest Highlands",
+      "activity": "Service providers",
+      "respondent_count": 23,
+      "weighted_population": 50349.41984338017,
+      "strand_distribution_pct": {
+        "Banked": 19.9,
+        "Other formal non-bank": 78.8,
+        "Informal only": 0.0,
+        "Excluded": 1.3
+      },
+      "registered_pct": 5.6,
+      "registered_respondent_count": 20,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.7,
+          55.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.2,
+          10.3
+        ],
+        "registered_pct": [
+          1.2,
+          22.5
+        ]
+      }
+    },
+    {
+      "zone": "Southwest Highlands",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 19,
+      "weighted_population": 23389.724297968984,
+      "strand_distribution_pct": {
+        "Banked": 38.3,
+        "Other formal non-bank": 44.7,
+        "Informal only": 5.2,
+        "Excluded": 11.8
+      },
+      "registered_pct": 9.5,
+      "registered_respondent_count": 14,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          12.9,
+          72.3
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.7,
+          28.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.6,
+          51.9
+        ],
+        "registered_pct": [
+          1.2,
+          47.1
+        ]
+      }
+    },
+    {
+      "zone": "Southwest Highlands",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 54,
+      "weighted_population": 86775.13598425778,
+      "strand_distribution_pct": {
+        "Banked": 23.0,
+        "Other formal non-bank": 69.6,
+        "Informal only": 2.5,
+        "Excluded": 4.9
+      },
+      "registered_pct": 26.9,
+      "registered_respondent_count": 47,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.6,
+          10.7
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.5,
+          14.9
+        ],
+        "registered_pct": [
+          14.5,
+          44.4
+        ]
+      }
+    },
+    {
+      "zone": "Western",
+      "activity": "Farmers and fishers",
+      "respondent_count": 278,
+      "weighted_population": 361125.52604406094,
+      "strand_distribution_pct": {
+        "Banked": 15.3,
+        "Other formal non-bank": 52.9,
+        "Informal only": 5.9,
+        "Excluded": 26.0
+      },
+      "registered_pct": 4.9,
+      "registered_respondent_count": 278
+    },
+    {
+      "zone": "Western",
+      "activity": "Service providers",
+      "respondent_count": 23,
+      "weighted_population": 41813.00227360603,
+      "strand_distribution_pct": {
+        "Banked": 31.0,
+        "Other formal non-bank": 68.7,
+        "Informal only": 0.0,
+        "Excluded": 0.2
+      },
+      "registered_pct": 15.0,
+      "registered_respondent_count": 17,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          11.6,
+          60.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          0.0,
+          1.7
+        ],
+        "registered_pct": [
+          4.0,
+          43.0
+        ]
+      }
+    },
+    {
+      "zone": "Western",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 28,
+      "weighted_population": 35193.40496593261,
+      "strand_distribution_pct": {
+        "Banked": 0.8,
+        "Other formal non-bank": 94.2,
+        "Informal only": 0.0,
+        "Excluded": 5.1
+      },
+      "registered_pct": 22.5,
+      "registered_respondent_count": 20,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          0.1,
+          5.5
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.1,
+          20.4
+        ],
+        "registered_pct": [
+          6.1,
+          56.1
+        ]
+      }
+    },
+    {
+      "zone": "Western",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 28,
+      "weighted_population": 36134.44949400742,
+      "strand_distribution_pct": {
+        "Banked": 35.3,
+        "Other formal non-bank": 53.4,
+        "Informal only": 4.9,
+        "Excluded": 6.4
+      },
+      "registered_pct": 38.3,
+      "registered_respondent_count": 17,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          18.2,
+          57.2
+        ],
+        "strand_distribution_pct:Informal only": [
+          0.6,
+          28.7
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.3,
+          27.2
+        ],
+        "registered_pct": [
+          19.1,
+          62.0
+        ]
+      }
+    },
+    {
+      "zone": "Zanzibar",
+      "activity": "Farmers and fishers",
+      "respondent_count": 114,
+      "weighted_population": 32756.745289674123,
+      "strand_distribution_pct": {
+        "Banked": 19.8,
+        "Other formal non-bank": 70.1,
+        "Informal only": 6.0,
+        "Excluded": 4.1
+      },
+      "registered_pct": 16.0,
+      "registered_respondent_count": 114,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.4,
+          14.1
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.7,
+          9.5
+        ]
+      }
+    },
+    {
+      "zone": "Zanzibar",
+      "activity": "Service providers",
+      "respondent_count": 53,
+      "weighted_population": 23013.367667027196,
+      "strand_distribution_pct": {
+        "Banked": 22.8,
+        "Other formal non-bank": 65.3,
+        "Informal only": 7.6,
+        "Excluded": 4.3
+      },
+      "registered_pct": 37.4,
+      "registered_respondent_count": 38,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          2.5,
+          20.6
+        ],
+        "strand_distribution_pct:Excluded": [
+          1.4,
+          12.9
+        ]
+      }
+    },
+    {
+      "zone": "Zanzibar",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 17,
+      "weighted_population": 6199.965753677922,
+      "strand_distribution_pct": {
+        "Banked": 15.4,
+        "Other formal non-bank": 74.9,
+        "Informal only": 9.8,
+        "Excluded": 0.0
+      },
+      "registered_pct": 4.0,
+      "registered_respondent_count": 13,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Banked",
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded",
+        "registered_pct"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Banked": [
+          4.7,
+          40.1
+        ],
+        "strand_distribution_pct:Informal only": [
+          2.0,
+          36.8
+        ],
+        "registered_pct": [
+          0.5,
+          25.4
+        ]
+      }
+    },
+    {
+      "zone": "Zanzibar",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 99,
+      "weighted_population": 39877.121198572175,
+      "strand_distribution_pct": {
+        "Banked": 39.0,
+        "Other formal non-bank": 53.5,
+        "Informal only": 1.8,
+        "Excluded": 5.6
+      },
+      "registered_pct": 19.9,
+      "registered_respondent_count": 68,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only",
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.4,
+          7.4
+        ],
+        "strand_distribution_pct:Excluded": [
+          2.6,
+          11.7
+        ]
+      }
+    }
+  ],
+  "national_rows": [
+    {
+      "level": "national",
+      "activity": "Farmers and fishers",
+      "respondent_count": 3235,
+      "weighted_population": 4353974.453632979,
+      "strand_distribution_pct": {
+        "Banked": 18.1,
+        "Other formal non-bank": 58.3,
+        "Informal only": 7.9,
+        "Excluded": 15.7
+      },
+      "registered_pct": 4.3,
+      "registered_respondent_count": 3235
+    },
+    {
+      "level": "national",
+      "activity": "Service providers",
+      "respondent_count": 386,
+      "weighted_population": 613435.3414885846,
+      "strand_distribution_pct": {
+        "Banked": 31.6,
+        "Other formal non-bank": 61.3,
+        "Informal only": 2.3,
+        "Excluded": 4.8
+      },
+      "registered_pct": 11.7,
+      "registered_respondent_count": 305,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Informal only"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Informal only": [
+          0.9,
+          5.6
+        ]
+      }
+    },
+    {
+      "level": "national",
+      "activity": "Traders - agricultural products",
+      "respondent_count": 218,
+      "weighted_population": 292744.3220411683,
+      "strand_distribution_pct": {
+        "Banked": 22.8,
+        "Other formal non-bank": 71.8,
+        "Informal only": 3.2,
+        "Excluded": 2.3
+      },
+      "registered_pct": 10.0,
+      "registered_respondent_count": 153,
+      "low_precision": true,
+      "low_precision_fields": [
+        "strand_distribution_pct:Excluded"
+      ],
+      "ci95_pct": {
+        "strand_distribution_pct:Excluded": [
+          0.8,
+          6.2
+        ]
+      }
+    },
+    {
+      "level": "national",
+      "activity": "Traders - non-agricultural",
+      "respondent_count": 643,
+      "weighted_population": 1041250.9086726124,
+      "strand_distribution_pct": {
+        "Banked": 35.8,
+        "Other formal non-bank": 57.3,
+        "Informal only": 1.6,
+        "Excluded": 5.4
+      },
+      "registered_pct": 25.3,
+      "registered_respondent_count": 504
+    }
+  ],
+  "zones": {
+    "source": "National Bureau of Statistics (NBS) and OCGS: The 2022 Tanzania Demographic and Health Survey and Malaria Indicator Survey (TDHS-MIS), sampling procedure: 'To estimate geographic differentials for certain demographic indicators, Tanzania was divided into nine geographic zones.' The survey notes that these zones are not official administrative areas and that the Ministry of Health's Reproductive and Child Health Section uses the same classification; grouping regions into zones gives larger denominators and smaller sampling errors.",
+    "url": "https://microdata.nbs.go.tz/index.php/metadata/export/38/json",
+    "note": "the dashboard shows the zone cell when a region cell is suppressed (fewer than 10 respondents), and the national cell when the zone cell is suppressed too"
+  }
+}

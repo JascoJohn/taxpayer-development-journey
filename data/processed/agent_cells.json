@@ -1,0 +1,2811 @@
+{
+ "source": "FinScope Tanzania 2023, out-of-fold propensities of the primary targeting model",
+ "type": "COMPUTED; aggregates only (cells of at least 10 respondents)",
+ "label": "COMPUTED; observational, cross-sectional prediction model; scores rank adults by likeness to TIN holders, not causal",
+ "age_bands": [
+  [
+   16,
+   24
+  ],
+  [
+   25,
+   34
+  ],
+  [
+   35,
+   44
+  ],
+  [
+   45,
+   54
+  ],
+  [
+   55,
+   64
+  ],
+  [
+   65,
+   90
+  ]
+ ],
+ "pooling": {
+  "adjacent_propensity_deciles_merged_until_each_cell_has_at_least": 10,
+  "merges": 64,
+  "respondents_in_groups_too_small_to_publish": 0,
+  "weighted_population_dropped": 0.0
+ },
+ "cells": [
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 6,
+   "n_unweighted": 11,
+   "weighted_population": 75969.73297915184,
+   "mean_propensity": 0.003838476445535596,
+   "mean_propensity_uncalibrated": 0.010157972980403584,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 16,
+   "weighted_population": 86795.55005255772,
+   "mean_propensity": 0.0025266684065790427,
+   "mean_propensity_uncalibrated": 0.006703201084858666,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 70,
+   "weighted_population": 290241.8059178633,
+   "mean_propensity": 0.0019516528086017547,
+   "mean_propensity_uncalibrated": 0.00518264251727989,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 177,
+   "weighted_population": 865136.456377605,
+   "mean_propensity": 0.0015020349991288042,
+   "mean_propensity_uncalibrated": 0.003991708028009279,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 359,
+   "weighted_population": 1686446.383240825,
+   "mean_propensity": 0.0011139332556798964,
+   "mean_propensity_uncalibrated": 0.002962168732002166,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 7,
+   "n_unweighted": 22,
+   "weighted_population": 180198.4687991796,
+   "mean_propensity": 0.0028712543458840724,
+   "mean_propensity_uncalibrated": 0.0076099353536158276,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 35,
+   "weighted_population": 289659.54319914494,
+   "mean_propensity": 0.001885048820959949,
+   "mean_propensity_uncalibrated": 0.005006372847862534,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 60,
+   "weighted_population": 367151.64725349355,
+   "mean_propensity": 0.001476211230520553,
+   "mean_propensity_uncalibrated": 0.0039232605258827605,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 61,
+   "weighted_population": 377045.9310584756,
+   "mean_propensity": 0.0011979324359271315,
+   "mean_propensity_uncalibrated": 0.003185149412460401,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 2,
+   "n_unweighted": 46,
+   "weighted_population": 291906.3658847466,
+   "mean_propensity": 0.05289131088738186,
+   "mean_propensity_uncalibrated": 0.11549275032206853,
+   "propensity_rank": 0.9,
+   "tin_rate": 0.045858567294066774,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 42,
+   "weighted_population": 194659.48809839968,
+   "mean_propensity": 0.008689109669220823,
+   "mean_propensity_uncalibrated": 0.022815897181568935,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.010366618021383464,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 65,
+   "weighted_population": 288029.35689965566,
+   "mean_propensity": 0.00606643535545772,
+   "mean_propensity_uncalibrated": 0.015999082766042446,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 84,
+   "weighted_population": 407109.58924103016,
+   "mean_propensity": 0.004275208260074215,
+   "mean_propensity_uncalibrated": 0.011309051525922495,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.00196342838817482,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 122,
+   "weighted_population": 647818.5015393264,
+   "mean_propensity": 0.003402405222318062,
+   "mean_propensity_uncalibrated": 0.009013402814693575,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 115,
+   "weighted_population": 550662.870023422,
+   "mean_propensity": 0.002600886389215162,
+   "mean_propensity_uncalibrated": 0.0068992932512230935,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 108,
+   "weighted_population": 475737.18407473736,
+   "mean_propensity": 0.0019803836786219434,
+   "mean_propensity_uncalibrated": 0.005258715517440459,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 51,
+   "weighted_population": 252254.1858041291,
+   "mean_propensity": 0.0015420899328925989,
+   "mean_propensity_uncalibrated": 0.004097874930551748,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 32,
+   "weighted_population": 155970.8787332238,
+   "mean_propensity": 0.0012085054589040295,
+   "mean_propensity_uncalibrated": 0.0032131919530845932,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 52,
+   "weighted_population": 362989.4008230266,
+   "mean_propensity": 0.08020822625436541,
+   "mean_propensity_uncalibrated": 0.18162717904541545,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.040530164306901685,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 66,
+   "weighted_population": 441455.95220974676,
+   "mean_propensity": 0.02047502038423457,
+   "mean_propensity_uncalibrated": 0.05261729692474838,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.03768618840091875,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 74,
+   "weighted_population": 399352.26255311246,
+   "mean_propensity": 0.009464864178595697,
+   "mean_propensity_uncalibrated": 0.024818702847481524,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.07780493814428051,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 88,
+   "weighted_population": 501873.22256996436,
+   "mean_propensity": 0.006017758775484398,
+   "mean_propensity_uncalibrated": 0.01587172628471896,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 62,
+   "weighted_population": 400848.7490377073,
+   "mean_propensity": 0.004470756810402838,
+   "mean_propensity_uncalibrated": 0.01182241382312001,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.007437396522557604,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 77,
+   "weighted_population": 458061.532176021,
+   "mean_propensity": 0.0034040585037252258,
+   "mean_propensity_uncalibrated": 0.00901779817388588,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 50,
+   "weighted_population": 295870.5147930416,
+   "mean_propensity": 0.0025963628422728457,
+   "mean_propensity_uncalibrated": 0.006887270099313374,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 24,
+   "weighted_population": 129087.29880533325,
+   "mean_propensity": 0.0020234778341684393,
+   "mean_propensity_uncalibrated": 0.005372752921272342,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 16,
+   "age_to": 24,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 15,
+   "weighted_population": 132672.35438343906,
+   "mean_propensity": 0.0013874263993539884,
+   "mean_propensity_uncalibrated": 0.003687739449002702,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 5,
+   "n_unweighted": 18,
+   "weighted_population": 61330.01204268442,
+   "mean_propensity": 0.018815322765550202,
+   "mean_propensity_uncalibrated": 0.01836981904803745,
+   "propensity_rank": 0.7,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 15,
+   "weighted_population": 46102.0565882685,
+   "mean_propensity": 0.008756080840246715,
+   "mean_propensity_uncalibrated": 0.008544576801097954,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 48,
+   "weighted_population": 195903.32320996778,
+   "mean_propensity": 0.00675256668385993,
+   "mean_propensity_uncalibrated": 0.00658913676206597,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 135,
+   "weighted_population": 396496.15917078825,
+   "mean_propensity": 0.005208002253644715,
+   "mean_propensity_uncalibrated": 0.005081761492017861,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 148,
+   "weighted_population": 421512.71994472464,
+   "mean_propensity": 0.0041261433718506645,
+   "mean_propensity_uncalibrated": 0.0040260193060153255,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 119,
+   "weighted_population": 334903.372201734,
+   "mean_propensity": 0.0032430211114861628,
+   "mean_propensity_uncalibrated": 0.003164258965261683,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 6,
+   "n_unweighted": 15,
+   "weighted_population": 68138.95385734658,
+   "mean_propensity": 0.015736024427894332,
+   "mean_propensity_uncalibrated": 0.015361370709083463,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 13,
+   "weighted_population": 46640.950242082006,
+   "mean_propensity": 0.006681225233695126,
+   "mean_propensity_uncalibrated": 0.00651950618699686,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 18,
+   "weighted_population": 71593.33926250134,
+   "mean_propensity": 0.005406155646872289,
+   "mean_propensity_uncalibrated": 0.005275135744364497,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 28,
+   "weighted_population": 72495.66440444981,
+   "mean_propensity": 0.0041521356462860945,
+   "mean_propensity_uncalibrated": 0.004051387354386009,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 91,
+   "weighted_population": 305809.82080757705,
+   "mean_propensity": 0.23484032865626836,
+   "mean_propensity_uncalibrated": 0.23100046446984107,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.20567548355684262
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 97,
+   "weighted_population": 352426.7217448972,
+   "mean_propensity": 0.049208763370908126,
+   "mean_propensity_uncalibrated": 0.04807236855986317,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.027085082087015808,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 123,
+   "weighted_population": 505915.58518573886,
+   "mean_propensity": 0.024918285125451765,
+   "mean_propensity_uncalibrated": 0.024326286652080604,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.012765077671219299,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 170,
+   "weighted_population": 518493.05425501114,
+   "mean_propensity": 0.01654754749662701,
+   "mean_propensity_uncalibrated": 0.016150944394119196,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.011494122755791963,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 180,
+   "weighted_population": 557264.5510580917,
+   "mean_propensity": 0.011942921526972594,
+   "mean_propensity_uncalibrated": 0.011655353890159351,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.004181495245866608,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 191,
+   "weighted_population": 599268.4310557998,
+   "mean_propensity": 0.009113002220822947,
+   "mean_propensity_uncalibrated": 0.008892957067664537,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 155,
+   "weighted_population": 501779.513752561,
+   "mean_propensity": 0.007042269660200622,
+   "mean_propensity_uncalibrated": 0.006871875230657474,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 102,
+   "weighted_population": 292288.8027862751,
+   "mean_propensity": 0.005378563242763216,
+   "mean_propensity_uncalibrated": 0.005248209674827222,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 44,
+   "weighted_population": 108957.29317338692,
+   "mean_propensity": 0.004080004761638728,
+   "mean_propensity_uncalibrated": 0.0039809985057370125,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 220,
+   "weighted_population": 858246.0664159323,
+   "mean_propensity": 0.25486546016525596,
+   "mean_propensity_uncalibrated": 0.2512668541062143,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.296531756811669
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 166,
+   "weighted_population": 742247.3103347067,
+   "mean_propensity": 0.050261245119679485,
+   "mean_propensity_uncalibrated": 0.04910085143147966,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.06778475481587491
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 138,
+   "weighted_population": 589332.0987298496,
+   "mean_propensity": 0.02466895855823979,
+   "mean_propensity_uncalibrated": 0.02408265016727237,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.045180443791557744,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 116,
+   "weighted_population": 421503.2260483798,
+   "mean_propensity": 0.01599195012983365,
+   "mean_propensity_uncalibrated": 0.015608458192353352,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 94,
+   "weighted_population": 308862.5429335082,
+   "mean_propensity": 0.01206660419421183,
+   "mean_propensity_uncalibrated": 0.011776099105064296,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 51,
+   "weighted_population": 186555.92775646225,
+   "mean_propensity": 0.009102675380091145,
+   "mean_propensity_uncalibrated": 0.008882874416534481,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 23,
+   "weighted_population": 80514.27659831705,
+   "mean_propensity": 0.007330038686370144,
+   "mean_propensity_uncalibrated": 0.007152729633874286,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 25,
+   "age_to": 34,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 9,
+   "n_unweighted": 14,
+   "weighted_population": 29804.77391882258,
+   "mean_propensity": 0.005544051309155151,
+   "mean_propensity_uncalibrated": 0.0054097081501004495,
+   "propensity_rank": 0.19999999999999996,
+   "tin_rate": 0.09160135386942547,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 5,
+   "n_unweighted": 13,
+   "weighted_population": 27395.990198154832,
+   "mean_propensity": 0.023592728261487388,
+   "mean_propensity_uncalibrated": 0.018676380818567376,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 17,
+   "weighted_population": 56525.69575527333,
+   "mean_propensity": 0.011268055559097153,
+   "mean_propensity_uncalibrated": 0.008819267586057663,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 49,
+   "weighted_population": 151057.84604679287,
+   "mean_propensity": 0.008459371463498731,
+   "mean_propensity_uncalibrated": 0.006616862846738406,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 105,
+   "weighted_population": 284985.91860956163,
+   "mean_propensity": 0.006486310455366405,
+   "mean_propensity_uncalibrated": 0.005071361068168882,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 129,
+   "weighted_population": 326508.42667226784,
+   "mean_propensity": 0.005227877662239691,
+   "mean_propensity_uncalibrated": 0.004086293169475587,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 74,
+   "weighted_population": 178811.83607182885,
+   "mean_propensity": 0.004049140885631741,
+   "mean_propensity_uncalibrated": 0.003164152682700415,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 6,
+   "n_unweighted": 11,
+   "weighted_population": 40762.83012046911,
+   "mean_propensity": 0.01877831976038296,
+   "mean_propensity_uncalibrated": 0.014729760403027028,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 18,
+   "weighted_population": 56172.06733422626,
+   "mean_propensity": 0.00866886512414413,
+   "mean_propensity_uncalibrated": 0.006781053303286667,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 22,
+   "weighted_population": 76458.12280265987,
+   "mean_propensity": 0.006531277733373998,
+   "mean_propensity_uncalibrated": 0.005106552948080578,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 12,
+   "weighted_population": 23083.875612363532,
+   "mean_propensity": 0.004836000436554413,
+   "mean_propensity_uncalibrated": 0.003779663560160908,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 59,
+   "weighted_population": 194423.3759660217,
+   "mean_propensity": 0.33110335232938015,
+   "mean_propensity_uncalibrated": 0.29006230459879295,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.283638948446619
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 98,
+   "weighted_population": 352131.1458800307,
+   "mean_propensity": 0.059937066013399085,
+   "mean_propensity_uncalibrated": 0.04746419269153359,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.10712717532382321,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 115,
+   "weighted_population": 369743.92684234,
+   "mean_propensity": 0.030950673034609157,
+   "mean_propensity_uncalibrated": 0.024332579560678885,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 119,
+   "weighted_population": 398084.44305121317,
+   "mean_propensity": 0.019863753404497753,
+   "mean_propensity_uncalibrated": 0.015576759849361443,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 150,
+   "weighted_population": 404993.98059411766,
+   "mean_propensity": 0.014983824708714384,
+   "mean_propensity_uncalibrated": 0.011737253937618455,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 157,
+   "weighted_population": 379612.6250630183,
+   "mean_propensity": 0.011456226816696185,
+   "mean_propensity_uncalibrated": 0.008966943375468623,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 135,
+   "weighted_population": 347850.3092658976,
+   "mean_propensity": 0.008784889613601321,
+   "mean_propensity_uncalibrated": 0.006872004306242644,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 60,
+   "weighted_population": 178487.744087158,
+   "mean_propensity": 0.0069588586737063165,
+   "mean_propensity_uncalibrated": 0.005441368612679737,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 23,
+   "weighted_population": 34961.22330906925,
+   "mean_propensity": 0.005043062161163094,
+   "mean_propensity_uncalibrated": 0.003941691360466273,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 159,
+   "weighted_population": 528045.5618350526,
+   "mean_propensity": 0.3306227147537791,
+   "mean_propensity_uncalibrated": 0.2901337199444836,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.3518626497913922
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 118,
+   "weighted_population": 408238.4344970163,
+   "mean_propensity": 0.06266167189761723,
+   "mean_propensity_uncalibrated": 0.049646878626747035,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.08469027946025787,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 110,
+   "weighted_population": 364035.9535524517,
+   "mean_propensity": 0.031190180979351147,
+   "mean_propensity_uncalibrated": 0.024522476419718206,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.030818753945397223,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 84,
+   "weighted_population": 304816.3659806761,
+   "mean_propensity": 0.020932609883960174,
+   "mean_propensity_uncalibrated": 0.016419044827770877,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 71,
+   "weighted_population": 277715.4963509665,
+   "mean_propensity": 0.015276618148253726,
+   "mean_propensity_uncalibrated": 0.011967319441060938,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.099568329310634,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 31,
+   "weighted_population": 64551.6192291727,
+   "mean_propensity": 0.011133523513784993,
+   "mean_propensity_uncalibrated": 0.00871368779906019,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 35,
+   "age_to": 44,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 9,
+   "n_unweighted": 32,
+   "weighted_population": 95542.74286980774,
+   "mean_propensity": 0.008638078670466743,
+   "mean_propensity_uncalibrated": 0.006757099759076524,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 5,
+   "n_unweighted": 10,
+   "weighted_population": 34702.92108180359,
+   "mean_propensity": 0.026041168710104524,
+   "mean_propensity_uncalibrated": 0.01735440487541626,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 12,
+   "weighted_population": 30821.509507336752,
+   "mean_propensity": 0.013718064502566121,
+   "mean_propensity_uncalibrated": 0.009096376251244407,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 25,
+   "weighted_population": 74748.243484502,
+   "mean_propensity": 0.01014518180438674,
+   "mean_propensity_uncalibrated": 0.006718994140885723,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 92,
+   "weighted_population": 231116.29340905763,
+   "mean_propensity": 0.0077097024125218835,
+   "mean_propensity_uncalibrated": 0.005101788350201131,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 93,
+   "weighted_population": 251285.16992429955,
+   "mean_propensity": 0.0061623284730785875,
+   "mean_propensity_uncalibrated": 0.004075646769890333,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 48,
+   "weighted_population": 100850.01290807288,
+   "mean_propensity": 0.004721157181431912,
+   "mean_propensity_uncalibrated": 0.0031209703634880867,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 6,
+   "n_unweighted": 16,
+   "weighted_population": 38507.47297439911,
+   "mean_propensity": 0.022626898484859905,
+   "mean_propensity_uncalibrated": 0.01517604662593258,
+   "propensity_rank": 0.7,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 10,
+   "weighted_population": 21610.282473549833,
+   "mean_propensity": 0.010158133296209558,
+   "mean_propensity_uncalibrated": 0.006727665416249468,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 10,
+   "n_unweighted": 18,
+   "weighted_population": 63542.85656870419,
+   "mean_propensity": 0.006833528397861586,
+   "mean_propensity_uncalibrated": 0.004520750820690964,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 44,
+   "weighted_population": 145559.14101884534,
+   "mean_propensity": 0.20052875742934553,
+   "mean_propensity_uncalibrated": 0.14483739149616742,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.29007055351764766
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 73,
+   "weighted_population": 234475.33119110335,
+   "mean_propensity": 0.07433153549094985,
+   "mean_propensity_uncalibrated": 0.050401540146934896,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.07200481034000435,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 74,
+   "weighted_population": 196532.22541789888,
+   "mean_propensity": 0.03708911202637295,
+   "mean_propensity_uncalibrated": 0.02479726266482721,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.0070568286705714,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 100,
+   "weighted_population": 295998.008434491,
+   "mean_propensity": 0.023618476590940043,
+   "mean_propensity_uncalibrated": 0.01571547575283371,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 109,
+   "weighted_population": 290446.5216324997,
+   "mean_propensity": 0.01735561191501659,
+   "mean_propensity_uncalibrated": 0.011523041592289895,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 115,
+   "weighted_population": 284820.5352848941,
+   "mean_propensity": 0.013260790979445627,
+   "mean_propensity_uncalibrated": 0.008791879280287384,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 119,
+   "weighted_population": 229158.59262814722,
+   "mean_propensity": 0.010392014705817246,
+   "mean_propensity_uncalibrated": 0.006883083464984152,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 53,
+   "weighted_population": 112307.12817991326,
+   "mean_propensity": 0.007892402645253848,
+   "mean_propensity_uncalibrated": 0.005223001077219935,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 18,
+   "weighted_population": 26424.88916978252,
+   "mean_propensity": 0.00649555836502425,
+   "mean_propensity_uncalibrated": 0.004296517115938747,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 103,
+   "weighted_population": 317294.15742851456,
+   "mean_propensity": 0.34892431929789575,
+   "mean_propensity_uncalibrated": 0.2760904560174992,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.3889180016665598
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 108,
+   "weighted_population": 355613.38997352624,
+   "mean_propensity": 0.06511453426963605,
+   "mean_propensity_uncalibrated": 0.04401298465886054,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.09064570737835137,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 94,
+   "weighted_population": 322109.58347407944,
+   "mean_propensity": 0.036248491954393926,
+   "mean_propensity_uncalibrated": 0.024227917529918923,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.013238460764540985,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 55,
+   "weighted_population": 208634.41898595114,
+   "mean_propensity": 0.02399925567427594,
+   "mean_propensity_uncalibrated": 0.015970809219629987,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0248562491617898,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 48,
+   "weighted_population": 160969.27773604076,
+   "mean_propensity": 0.018156564892983052,
+   "mean_propensity_uncalibrated": 0.012058071525649144,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.06387382499100845,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 34,
+   "weighted_population": 109422.30643556146,
+   "mean_propensity": 0.013399543179704076,
+   "mean_propensity_uncalibrated": 0.00888432916528937,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 45,
+   "age_to": 54,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 9,
+   "n_unweighted": 18,
+   "weighted_population": 36944.80976724593,
+   "mean_propensity": 0.009473844683960252,
+   "mean_propensity_uncalibrated": 0.006273613394875801,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 6,
+   "n_unweighted": 16,
+   "weighted_population": 34036.52895429723,
+   "mean_propensity": 0.012883195861519418,
+   "mean_propensity_uncalibrated": 0.012401882354740658,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 19,
+   "weighted_population": 40401.97661961126,
+   "mean_propensity": 0.006875282075284134,
+   "mean_propensity_uncalibrated": 0.006615947309214093,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 70,
+   "weighted_population": 116150.23521939061,
+   "mean_propensity": 0.005421888688946686,
+   "mean_propensity_uncalibrated": 0.0052170891500851095,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 79,
+   "weighted_population": 134300.02165881428,
+   "mean_propensity": 0.004227903511793599,
+   "mean_propensity_uncalibrated": 0.004068016097815573,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 55,
+   "weighted_population": 95571.16455450187,
+   "mean_propensity": 0.0031837412927304062,
+   "mean_propensity_uncalibrated": 0.0030632203431503443,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 6,
+   "n_unweighted": 13,
+   "weighted_population": 38668.60574768964,
+   "mean_propensity": 0.04227074577677961,
+   "mean_propensity_uncalibrated": 0.04078374930404569,
+   "propensity_rank": 0.7,
+   "tin_rate": 0.02830351412057962,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 12,
+   "weighted_population": 30981.58542145693,
+   "mean_propensity": 0.007115493469984328,
+   "mean_propensity_uncalibrated": 0.00684716877885783,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 13,
+   "weighted_population": 29662.194818459724,
+   "mean_propensity": 0.005374305791530684,
+   "mean_propensity_uncalibrated": 0.005171294570766476,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 21,
+   "weighted_population": 38219.46411356384,
+   "mean_propensity": 0.0038509572365642564,
+   "mean_propensity_uncalibrated": 0.0037052847268780123,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 38,
+   "weighted_population": 113852.89533743776,
+   "mean_propensity": 0.22939487907289693,
+   "mean_propensity_uncalibrated": 0.22376997133938198,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.2110179560500933,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 48,
+   "weighted_population": 120911.17221828953,
+   "mean_propensity": 0.05551793336442371,
+   "mean_propensity_uncalibrated": 0.05353119412529623,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.010420496028466375,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 64,
+   "weighted_population": 162330.98112320877,
+   "mean_propensity": 0.024893806784517206,
+   "mean_propensity_uncalibrated": 0.02397172855998689,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.004664548967746672,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 54,
+   "weighted_population": 131575.23863343126,
+   "mean_propensity": 0.016566246117208156,
+   "mean_propensity_uncalibrated": 0.01594731378947556,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.009256085448848561,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 64,
+   "weighted_population": 156484.58500607155,
+   "mean_propensity": 0.012206152114833653,
+   "mean_propensity_uncalibrated": 0.011748139348675043,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 63,
+   "weighted_population": 127768.26095302892,
+   "mean_propensity": 0.009270042331486974,
+   "mean_propensity_uncalibrated": 0.008921199947855408,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 78,
+   "weighted_population": 152115.8588621937,
+   "mean_propensity": 0.007226407763783987,
+   "mean_propensity_uncalibrated": 0.006953923152851419,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 32,
+   "weighted_population": 50842.12022202136,
+   "mean_propensity": 0.005503848095034954,
+   "mean_propensity_uncalibrated": 0.005295967921747558,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 11,
+   "weighted_population": 14282.57985748647,
+   "mean_propensity": 0.004053216666675445,
+   "mean_propensity_uncalibrated": 0.0038999119234484365,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 83,
+   "weighted_population": 275034.237319231,
+   "mean_propensity": 0.2568326220064519,
+   "mean_propensity_uncalibrated": 0.25052776173697233,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.3434235635610179
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 39,
+   "weighted_population": 87166.83008242522,
+   "mean_propensity": 0.04570894859724833,
+   "mean_propensity_uncalibrated": 0.044054706678061634,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.08359826710561695,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 48,
+   "weighted_population": 140450.2030659292,
+   "mean_propensity": 0.02416399141101659,
+   "mean_propensity_uncalibrated": 0.02326820300452765,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 33,
+   "weighted_population": 105072.23924491504,
+   "mean_propensity": 0.017099313208150946,
+   "mean_propensity_uncalibrated": 0.016460805191158803,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 34,
+   "weighted_population": 112449.55996765404,
+   "mean_propensity": 0.012427485997635303,
+   "mean_propensity_uncalibrated": 0.011961266900811817,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 21,
+   "weighted_population": 70820.5604706207,
+   "mean_propensity": 0.009288507312421148,
+   "mean_propensity_uncalibrated": 0.008938972599819276,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 55,
+   "age_to": 64,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 9,
+   "n_unweighted": 16,
+   "weighted_population": 38193.58488448538,
+   "mean_propensity": 0.006937103962000296,
+   "mean_propensity_uncalibrated": 0.006675489462079239,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 5,
+   "n_unweighted": 16,
+   "weighted_population": 43877.64637288778,
+   "mean_propensity": 0.012630816293995257,
+   "mean_propensity_uncalibrated": 0.014816231211278376,
+   "propensity_rank": 0.7,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 11,
+   "weighted_population": 17917.1937177863,
+   "mean_propensity": 0.00740408260141482,
+   "mean_propensity_uncalibrated": 0.008696615900839944,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 24,
+   "weighted_population": 68002.55593874647,
+   "mean_propensity": 0.005750341325210158,
+   "mean_propensity_uncalibrated": 0.0067561533377463795,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 63,
+   "weighted_population": 143186.67855770752,
+   "mean_propensity": 0.00437299543820343,
+   "mean_propensity_uncalibrated": 0.00513914935027708,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 9,
+   "n_unweighted": 105,
+   "weighted_population": 257270.04014338946,
+   "mean_propensity": 0.003385704210880292,
+   "mean_propensity_uncalibrated": 0.003979582588306913,
+   "propensity_rank": 0.15000000000000002,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": false,
+   "decile_from": 10,
+   "decile_to": 10,
+   "n_unweighted": 123,
+   "weighted_population": 287350.79315833753,
+   "mean_propensity": 0.002587646719797263,
+   "mean_propensity_uncalibrated": 0.003041953990232625,
+   "propensity_rank": 0.050000000000000044,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 6,
+   "n_unweighted": 12,
+   "weighted_population": 57217.34863315548,
+   "mean_propensity": 0.01273786005529519,
+   "mean_propensity_uncalibrated": 0.014920136386550846,
+   "propensity_rank": 0.7,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 12,
+   "weighted_population": 39168.722537493915,
+   "mean_propensity": 0.005822594558977735,
+   "mean_propensity_uncalibrated": 0.006840948790722409,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 16,
+   "weighted_population": 51117.472779128606,
+   "mean_propensity": 0.004506564745987246,
+   "mean_propensity_uncalibrated": 0.005295997184481695,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": false,
+   "urban": true,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 21,
+   "weighted_population": 61508.70515976443,
+   "mean_propensity": 0.0029326237786464304,
+   "mean_propensity_uncalibrated": 0.003447252534643673,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 25,
+   "weighted_population": 54965.51296717357,
+   "mean_propensity": 0.2670005512668443,
+   "mean_propensity_uncalibrated": 0.29090160132768256,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.36938657848142764,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 14,
+   "weighted_population": 28472.07957169153,
+   "mean_propensity": 0.047850277359465364,
+   "mean_propensity_uncalibrated": 0.05578295667617155,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.09620594047032037,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 17,
+   "weighted_population": 48303.54989989631,
+   "mean_propensity": 0.01876315617566034,
+   "mean_propensity_uncalibrated": 0.021993720199731996,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.0751409615911505,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 34,
+   "weighted_population": 88022.04011313221,
+   "mean_propensity": 0.013972752755320705,
+   "mean_propensity_uncalibrated": 0.016392868091504482,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 47,
+   "weighted_population": 95573.05495121659,
+   "mean_propensity": 0.009670695219560056,
+   "mean_propensity_uncalibrated": 0.011354376300255705,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 58,
+   "weighted_population": 119381.62854694223,
+   "mean_propensity": 0.007635810801179264,
+   "mean_propensity_uncalibrated": 0.008968432633508255,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 7,
+   "decile_to": 7,
+   "n_unweighted": 52,
+   "weighted_population": 153781.47788133036,
+   "mean_propensity": 0.005872057779584888,
+   "mean_propensity_uncalibrated": 0.006899018452288445,
+   "propensity_rank": 0.35,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 8,
+   "decile_to": 8,
+   "n_unweighted": 43,
+   "weighted_population": 79211.1696203768,
+   "mean_propensity": 0.004617935539814723,
+   "mean_propensity_uncalibrated": 0.0054267645085798516,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": false,
+   "decile_from": 9,
+   "decile_to": 10,
+   "n_unweighted": 22,
+   "weighted_population": 52666.97186797609,
+   "mean_propensity": 0.0032302331710394147,
+   "mean_propensity_uncalibrated": 0.0037969164225770072,
+   "propensity_rank": 0.09999999999999998,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 1,
+   "decile_to": 1,
+   "n_unweighted": 45,
+   "weighted_population": 157438.35437054132,
+   "mean_propensity": 0.3422788646986195,
+   "mean_propensity_uncalibrated": 0.3705215886983328,
+   "propensity_rank": 0.95,
+   "tin_rate": 0.3615522315225822
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 2,
+   "decile_to": 2,
+   "n_unweighted": 21,
+   "weighted_population": 50870.952830279166,
+   "mean_propensity": 0.04180060462433572,
+   "mean_propensity_uncalibrated": 0.04877261757468315,
+   "propensity_rank": 0.85,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 3,
+   "decile_to": 3,
+   "n_unweighted": 26,
+   "weighted_population": 63751.045186915464,
+   "mean_propensity": 0.021363764619202655,
+   "mean_propensity_uncalibrated": 0.025031128390857547,
+   "propensity_rank": 0.75,
+   "tin_rate": 0.03227198920922514,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 4,
+   "decile_to": 4,
+   "n_unweighted": 21,
+   "weighted_population": 56931.14847756778,
+   "mean_propensity": 0.013802011163108533,
+   "mean_propensity_uncalibrated": 0.016193059945803626,
+   "propensity_rank": 0.65,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 5,
+   "decile_to": 5,
+   "n_unweighted": 16,
+   "weighted_population": 27574.730988244097,
+   "mean_propensity": 0.010293576180581805,
+   "mean_propensity_uncalibrated": 0.012084304714026625,
+   "propensity_rank": 0.55,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 6,
+   "decile_to": 6,
+   "n_unweighted": 14,
+   "weighted_population": 37756.68783927434,
+   "mean_propensity": 0.0074869222042784475,
+   "mean_propensity_uncalibrated": 0.008793811324321464,
+   "propensity_rank": 0.44999999999999996,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  },
+  {
+   "age_from": 65,
+   "age_to": 90,
+   "mobile_money": true,
+   "urban": true,
+   "decile_from": 7,
+   "decile_to": 9,
+   "n_unweighted": 22,
+   "weighted_population": 62782.13344687311,
+   "mean_propensity": 0.004345451271490851,
+   "mean_propensity_uncalibrated": 0.005106566860055752,
+   "propensity_rank": 0.25,
+   "tin_rate": 0.0,
+   "low_precision": true,
+   "low_precision_fields": [
+    "tin_rate"
+   ]
+  }
+ ]
+}
