@@ -1,0 +1,9 @@
+# Streamlit Community Cloud: entry file dashboard/Home.py. Python 3.12 or newer (numpy 2.5.0 needs 3.12); tested on Python 3.14.1.
+# Exact versions used in the tested environment (environment/requirements.txt holds the full pipeline freeze).
+streamlit==1.58.0
+plotly==6.8.0
+reportlab==5.0.0
+PyYAML==6.0.3
+numpy==2.5.0
+pandas==3.0.3
+pillow==12.2.0
