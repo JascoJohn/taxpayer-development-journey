@@ -1,0 +1,2029 @@
+# Project configuration - The Taxpayer Development Journey (Behavioral)
+# All paths are relative to the project root (the folder holding this file) and use "/".
+# src/paths.py reads this file; no script uses the working directory.
+
+# Disclosure rule (Block D1), read by every publishing step (src/disclosure.py); no threshold is hard-coded elsewhere.
+#   min_base: a cell with fewer unweighted respondents than this is suppressed (estimate and count set to null).
+#   low_precision_numerator: a cell with base >= min_base but fewer unweighted numerator cases than this is flagged low precision.
+disclosure:
+  min_base: 10
+  low_precision_numerator: 10
+
+project:
+  name: taxpayer-development-journey
+  title: "The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania"
+
+# Seeds and simulation sizes. Values are those hard-coded in the original scripts
+# (economic_model.py, finscope_targeting_population_loader.py, run_all.py).
+simulation:
+  random_seed: 42      # economic_model.RANDOM_SEED; targeting loader uses the same value (+2, +4 offsets in code)
+  n_agents: 500000     # agent-based and tier-migration simulations
+  n_years: 10          # simulation horizon in years
+
+# Age band of the Seed stage (inclusive). Every script and label reads it from here; Entry starts at seed_age_band[1] + 1.
+# Decision: 6-15 (not 6-18). The 2022 Census 10% sample counts it (src/03_features/census_population.py).
+seed_age_band: [6, 15]
+
+# World Bank WDI (CC BY 4.0). The API is called ONLY by `run_all.py --fetch` (src/01_ingest/fetch_worldbank.py); the analysis reads
+# the snapshot files named under `snapshots` below. Raw responses are saved unchanged; MANIFEST.csv records URL, time and SHA-256.
+worldbank:
+  api_base: https://api.worldbank.org/v2
+  snapshot_dir: data/raw/worldbank
+  manifest: data/raw/worldbank/MANIFEST.csv
+  years: "1960:2026"              # all available years
+  series:
+    - {indicator: GC.TAX.TOTL.GD.ZS, countries: [TZA, GHA, KEN, RWA, UGA]}   # tax revenue, % of GDP
+    - {indicator: NY.GDP.MKTP.CN,    countries: [TZA]}                       # GDP, current LCU (TZS)
+    - {indicator: NY.GDP.MKTP.CD,    countries: [TZA]}                       # GDP, current US$ (only where a US$ figure is reported)
+    - {indicator: PA.NUS.FCRF,       countries: [TZA]}                       # official exchange rate, LCU per US$, period average
+    - {indicator: NY.GDP.MKTP.KD.ZG, countries: [TZA]}                       # GDP growth, annual % (Block E2: digital-twin base parameter)
+    - {indicator: SP.POP.GROW,       countries: [TZA]}                       # population growth, annual % (Block E2)
+    - {indicator: SP.POP.TOTL,       countries: [TZA]}                       # population, total (Block E2, context)
+  snapshots:                      # the snapshot the analysis reads, per indicator (set after a --fetch)
+    GC.TAX.TOTL.GD.ZS: data/raw/worldbank/GC.TAX.TOTL.GD.ZS_2026-11-12.json
+    NY.GDP.MKTP.CN: data/raw/worldbank/NY.GDP.MKTP.CN_2026-11-12.json
+    NY.GDP.MKTP.CD: data/raw/worldbank/NY.GDP.MKTP.CD_2026-11-12.json
+    PA.NUS.FCRF: data/raw/worldbank/PA.NUS.FCRF_2026-11-12.json
+    NY.GDP.MKTP.KD.ZG: data/raw/worldbank/NY.GDP.MKTP.KD.ZG_2026-11-12.json
+    SP.POP.GROW: data/raw/worldbank/SP.POP.GROW_2026-11-12.json
+    SP.POP.TOTL: data/raw/worldbank/SP.POP.TOTL_2026-11-12.json
+
+# Macro inputs (src/03_features/macro_inputs.py -> outputs/stats/macro_inputs.json)
+macro:
+  country: TZA
+  peers: [GHA, KEN, RWA, UGA]
+  # benchmark policy: peer_average (default; simple mean of the peers in the latest year all five countries report)
+  #                   | cited_target (a published Tanzanian target; none adopted yet, see _archive/process_records/BLOCK_C_REPORT.md)
+  benchmark_source: peer_average
+  cited_target_pct: null          # fill only together with cited_target_source when a citable target is adopted
+  cited_target_source: null
+  # Context only (Block D0.3): the MoF tax-to-GDP target for 2026/27. Written to macro_inputs.json; NOT used in the gap.
+  context_target_pct: 13.5
+  context_target_source: "Ministry of Finance, Tanzania, 'Guideline for the Preparation of Government Plan and Budget for the Medium Term 2026/27-2028/29', 17 June 2026, printed p. 8: 'Tax revenue to GDP ratio to reach 13.5 percent in 2026/27 and an average of 13.6 percent over the medium term'. https://www.mof.go.tz/uploads/documents/en-1781678091-GUIDELINE%20FOR%20THE%20PREPARATION%20OF%20GOVERNMENT%20PLAN%20AND%20BUDGET%20FOR%20THE%20MEDIUM%20TERM%202026.27-2028.29.pdf"
+
+# Real-data targeting model (Block D3, src/04_models/targeting_model.py). All seeds and hyper-parameters live here.
+targeting:
+  seeds: {split: 20230601, cv: 20230602, model: 20230603, bootstrap: 20230604, agents: 20230605}
+  test_size: 0.20
+  cv_folds: 5
+  cv_repeats: 3                      # repeated stratified 5-fold CV on the training set
+  logistic:
+    c_grid: [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1]
+    max_iter: 2000
+  gradient_boosting: {max_depth: 3, learning_rate: 0.05, max_iter: 200, l2_regularization: 1.0, min_samples_leaf: 40}
+  permutation_repeats: 5
+  permutation_candidates: 40         # columns (highest single-feature AUC on the training set) whose permutation importance is reported for boosting
+  label_search_terms: ['\btax', '\bTIN\b', '\bTRA\b', 'revenue authority', 'registration', 'registered', 'licen[cs]e', 'permit', '\bVAT\b', 'receipt', 'identity', 'national id', 'passport', 'voter', 'pay ?slip', 'invoice', 'ledger', 'bookkeep', 'record']
+  bootstrap_replicates: 500
+  scoring_card_C: 1.0
+  feature_rules:
+    max_levels: 30                   # categorical columns with more levels are excluded (free-form / codes)
+    min_level_share: 0.005           # levels held by under 0.5% of respondents get no indicator
+    constant_share: 0.995            # near-constant columns are excluded
+    max_single_feature_auc: 0.90     # a single feature with weighted AUC above this is treated as mechanically tied to the outcome
+  agent_age_bands: [[16, 24], [25, 34], [35, 44], [45, 54], [55, 64], [65, 90]]
+  variants_c_grid: [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 100.0]   # the small variants need weaker regularisation than the 1,294-feature model
+  # E1: restricted variants (same outcome, population, split, CV design, seeds and metrics as the survey model)
+  variants:
+    core:
+      label: "CORE: age, sex, region, urban/rural"
+      features: [c8c, c9, reg_name, clustertype]
+    extended:
+      label: "EXTENDED: CORE + mobile-money use + business ownership / main income source"
+      features: [c8c, c9, reg_name, clustertype, MM, BusO, IncomeMain]
+  feature_obtainability:      # why TRA can, or cannot, obtain each variant feature
+    c8c:
+      name: age
+      core: true
+      obtainable_by_tra: "yes - date of birth is on the National ID (NIDA) record that TRA already matches against TIN applications (TAA s. 23(1): TIN issued for identification and cross-checking)"
+    c9:
+      name: sex
+      core: true
+      obtainable_by_tra: "yes - recorded on the National ID (NIDA) record and on the TIN application"
+    reg_name:
+      name: region of residence
+      core: true
+      obtainable_by_tra: "yes - residential or business address on the TIN registration and NIDA record; for adults without a TIN, through NIDA data sharing"
+    clustertype:
+      name: urban / rural residence
+      core: true
+      obtainable_by_tra: "derivable - not a register field; it follows from the address (ward or enumeration area) using NBS's urban/rural classification of areas"
+    MM:
+      name: mobile-money use
+      core: false
+      obtainable_by_tra: "only through a data-sharing agreement with the mobile-money operators or the Bank of Tanzania (operators hold it, TRA does not); SIM registration by National ID is what would link it to a person; no such agreement is assumed to exist"
+    BusO:
+      name: business ownership
+      core: false
+      obtainable_by_tra: "partly - business licences (local authorities, BRELA) and TRA's own registrations show formal owners; owners of informal businesses with neither are invisible to TRA, and they are the group of interest"
+    IncomeMain:
+      name: main income source
+      core: false
+      obtainable_by_tra: "partly - PAYE records show salaried employment; self-employment, farming and casual work are not observed by TRA unless registered"
+  # E3: levels recalibrated by age band (intercept shift on the logit scale; ranking unchanged)
+  calibration:
+    by: agent_age_bands
+    tolerance: 1.0e-10
+    max_iter: 200
+
+# W10 / E4: tax morale components from Afrobarometer Round 8, Tanzania (components only; no composite).
+afrobarometer:
+  round: 8
+  country: Tanzania
+  weight: withinwt_hh
+  weight_note: "withinwt_hh: within-country weight to household level ('new AB withinwt'), adjusting for region, gender, urban-rural distribution and size of household, enumeration area and number of adults (codebook note); withinwt_ea (weights to EA level) is the alternative. Chosen because it includes household selection."
+  citation: "Afrobarometer Data, Tanzania, Round 8, 2021, available at http://www.afrobarometer.org (form required by the Afrobarometer data usage and access policy, https://www.afrobarometer.org/data/data-usage-and-access-policy/)"
+  indicators:
+    - id: civic_duty_always_pay
+      group: civic_duty
+      variable: Q76E_TAN
+      codes: [3]
+      code_labels: "1=Never do, 2=Do only if they choose, 3=Always do, 8=Refused, 9=Don't know"
+      meaning: "Good citizens should ALWAYS pay the taxes they owe (civic duty to pay tax)"
+      question: "For each of the following actions, please tell me whether you think it is something a good citizen in a democracy should always do, never do, or do only if they choose: Good citizens should pay taxes they owe to the government (Tanzania-specific item Q76e-tan; wording from the Tanzania Round 8 codebook)"
+    - id: civic_duty_tax_authority_right
+      group: civic_duty
+      variable: Q39A
+      codes: [4, 5]
+      code_labels: "1=Strongly disagree, 2=Disagree, 3=Neither agree nor disagree, 4=Agree, 5=Strongly agree, 8=Refused, 9=Don't know"
+      meaning: "Agree or strongly agree that the tax authorities always have the right to make people pay taxes"
+      question: "For each of the following statements, please tell me whether you disagree or agree: The tax authorities always have the right to make people pay taxes."
+    - id: trust_tax_office_a_lot
+      group: trust_in_tax_authority
+      variable: Q41J
+      codes: [3]
+      code_labels: "0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 8=Refused, 9=Don't know/Haven't heard"
+      meaning: "Trusts the tax/revenue office A LOT"
+      question: "How much do you trust each of the following, or haven't you heard enough about them to say: The tax/revenue office?"
+    - id: trust_tax_office_somewhat_or_a_lot
+      group: trust_in_tax_authority
+      variable: Q41J
+      codes: [2, 3]
+      code_labels: "0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 8=Refused, 9=Don't know/Haven't heard"
+      meaning: "Trusts the tax/revenue office somewhat or a lot"
+      question: "How much do you trust each of the following, or haven't you heard enough about them to say: The tax/revenue office?"
+    - id: tax_officials_corrupt_most_or_all
+      group: trust_in_tax_authority
+      variable: Q42G
+      codes: [2, 3]
+      code_labels: "0=None, 1=Some of them, 2=Most of them, 3=All of them, 8=Refused, 9=Don't know/Haven't heard"
+      meaning: "Thinks most or all tax officials are involved in corruption (supporting indicator)"
+      question: "How many of the following people do you think are involved in corruption, or haven't you heard enough about them to say: Tax officials?"
+    - id: not_paying_acceptable_never_or_if_choose
+      group: acceptability_of_not_paying
+      variable: Q76E_TAN
+      codes: [1, 2]
+      code_labels: "1=Never do, 2=Do only if they choose, 3=Always do, 8=Refused, 9=Don't know"
+      meaning: "Says good citizens should never pay, or pay only if they choose (does not hold paying tax to be a duty)"
+      question: "Q76e-tan, as above (Good citizens should pay taxes they owe to the government)"
+    - id: has_refused_to_pay_tax_or_fee
+      group: acceptability_of_not_paying
+      variable: Q80D_TAN
+      codes: [2, 3, 4]
+      code_labels: "0=No, would never do this, 1=No, would if had the chance, 2=Yes, once or twice, 3=Yes, several times, 4=Yes, often, 8=Refused, 9=Don't know"
+      meaning: "Has refused to pay a tax or fee (once or twice, several times or often)"
+      question: "Not published in the codebook (the Tanzania Round 8 codebook carries a placeholder for Q80); the data-file variable label is 'Q80d_tan. Refused to pay a tax or fee' and the answer codes are those shown"
+    - id: would_never_refuse_to_pay
+      group: acceptability_of_not_paying
+      variable: Q80D_TAN
+      codes: [0]
+      code_labels: "0=No, would never do this, 1=No, would if had the chance, 2=Yes, once or twice, 3=Yes, several times, 4=Yes, often, 8=Refused, 9=Don't know"
+      meaning: "Would never refuse to pay a tax or fee"
+      question: "Q80d_tan, as above (data-file label 'Refused to pay a tax or fee')"
+    - id: others_avoid_tax_often_or_always
+      group: perceived_avoidance
+      variable: Q47D
+      codes: [2, 3]
+      code_labels: "0=Never, 1=Rarely, 2=Often, 3=Always, 8=Refused, 9=Don't know"
+      meaning: "Thinks people in this country often or always avoid paying the taxes they owe (perceived behaviour of others)"
+      question: "In your opinion, how often, in this country, do people avoid paying the taxes that they owe the government?"
+    - id: reciprocity_taxes_used_for_wellbeing
+      group: reciprocity
+      variable: Q47C
+      codes: [4, 5]
+      code_labels: "1=Strongly disagree, 2=Disagree, 3=Neither agree nor disagree, 4=Agree, 5=Strongly agree, 8=Refused, 9=Don't know"
+      meaning: "Agree or strongly agree that the government usually uses tax revenues for the well-being of citizens"
+      question: "Do you agree or disagree with each of the following statements: The government usually uses the tax revenues it collects for the well-being of citizens."
+    - id: listen_mps_often_always
+      group: reciprocity
+      variable: Q38A
+      codes: [2, 3]
+      code_labels: "0=Never, 1=Only sometimes, 2=Often, 3=Always, 8=Refused, 9=Don't know"
+      meaning: "Thinks Members of Parliament often or always try their best to listen to what people like them have to say"
+      question: "How much of the time do you think the following try their best to listen to what people like you have to say: Members of Parliament?"
+    - id: listen_councillors_often_always
+      group: reciprocity
+      variable: Q38B
+      codes: [2, 3]
+      code_labels: "0=Never, 1=Only sometimes, 2=Often, 3=Always, 8=Refused, 9=Don't know"
+      meaning: "Thinks local government councillors often or always try their best to listen to what people like them have to say"
+      question: "How much of the time do you think the following try their best to listen to what people like you have to say: Local government councilors?"
+    - id: prefers_higher_taxes_more_services
+      group: fiscal_exchange
+      variable: Q45
+      codes: [1, 2]
+      code_labels: "1=Agree very strongly with Statement 1, 2=Agree with Statement 1, 3=Agree with Statement 2, 4=Agree very strongly with Statement 2, 5=Agree with neither, 8=Refused, 9=Don't know"
+      meaning: "Prefers paying higher taxes if that means more government services (supporting indicator)"
+      question: "Now let us talk about the tax system in this country. Which of the following statements is closest to your view? Statement 1: It is better to pay higher taxes if it means that there will be more services provided by government. Statement 2: It is better to pay lower taxes, even if it means there will be fewer services provided by government."
+    - id: finding_out_taxes_difficult
+      group: fiscal_exchange
+      variable: Q46A
+      codes: [3, 4]
+      code_labels: "1=Very easy, 2=Easy, 3=Difficult, 4=Very difficult, 8=Refused, 9=Don't know"
+      meaning: "Finds it difficult or very difficult to find out what taxes or fees one has to pay (supporting indicator; candidate for the 'simplicity' baseline, not mapped)"
+      question: "Based on your experience, how easy or difficult is it to do each of the following: To find out what taxes and fees you are supposed to pay to the government?"
+  gap_definitions:       # the report's 28 pp gap = 71% civic duty minus 43% "government listens"
+    - {civic_duty: civic_duty_always_pay, reciprocity: listen_mps_often_always}
+    - {civic_duty: civic_duty_always_pay, reciprocity: listen_councillors_often_always}
+    - {civic_duty: civic_duty_always_pay, reciprocity: reciprocity_taxes_used_for_wellbeing}
+  baseline_mapping:      # tax_morale.baseline.* constants (scores on 0-1): data where a defensible mapping exists
+    trust:
+      variable: Q41J
+      valid_min: 0
+      valid_max: 3
+      direction: forward
+      rescale: "(code - 0) / 3"
+      previous_typed_value: 0.35
+      rationale: "Direct match: the driver is trust in the tax system; Q41J asks how much the respondent trusts the tax/revenue office."
+    social_norm:
+      variable: Q47D
+      valid_min: 0
+      valid_max: 3
+      direction: reverse
+      rescale: "1 - (code - 0) / 3, i.e. 1 = people never avoid paying tax"
+      previous_typed_value: 0.30
+      rationale: "The driver is the community norm of compliance; Q47D records how often people in the country avoid paying the taxes they owe, a descriptive norm (reversed so that 1 = others comply). The injunctive norm (Q76e-tan) is reported as a component but not used."
+    fairness:
+      variable: Q47C
+      valid_min: 1
+      valid_max: 5
+      direction: forward
+      rescale: "(code - 1) / 4"
+      previous_typed_value: 0.30
+      rationale: "The code's own gloss for the driver is 'perceived value for tax paid'; Q47C asks whether the government usually uses tax revenues for the well-being of citizens."
+    simplicity:
+      variable: Q46A
+      valid_min: 1
+      valid_max: 4
+      direction: reverse
+      rescale: "1 - (code - 1) / 3, i.e. 1 = very easy to find out what taxes and fees to pay, 0 = very difficult"
+      previous_typed_value: 0.25
+      label: "information burden only (does not cover registration or filing costs)"
+      rationale: "Decision of the owner (Block E2.0): the simplicity driver is mapped to Afrobarometer Q46a (how easy or difficult it is to find out what taxes and fees you are supposed to pay to the government), reversed and rescaled 0-1. It measures the information burden only; it does not cover the cost of registering or filing, which the model's simplification interventions (USSD registration, presumptive tax) target."
+    enforcement:
+      variable: null
+      candidate_variable: Q40G
+      previous_typed_value: 0.40
+      rationale: "NOT MAPPED after the Block E2.1 search (kept as an ASSUMPTION for the owner's sign-off). Searched: the Afrobarometer Round 8 merged and Tanzania codebooks (every item mentioning tax with audit, penalty, punish, caught, enforce, detect, inspect, fine, prosecute, likely, evade, avoid: only Q47D 'how often do people avoid paying taxes' and, without the word tax, Q40G 'how often do ordinary people who break the law go unpunished' and Q40F 'officials who commit crimes go unpunished'); the FinScope 2023 data map (no item on audit, penalty or enforcement; the only tax item is the TIN document c27__13); the ILFS 2024 variable labels (no item on audit, inspection or penalty); TRA publications reachable on 2026-11-12 (Sixth Corporate Plan revised June 2024: KPI 'share of tax revenue from additional assessments raised in tax audits' 17.0% baseline, 14.5% actual 2022/23; no audit count, audit coverage rate or penalty amount; the TRA annual reports could not be located) and the NBS Tax Statistics Reports 2022/23 and 2023/24 (no audit data). Q40G is the closest survey item (perceived impunity of lawbreakers, general, reversed: unpunished -> weak enforcement) but it is not about tax; the audit-yield KPI is an outcome share of revenue, not a probability of being audited. Neither measures the perceived or actual likelihood of detection and penalty for not paying tax."
+
+# E5: agent trust, morale and income from survey aggregates (src/03_features/agent_inputs.py)
+agent_inputs:
+  trust_morale:
+    trust:
+      variable: Q41J
+      valid_min: 0
+      valid_max: 3
+      rescale: "(code - 0) / 3"
+      meaning: "trust in the tax/revenue office (0 = not at all, 1 = a lot)"
+    morale:
+      variable: Q76E_TAN
+      valid_min: 1
+      valid_max: 3
+      rescale: "(code - 1) / 2"
+      meaning: "civic duty to pay tax: good citizens should pay the taxes they owe (0 = never do, 0.5 = only if they choose, 1 = always do)"
+  income:
+    age: Q06B_MEM_AGE
+    weight: WEIGHT
+    employee_cash: Q86B_CASH
+    self_net: Q87D_TSH
+    self_period: Q87D_PERIOD
+    agri_net: Q88D_TSH
+    agri_period: Q88D_PRIOD
+
+# E6: statistical zones (region -> zone) for the Mzani wa Kodi fallback when a region x activity cell is suppressed.
+zones:
+  source: "National Bureau of Statistics (NBS) and OCGS: The 2022 Tanzania Demographic and Health Survey and Malaria Indicator Survey (TDHS-MIS), sampling procedure: 'To estimate geographic differentials for certain demographic indicators, Tanzania was divided into nine geographic zones.' The survey notes that these zones are not official administrative areas and that the Ministry of Health's Reproductive and Child Health Section uses the same classification; grouping regions into zones gives larger denominators and smaller sampling errors."
+  url: "https://microdata.nbs.go.tz/index.php/metadata/export/38/json"
+  accessed: "2026-11-12"
+  regions:
+    Western: [Tabora, Kigoma]
+    Northern: [Kilimanjaro, Tanga, Arusha]
+    Central: [Dodoma, Singida, Manyara]
+    Southern Highlands: [Iringa, Njombe, Ruvuma]
+    Southern: [Lindi, Mtwara]
+    Southwest Highlands: [Mbeya, Rukwa, Katavi, Songwe]
+    Lake: [Kagera, Mwanza, Geita, Mara, Simiyu, Shinyanga]
+    Eastern: [Dar es Salaam, Pwani, Morogoro]
+    Zanzibar: [Kaskazini Unguja, Kusini Unguja, Mjini Magharibi, Kaskazini Pemba, Kusini Pemba]
+
+# E2.2: TRA registered taxpayers and digital-twin base parameters (src/03_features/twin_inputs.py).
+# Published figures are transcribed here WITH their provenance; tests/test_tra_series.py re-reads the saved source documents in data/raw/ and checks every value.
+twin_inputs:
+  base_year: 2024
+  census_year: 2022
+  growth_years: 5                     # averages of the last 5 years with data (WDI GDP growth, population growth)
+  working_age: [15, 64]               # ILO working-age convention, ages inclusive
+  tra_registered_taxpayers:
+    definition: "Registered taxpayers = taxpayers registered with the Tanzania Revenue Authority (TIN holders on TRA's register), Tanzania MAINLAND only (Zanzibar is administered by ZRA), as a STOCK at the end of the fiscal year (July-June), in thousands. NBS reproduces TRA's figure and does not say whether non-business TINs, entities and dormant TINs are included: it is a count of TIN registrations, not of active or filing taxpayers and not of adults. It is therefore NOT comparable with FinScope's 1.31 million adult TIN holders (a survey estimate of ADULTS who say they hold a TIN, Mainland and Zanzibar)."
+    documents:
+      nbs_2223: {title: "Tax Statistics Report 2022/23, Mainland Tanzania (NBS; source TRA 2023)", file: "data/raw/nbs/tax_statistics_mainland_2022_23.pdf", url: "https://www.nbs.go.tz/uploads/statistics/documents/en-1728393057-Tax%20Statistics%20Report,%202022_%202023%20-Mainland%20Tanzania%20.pdf", table: "Table 3.1", pdf_page: 39}
+      nbs_2324: {title: "Tax Statistics Report 2023/24, Mainland Tanzania (NBS; source TRA 2023/24)", file: "data/raw/nbs/tax_statistics_mainland_2023_24.pdf", url: "https://www.nbs.go.tz/uploads/statistics/documents/en-1783961210-TAX%20STATISTICS_MAINLAND%20TANZANIA_REPORT%202023%20-%2024%20.pdf", table: "Table 3.1 (printed p. 14)", pdf_page: 31}
+    series:                           # fiscal year, thousands, document; the latest vintage is used where two exist
+      - {fy: "2011/12", thousands: 1036, doc: nbs_2223}
+      - {fy: "2012/13", thousands: 1612, doc: nbs_2223}
+      - {fy: "2013/14", thousands: 1784, doc: nbs_2223}
+      - {fy: "2014/15", thousands: 1990, doc: nbs_2223}
+      - {fy: "2015/16", thousands: 2200, doc: nbs_2223}
+      - {fy: "2016/17", thousands: 2501, doc: nbs_2223}
+      - {fy: "2017/18", thousands: 2739, doc: nbs_2324}
+      - {fy: "2018/19", thousands: 2917, doc: nbs_2324}
+      - {fy: "2019/20", thousands: 3181, doc: nbs_2324}
+      - {fy: "2020/21", thousands: 4107, doc: nbs_2324}
+      - {fy: "2021/22", thousands: 4455, doc: nbs_2324}
+      - {fy: "2022/23", thousands: 5494, doc: nbs_2324}
+      - {fy: "2023/24", thousands: 6272, doc: nbs_2324}
+    superseded:                       # earlier vintages of the same year (kept visible, not used)
+      - {fy: "2017/18", thousands: 2739, doc: nbs_2223}
+      - {fy: "2022/23", thousands: 4697, doc: nbs_2223, note: "the 2023/24 report restates 2022/23 as 5,494 (+17%); no reason is given"}
+    tra_cp6:                          # TRA Sixth Corporate Plan (revised June 2024), KPI table, printed p. 51 (PDF p. 67): definitions of ACTIVE and DORMANT business TINs
+      file: "data/raw/tra/6th_CORPORATE_PLAN.pdf"
+      pdf_page: 67
+      note: "KPI 'Number of registered taxpayers - Active: total registered active business excluding non-business TIN; a physical count of Business TIN that transacted within a year' and 'Dormant: business TIN that did not transact within a year'. Columns as I read the table: baseline 2020/21, outturn 2021/22, target 2022/23, actual 2022/23. The 2022/23 actual (1,655,920) is far below the 2021/22 outturn (3,336,777): a change of definition or measurement is implied; the plan does not explain it."
+      active_business_tin: {"2020/21": 3157106, "2021/22": 3336777, "2022/23_actual": 1655920}
+      dormant_business_tin: {"2020/21": 824162, "2021/22": 780000, "2022/23_actual": 131888}
+  bot_mobile_money:                   # Bank of Tanzania, National Payment Systems Annual Reports (mobile payments): ACTIVE users (accounts used in the last three months) and value
+    documents:
+      nps_2022: {title: "Bank of Tanzania, National Payment Systems Annual Report 2022", file: "data/raw/bot/nps_annual_report_2022.pdf", url: "https://www.bot.go.tz/Publications/Regular/Annual%20Report/en/2024020511594863.pdf", table: "Table 17 (PDF p. 43)"}
+      nps_2025: {title: "Bank of Tanzania, National Payment Systems Annual Report 2025", file: "data/raw/bot/nps_annual_report_2025.pdf", url: "https://www.bot.go.tz/Publications/Regular/Annual%20Report/en/2026060211494565.pdf", table: "Annex H, Table H1 (PDF p. 72)"}
+      nps_2024: {title: "Bank of Tanzania, Payment Systems Annual Report for 2024", file: "data/raw/bot/nps_annual_report_2024.pdf", url: "https://www.bot.go.tz/Publications/Regular/Annual%20Report/en/2025032515311662.pdf", table: "mobile payments, 2024 (value TZS 198,859.29 billion)"}
+    users_active:                     # year: number
+      2018: 23302040
+      2019: 24379804
+      2020: 30325019
+      2021: 33142118
+      2022: 38338776
+      2023: 51715462
+      2024: 63207569                  # printed "463,207,569" in Table H1 of the 2025 report (a typographical error); TCRA December 2024 report shows 63,207,569
+      2025: 75775654
+    value_tzs_billion:
+      2018: 81379.017
+      2019: 94597.639
+      2020: 109214.299
+      2021: 115228.415
+      2022: 114315.985
+      2023: 154705.77
+      2024: 198859.29
+      2025: 255133.96
+    users_definition: "mobile-money accounts (SIM cards with a mobile-money account) used at least once in the past three months, NOT unique persons: one person may hold accounts with several operators"
+  tcra_mobile_money_dec:              # TCRA quarterly telecom statistics, December quarter, mobile-money accounts (corroboration of the BoT series)
+    2015: 17639349
+    2016: 18080622
+    2017: 21889618
+    2018: 23367826
+    2020: 32268630
+    2021: 35285767
+    2022: 40953496
+    2024: 63207569
+    note: "files in data/raw/tcra/ (copied from the MultiAgent project); 2023 text figure 52.9 million; definitions change slightly over time (subscriptions registered vs active in the last three months)"
+  ilfs:
+    employee_cash: Q86B_CASH
+    business_net: Q87D_TSH
+    business_net_period: Q87D_PERIOD
+    business_gross: Q87B_TSH
+    business_gross_period: Q87B_PERIOD
+    agri_net: Q88D_TSH
+    agri_net_period: Q88D_PRIOD
+    winsorise_pct: 99                 # MSME revenue: gross business receipts of household enterprises, winsorised at this percentile (the maximum is TZS 2 billion a month)
+
+# E2.4: calibration of the agent simulation to TRA's registered-taxpayer trend (src/04_models/agent_calibration.py)
+agent_calibration:
+  n_agents: 100000                       # agents in each calibration run (the published simulations use simulation.n_agents)
+  years: 6                               # fiscal years 2018/19 - 2023/24 against the 2017/18 start
+  starts: [[-2.0, 0.0], [-3.0, 0.3], [-1.0, -0.2]]      # Nelder-Mead starting points: (log10 conversion rate, intercept)
+  log10_conversion_bounds: [-5.0, 0.0]
+  intercept_bounds: [-1.0, 1.0]
+  max_iter: 200
+  rmse_ok_pp: 0.25                       # the fit is accepted if the RMSE is at most this many percentage points
+  profile_offsets:
+    log10_conversion: [-0.6, -0.3, -0.1, 0.0, 0.1, 0.3, 0.6]
+    intercept: [-0.3, -0.1, -0.03, 0.0, 0.03, 0.1, 0.3]
+  third_target_search:                   # Block E3.2 (searched 2026-11-12): no independent target with a compatible definition was found; the two-target calibration is kept
+    result: "no third target integrated"
+    searched:
+      - "FinScope Tanzania 2017 published adult TIN-holding rate: the 2017 questionnaire (FSDT, final 19 April 2017) asks the document question Q27 with code 13 'Tax identification number', the same item as the 2023 variable c27__13, but the published 2017 report 'FinScope Tanzania 2017: Insights that Drive Innovation' (FSDT, 2017) prints no TIN rate: it reports national, voter, TASAF and Zanzibar resident ID (p. 26: 84% of adults hold at least one form of identification) and mobile-money uptake (60% of adults, p. 43). A 2017 level would need the FinScope 2017 microdata, which the project does not hold and which would need a separate data-sharing request to FSDT / NBS."
+      - "A TRA or NBS split of registrations into individuals and entities: NBS Tax Statistics Reports 2022/23 and 2023/24 (Table 3.1) give only the total and VAT-registered counts; the TRA Sixth Corporate Plan gives active and dormant BUSINESS TINs for 2020/21, 2021/22 and 2022/23 only (three points, with a definition change in 2022/23, 3.34M to 1.66M); no individual / entity split found."
+      - "Yearly NEW registrations (flow): no TRA or NBS publication found with a flow series. A press report of TRA's third-quarter 2025/26 results (900,755 new registrations in nine months; register 8,245,704 at 31 March 2026) exists but is a news item outside the calibration window (2017/18-2023/24), not a TRA document, and is not used."
+    kept: "two parameters (agents.conversion_rate, agents.p_comply.intercept) against the six TRA-index points; the identified combination conversion x (mean index + intercept) is reported in identifiability.identified_combination"
+  sanity:                                # flags only: results above these bounds are reported, never tuned away
+    platinum_share_pct_max: 5.0
+    year10_registered_share_vs_trend: 1.0    # year-10 registered share above the TRA trend continued for 10 years (x this factor)
+
+# E2.5: Table 40 stage economics (src/04_models/stage_economics.py); the uncertain inputs are assumptions: stage.* below
+# Editing Pass 1 (2026-11-13): the single source of truth for the names of the six stage tools and of the platform. Read by stage_economics.py (Table 40 names), the
+# intervention register (docs/interventions.yaml uses the same strings), dashboard/tdj_lib/names.py (every page, card, caption and generated PDF), the figure scripts and the report
+# renaming tests. `full` is the first-mention form (Swahili name with the English in brackets); `swahili` is the running form; `english` is the English descriptor alone.
+names:
+  seed:       {swahili: "Michezo ya Kodi",         english: "Tax Learning Games",                  full: "Michezo ya Kodi (Tax Learning Games)"}
+  entry:      {swahili: "Ujumuishaji wa Kikodi",   english: "Taxpayer Targeting and Registration Tool", full: "Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration Tool)"}
+  active:     {swahili: "Mzani wa Kodi",           english: "Presumptive Tax Estimator",           full: "Mzani wa Kodi (Presumptive Tax Estimator)"}
+  enterprise: {swahili: "Hatua za Kodi",           english: "Tax Progression Dashboard",           full: "Hatua za Kodi (Tax Progression Dashboard)"}
+  asset:      {swahili: "Mali-Alama za Kodi",      english: "Tax Asset Score",                     full: "Mali-Alama za Kodi (Tax Asset Score)"}
+  legacy:     {swahili: "Urithi wa Kodi",          english: "Tax Legacy Score",                    full: "Urithi wa Kodi (Tax Legacy Score)"}
+  platform:   {swahili: "Jukwaa la Ngazi",         english: "Ngazi Platform",                      full: "Ngazi Platform (Jukwaa la Ngazi)"}
+
+stage_economics:
+  n_draws: 10000
+  seed: 20260112
+  long_horizon_years: 20                 # E3.4: 20-year (lifecycle) sensitivity next to the signed-off 10-year horizon
+  persistence_sensitivity: [0.75, 0.90, 0.95]   # E3.4: FIXED yearly persistence values for the 20-year results, next to the signed-off triangular distribution (unchanged)
+  age_bands: [[16, 19], [20, 24], [25, 29], [30, 34], [35, 39], [40, 44], [45, 49], [50, 54], [55, 59], [60, 64], [65, 69], [70, 97]]   # ILFS age bands of the age-earnings path
+  report_names:                          # E3.4 / Editing Pass 1: PDF page and Table 40 row label of each stage's tool in the report; the NAME itself is read from the top-level `names:` block
+    seed: {pdf_page: 17, table40_label: "Michezo ya Kodi", morale_model_key: null}
+    entry: {pdf_page: 23, table40_label: "Ujumuishaji wa Kikodi", morale_model_key: USSD_registration_nudge}
+    active: {pdf_page: 29, table40_label: "Mzani wa Kodi", morale_model_key: presumptive_tax_simplification}
+    enterprise: {pdf_page: 35, table40_label: "Hatua za Kodi", morale_model_key: community_compliance_norms}
+    asset: {pdf_page: 40, table40_label: "Mali-Alama za Kodi", morale_model_key: visible_tax_returns}
+    legacy: {pdf_page: 47, table40_label: "Urithi wa Kodi", morale_model_key: civic_tax_education}
+
+# Folders that `run_all.py --clean` empties (never data/raw, docs or report/).
+clean_dirs:
+  - outputs/stats
+  - outputs/tables
+  - outputs/figures
+  - data/interim
+  - data/processed
+
+# Every file the pipeline reads or writes.
+files:
+  # raw inputs
+  finscope_csv:        data/raw/finscope/FinScope.csv
+  finscope_datamap:    data/raw/finscope/FinScope Datamap.xlsx
+  tax_exemptions_xlsx: data/raw/tax_exemptions/en-1709023578-All_Reliefs and Exemptions FY2023_24 MoF-Q1.XLSX
+  census_sav:          data/raw/census/TPHC2022_TenPercent_DEMOGRAPHICS.sav
+  ilfs_sav:            data/raw/ilfs/ILFS2024-URT-FINAL - Anonymized.sav
+  afrobarometer_sav:   data/raw/afrobarometer/afrobarometer_release-data_tan_r8_en_2021-06-10.sav
+  # interim
+  finscope_summary:        data/interim/finscope_summary.json
+  finscope_feature_store:  data/interim/finscope_feature_store.json
+  shared_context:          data/interim/shared_context.json
+  # processed
+  finscope_region_activity:  data/processed/finscope_region_activity.json
+  finscope_active_benchmark: data/processed/finscope_active_benchmark.json
+  census_age_counts:         data/processed/census_age_counts.json    # aggregates only, safe to publish
+  ilfs_indicators:           data/processed/ilfs_indicators.json      # aggregates only, safe to publish
+  # outputs
+  economic_model:              outputs/stats/economic_model.json
+  finscope_report:             outputs/stats/finscope_report.txt
+  intervention_register:       outputs/stats/intervention_register.json
+  assumption_ledger:           outputs/stats/assumption_ledger.json
+  assumption_ledger_report:    outputs/stats/assumption_ledger_report.txt
+  assumption_ledger_summary:   outputs/stats/assumption_ledger_summary.json
+  audit_trail:                 outputs/stats/audit_trail.json
+  run_meta:                    outputs/stats/run_meta.json   # timestamps and run id (kept out of the data files)
+  tin_by_segment_csv:          outputs/tables/tin_by_segment.csv
+  tin_reconciliation:          outputs/stats/tin_reconciliation.json
+  tax_exemption_rate:          outputs/stats/tax_exemption_rate.json
+  seed_population:             outputs/stats/seed_population.json
+  ilfs_informality_csv:        outputs/tables/ilfs_informality.csv
+  ilfs_summary:                outputs/stats/ilfs_summary.json
+  macro_inputs:                outputs/stats/macro_inputs.json
+  tin_mobile_money:            outputs/stats/tin_mobile_money.json
+  tin_mobile_money_csv:        outputs/tables/tin_mobile_money.csv
+  targeting_model:             outputs/stats/targeting_model.json
+  targeting_deciles_csv:       outputs/tables/targeting_deciles.csv
+  targeting_variants_csv:      outputs/tables/targeting_variants.csv
+  targeting_leakage_review_csv: outputs/tables/targeting_leakage_review.csv
+  afrobarometer_morale:        data/processed/afrobarometer_morale.json   # aggregates only
+  tax_morale_components_csv:   outputs/tables/tax_morale_components.csv
+  agent_trust_morale:          data/processed/agent_trust_morale.json     # aggregates only (cell distributions)
+  agent_income:                data/processed/agent_income.json           # aggregates only (cell distributions)
+  agent_calibration:           data/processed/agent_calibration.json      # E2.4 calibrated parameters and fit diagnostics
+  stage_economics:             outputs/stats/stage_economics.json
+  table40_csv:                 outputs/tables/table40_stage_economics.csv
+  ilfs_tax_base:               data/processed/ilfs_tax_base.json   # aggregates only: mean statutory tax per person of each Table 40 group and the age-earnings profiles (src/04_models/stage_economics.py)
+  twin_inputs:                 data/processed/twin_inputs.json            # E2.2 base parameters of the digital twin (published figures, aggregates)
+  tra_registered_taxpayers_csv: data/processed/tra_registered_taxpayers.csv
+  agent_cells:                 data/processed/agent_cells.json          # aggregates only (cells of >= disclosure.min_base respondents)
+  assumption_sensitivity:      docs/assumption_sensitivity.json   # written by src/tools/assumption_sensitivity.py (not by run_all.py)
+  assumptions_register:        docs/assumptions_register.csv      # generated by src/tools/build_assumptions_register.py
+  # authored interventions (Block F4): extracted once from the frozen LLM-generated report sections (now in _archive/frozen/); a DRAFT for the owner's review
+  interventions_yaml:          docs/interventions.yaml
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Assumptions ledger (Block C, W12). Every constant that feeds a claim in docs/claims_map_draft.csv or a value the dashboard
+# displays. The model reads each one with assumptions.A("key") (src/assumptions.py); there is no typed copy in the code.
+#   basis: DATA (traced to a file or a verified published source) | LITERATURE (full reference, verified) |
+#          ASSUMPTION (a design or scenario choice, with its rationale) | UNKNOWN (no stated basis; a claim it feeds is BLOCKED).
+#   group: the model function re-run by the sensitivity analysis. Values are unchanged from the former typed constants.
+# `docs/assumptions_register.csv` is generated from this block (src/tools/build_assumptions_register.py).
+# ---------------------------------------------------------------------------------------------------------------------
+assumptions:
+  macro.gdp_usd:
+    basis: DATA
+    from: "outputs/stats/macro_inputs.json"
+    source: "GDP, current US$ (WDI NY.GDP.MKTP.CD, latest year 2024): outputs/stats/macro_inputs.json tanzania.gdp_usd. Replaced the typed 78,844,405,385."
+    feeds: "C003, C005, C010"
+    group: macro
+  macro.tzs_per_usd:
+    basis: DATA
+    from: "outputs/stats/macro_inputs.json"
+    source: "Official exchange rate, LCU per US$, period average (WDI PA.NUS.FCRF, 2024): macro_inputs.json tanzania.fx_tzs_per_usd. Replaced the typed 2,500."
+    feeds: "C005, C010"
+    group: macro
+  macro.tax_to_gdp_current:
+    basis: DATA
+    from: "outputs/stats/macro_inputs.json"
+    source: "Tax revenue % of GDP, Tanzania, latest year 2024 (WDI GC.TAX.TOTL.GD.ZS): macro_inputs.json tanzania.tax_to_gdp_pct. Replaced the typed 0.128."
+    feeds: "C003, C005, C010, C011"
+    group: macro
+  macro.tax_to_gdp_target:
+    basis: DATA
+    from: "outputs/stats/macro_inputs.json"
+    source: "Benchmark = simple mean of GHA, KEN, RWA, UGA tax-to-GDP in 2023, the latest year all five countries report (macro_inputs.json benchmark.benchmark_pct); policy switch macro.benchmark_source. Replaced the typed 0.165."
+    feeds: "C003, C005, C010, C079"
+    group: macro
+  base.gdp_growth_rate:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_gdp_growth_rate.value"
+    source: "GDP growth: mean of the last 5 years of World Bank WDI NY.GDP.MKTP.KD.ZG (annual %), Tanzania. Replaced the typed 5.53% (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.population:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_population.value"
+    source: "Census 2022 10% sample total (x10: 61.7 million) projected to the base year 2024 with the mean WDI population growth SP.POP.GROW. Replaced the typed 68,560,157 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.working_age_population:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_working_age_population.value"
+    source: "Census 2022 10% sample, ages 15-64 (x10), projected to 2024 with the same growth. Replaced the typed 28,000,000 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.registered_taxpayers:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_registered_taxpayers.value"
+    source: "TRA registered taxpayers (Mainland TIN registrations, stock at the end of fiscal year 2023/24: 6,272,000), NBS Tax Statistics Report 2023/24 Table 3.1 (source TRA); series 2011/12-2023/24 in data/processed/tra_registered_taxpayers.csv. NOT comparable with FinScope's 1.31 million adult TIN holders. Replaced the typed 3,200,000 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.mobile_money_users:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_mobile_money_users.value"
+    source: "FinScope Tanzania 2023, weighted number of ADULTS (16+) who use mobile money (about 24.5 million, 71.7% of adults): persons, not accounts, computed in the pipeline (src/03_features/twin_inputs.py). Bank of Tanzania ACTIVE accounts (63.2 million in 2024) are kept as a context figure only (Block E3.3). Replaced the typed 35,000,000 (UNKNOWN) and, in Block E2, the BoT account count."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.mobile_money_gdp_pct:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_mobile_money_gdp_pct.value"
+    source: "Value of mobile payments 2024 (BoT: TZS 198.86 trillion) divided by nominal GDP 2024 (WDI NY.GDP.MKTP.CN); a gross flow over GDP (0.97). Replaced the typed 0.49 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.new_taxpayer_mean_tax_tzs:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_new_taxpayer_mean_tax_tzs.value"
+    source: "Mean statutory income tax per new taxpayer in the twin (Block F1): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.msme_mean_presumptive_tax_tzs:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_msme_mean_presumptive_tax_tzs.value"
+    source: "Mean presumptive tax per household enterprise (Block F1): the presumptive schedule applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual gross receipts of non-agricultural self-employed with turnover. Replaces the flat 3% rate on mean receipts (retired)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  base.informal_worker_avg_income_tzs:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_informal_worker_avg_income_tzs.value"
+    source: "ILFS 2024: weighted mean annual earnings of employed persons in informal employment with positive earnings (median in data/processed/twin_inputs.json). Replaced the typed 2,400,000 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: twin
+  base.msme_avg_revenue_tzs:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_msme_avg_revenue_tzs.value"
+    source: "ILFS 2024: weighted mean annual gross receipts of self-employed persons in non-agricultural main jobs, winsorised at the 99th percentile; describes household enterprises, not registered MSMEs (no published MSME revenue figure was found). Replaced the typed 12,000,000 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  tax_morale.baseline.trust:
+    basis: DATA
+    from: "data/processed/afrobarometer_morale.json"
+    data_file: afrobarometer_morale
+    data_path: "baseline_scores.trust.value"
+    source: "Starting score (0-1) of the trust driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q41J: trust in the tax/revenue office), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.35 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    group: morale
+  tax_morale.baseline.simplicity:
+    basis: DATA
+    from: "data/processed/afrobarometer_morale.json"
+    data_file: afrobarometer_morale
+    data_path: "baseline_scores.simplicity.value"
+    source: "Starting score (0-1) of the simplicity driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q46A: how easy or difficult to find out what taxes and fees you are supposed to pay), reversed and rescaled 0-1, weighted mean (withinwt_hh), computed in src/03_features/afrobarometer_morale.py. LABEL: information burden only (does not cover registration or filing costs). Mapping decided by the owner in Block E2.0; replaced the typed 0.25."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    group: morale
+  tax_morale.baseline.enforcement:
+    value: 0.4
+    basis: ASSUMPTION
+    source: "Starting score (0-1) of the enforcement driver. No defensible measure found (Block E2.1): no Afrobarometer, FinScope or ILFS item asks about the likelihood of audit, detection or penalty for not paying or registering, and the TRA publications reachable give only an audit-yield share of revenue (17.0% baseline, 14.5% actual 2022/23, TRA Sixth Corporate Plan p. 48) and no audit coverage rate. Closest item Q40G (ordinary people who break the law go unpunished) is general, not about tax. Kept at the former typed 0.40 as an ASSUMPTION for the owner's sign-off; the full search list is in config.yaml afrobarometer.baseline_mapping.enforcement."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.baseline.social_norm:
+    basis: DATA
+    from: "data/processed/afrobarometer_morale.json"
+    data_file: afrobarometer_morale
+    data_path: "baseline_scores.social_norm.value"
+    source: "Starting score (0-1) of the social norm driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47D: perceived behaviour of others (how often people avoid paying the taxes they owe), reversed), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    group: morale
+  tax_morale.baseline.fairness:
+    basis: DATA
+    from: "data/processed/afrobarometer_morale.json"
+    data_file: afrobarometer_morale
+    data_path: "baseline_scores.fairness.value"
+    source: "Starting score (0-1) of the fairness driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47C: the government usually uses tax revenues for the well-being of citizens), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    group: morale
+  tax_morale.weight.trust:
+    value: 0.3
+    basis: ASSUMPTION
+    source: "Authors' judgement of the weight of the trust driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.weight.simplicity:
+    value: 0.2
+    basis: ASSUMPTION
+    source: "Authors' judgement of the weight of the simplicity driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.weight.enforcement:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Authors' judgement of the weight of the enforcement driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.weight.social_norm:
+    value: 0.2
+    basis: ASSUMPTION
+    source: "Authors' judgement of the weight of the social norm driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.weight.fairness:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Authors' judgement of the weight of the fairness driver in compliance probability. The literature cited in the code names these drivers (Luttmer & Singhal (2014), Tax Morale, Journal of Economic Perspectives 28(4):149-168, doi 10.1257/jep.28.4.149; OECD (2019), Tax Morale: What Drives People and Businesses to Pay Tax?, OECD Publishing, Paris, doi 10.1787/f3d8ea10-en (both exist, checked 2026-11-12)) but this project holds no source for the numeric weights."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.USSD_registration_nudge.simplicity:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Assumed rise of the simplicity score (0-1 scale) caused by 'USSD registration nudge'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.USSD_registration_nudge.trust:
+    value: 0.05
+    basis: ASSUMPTION
+    source: "Assumed rise of the trust score (0-1 scale) caused by 'USSD registration nudge'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.civic_tax_education.social_norm:
+    value: 0.2
+    basis: ASSUMPTION
+    source: "Assumed rise of the social norm score (0-1 scale) caused by 'civic tax education'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.civic_tax_education.fairness:
+    value: 0.1
+    basis: ASSUMPTION
+    source: "Assumed rise of the fairness score (0-1 scale) caused by 'civic tax education'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.mobile_money_TIN_bridge.simplicity:
+    value: 0.25
+    basis: ASSUMPTION
+    source: "Assumed rise of the simplicity score (0-1 scale) caused by 'mobile money TIN bridge'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.mobile_money_TIN_bridge.trust:
+    value: 0.1
+    basis: ASSUMPTION
+    source: "Assumed rise of the trust score (0-1 scale) caused by 'mobile money TIN bridge'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.community_compliance_norms.social_norm:
+    value: 0.3
+    basis: ASSUMPTION
+    source: "Assumed rise of the social norm score (0-1 scale) caused by 'community compliance norms'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.community_compliance_norms.trust:
+    value: 0.08
+    basis: ASSUMPTION
+    source: "Assumed rise of the trust score (0-1 scale) caused by 'community compliance norms'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.visible_tax_returns.fairness:
+    value: 0.25
+    basis: ASSUMPTION
+    source: "Assumed rise of the fairness score (0-1 scale) caused by 'visible tax returns'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.visible_tax_returns.trust:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Assumed rise of the trust score (0-1 scale) caused by 'visible tax returns'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.presumptive_tax_simplification.simplicity:
+    value: 0.3
+    basis: ASSUMPTION
+    source: "Assumed rise of the simplicity score (0-1 scale) caused by 'presumptive tax simplification'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.effect.presumptive_tax_simplification.trust:
+    value: 0.1
+    basis: ASSUMPTION
+    source: "Assumed rise of the trust score (0-1 scale) caused by 'presumptive tax simplification'. Scenario input: the project holds no empirical estimate of this effect size."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  tax_morale.combined_discount:
+    value: 0.6
+    basis: ASSUMPTION
+    source: "Diminishing-returns factor: when all six interventions run together each solo shift counts at 60%. No empirical basis; it alone decides how far 58.2% sits below the naive sum of the solo effects."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    signoff: "approved (John, 2026-11-12)"
+  base.adult_population:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.base_adult_population.value"
+    source: "FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the twin's registrations and mobile-money users, which can never exceed it (Block E3.3)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  twin.growth.adult_population:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.twin_growth_adult_population.value"
+    source: "Yearly growth factor of the adult population = 1 + the mean World Bank WDI population growth (SP.POP.GROW, last 5 years with data). Replaced the account-based mobile-money growth (Block E3.3)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  twin.mm.penetration_cap:
+    value: 0.90
+    basis: ASSUMPTION
+    source: "Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.mm.penetration_gap_closure:
+    value: 0.10
+    basis: ASSUMPTION
+    source: "Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin, not measured. NEW in Block E3.3, not yet signed off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.default.trust_improvement_annual:
+    value: 0.01
+    basis: ASSUMPTION
+    source: "Slow annual drift of the trust score in the no-new-policy scenario."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.default.formalization_policy:
+    basis: CALIBRATED
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.twin_default_formalization_policy.value"
+    source: "New registrations per working-age adult per year in the no-policy scenario: slope of the least-squares line through TRA registered taxpayers 2017/18-2023/24 (608,107 a year) divided by the 2024 working-age population. Replaced the assumed 0.005."
+    calibration: {target: "TRA registered taxpayers, Mainland, 7 fiscal years 2017/18-2023/24 (NBS Tax Statistics)", method: "ordinary least squares, one free parameter (the slope) against 7 points, closed form (src/03_features/twin_inputs.py)", output: "data/processed/twin_inputs.json"}
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  twin.cap.trust:
+    value: 0.85
+    basis: ASSUMPTION
+    source: "Structural ceiling for the trust score."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.cap.compliance_rate:
+    value: 0.8
+    basis: ASSUMPTION
+    source: "Structural ceiling for the compliance rate."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.ussd.conversion:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Share of non-compliant mobile-money users who register per year when the USSD nudge is fully scaled (15%): a scenario input; the project holds no trial or administrative evidence of USSD registration conversion. Kept for sign-off; the registration trend cannot identify it because no USSD nudge was in place."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.trust_multiplier.slope:
+    value: 2
+    basis: ASSUMPTION
+    source: "Registration rises by 2 x (trust - baseline trust): a structural elasticity of the model; no panel or trial data link trust to registration here. Kept for sign-off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.msme.tin_rate:
+    value: 0.097
+    basis: DATA
+    source: "Enterprise-stage TIN rate, FinScope 2023: 9.74% in outputs/tables/tin_by_segment.csv (typed 0.097 is its rounded value)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+  twin.presumptive.uplift_factor:
+    value: 0.5
+    basis: ASSUMPTION
+    source: "Share of registered MSME presumptive-tax potential collected once simplification is on (0.5): a scenario input with no collection data behind it. Kept for sign-off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.policy.ussd_nudge_scale:
+    value: 0.6
+    basis: ASSUMPTION
+    source: "Policy scenario: USSD nudge deployed at 60% of full scale."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  twin.policy.trust_improvement_annual:
+    value: 0.025
+    basis: ASSUMPTION
+    source: "Policy scenario: annual trust gain of 2.5 points."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+  agents.income_lognormal_sigma:
+    basis: DATA
+    from: "data/processed/agent_income.json"
+    data_file: agent_income
+    data_path: "age_bands[*].annual_earnings_tzs_percentiles_among_earners"
+    source: "Spread of agents' income: replaced by the percentile distribution of annual earnings per age band, ILFS 2024 (Q86B_CASH + net Q87D + net Q88D, persons 16+), data/processed/agent_income.json. Replaced the typed log-normal sigma 0.8."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.trust_beta_a:
+    basis: DATA
+    from: "data/processed/agent_trust_morale.json"
+    data_file: agent_trust_morale
+    data_path: "cells[*].trust.beta_a"
+    source: "Initial trust of agents: EMPIRICAL weighted distribution of Q41J (trust in the tax/revenue office, rescaled 0-1) per age band x urban/rural cell, Afrobarometer Round 8 Tanzania (data/processed/agent_trust_morale.json). The Beta shape parameters (a, b) are published there as a check only and are not used (poor fit to the 4-level item). Replaced the typed Beta(2,4)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.trust_beta_b:
+    basis: DATA
+    from: "data/processed/agent_trust_morale.json"
+    data_file: agent_trust_morale
+    data_path: "cells[*].trust.beta_b"
+    source: "Second shape parameter of the former Beta(2,4) trust draw: replaced by the empirical cell distributions of Q41J (see agents.trust_beta_a)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.morale_beta_a:
+    basis: DATA
+    from: "data/processed/agent_trust_morale.json"
+    data_file: agent_trust_morale
+    data_path: "cells[*].morale.beta_a"
+    source: "Initial tax morale of agents: EMPIRICAL weighted distribution of Q76e-tan (good citizens should pay the taxes they owe; 0 / 0.5 / 1) per age band x urban/rural cell, Afrobarometer Round 8 Tanzania. One item, no composite. Replaced the typed Beta(1.5,4)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.morale_beta_b:
+    basis: DATA
+    from: "data/processed/agent_trust_morale.json"
+    data_file: agent_trust_morale
+    data_path: "cells[*].morale.beta_b"
+    source: "Second shape parameter of the former Beta(1.5,4) morale draw: replaced by the empirical cell distributions of Q76e-tan (see agents.morale_beta_a)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.edu.min_age:
+    value: 18
+    basis: ASSUMPTION
+    source: "Education programmes reach non-compliant urban agents aged 18 and over."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  agents.p_comply.trust_weight:
+    value: 0.3
+    basis: UNKNOWN
+    source: "Weight of trust in the yearly compliance probability; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  agents.p_comply.morale_weight:
+    value: 0.35
+    basis: UNKNOWN
+    source: "Weight of morale in the yearly compliance probability; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  agents.p_comply.income_weight:
+    value: 0.2
+    basis: UNKNOWN
+    source: "Weight of income in the yearly compliance probability; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  agents.p_comply.mm_weight:
+    value: 0.15
+    basis: UNKNOWN
+    source: "Weight of mobile-money use in the yearly compliance probability; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  agents.income_scale_tzs:
+    basis: DATA
+    from: "data/processed/agent_income.json"
+    data_file: agent_income
+    data_path: "national.annual_earnings_tzs_percentiles_all_persons_16plus"
+    source: "Scale of agents' income in the compliance probability: replaced by the agent's RANK in the national ILFS 2024 distribution of annual earnings (all persons 16+, zeros included), so the income term is a percentile in 0-1 and no scale constant remains. Replaced the typed TZS 5,000,000 saturation point."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.non_earners_zero_income:
+    value: true
+    basis: ASSUMPTION
+    source: "Persons aged 16+ with no earnings in ILFS 2024 (students, home-makers, the unemployed, unpaid helpers; 31.8% of the population 16+) enter the simulation with zero income: they can register but yield no income-tax revenue. ILFS has self-employment and agricultural income items, so this concerns only persons with none of the three; their treatment (zero rather than imputed) is the owner's decision."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  agents.conversion_rate:
+    basis: CALIBRATED
+    from: "data/processed/agent_calibration.json"
+    data_file: agent_calibration
+    data_path: "parameters.conversion_rate"
+    source: "Share of the compliance probability that becomes a registration each year. CALIBRATED (Block E2.4) so that the no-intervention simulation reproduces the growth of TRA's registered taxpayers 2017/18-2023/24 (index anchored to the FinScope 2023 adult TIN rate); 2 free parameters (this and agents.p_comply.intercept) against 6 points; Nelder-Mead; fit and identifiability in data/processed/agent_calibration.json. Replaced the typed 0.15 (UNKNOWN)."
+    calibration: {target: "TRA registered taxpayers 2017/18-2023/24, indexed to the FinScope 2023 adult TIN rate", method: "Nelder-Mead least squares, 2 parameters, 6 points, 100,000 agents, fixed seed", output: "data/processed/agent_calibration.json"}
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  agents.p_comply.intercept:
+    basis: CALIBRATED
+    from: "data/processed/agent_calibration.json"
+    data_file: agent_calibration
+    data_path: "parameters.intercept"
+    source: "Intercept added to the yearly compliance-probability formula (trust, morale, income rank and mobile-money terms plus this constant, clipped to 0-1). New in Block E2.4; CALIBRATED together with agents.conversion_rate to the TRA registration trend (previous implicit value 0)."
+    calibration: {target: "TRA registered taxpayers 2017/18-2023/24, indexed to the FinScope 2023 adult TIN rate", method: "Nelder-Mead least squares, 2 parameters, 6 points, 100,000 agents, fixed seed", output: "data/processed/agent_calibration.json"}
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+  tier.initial_tenure_low:
+    value: 1
+    basis: ASSUMPTION
+    source: "Already-compliant agents start with 1 to 3 years of tenure (lower bound)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.initial_tenure_high:
+    value: 4
+    basis: ASSUMPTION
+    source: "Upper bound (exclusive) of the starting tenure draw."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.filing.base:
+    value: 0.3
+    basis: UNKNOWN
+    source: "Intercept of the filing-reliability trait; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.filing.trust_coef:
+    value: 0.4
+    basis: UNKNOWN
+    source: "Weight of trust in the filing-reliability trait; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.filing.morale_coef:
+    value: 0.3
+    basis: UNKNOWN
+    source: "Weight of morale in the filing-reliability trait; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.filing.noise_sd:
+    value: 0.1
+    basis: UNKNOWN
+    source: "Individual noise in the filing-reliability trait; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.filing.clip_low:
+    value: 0.05
+    basis: ASSUMPTION
+    source: "Lower bound of the filing-reliability trait."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.filing.clip_high:
+    value: 0.99
+    basis: ASSUMPTION
+    source: "Upper bound of the filing-reliability trait."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.on_time_noise_sd:
+    value: 5
+    basis: UNKNOWN
+    source: "Year-to-year noise (percentage points) in on-time filing; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.threshold.platinum_on_time:
+    value: 90
+    basis: ASSUMPTION
+    source: "Ngazi Platinum: on-time filing of at least 90% (dashboard design parameter, copied from the Enterprise page)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.threshold.platinum_years:
+    value: 5
+    basis: ASSUMPTION
+    source: "Ngazi Platinum: at least 5 years registered (dashboard design parameter)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.threshold.gold_on_time:
+    value: 80
+    basis: ASSUMPTION
+    source: "Ngazi Gold: on-time filing of at least 80% (dashboard design parameter)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.threshold.gold_years:
+    value: 3
+    basis: ASSUMPTION
+    source: "Ngazi Gold: at least 3 years registered (dashboard design parameter)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.threshold.silver_on_time:
+    value: 65
+    basis: ASSUMPTION
+    source: "Ngazi Silver: on-time filing of at least 65% (dashboard design parameter)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+  tier.threshold.bronze_on_time:
+    value: 45
+    basis: ASSUMPTION
+    source: "Ngazi Bronze: on-time filing of at least 45% (dashboard design parameter)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    signoff: "approved (John, 2026-11-12)"
+# ---------------------------------------------------------------------------------------------------------------------
+# Retired constants (Block D). Removed from the model; kept here with their old value, basis and the reason they were retired,
+# so that nothing disappears without a record. docs/assumptions_register.csv lists them with basis_class RETIRED.
+# No code reads this block.
+# ---------------------------------------------------------------------------------------------------------------------
+  # ---- Block E2.5: Table 40 stage economics (src/04_models/stage_economics.py). Costs are the report's own figures (submission_v1 PDF p. 52); reach, uptake and risk
+  # distributions are ASSUMPTIONS for the owner's sign-off; the tax schedules are statute (DATA); revenue per registrant is derived from them and ILFS earnings.
+  stage.cost.seed_tzs:
+    value: [260000000, 1060000000]
+    basis: ASSUMPTION
+    source: "Seed (Michezo ya Kodi) cost range stated in the report's Table 40 (submission_v1 PDF p. 52: 260M-1.06B); drawn uniformly between the bounds. Report-stated figure, not independently sourced."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.cost.entry_tzs:
+    value: 420000000
+    basis: ASSUMPTION
+    source: "Entry (Targeting tool) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 420M); treated as the whole programme cost, incurred at the start of year 1. Report-stated figure, not independently sourced."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.cost.active_tzs:
+    value: 600000000
+    basis: ASSUMPTION
+    source: "Active (Band calculator) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 600M); whole programme cost at the start of year 1."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.cost.enterprise_tzs:
+    value: 750000000
+    basis: ASSUMPTION
+    source: "Enterprise (Tier tool, Ngazi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 750M); whole programme cost at the start of year 1."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.cost.legacy_tzs:
+    value: 700000000
+    basis: ASSUMPTION
+    source: "Legacy (Urithi wa Kodi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 700M); whole programme cost at the start of year 1."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.cost_overrun_sigma:
+    value: 0.25
+    basis: ASSUMPTION
+    source: "Cost risk: each stated cost (except Seed, which has its own range) is multiplied by a log-normal factor with median 1 and this log-standard-deviation in the Monte Carlo. A design choice; no cost-overrun data are held."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.reach_share:
+    value: {entry: [0.02, 0.05, 0.10], active: [0.01, 0.03, 0.08], enterprise: [0.01, 0.03, 0.08], asset: [0.005, 0.02, 0.05], legacy: [0.005, 0.02, 0.05]}
+    basis: ASSUMPTION
+    source: "Share of each stage's adult population (FinScope 2023: Entry 10.6M, Active 12.1M, Enterprise 3.5M, Asset 5.6M, Legacy 2.3M) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.intervention_for_uptake:
+    value: {entry: USSD_registration_nudge, active: presumptive_tax_simplification, enterprise: community_compliance_norms, asset: visible_tax_returns, legacy: civic_tax_education}
+    basis: ASSUMPTION
+    source: "Which of the six morale-model interventions stands for each stage's tool when converting the recalibrated morale model into registrations (odds ratio at the stage's observed TIN rate, E2.3). A judgement mapping; Seed has no registrations claimed. For the owner's sign-off."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.uptake_log_odds_sd:
+    value: 0.3
+    basis: ASSUMPTION
+    source: "Uncertainty of the uptake effect: the log odds ratio of the mapped intervention gets a normal error with this standard deviation in the Monte Carlo (the odds ratios themselves are ASSUMPTION uplifts of the morale model)."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.persistence:
+    value: [0.5, 0.75, 0.9]
+    basis: ASSUMPTION
+    source: "Yearly persistence of a new registrant (share still compliant the next year): triangular (low, mode, high). No filing-persistence data exist in the project; for the owner's sign-off."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.ramp_years:
+    value: 5
+    basis: ASSUMPTION
+    source: "The reach of a tool is spread evenly over the first 5 years; registrants then persist (with the persistence rate) to the end of the horizon."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.horizon_years:
+    value: 10
+    basis: ASSUMPTION
+    source: "Evaluation horizon of Table 40: 10 years (brief E2.5)."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.discount_rate:
+    value: 0.10
+    basis: ASSUMPTION
+    source: "Discount rate 10% (brief E2.5), with sensitivities at 5% and 12%. Annuity factors are computed from the formula, never typed (the 4.33 used earlier for '10%' is the 5-year factor at 5%)."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  stage.discount_sensitivities:
+    value: [0.05, 0.12]
+    basis: ASSUMPTION
+    source: "Alternative discount rates reported next to the 10% base case."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    signoff: "approved (John, 2026-11-12)"
+  tax.pit_schedule:
+    value: [[0, 0, 0.0], [3240000, 0, 0.08], [6240000, 240000, 0.20], [9120000, 816000, 0.25], [12000000, 1536000, 0.30]]
+    basis: DATA
+    source: "Resident individual income tax, annual total income: [lower bound, tax at the bound, marginal rate]: nil to 3,240,000; 8% of the excess to 6,240,000; 240,000 + 20% to 9,120,000; 816,000 + 25% to 12,000,000; 1,536,000 + 30% above. Income Tax Act Cap. 332 R.E. 2023, First Schedule para 1(1), printed p. 675 (PDF p. 131), data/raw/tra/The_Income_Tax_Act.pdf. Amendments by later Finance Acts were not checked (the Finance Act 2025 text holds no change to this paragraph). Checked against the Finance Acts 2024, 2025 and 2026 (data/raw/tra/): none amends paragraph 1 of the First Schedule, so the schedule is unchanged in 2026/27. (TRA, Taxes and Duties at a Glance 2025/26, p. 7 shows the same table monthly.)"
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+  tax.presumptive_schedule:
+    value: {threshold_turnover: 200000000, bands: [[4000000, 7000000, 100000, 0, 0.03], [7000000, 11000000, 250000, 90000, 0.03]], above_11m_rate: 0.04}
+    basis: DATA
+    source: "Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 40 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+# Register rows of constants that live outside `assumptions:` (simulation size, disclosure rule, dashboard design parameters): the owner's sign-off is recorded here.
+register_extra_signoffs:
+  dashboard.illustrative_asset_score: "approved (John, 2026-11-12)"
+  dashboard.illustrative_legacy_score: "approved (John, 2026-11-12)"
+  dashboard.legacy_blend_weights: "approved (John, 2026-11-12)"
+  dashboard.min_n_for_confident_estimate: "approved (John, 2026-11-12)"
+  dashboard.ngazi_standing_ceiling: "approved (John, 2026-11-12)"
+  disclosure.low_precision_numerator: "approved (John, 2026-11-12)"
+  disclosure.min_base: "approved (John, 2026-11-12)"
+  simulation.n_agents: "approved (John, 2026-11-12)"
+  simulation.n_years: "approved (John, 2026-11-12)"
+  simulation.random_seed: "approved (John, 2026-11-12)"
+
+retired_assumptions:
+  synthetic.urban_share:
+    value: 0.36
+    basis: ASSUMPTION
+    source: "Urban share of synthetic agents and respondents (0.36). A comment attributes it to the World Bank (not verified); FinScope 2023 gives 37.3% (Dar es Salaam + other urban) or 39.1% (cluster type urban), weighted."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart); C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json; C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: tier
+    retired_in: "Block D3"
+    retired_reason: "typed urban share of synthetic agents; agents now carry the urban attribute of real FinScope respondents (data/processed/agent_cells.json)"
+  agents.age_min:
+    value: 16
+    basis: ASSUMPTION
+    source: "Synthetic agents are adults (FinScope covers ages 16+)."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block D3"
+    retired_reason: "uniform synthetic age draw; agent ages now come from real FinScope age bands (agent_cells.json)"
+  agents.age_max:
+    value: 80
+    basis: ASSUMPTION
+    source: "Upper bound (exclusive) of the synthetic age draw."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block D3"
+    retired_reason: "uniform synthetic age draw; agent ages now come from real FinScope age bands (agent_cells.json)"
+  seg.n_training:
+    value: 50000
+    basis: ASSUMPTION
+    source: "Size of the synthetic training population (the report calls it '50,000 real records': it is synthetic)."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.age_min:
+    value: 16
+    basis: ASSUMPTION
+    source: "Youngest synthetic adult."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.age_max:
+    value: 70
+    basis: ASSUMPTION
+    source: "Upper bound (exclusive) of the synthetic age draw."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.income_log_mean:
+    value: 14.2
+    basis: UNKNOWN
+    source: "Mean of log income (about TZS 1.5M); no source."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.income_log_sigma:
+    value: 0.9
+    basis: UNKNOWN
+    source: "Spread of log income; no source."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.business_owner_share:
+    value: 0.127
+    basis: DATA
+    source: "Business owners, FinScope 2023, weighted share of adults 12.73% (BusO, computed 2026-11-12); typed 12.7%."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.base:
+    value: 0.008
+    basis: DATA
+    source: "Entry-stage TIN rate, FinScope 2023: 0.77% (tin_by_segment.csv), typed 0.8%."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.active_increment:
+    value: 0.038
+    basis: DATA
+    source: "Active-stage TIN rate minus the Entry rate, FinScope 2023: 4.62% - 0.77% = 3.85 pp (typed 3.8 pp)."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.asset_increment:
+    value: 0.043
+    basis: UNKNOWN
+    source: "Typed as the Asset TIN rate (4.30%) but used as an increment over the Entry rate (the increment would be 3.5 pp): inconsistent with its own comment."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.mm_effect:
+    value: 0.04
+    basis: UNKNOWN
+    source: "Coefficient of mobile-money use in the synthetic TIN probability; generator coefficient with no derivation."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.urban_effect:
+    value: 0.06
+    basis: UNKNOWN
+    source: "Coefficient of urban residence in the synthetic TIN probability; no derivation."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.income_effect:
+    value: 0.02
+    basis: UNKNOWN
+    source: "Coefficient of income in the synthetic TIN probability; no derivation."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.business_effect:
+    value: 0.08
+    basis: UNKNOWN
+    source: "Coefficient of business ownership in the synthetic TIN probability; no derivation."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.p_tin.noise_sd:
+    value: 0.01
+    basis: UNKNOWN
+    source: "Noise added to the synthetic TIN probability; no derivation."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.income_effect_divisor:
+    value: 5000000
+    basis: UNKNOWN
+    source: "Income scale of the synthetic TIN probability (TZS 5M); no source."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  lifecycle.age_cut_entry_active:
+    value: 25
+    basis: ASSUMPTION
+    source: "Report definition: Entry below 25, Active from 25 (same cut as finscope_segments.py)."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "age cut-offs of the synthetic segmentation model; lifecycle stages of real respondents come from finscope_segments.lifecycle_stage"
+  lifecycle.age_cut_active_asset:
+    value: 45
+    basis: ASSUMPTION
+    source: "Report definition: Active below 45, Asset from 45 (same cut as finscope_segments.py)."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "age cut-offs of the synthetic segmentation model; lifecycle stages of real respondents come from finscope_segments.lifecycle_stage"
+  lifecycle.age_cut_asset_legacy:
+    value: 65
+    basis: ASSUMPTION
+    source: "Report definition: Asset below 65, Legacy from 65 (same cut as finscope_segments.py)."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "age cut-offs of the synthetic segmentation model; lifecycle stages of real respondents come from finscope_segments.lifecycle_stage"
+  seg.feature_scale.age:
+    value: 70
+    basis: ASSUMPTION
+    source: "Age is divided by 70 before standardising (cosmetic: the model re-standardises)."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.feature_scale.income:
+    value: 10000000
+    basis: ASSUMPTION
+    source: "Income is divided by TZS 10M and clipped at 1 before standardising."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.risk.high_below:
+    value: 0.05
+    basis: ASSUMPTION
+    source: "Predicted TIN probability below 5% counts as 'high risk' of non-registration."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  seg.risk.low_above:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Predicted TIN probability of 15% or more counts as 'low risk'."
+    feeds: "C027, C030, C058, C059 (targeting model, AUC), dashboard Entry page, finscope_targeting_population.json"
+    group: seg
+    retired_in: "Block D3"
+    retired_reason: "segmentation model trained on 50,000 SYNTHETIC records with typed coefficients; replaced by the real-data targeting model (src/04_models/targeting_model.py, config targeting:)"
+  did.region.dar_es_salaam:
+    value: {mm_pct: 90.1, tin_pct: 8.3, early_adopter: true}
+    basis: DATA
+    source: "Mobile-money and TIN rates of Dar es Salaam, FinScope 2023 (finscope_summary.json geography). The 'early adopter' flag is an assumption (no regional roll-out data exist)."
+    feeds: "C007 (difference-in-differences 4.85 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "difference-in-differences on 3 region means with a typed pre-period gap: not an identified causal estimate; replaced by the observational association in src/04_models/tin_mobile_money.py"
+  did.region.other_urban:
+    value: {mm_pct: 81.3, tin_pct: 7.4, early_adopter: true}
+    basis: DATA
+    source: "Mobile-money and TIN rates of other urban areas, FinScope 2023. The 'early adopter' flag is an assumption."
+    feeds: "C007 (difference-in-differences 4.85 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "difference-in-differences on 3 region means with a typed pre-period gap: not an identified causal estimate; replaced by the observational association in src/04_models/tin_mobile_money.py"
+  did.region.rural:
+    value: {mm_pct: 63.7, tin_pct: 1.5, early_adopter: false}
+    basis: DATA
+    source: "Mobile-money and TIN rates of rural areas, FinScope 2023. The 'early adopter' flag is an assumption."
+    feeds: "C007 (difference-in-differences 4.85 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "difference-in-differences on 3 region means with a typed pre-period gap: not an identified causal estimate; replaced by the observational association in src/04_models/tin_mobile_money.py"
+  did.pre_mm_gap:
+    value: 1.5
+    basis: UNKNOWN
+    source: "Pre-mobile-money TIN gap (pp) subtracted in the DiD; the comment says 'assume similar pre-MM rates' yet the value is 1.5, and no 2017 data are held."
+    feeds: "C007 (difference-in-differences 4.85 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "difference-in-differences on 3 region means with a typed pre-period gap: not an identified causal estimate; replaced by the observational association in src/04_models/tin_mobile_money.py"
+  psm.n_sample:
+    value: 10000
+    basis: ASSUMPTION
+    source: "Size of the simulated sample."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.treatment_share:
+    value: 0.716
+    basis: DATA
+    source: "Mobile-money penetration, FinScope 2023: 71.6% (finscope_summary.json mm_rate)."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.age_min:
+    value: 16
+    basis: ASSUMPTION
+    source: "Youngest simulated adult."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.age_max:
+    value: 70
+    basis: ASSUMPTION
+    source: "Upper bound (exclusive) of the simulated age."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.income_log_mean:
+    value: 14.5
+    basis: UNKNOWN
+    source: "Mean of log income of the simulated sample; no source (differs from the 14.2 used in the segmentation model)."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.income_log_sigma:
+    value: 0.8
+    basis: UNKNOWN
+    source: "Spread of log income of the simulated sample; no source."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.true_mm_effect:
+    value: 0.06
+    basis: UNKNOWN
+    source: "The effect of mobile money on TIN probability that is PLANTED in the simulated data (6 pp); the 9.0 / 5.94 pp 'findings' are recovered from it. No empirical basis."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.p_tin.base:
+    value: 0.015
+    basis: UNKNOWN
+    source: "Base TIN probability of the simulated sample; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.p_tin.income_effect:
+    value: 0.03
+    basis: UNKNOWN
+    source: "Income coefficient of the simulated TIN probability; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.p_tin.urban_effect:
+    value: 0.04
+    basis: UNKNOWN
+    source: "Urban coefficient of the simulated TIN probability; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.p_tin.age_effect:
+    value: 0.02
+    basis: UNKNOWN
+    source: "Age coefficient of the simulated TIN probability; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.propensity.base:
+    value: 0.3
+    basis: UNKNOWN
+    source: "Intercept of the hand-written propensity score; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.propensity.income_effect:
+    value: 0.15
+    basis: UNKNOWN
+    source: "Income coefficient of the hand-written propensity score; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.propensity.urban_effect:
+    value: 0.2
+    basis: UNKNOWN
+    source: "Urban coefficient of the hand-written propensity score; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.propensity.age_effect:
+    value: 0.1
+    basis: UNKNOWN
+    source: "Age coefficient of the hand-written propensity score; no derivation."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.income_scale_tzs:
+    value: 5000000
+    basis: UNKNOWN
+    source: "Income scale (TZS 5M) of the simulated TIN probability and of the hand-written propensity score; no source."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  psm.n_matched:
+    value: 1000
+    basis: ASSUMPTION
+    source: "Number of treated units matched (the code says 'for speed')."
+    feeds: "C007, C056 (propensity-score matching 9.0 pp / 5.94 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "propensity-score matching on simulated data with the effect planted in the simulation: the finding was recovered from its own input; replaced by the observational association on real FinScope data (tin_mobile_money.py)"
+  sc.comparator.rwanda:
+    value: [9.5, 11.2, 13.4, 14.8, 15.6]
+    basis: UNKNOWN
+    source: "Typed tax-to-GDP series for 2018-2022 attributed to 'OECD 2023'; no OECD file is held. The WDI snapshot (data/raw/worldbank) now allows checking: it gives Rwanda 14.2 (2021), 13.25 (2022)."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.comparator.kenya:
+    value: [13.1, 13.5, 13.8, 14.0, 14.1]
+    basis: UNKNOWN
+    source: "Typed series attributed to 'OECD 2023'; WDI starts in 2014 for Kenya (13.55 in 2021, 14.6 in 2022), not equal to the typed values."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.comparator.ghana:
+    value: [12.5, 12.8, 12.2, 12.9, 13.2]
+    basis: UNKNOWN
+    source: "Typed series attributed to 'OECD 2023'; WDI gives Ghana 12.24 (2021), 12.30 (2022)."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.comparator.uganda:
+    value: [10.5, 11.2, 11.8, 12.1, 12.4]
+    basis: UNKNOWN
+    source: "Typed series attributed to 'OECD 2023'; WDI starts in 2015 for Uganda (12.46 in 2021, 12.55 in 2022)."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.tanzania_actual:
+    value: [12.1, 12.2, 12.5, 12.6, 12.4]
+    basis: UNKNOWN
+    source: "Typed Tanzania tax-to-GDP 2018-2022; WDI gives 10.54 (2021) and 11.66 (2022), so the typed values do not match the World Bank series."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.weight.rwanda:
+    value: 0.15
+    basis: UNKNOWN
+    source: "Synthetic-control donor weight; typed, not estimated (the comment says 'minimise pre-period difference' but no optimisation is run)."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.weight.kenya:
+    value: 0.45
+    basis: UNKNOWN
+    source: "Synthetic-control donor weight; typed, not estimated."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.weight.ghana:
+    value: 0.25
+    basis: UNKNOWN
+    source: "Synthetic-control donor weight; typed, not estimated."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  sc.weight.uganda:
+    value: 0.15
+    basis: UNKNOWN
+    source: "Synthetic-control donor weight; typed, not estimated."
+    feeds: "C057 (synthetic control -0.66 / -1.44 pp)"
+    group: causal
+    retired_in: "Block D2"
+    retired_reason: "synthetic control with typed series and typed weights (no optimisation, no pre-period fit); replaced: no causal estimate is claimed"
+  tax_morale.composite.afrobarometer_pct:
+    value: 59.8
+    basis: UNKNOWN
+    source: "The report's 'tax morale 59.8% (Afrobarometer)': a composite of four hand-typed published figures (civic duty, trust, non-avoidance, reciprocity) with assumed weights; no respondent-level Afrobarometer file was ever held (src/imported/wvs_loader.py types it)."
+    feeds: "C004, C013, C037, C068 (front matter, Theory of Change table, Asset stage text, cover KPI strip)"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "composite retired; replaced by weighted components computed from the Afrobarometer Round 8 Tanzania file (data/processed/afrobarometer_morale.json, outputs/tables/tax_morale_components.csv); no composite is published"
+  tax_morale.composite.weight.civic_duty:
+    value: 0.30
+    basis: ASSUMPTION
+    source: "Assumed weight of civic duty in the 59.8% composite (30 / 35 / 20 / 15); no external index or factor analysis behind it."
+    feeds: "C004, C013, C037, C068"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "composite and its assumed weights retired (components only)"
+  tax_morale.composite.weight.trust:
+    value: 0.35
+    basis: ASSUMPTION
+    source: "Assumed weight of trust in the tax authority in the 59.8% composite."
+    feeds: "C004, C013, C037, C068"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "composite and its assumed weights retired (components only)"
+  tax_morale.composite.weight.non_avoidance:
+    value: 0.20
+    basis: ASSUMPTION
+    source: "Assumed weight of non-avoidance (acceptability of not paying) in the 59.8% composite."
+    feeds: "C004, C013, C037, C068"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "composite and its assumed weights retired (components only)"
+  tax_morale.composite.weight.reciprocity:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Assumed weight of reciprocity (government listens / uses taxes well) in the 59.8% composite."
+    feeds: "C004, C013, C037, C068"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "composite and its assumed weights retired (components only)"
+  tax_morale.wvs_composite_pct:
+    value: 61.8
+    basis: UNKNOWN
+    source: "The report's 'tax morale 61.8% (World Values Survey)': typed in src/imported/wvs_loader.py; no WVS respondent file was held."
+    feeds: "C004, C012, C037, C068"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "WVS 61.8% was removed earlier and stays removed (brief E4); no replacement"
+  tax_morale.reciprocity_gap_pp:
+    value: 28
+    basis: UNKNOWN
+    source: "The report's 28-point reciprocity gap = 71% civic duty minus 43% 'government listens' (hand-typed published figures; neither can be reproduced from the Afrobarometer file)."
+    feeds: "C014"
+    group: morale
+    retired_in: "Block E1 (E4)"
+    retired_reason: "recomputed from the components with its CI: civic duty (Q76e-tan) minus councillors listen (Q38b) 42.6 pp, minus MPs listen (Q38a) 50.5 pp, minus taxes used for well-being (Q47c) -10.8 pp"
+  agents.ussd.trust_uplift_low:
+    value: 0.02
+    basis: UNKNOWN
+    source: "Lower bound of the yearly trust gain from the USSD nudge; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1)"
+  agents.ussd.trust_uplift_high:
+    value: 0.08
+    basis: UNKNOWN
+    source: "Upper bound of the yearly trust gain from the USSD nudge; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1)"
+  agents.ussd.morale_uplift_low:
+    value: 0.03
+    basis: UNKNOWN
+    source: "Lower bound of the yearly morale gain from the USSD nudge; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1)"
+  agents.ussd.morale_uplift_high:
+    value: 0.1
+    basis: UNKNOWN
+    source: "Upper bound of the yearly morale gain from the USSD nudge; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1)"
+  agents.edu.morale_uplift_low:
+    value: 0.02
+    basis: UNKNOWN
+    source: "Lower bound of the yearly morale gain from urban education programmes; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1)"
+  agents.edu.morale_uplift_high:
+    value: 0.07
+    basis: UNKNOWN
+    source: "Upper bound of the yearly morale gain from urban education programmes; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1)"
+  agents.norm_uplift_factor:
+    value: 0.05
+    basis: UNKNOWN
+    source: "Community-norm effect: morale rises by up to compliance rate x 0.05 per year; no source."
+    feeds: "C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    group: tier
+    retired_in: "Block E3"
+    retired_reason: "replaced by morale-model odds ratios (E3.1): the endogenous community-norm feedback on morale is retired together with the trust / morale uplift path"
+  twin.growth.mm_users:
+    basis: DATA
+    from: "data/processed/twin_inputs.json"
+    data_file: twin_inputs
+    data_path: "parameters.twin_growth_mm_users.value"
+    source: "Compound annual growth of BoT active mobile-money accounts 2019-2024 (x1.21). Replaced the typed 1.08 (UNKNOWN)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block E3"
+    retired_reason: "account-based growth retired (E3.3): mobile-money users now grow with the adult population plus a rise in penetration toward a cap (twin.growth.adult_population, twin.mm.penetration_cap, twin.mm.penetration_gap_closure); the Bank of Tanzania account growth (x1.21 a year) described accounts, not persons, and could take users above the number of adults"
+  twin.cap.mm_users_share_of_population:
+    value: 0.85
+    basis: ASSUMPTION
+    source: "Structural ceiling: mobile-money users cannot exceed 85% of the population."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block E3"
+    retired_reason: "superseded in E3.3 by twin.mm.penetration_cap (a share of ADULTS, not of the population)"
+  stage.cost.asset_tzs:
+    value: 617500000
+    basis: ASSUMPTION
+    source: "The report states NO cost for Asset (Asset Score: 'Not yet modeled'). Set to the mean of the four stated adult-stage costs (420M, 600M, 750M, 700M) = 617.5M as a placeholder; no budget exists to cite. For the owner's sign-off."
+    feeds: "C041-C053 (Table 40)"
+    group: stage_economics
+    retired_in: "Block E3"
+    retired_reason: "the 617.5M placeholder (mean of the four stated costs) is removed in E3.4: the report states no Asset cost; Asset now reports a break-even cost (the programme cost at which ROI = 1) and is excluded from the portfolio cost and ROI"
+  tax_morale.trust_penalty_factor:
+    value: 0.3
+    basis: ASSUMPTION
+    source: "Strength of the low-trust penalty (share of the weighted score lost per unit of trust shortfall); design choice, no empirical calibration."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    retired_in: "Block F0"
+    retired_reason: "trust-penalty logic removed (Block F0): the penalty applies only when trust is below 0.5 and the data baseline is 0.785, so it never bound in the published runs"
+  tax_morale.trust_penalty_threshold:
+    value: 0.5
+    basis: ASSUMPTION
+    source: "Functional form: compliance is reduced further when the trust score is below this level; design choice, no empirical calibration."
+    feeds: "C008, C054, C055, C069, C078 ({FIG51})"
+    group: morale
+    retired_in: "Block F0"
+    retired_reason: "trust-penalty logic removed (Block F0): the penalty applies only when trust is below 0.5 and the data baseline is 0.785, so it never bound in the published runs"
+  twin.cap.social_norm:
+    value: 0.9
+    basis: ASSUMPTION
+    source: "Structural ceiling for the social-norm score."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block F0"
+    retired_reason: "dead twin state removed (Block F0): the social-norm score was updated but never entered registrations or revenue"
+  twin.school_curriculum.start_year:
+    value: 5
+    basis: ASSUMPTION
+    source: "Year from which the school curriculum is assumed to affect trust."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block F0"
+    retired_reason: "dead twin state removed (Block F0): the school-curriculum policy is switched off in both published scenarios, so these constants never acted"
+  twin.school_curriculum.trust_bonus:
+    value: 0.02
+    basis: ASSUMPTION
+    source: "Extra yearly trust gain once a school tax curriculum has run for 5 years: a policy-scenario input of the intervention, with no historical series or study behind it in the project; kept as the typed value for the owner's sign-off (the effect applies only when the curriculum intervention is switched on)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block F0"
+    retired_reason: "dead twin state removed (Block F0): the school-curriculum policy is switched off in both published scenarios, so these constants never acted"
+  twin.social_norm.feedback:
+    value: 0.05
+    basis: ASSUMPTION
+    source: "Share of the compliance rate added to the social-norm score each year: a feedback loop of the model's design; no data series measures it (Afrobarometer gives the level of the norm, not its dynamics). Kept for sign-off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block F0"
+    retired_reason: "dead twin state removed (Block F0): the social-norm score was updated but never entered registrations or revenue"
+  interventions.community_compliance_norms.cost_tzs:
+    value: 350000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'Community compliance norms' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.community_compliance_norms.revenue_tzs:
+    value: 5600000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'Community compliance norms' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.dispute_fast_track.cost_tzs:
+    value: 900000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'Dispute fast-track tribunal' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.dispute_fast_track.revenue_tzs:
+    value: 6300000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'Dispute fast-track tribunal' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.mobile_money_tin_bridge.cost_tzs:
+    value: 1200000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'Mobile money TIN bridge' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.mobile_money_tin_bridge.revenue_tzs:
+    value: 15400000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'Mobile money TIN bridge' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.presumptive_tax_simplification.cost_tzs:
+    value: 600000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'Presumptive tax simplification' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.presumptive_tax_simplification.revenue_tzs:
+    value: 12800000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'Presumptive tax simplification' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.property_registry.cost_tzs:
+    value: 3500000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'Property registry reform' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.property_registry.revenue_tzs:
+    value: 18200000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'Property registry reform' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.school_tax_curriculum.cost_tzs:
+    value: 800000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'School tax curriculum' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.school_tax_curriculum.revenue_tzs:
+    value: 3200000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'School tax curriculum' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.ussd_tin_nudge.cost_tzs:
+    value: 420000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'USSD TIN registration nudge' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.ussd_tin_nudge.revenue_tzs:
+    value: 8700000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'USSD TIN registration nudge' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.visible_tax_returns.cost_tzs:
+    value: 250000000
+    basis: UNKNOWN
+    source: "Implementation cost of 'Visible tax returns campaign' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.visible_tax_returns.revenue_tzs:
+    value: 4100000000
+    basis: UNKNOWN
+    source: "Expected annual additional revenue of 'Visible tax returns campaign' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+  interventions.mobile_money_tin_bridge.beneficiaries:
+    value: 23140012
+    basis: DATA
+    source: "Mobile-money users without a TIN, FinScope 2023: finscope_summary.json mm_no_tin = 23,140,012 (typed copy of the same number)."
+    feeds: "C041-C053 (Table 40 costs, revenues, ROI), dashboard cost/revenue figures"
+    group: cost
+    retired_in: "Block F0"
+    retired_reason: "typed copy of a FinScope count whose only reader was the cost-benefit block removed in Block F0"
+  base.personal_income_tax_rate:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "A flat 15% applied to informal income as a modelling simplification; the statutory resident PIT schedule is graduated and was not matched to this value."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block F1"
+    retired_reason: "flat 15% rate on mean earnings replaced (Block F1) by the statutory resident schedule applied to the DISTRIBUTION of ILFS 2024 earnings (the effective average rate is a small fraction of the typed 15%: see data/processed/twin_inputs.json base_new_taxpayer_mean_tax_tzs)"
+  base.presumptive_tax_rate:
+    value: 0.03
+    basis: ASSUMPTION
+    source: "Simplified flat presumptive rate; the report cites a statutory 3.5% band for TZS 11-100M turnover (C033, not yet cited) and this value was not matched to it."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    signoff: "approved (John, 2026-11-12)"
+    retired_in: "Block F1"
+    retired_reason: "flat 3% rate on mean receipts replaced (Block F1) by the statutory presumptive schedule applied to the DISTRIBUTION of ILFS 2024 turnover (Finance Act 2026: 4.0% above TZS 11 million up to TZS 200 million)"
+  twin.policy.hypothetical_additional_levy:
+    value: 0.003
+    basis: ASSUMPTION
+    source: "Policy scenario: a HYPOTHETICAL ADDITIONAL levy of 0.3% of the value of mobile-money payments (the twin's mobile_money_gdp_pct x GDP), on top of the levy that already exists. Context (Block F2, docs/mobile_money_levy.md): Tanzania already levies mobile-money transactions under section 46A of the National Payment Systems Act (Cap. 437), a TIERED FIXED FEE per transaction (TZS 10 to TZS 2,000 by value band, GN 596C of 5 October 2022), on cash WITHDRAWALS ONLY since the Finance Act 2023 (1 July 2023); its revenue is already inside the observed tax-to-GDP baseline. No collection figure for the current levy was found, so no effective rate (collections / transaction value) could be derived for it and the lever is not expressed as a change relative to it. The only published collection estimate is for the earlier regime (GSMA: TZS 252 billion in 2022 on BoT mobile payments of TZS 114.3 trillion, about 0.22%, transfers and withdrawals). The 0.3% is a scenario input with no evidence behind it."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Editing Pass 1 (P0)"
+    retired_reason: "removed by owner: not a framework lever"
+  twin.policy.mobile_money_levy:
+    value: 0.003
+    basis: ASSUMPTION
+    source: "Policy scenario: 0.3% levy on mobile-money flows (comparable to the 0.3% Kenya excise noted in the code; not verified)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Block F2"
+    retired_reason: "replaced by twin.policy.hypothetical_additional_levy: a mobile-money levy already exists in Tanzania (National Payment Systems Act Cap. 437 s.46A; a tiered fixed fee per transaction, on withdrawals only since 1 July 2023), so a 0.3% levy cannot be called a new policy; no effective rate of the current levy could be derived (no collection figure for the withdrawal-only levy), so the lever is labelled a hypothetical ADDITIONAL levy; see docs/mobile_money_levy.md"

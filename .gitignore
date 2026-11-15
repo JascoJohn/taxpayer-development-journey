@@ -1,17 +1,44 @@
 # Byte-compiled / cache
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # Virtual environments
 .venv/
 venv/
 
+# Secrets (key names only go in .env.example)
+.env
+.env.*
+!.env.example
+
+# Superseded material kept locally, never published
+_archive/
+
 # OS cruft
 .DS_Store
 Thumbs.db
 
-# Research & reference documents (excluded per project decision)
-/Working Docs/
+# Raw data: NBS and FSDT terms forbid redistribution (see docs/data_terms.md and data/raw/SOURCES.csv).
+# Only the provenance file and READMEs in data/raw/ are tracked.
+data/raw/**
+!data/raw/*/
+!data/raw/SOURCES.csv
+!data/raw/README*
+!data/raw/*/README*
+# World Bank WDI snapshots are CC BY 4.0: tracked
+!data/raw/worldbank/**
 
-# Stale duplicate of the dashboard folder
-/tra_dashboard.zip
+# Private working material: never published (Publishing prep, 2026-11-15)
+# Everything under report/ is private except report/final/ (submission_v1, working copies, the original parts)
+report/*
+!report/final/
+!report/final/**
+
+# Local staging, archives and build output
+_publish_staging/
+*.zip
+*.tar
+*.tar.gz
+*.bak
+
