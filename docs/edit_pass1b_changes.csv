@@ -1,0 +1,165 @@
+﻿"location (page of the markup PDF, section)",category,old text,new text,note
+p.1 | cover,cover,"Cover poster of Pass 1 (old tool names, 58.2% / 40.4% / 61.8% WVS, QR code and address of the old demo, 'OWNED BY TRA', 'STRATEGIC VALUE FOR TRA')","Rebuilt poster (src/06_figures/cover_poster.py): new names, current claims-map values, MODELLED label, QR placeholder, same author line",R8: picture swapped with track changes at the original size
+p.1 | cover,logo,Tanzania Revenue Authority logo (top left of the poster),(none),R2/R8: logo removed; the rebuilt poster has no logo or emblem
+p.2 | front matter,TRA rule,TRA's relationship with a citizen effectively resets at every stage of economic life.,The tax system in Tanzania effectively resets its relationship with a citizen at every stage of economic life.,R2: Executive Summary opening
+p.2 | front matter,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.2 | front matter,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.2 | front matter,deliverable,A working prototype of each stage is available online.,Readers can try a working prototype of each stage online.,R3: live-demonstration sentence (Executive Summary)
+p.2 | front matter,heading,STRATEGIC VALUE FOR TRA,IMPLICATIONS FOR TAX ADMINISTRATION,R2: generic heading (C3/C4 list)
+p.2 | front matter,TRA rule,a TRA-owned relationship infrastructure,a relationship infrastructure,R2: 'TRA-owned' dropped as a selling point (Pass 1 suggestion)
+p.2 | Executive Summary,deliverable,[old demo address] (hyperlink),[Dashboard link] (yellow highlight),R3: live-demonstration link replaced by the placeholder; the hyperlink itself is deleted (tracked)
+p.4 | front matter,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.4 | front matter,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.4 | front matter,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.4 | front matter,name,Registration),Registration Tool),R1: Entry English name now 'Taxpayer Targeting and Registration Tool'
+p.4 | front matter,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.4 | front matter,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.4 | front matter,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.5 | front matter,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.5 | front matter,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.5 | front matter,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.5 | front matter,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.5 | front matter,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.5 | front matter,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+"footer, section 2 (all pages of the main text)",footer,Rule: light grey (CFD8DC) on both footer lines; separators '  ·  '; placeholder '[link]',"Rule: report green (1B5E20), on the first line only; separators ' · '; placeholder '[Dashboard link]' (yellow); page number stays on the right",R7: footer restyle (tracked paragraph-format and text changes)
+"footer, section 3 (appendix pages)",footer,Rule: light grey (CFD8DC) on both footer lines; separators '  ·  '; placeholder '[link]',"Rule: report green (1B5E20), on the first line only; separators ' · '; placeholder '[Dashboard link]' (yellow); page number stays on the right",R7: footer restyle (tracked paragraph-format and text changes)
+p.7 | Executive Summary,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.8 | 1. The Problem,TRA rule,Tanzania Revenue Authority (TRA),tax authority,R2: full name replaced (the preceding 'the' kept)
+p.8 | 1. The Problem,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.9 | 2. The Idea,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.9 | 2. The Idea,name,Registration),Registration Tool),R1: Entry English name now 'Taxpayer Targeting and Registration Tool'
+p.9 | 2. The Idea,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.9 | 2. The Idea,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.11 | 3. Theory of Change,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.12 | 3. Theory of Change,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.12 | 3. Theory of Change,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.12 | 3. Theory of Change,ToC,"Theory of Change graphic (Madarasa Ya Kodi, Karibu TIN (USSD Nudge), Presumptive Tax Simplification, Ngazi (The Ladder), Rental Income Formalization, TIN Succession + Compliance Cert.)","Rebuilt graphic (src/06_figures/theory_of_change.py): same structure, the six agreed tool names (Swahili with English), the journey graphic's stage colours",R8: picture swapped with track changes at the original size
+p.14 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.14 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.15 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.15 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,deliverable,Live Pilot Demonstration:,Live Demonstration:,R3: live-demonstration paragraph (chapter 4 introduction)
+p.15 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,deliverable,The working prototype of each stage is available at:,Readers can try the working prototype of each stage at:,R3: live-demonstration paragraph (chapter 4 introduction)
+p.15 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,deliverable,[old demo address] (hyperlink),[Dashboard link] (yellow highlight),R3: live-demonstration link replaced by the placeholder; the hyperlink itself is deleted (tracked)
+p.15 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,objectives,,New paragraph: 'The six stages serve five core objectives of tax administration in developing countries: ... each stage section ends by showing how far that stage covers each of them.' (4 sentences) + Word comment 'DRAFT for owner review',"R4/R5: introduction of the five objectives; wording follows docs/objectives_mapping.md (design objectives, not 'widely recognised')"
+p.15 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,name,Journey graphic of Pass 1 (Entry: 'Taxpayer Targeting and Registration'),Journey graphic regenerated (Entry: 'Taxpayer Targeting and Registration Tool'),R1: picture swapped with track changes at the original size
+p.16 | 4.1 Seed Stage: Tanzania's Pre-Adult Population,TRA rule,Tanzania Revenue Authority,tax authority,R2: full name replaced (the preceding 'the' kept)
+p.17 | Who Are They?,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.17 | Who Are They?,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.17 | Who Are They?,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.17 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.17 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.17 | The Challenge & Behavioral Nudge,TRA rule,The implication for TRA is straightforward,The implication for tax administration is straightforward,R2: C3/C4 list wording
+p.18 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.18 | The Proposed Solution: Michezo ya Kodi (Tax Learning Games),TRA rule,A gamified digital learning platform developed and promoted by TRA. Michezo ya Kodi is designed to create that familiarity before tax obligations begin.,A gamified digital learning platform designed to create familiarity with taxes before tax obligations begin.,R2: Michezo ya Kodi description (drop 'developed and promoted by TRA')
+p.18 | The Proposed Solution: Michezo ya Kodi (Tax Learning Games),heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.18 | The Proposed Solution: Michezo ya Kodi (Tax Learning Games),TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.18 | How the Game Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.19 | How the Game Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.19 | How the Game Works,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.19 | How the Game Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.19 | How the Game Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.20 | How the Game Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.21 | Deliverable,deliverable,"TRA receives a playable digital game, a scalable engagement platform, usage analytics and participation metrics, and a structured channel for reaching future taxpayers before economic participation begins.","Michezo ya Kodi (Tax Learning Games) is the first module of the Ngazi Platform. To demonstrate how familiarity with taxes can be built before tax obligations begin, this report presents a playable digital game that readers can try at [Dashboard link]. The game is a scalable engagement platform that produces usage analytics and participation metrics and offers a structured channel for reaching future taxpayers before economic participation begins.",R3: Deliverable pattern (stage 1)
+p.21 | Link to TRA Objectives,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.21 | Link to TRA Objectives,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.21 | Link to TRA Objectives,link,TRA's strategic,the core,R4: caption 'alignment to TRA's strategic objectives' -> 'alignment to the core objectives'
+p.23 | 4.2 Entry Stage: Young People Starting Their Financial Journey,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.23 | 4.2 Entry Stage: Young People Starting Their Financial Journey,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.24 | Link to CoreTRA Objectives,link,TRA Objective,Objective,R4: table header 'TRA Objective' -> 'Objective' (correction of the first automatic replacement)
+p.24 | Who Are They?,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.24 | Who Are They?,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.24 | The Challenge & Behavioral Nudge,TRA rule,TRA,tax,R2: TRA -> tax authority (generic)
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,TRA rule,TRA,tax,R2: TRA -> tax authority (generic)
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,name,Registration),Registration Tool),R1: Entry English name now 'Taxpayer Targeting and Registration Tool'
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.25 | The Proposed Solution: Ujumuishaji wa Kikodi (Taxpayer Targeting and R,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.26 | How the Model Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.26 | How the Model Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.26 | How the Model Works,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.26 | Deliverable,deliverable,Not an idea for a text message — an Ujumuishaji wa Kikodi tool. A prototype,"Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration Tool) is the second module of the Ngazi Platform. To demonstrate how a limited outreach budget can be directed to the people most likely to register, this report presents a working tool that readers can try at [Dashboard link]. It is a prototype",R3: Deliverable pattern (stage 2)
+p.27 | Proposed Growth Pathway,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.27 | Proposed Growth Pathway,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.27 | Deliverable,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.28 | Link to TRA Objectives,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.28 | Link to TRA Objectives,link,TRA's strategic,the core,R4: caption 'alignment to TRA's strategic objectives' -> 'alignment to the core objectives'
+p.28 | Strategic Contribution,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.29 | 4.3 Active Stage: Informal Businesses Outside the Tax Register,TRA rule,TRA,tax,R2: TRA -> tax authority (generic)
+p.30 | The Challenge & Behavioral Nudge,TRA rule,TRA,tax authority,R2: TRA -> tax authority (generic)
+p.31 | Link to CoreTRA Objectives,link,TRA Objective,Objective,R4: table header 'TRA Objective' -> 'Objective' (correction of the first automatic replacement)
+p.31 | The Proposed Solution: Mzani wa Kodi (Presumptive Tax Estimator),TRA rule,TRA,tax,R2: TRA -> tax authority (generic)
+p.31 | The Proposed Solution: Mzani wa Kodi (Presumptive Tax Estimator),heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.32 | Deliverable,deliverable,"TRA receives a working Mzani wa Kodi that is at once a presumptive tax benchmarking platform,","Mzani wa Kodi (Presumptive Tax Estimator) is the third module of the Ngazi Platform. To demonstrate how a transparent benchmark can support fair presumptive assessments, this report presents a working tool that readers can try at [Dashboard link]. The tool is at once a presumptive tax benchmarking platform,",R3: Deliverable pattern (stage 3)
+p.32 | How the Tool Works,TRA rule,TRA,tax,R2: TRA -> tax authority (generic)
+p.33 | Link to TRA Objectives,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.33 | Link to TRA Objectives,link,TRA's strategic,the core,R4: caption 'alignment to TRA's strategic objectives' -> 'alignment to the core objectives'
+p.33 | Strategic Contribution,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.34 | Integration into the Ngazi Platform,TRA rule,TRA,tax,R2: TRA -> tax authority (generic)
+p.35 | 4.4 Enterprise Stage: Traders Who Have Already Taken the First Step,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.36 | Link to CoreTRA Objectives,link,TRA Objective,Objective,R4: table header 'TRA Objective' -> 'Objective' (correction of the first automatic replacement)
+p.37 | The Proposed Solution: Hatua za Kodi (Tax Progression Dashboard),TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.37 | The Proposed Solution: Hatua za Kodi (Tax Progression Dashboard),heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.38 | Deliverable,deliverable,A Hatua za Kodi dashboard serving both taxpayers and TRA.,"Hatua za Kodi (Tax Progression Dashboard) is the fourth module of the Ngazi Platform. To demonstrate how progression through the tax system can be made visible and recognised, this report presents an interactive prototype that readers can try at [Dashboard link]. The dashboard serves both taxpayers and the tax authority.",R3: Deliverable pattern (stage 4)
+p.39 | Proposed Growth Pathway,TRA rule,TRA,the tax authority's,R2: TRA -> tax authority (generic)
+p.39 | Deliverable,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.39 | Deliverable,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.39 | Link to TRA Objectives,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.40 | Link to TRA Objectives,link,TRA's strategic,the core,R4: caption 'alignment to TRA's strategic objectives' -> 'alignment to the core objectives'
+p.40 | Strategic Contribution,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.40 | Strategic Contribution,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.40 | Integration in the Ngazi Platform,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.43 | Link to CoreTRA Objectives,link,TRA Objective,Objective,R4: table header 'TRA Objective' -> 'Objective' (correction of the first automatic replacement)
+p.43 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.43 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.43 | The Proposed Solution: Mali-Alama za Kodi (Tax Asset Score),heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.45 | Deliverable,deliverable,TRA receives a Tax Asset Score Dashboard serving both citizens and administrators.,"Mali-Alama za Kodi (Tax Asset Score) is the fifth module of the Ngazi Platform. To demonstrate how transparent asset declaration can become a verified record that citizens own and can use, this report presents an interactive prototype that readers can try at [Dashboard link]. The prototype is a Tax Asset Score Dashboard serving both citizens and administrators.",R3: Deliverable pattern (stage 5)
+p.46 | Deliverable,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.46 | Link to TRA Objectives,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.47 | Link to TRA Objectives,link,TRA's strategic,the core,R4: caption 'alignment to TRA's strategic objectives' -> 'alignment to the core objectives'
+p.47 | Strategic Contribution,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.47 | Strategic Contribution,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.48 | 4.6 Legacy Stage: A Lifetime of Compliance That Currently Disappears,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.49 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.49 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.50 | Link to CoreTRA Objectives,link,TRA Objective,Objective,R4: table header 'TRA Objective' -> 'Objective' (correction of the first automatic replacement)
+p.50 | The Challenge & Behavioral Nudge,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.50 | The Proposed Solution: Urithi wa Kodi (Tax Legacy Score),TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.50 | How the Score Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.51 | The Proposed Solution: Urithi wa Kodi (Tax Legacy Score),heading,Proposed Solution,Solution,R2: 'The Proposed Solution' -> 'The Solution' (heading and table-of-contents line)
+p.51 | How the Score Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.51 | How the Score Works,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.52 | Deliverable,deliverable,TRA receives Urithi wa Kodi — a digital workflow that enables taxpayers to prepare,"Urithi wa Kodi (Tax Legacy Score) is the sixth module of the Ngazi Platform. To demonstrate how a taxpayer's compliance history can be carried through succession, this report presents an interactive prototype that readers can try at [Dashboard link]. The prototype is a digital workflow that enables taxpayers to prepare",R3: Deliverable pattern (stage 6)
+p.52 | Proposed Growth Pathway,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.53 | Deliverable,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.53 | Deliverable,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.53 | Link to TRA Objectives,link,TRA,Core,R4: 'Link to TRA Objectives' -> 'Link to Core Objectives'
+p.53 | Link to TRA Objectives,link,TRA's strategic,the core,R4: caption 'alignment to TRA's strategic objectives' -> 'alignment to the core objectives'
+p.57 | Link to CoreTRA Objectives,link,TRA Objective,Objective,R4: table header 'TRA Objective' -> 'Objective' (correction of the first automatic replacement)
+p.62 | References,annex,Technical Appendix,Framework Annex,R6: 'Technical Appendix' -> 'Framework Annex'
+p.63 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.63 | References,annex,This appendix presents,This annex presents,R6: running text
+p.63 | References,name,Registration),Registration Tool),R1: Entry English name now 'Taxpayer Targeting and Registration Tool'
+p.63 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.64 | 2. Theoretical Underpinning,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.64 | 2. Theoretical Underpinning,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.65 | 2. Theoretical Underpinning,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.65 | 2. Theoretical Underpinning,TRA rule,TRA,The tax authority,R2: TRA -> tax authority (generic)
+p.65 | 3. Technical Description,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.65 | 3. Technical Description,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.65 | 3. Technical Description,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.66 | 3. Technical Description,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.66 | 4. Growth Potential,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.66 | 4. Growth Potential,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.67 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.67 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.67 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.68 | 4. Growth Potential,name,Registration),Registration Tool),R1: Entry English name now 'Taxpayer Targeting and Registration Tool'
+p.68 | 2. Theoretical Underpinning,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.75 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.77 | 3. Technical Description,TRA rule,TRA,tax-authority,R2: TRA -> tax authority (generic)
+p.79 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.79 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.82 | 1. Conceptual View,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)
+p.83 | 2. Theoretical Underpinning,TRA rule,TRA,the tax authority,R2: TRA -> tax authority (generic)

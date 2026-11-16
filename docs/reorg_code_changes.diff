@@ -1,0 +1,451 @@
+# Unified diff of every code change made while copying the Behavioral project into the new layout.
+# Allowed scope: PATHS ONLY (plus moving seeds / simulation sizes into config.yaml, same values).
+# 'a/' = original file in the source project, 'b/' = file in this project. New files are shown against /dev/null.
+
+--- a/pipeline/run_all.py
++++ b/run_all.py
+@@ -21,4 +21,9 @@
+ 
+ import json
++import os
++import sys
++
++sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "src"))
++import paths  # resolves every location from config.yaml; puts src/<stage> folders on sys.path
+ 
+ import finscope_analysis
+@@ -42,13 +47,13 @@
+     print("STEP 3: Tier-migration simulation (Enterprise dashboard)")
+     print("=" * 60)
+-    with open("economic_model.json", encoding="utf-8") as f:
++    with open(paths.ECONOMIC_MODEL, encoding="utf-8") as f:
+         base_parameters = json.load(f)["base_parameters"]
+     tier_result = economic_model.run_tier_migration_simulation(
+-        base_parameters, n_agents=500_000, n_years=10
++        base_parameters, n_agents=paths.N_AGENTS, n_years=paths.N_YEARS
+     )
+-    with open("economic_model.json", encoding="utf-8") as f:
++    with open(paths.ECONOMIC_MODEL, encoding="utf-8") as f:
+         model = json.load(f)
+     model["tier_migration_simulation"] = tier_result
+-    with open("economic_model.json", "w", encoding="utf-8") as f:
++    with open(paths.ECONOMIC_MODEL, "w", encoding="utf-8") as f:
+         json.dump(model, f, indent=2, ensure_ascii=False)
+ 
+
+--- a/pipeline/finscope_analysis.py
++++ b/src/03_features/finscope_analysis.py
+@@ -49,7 +49,11 @@
+ # CONFIGURATION
+ # ============================================================
+-FINSCOPE_FILE = "FinScope.csv"
+-SUMMARY_FILE  = "finscope_summary.json"
+-REPORT_FILE   = "finscope_report.txt"
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++FINSCOPE_FILE = paths.FINSCOPE_CSV
++SUMMARY_FILE  = paths.FINSCOPE_SUMMARY
++REPORT_FILE   = paths.FINSCOPE_REPORT
+ WEIGHT_VAR    = "population_wt"
+ 
+@@ -864,5 +868,5 @@
+ 
+ WEIGHT_VAR        = "population_wt"
+-FEATURE_STORE_FILE = "finscope_feature_store.json"
++FEATURE_STORE_FILE = paths.FINSCOPE_FEATURE_STORE
+ 
+ 
+@@ -1778,10 +1782,10 @@
+     print("═" * 60 + "\n")
+ 
+-    if not os.path.exists("FinScope.csv"):
++    if not os.path.exists(FINSCOPE_FILE):
+         print("  ✗ FinScope.csv not found")
+         return
+ 
+     print("  Loading FinScope.csv...")
+-    df = pd.read_csv("FinScope.csv", low_memory=False)
++    df = pd.read_csv(FINSCOPE_FILE, low_memory=False)
+ 
+     # Need to convert ArrowStringArray
+@@ -1827,6 +1831,6 @@
+ 
+     # Also merge into finscope_summary.json if it exists
+-    if os.path.exists("finscope_summary.json"):
+-        with open("finscope_summary.json", "r",
++    if os.path.exists(SUMMARY_FILE):
++        with open(SUMMARY_FILE, "r",
+                   encoding="utf-8") as f:
+             summary = json.load(f)
+@@ -1835,5 +1839,5 @@
+             "total_indicators"
+         ]
+-        with open("finscope_summary.json", "w",
++        with open(SUMMARY_FILE, "w",
+                   encoding="utf-8") as f:
+             json.dump(summary, f, indent=2,
+@@ -2156,5 +2160,5 @@
+     import json as _json
+     feature_store = extract_full_feature_store(df)
+-    with open("finscope_feature_store.json", "w",
++    with open(FEATURE_STORE_FILE, "w",
+               encoding="utf-8") as _f:
+         _json.dump(feature_store, _f, indent=2,
+
+--- a/pipeline/shared_context.py
++++ b/src/03_features/shared_context.py
+@@ -68,8 +68,12 @@
+ # FILE PATHS
+ # ============================================================
+-SHARED_CONTEXT_FILE    = "shared_context.json"
+-AUDIT_TRAIL_FILE       = "audit_trail.json"
+-INTERVENTION_FILE      = "intervention_register.json"
+-ASSUMPTION_FILE        = "assumption_ledger.json"
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++SHARED_CONTEXT_FILE    = paths.SHARED_CONTEXT
++AUDIT_TRAIL_FILE       = paths.AUDIT_TRAIL
++INTERVENTION_FILE      = paths.INTERVENTION_REGISTER
++ASSUMPTION_FILE        = paths.ASSUMPTION_LEDGER
+ 
+ # ============================================================
+@@ -1023,5 +1027,5 @@
+ 
+     # Also save to report_sections.json (for v4 compatibility)
+-    sections_file = "report_sections.json"
++    sections_file = paths.REPORT_SECTIONS
+     if os.path.exists(sections_file):
+         with open(sections_file, "r", encoding="utf-8") as f:
+@@ -1208,6 +1212,6 @@
+ # ============================================================
+ def run_shared_context_setup(
+-    finscope_summary_path: str = "finscope_summary.json",
+-    economic_model_path: str = "economic_model.json"
++    finscope_summary_path: str = paths.FINSCOPE_SUMMARY,
++    economic_model_path: str = paths.ECONOMIC_MODEL
+ ) -> dict:
+     """
+
+--- a/pipeline/finscope_active_benchmark_loader.py
++++ b/src/03_features/finscope_active_benchmark_loader.py
+@@ -39,6 +39,10 @@
+ import pandas as pd
+ 
+-CSV_PATH = "FinScope.csv"
+-OUTPUT_PATH = "finscope_active_benchmark.json"
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++CSV_PATH = paths.FINSCOPE_CSV
++OUTPUT_PATH = paths.FINSCOPE_ACTIVE_BENCHMARK
+ 
+ # Same four categories as finscope_region_activity_loader.py -- the
+
+--- a/pipeline/finscope_region_activity_loader.py
++++ b/src/03_features/finscope_region_activity_loader.py
+@@ -31,6 +31,10 @@
+ import pandas as pd
+ 
+-CSV_PATH = "FinScope.csv"
+-OUTPUT_PATH = "finscope_region_activity.json"
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++CSV_PATH = paths.FINSCOPE_CSV
++OUTPUT_PATH = paths.FINSCOPE_REGION_ACTIVITY
+ 
+ # The four IncomeMain categories that represent an actual own-account
+
+--- a/pipeline/assumption_ledger.py
++++ b/src/04_models/assumption_ledger.py
+@@ -53,7 +53,11 @@
+ # FILE PATHS
+ # ============================================================
+-LEDGER_FILE  = "assumption_ledger.json"
+-REPORT_FILE  = "assumption_ledger_report.txt"
+-SUMMARY_FILE = "assumption_ledger_summary.json"
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++LEDGER_FILE  = paths.ASSUMPTION_LEDGER
++REPORT_FILE  = paths.ASSUMPTION_LEDGER_REPORT
++SUMMARY_FILE = paths.ASSUMPTION_LEDGER_SUMMARY
+ 
+ 
+
+--- a/pipeline/economic_model.py
++++ b/src/04_models/economic_model.py
+@@ -53,7 +53,11 @@
+ # CONFIGURATION
+ # ============================================================
+-FINSCOPE_SUMMARY_FILE = "finscope_summary.json"
+-ECONOMIC_MODEL_OUTPUT = "economic_model.json"
+-RANDOM_SEED           = 42
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++FINSCOPE_SUMMARY_FILE = paths.FINSCOPE_SUMMARY
++ECONOMIC_MODEL_OUTPUT = paths.ECONOMIC_MODEL
++RANDOM_SEED           = paths.RANDOM_SEED
+ random.seed(RANDOM_SEED)
+ np.random.seed(RANDOM_SEED)
+@@ -833,6 +837,6 @@
+ # ============================================================
+ 
+-def run_agent_based_simulation(params, n_agents=500_000,
+-                                 n_years=10):
++def run_agent_based_simulation(params, n_agents=paths.N_AGENTS,
++                                 n_years=paths.N_YEARS):
+     """
+     Simulates 500,000 synthetic Tanzanian citizens
+@@ -1036,5 +1040,5 @@
+ # ============================================================
+ 
+-def run_tier_migration_simulation(params, n_agents=500_000, n_years=10):
++def run_tier_migration_simulation(params, n_agents=paths.N_AGENTS, n_years=paths.N_YEARS):
+     """
+     Simulates the same size population as run_agent_based_simulation(),
+@@ -2546,5 +2550,5 @@
+     print("-" * 40)
+     agent_sim = run_agent_based_simulation(
+-        params, n_agents=500_000, n_years=10
++        params, n_agents=paths.N_AGENTS, n_years=paths.N_YEARS
+     )
+ 
+
+--- a/pipeline/intervention_registrar.py
++++ b/src/04_models/intervention_registrar.py
+@@ -45,9 +45,14 @@
+ import json
+ 
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++
+ from shared_context import register_intervention, LIFECYCLE_STAGES
+ 
+-SECTIONS_FILE = "report_sections.json"
+-ECON_FILE = "economic_model.json"
+-REGISTER_FILE = "intervention_register.json"
++SECTIONS_FILE = paths.REPORT_SECTIONS
++ECON_FILE = paths.ECONOMIC_MODEL
++REGISTER_FILE = paths.INTERVENTION_REGISTER
+ 
+ _STAGE_ALIASES = {
+
+--- a/pipeline/finscope_targeting_population_loader.py
++++ b/src/05_simulation/finscope_targeting_population_loader.py
+@@ -50,8 +50,12 @@
+     SKLEARN_AVAILABLE = False
+ 
+-RANDOM_SEED = 42
+-ECON_MODEL_PATH = "economic_model.json"
+-FINSCOPE_SUMMARY_PATH = "finscope_summary.json"
+-OUTPUT_PATH = "finscope_targeting_population.json"
++import os
++import sys
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
++import paths
++RANDOM_SEED = paths.RANDOM_SEED
++ECON_MODEL_PATH = paths.ECONOMIC_MODEL
++FINSCOPE_SUMMARY_PATH = paths.FINSCOPE_SUMMARY
++OUTPUT_PATH = paths.FINSCOPE_TARGETING_POPULATION
+ 
+ STAGE_NAMES = {0: "entry", 1: "active", 2: "asset", 3: "legacy"}
+
+--- a/tra_dashboard/tra_dashboard/tdj_lib/pipeline_data.py
++++ b/dashboard/tdj_lib/pipeline_data.py
+@@ -1,5 +1,5 @@
+ """Bridge into this project's own data pipeline (economic_model.json,
+ intervention_register.json, finscope_region_activity.json) -- fully
+-migrated into TRA Innovation 2/pipeline/, no cross-project dependency.
++migrated into this project (src/, outputs/), no cross-project dependency.
+ 
+ Originally this read across to a sibling project (tanzania_policy_agent
+@@ -30,13 +30,26 @@
+ import json
+ import os
++import sys
+ from dataclasses import dataclass
+ from typing import Any, Optional
+ 
+-DEFAULT_PIPELINE_DIR = os.environ.get(
+-    "TDJ_PIPELINE_DIR",
+-    os.path.normpath(os.path.join(
+-        os.path.dirname(__file__), "..", "..", "..", "pipeline",
+-    )),
+-)
++# Project root = two levels above this file (dashboard/tdj_lib/pipeline_data.py).
++_PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
++
++# TDJ_PIPELINE_DIR (optional) points at ONE flat folder holding the JSON files. When it is not set,
++# each file is located through config.yaml via src/paths.py (outputs/stats, data/processed).
++DEFAULT_PIPELINE_DIR = os.environ.get("TDJ_PIPELINE_DIR")
++
++
++def _configured_location(filename: str) -> Optional[str]:
++    """Where config.yaml says `filename` lives; None if src/paths.py or its dependencies are not available."""
++    try:
++        src_dir = os.path.join(_PROJECT_ROOT, "src")
++        if src_dir not in sys.path:
++            sys.path.insert(0, src_dir)
++        import paths
++        return paths.PIPELINE_FILES.get(filename)
++    except Exception:
++        return None
+ 
+ 
+@@ -51,7 +64,7 @@
+ 
+ 
+-def _load_json(pipeline_dir: str, filename: str) -> Optional[dict]:
+-    path = os.path.join(pipeline_dir, filename)
+-    if not os.path.exists(path):
++def _load_json(pipeline_dir: Optional[str], filename: str) -> Optional[dict]:
++    path = os.path.join(pipeline_dir, filename) if pipeline_dir else _configured_location(filename)
++    if not path or not os.path.exists(path):
+         return None
+     with open(path, "r", encoding="utf-8") as f:
+@@ -65,6 +78,6 @@
+     or an uploaded copy of the two JSON files."""
+ 
+-    def __init__(self, pipeline_dir: str = DEFAULT_PIPELINE_DIR):
+-        self.pipeline_dir = pipeline_dir
++    def __init__(self, pipeline_dir: Optional[str] = DEFAULT_PIPELINE_DIR):
++        self.pipeline_dir = pipeline_dir or "the locations set in config.yaml"
+         self._econ = _load_json(pipeline_dir, "economic_model.json")
+         self._register = _load_json(pipeline_dir, "intervention_register.json")
+
+--- /dev/null
++++ b/src/paths.py
+@@ -0,0 +1,78 @@
++"""Single place where file locations are resolved.
++
++Every location is read from config.yaml and resolved relative to the project root
++(the folder that contains config.yaml), never relative to the current working directory.
++
++Importing this module also puts the numbered stage folders under src/ on sys.path so
++that the scripts can keep importing each other by bare module name
++(e.g. `from shared_context import ...`).
++"""
++
++import os
++import sys
++
++import yaml
++
++SRC_DIR = os.path.dirname(os.path.abspath(__file__))
++ROOT = os.path.dirname(SRC_DIR)
++
++with open(os.path.join(ROOT, "config.yaml"), "r", encoding="utf-8") as _f:
++    CFG = yaml.safe_load(_f)
++
++
++def resolve(rel_path):
++    """Project-root-relative path from config.yaml ('/' separated) -> absolute OS path."""
++    return os.path.normpath(os.path.join(ROOT, *str(rel_path).split("/")))
++
++
++_F = CFG["files"]
++
++# raw inputs
++FINSCOPE_CSV = resolve(_F["finscope_csv"])
++FINSCOPE_DATAMAP = resolve(_F["finscope_datamap"])
++
++# interim
++FINSCOPE_SUMMARY = resolve(_F["finscope_summary"])
++FINSCOPE_FEATURE_STORE = resolve(_F["finscope_feature_store"])
++SHARED_CONTEXT = resolve(_F["shared_context"])
++
++# processed
++FINSCOPE_REGION_ACTIVITY = resolve(_F["finscope_region_activity"])
++FINSCOPE_ACTIVE_BENCHMARK = resolve(_F["finscope_active_benchmark"])
++
++# outputs
++ECONOMIC_MODEL = resolve(_F["economic_model"])
++FINSCOPE_REPORT = resolve(_F["finscope_report"])
++FINSCOPE_TARGETING_POPULATION = resolve(_F["finscope_targeting_population"])
++INTERVENTION_REGISTER = resolve(_F["intervention_register"])
++ASSUMPTION_LEDGER = resolve(_F["assumption_ledger"])
++ASSUMPTION_LEDGER_REPORT = resolve(_F["assumption_ledger_report"])
++ASSUMPTION_LEDGER_SUMMARY = resolve(_F["assumption_ledger_summary"])
++AUDIT_TRAIL = resolve(_F["audit_trail"])
++
++# frozen
++REPORT_SECTIONS = resolve(_F["report_sections"])
++
++# seeds and simulation sizes
++RANDOM_SEED = CFG["simulation"]["random_seed"]
++N_AGENTS = CFG["simulation"]["n_agents"]
++N_YEARS = CFG["simulation"]["n_years"]
++
++# File name -> location, used by the dashboard (dashboard/tdj_lib/pipeline_data.py)
++PIPELINE_FILES = {
++    "economic_model.json": ECONOMIC_MODEL,
++    "intervention_register.json": INTERVENTION_REGISTER,
++    "finscope_region_activity.json": FINSCOPE_REGION_ACTIVITY,
++    "finscope_active_benchmark.json": FINSCOPE_ACTIVE_BENCHMARK,
++    "finscope_targeting_population.json": FINSCOPE_TARGETING_POPULATION,
++}
++
++
++def _add_stage_dirs_to_syspath():
++    for name in sorted(os.listdir(SRC_DIR)):
++        full = os.path.join(SRC_DIR, name)
++        if os.path.isdir(full) and name[:2].isdigit() and full not in sys.path:
++            sys.path.insert(0, full)
++
++
++_add_stage_dirs_to_syspath()
+
+--- /dev/null
++++ b/config.yaml
+@@ -0,0 +1,38 @@
++# Project configuration - The Taxpayer Development Journey (Behavioral)
++# All paths are relative to the project root (the folder holding this file) and use "/".
++# src/paths.py reads this file; no script uses the working directory.
++
++project:
++  name: taxpayer-development-journey
++  title: "The Taxpayer Development Journey: A Behavioral Architecture for Tax Compliance"
++
++# Seeds and simulation sizes. Values are those hard-coded in the original scripts
++# (economic_model.py, finscope_targeting_population_loader.py, run_all.py).
++simulation:
++  random_seed: 42      # economic_model.RANDOM_SEED; targeting loader uses the same value (+2, +4 offsets in code)
++  n_agents: 500000     # agent-based and tier-migration simulations
++  n_years: 10          # simulation horizon in years
++
++# Every file the pipeline reads or writes.
++files:
++  # raw inputs
++  finscope_csv:        data/raw/finscope/FinScope.csv
++  finscope_datamap:    data/raw/finscope/FinScope Datamap.xlsx
++  # interim
++  finscope_summary:        data/interim/finscope_summary.json
++  finscope_feature_store:  data/interim/finscope_feature_store.json
++  shared_context:          data/interim/shared_context.json
++  # processed
++  finscope_region_activity:  data/processed/finscope_region_activity.json
++  finscope_active_benchmark: data/processed/finscope_active_benchmark.json
++  # outputs
++  economic_model:              outputs/stats/economic_model.json
++  finscope_report:             outputs/stats/finscope_report.txt
++  finscope_targeting_population: outputs/stats/finscope_targeting_population.json
++  intervention_register:       outputs/stats/intervention_register.json
++  assumption_ledger:           outputs/stats/assumption_ledger.json
++  assumption_ledger_report:    outputs/stats/assumption_ledger_report.txt
++  assumption_ledger_summary:   outputs/stats/assumption_ledger_summary.json
++  audit_trail:                 outputs/stats/audit_trail.json
++  # frozen: LLM-generated report sections carried over unchanged (not regenerated by this project)
++  report_sections:             outputs/frozen/report_sections.json
+

@@ -1,0 +1,1327 @@
+{
+ "method": "Each in-scope constant multiplied by 1.2 and 0.8 (lists and dicts: every numeric element); the model function that uses it is re-run and its published values are compared with the unperturbed run. flag '>5%' = a published value moves by more than 5% (relative). Tier-migration runs use 50000 agents. DATA inputs read from files (macro.*) are not perturbed.",
+ "delta": 0.2,
+ "threshold_pct": 5.0,
+ "tier_agents": 50000,
+ "results": {
+  "tax_morale.baseline.enforcement": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "tax_morale.weight.trust": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 3.12,
+    "most_affected": "naive_sum_of_solo_effects_pct",
+    "headline_max_rel_change_pct": 3.12
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.846,
+    "most_affected": "naive_sum_of_solo_effects_pct",
+    "headline_max_rel_change_pct": 2.846
+   },
+   "max_rel_change_pct": 3.12,
+   "most_affected_value": "naive_sum_of_solo_effects_pct",
+   "headline_max_rel_change_pct": 3.12,
+   "headline_most_affected": "naive_sum_of_solo_effects_pct",
+   "flag": "<=5%"
+  },
+  "tax_morale.weight.simplicity": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 5.232,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 5.232
+   },
+   "minus20": {
+    "max_rel_change_pct": 5.078,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 5.078
+   },
+   "max_rel_change_pct": 5.232,
+   "most_affected_value": "combined_intervention_probability",
+   "headline_max_rel_change_pct": 5.232,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": ">5%"
+  },
+  "tax_morale.weight.enforcement": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 1.306,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 1.306
+   },
+   "minus20": {
+    "max_rel_change_pct": 1.485,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 1.485
+   },
+   "max_rel_change_pct": 1.485,
+   "most_affected_value": "combined_intervention_probability",
+   "headline_max_rel_change_pct": 1.485,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.weight.social_norm": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 4.416,
+    "most_affected": "solo_community_compliance_norms",
+    "headline_max_rel_change_pct": 3.197
+   },
+   "minus20": {
+    "max_rel_change_pct": 4.344,
+    "most_affected": "solo_community_compliance_norms",
+    "headline_max_rel_change_pct": 3.122
+   },
+   "max_rel_change_pct": 4.416,
+   "most_affected_value": "solo_community_compliance_norms",
+   "headline_max_rel_change_pct": 3.197,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.weight.fairness": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 2.688,
+    "most_affected": "solo_visible_tax_returns",
+    "headline_max_rel_change_pct": 1.37
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.662,
+    "most_affected": "solo_visible_tax_returns",
+    "headline_max_rel_change_pct": 1.325
+   },
+   "max_rel_change_pct": 2.688,
+   "most_affected_value": "solo_visible_tax_returns",
+   "headline_max_rel_change_pct": 1.37,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.USSD_registration_nudge.simplicity": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 2.524,
+    "most_affected": "solo_USSD_registration_nudge",
+    "headline_max_rel_change_pct": 1.422
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.468,
+    "most_affected": "solo_USSD_registration_nudge",
+    "headline_max_rel_change_pct": 1.411
+   },
+   "max_rel_change_pct": 2.524,
+   "most_affected_value": "solo_USSD_registration_nudge",
+   "headline_max_rel_change_pct": 1.422,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.USSD_registration_nudge.trust": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 1.253,
+    "most_affected": "solo_USSD_registration_nudge",
+    "headline_max_rel_change_pct": 0.483
+   },
+   "minus20": {
+    "max_rel_change_pct": 1.24,
+    "most_affected": "solo_USSD_registration_nudge",
+    "headline_max_rel_change_pct": 0.483
+   },
+   "max_rel_change_pct": 1.253,
+   "most_affected_value": "solo_USSD_registration_nudge",
+   "headline_max_rel_change_pct": 0.483,
+   "headline_most_affected": "naive_sum_of_solo_effects_pct",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.civic_tax_education.social_norm": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 3.366,
+    "most_affected": "solo_civic_tax_education",
+    "headline_max_rel_change_pct": 1.876
+   },
+   "minus20": {
+    "max_rel_change_pct": 3.267,
+    "most_affected": "solo_civic_tax_education",
+    "headline_max_rel_change_pct": 1.863
+   },
+   "max_rel_change_pct": 3.366,
+   "most_affected_value": "solo_civic_tax_education",
+   "headline_max_rel_change_pct": 1.876,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.civic_tax_education.fairness": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 1.252,
+    "most_affected": "solo_civic_tax_education",
+    "headline_max_rel_change_pct": 0.703
+   },
+   "minus20": {
+    "max_rel_change_pct": 1.236,
+    "most_affected": "solo_civic_tax_education",
+    "headline_max_rel_change_pct": 0.7
+   },
+   "max_rel_change_pct": 1.252,
+   "most_affected_value": "solo_civic_tax_education",
+   "headline_max_rel_change_pct": 0.703,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.mobile_money_TIN_bridge.simplicity": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 4.159,
+    "most_affected": "solo_mobile_money_TIN_bridge",
+    "headline_max_rel_change_pct": 2.251
+   },
+   "minus20": {
+    "max_rel_change_pct": 4.021,
+    "most_affected": "solo_mobile_money_TIN_bridge",
+    "headline_max_rel_change_pct": 2.243
+   },
+   "max_rel_change_pct": 4.159,
+   "most_affected_value": "solo_mobile_money_TIN_bridge",
+   "headline_max_rel_change_pct": 2.251,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.mobile_money_TIN_bridge.trust": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 2.479,
+    "most_affected": "solo_mobile_money_TIN_bridge",
+    "headline_max_rel_change_pct": 1.057
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.429,
+    "most_affected": "solo_mobile_money_TIN_bridge",
+    "headline_max_rel_change_pct": 1.04
+   },
+   "max_rel_change_pct": 2.479,
+   "most_affected_value": "solo_mobile_money_TIN_bridge",
+   "headline_max_rel_change_pct": 1.057,
+   "headline_most_affected": "naive_sum_of_solo_effects_pct",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.community_compliance_norms.social_norm": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 4.99,
+    "most_affected": "solo_community_compliance_norms",
+    "headline_max_rel_change_pct": 2.68
+   },
+   "minus20": {
+    "max_rel_change_pct": 4.795,
+    "most_affected": "solo_community_compliance_norms",
+    "headline_max_rel_change_pct": 2.672
+   },
+   "max_rel_change_pct": 4.99,
+   "most_affected_value": "solo_community_compliance_norms",
+   "headline_max_rel_change_pct": 2.68,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.community_compliance_norms.trust": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 1.973,
+    "most_affected": "solo_community_compliance_norms",
+    "headline_max_rel_change_pct": 0.849
+   },
+   "minus20": {
+    "max_rel_change_pct": 1.942,
+    "most_affected": "solo_community_compliance_norms",
+    "headline_max_rel_change_pct": 0.84
+   },
+   "max_rel_change_pct": 1.973,
+   "most_affected_value": "solo_community_compliance_norms",
+   "headline_max_rel_change_pct": 0.849,
+   "headline_most_affected": "naive_sum_of_solo_effects_pct",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.visible_tax_returns.fairness": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 3.499,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 3.499
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.968,
+    "most_affected": "solo_visible_tax_returns",
+    "headline_max_rel_change_pct": 1.716
+   },
+   "max_rel_change_pct": 3.499,
+   "most_affected_value": "combined_intervention_probability",
+   "headline_max_rel_change_pct": 3.499,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.visible_tax_returns.trust": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 3.732,
+    "most_affected": "solo_visible_tax_returns",
+    "headline_max_rel_change_pct": 1.598
+   },
+   "minus20": {
+    "max_rel_change_pct": 3.621,
+    "most_affected": "solo_visible_tax_returns",
+    "headline_max_rel_change_pct": 1.564
+   },
+   "max_rel_change_pct": 3.732,
+   "most_affected_value": "solo_visible_tax_returns",
+   "headline_max_rel_change_pct": 1.598,
+   "headline_most_affected": "naive_sum_of_solo_effects_pct",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.presumptive_tax_simplification.simplicity": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 4.964,
+    "most_affected": "solo_presumptive_tax_simplification",
+    "headline_max_rel_change_pct": 2.647
+   },
+   "minus20": {
+    "max_rel_change_pct": 4.777,
+    "most_affected": "solo_presumptive_tax_simplification",
+    "headline_max_rel_change_pct": 2.639
+   },
+   "max_rel_change_pct": 4.964,
+   "most_affected_value": "solo_presumptive_tax_simplification",
+   "headline_max_rel_change_pct": 2.647,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": "<=5%"
+  },
+  "tax_morale.effect.presumptive_tax_simplification.trust": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 2.458,
+    "most_affected": "solo_presumptive_tax_simplification",
+    "headline_max_rel_change_pct": 1.082
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.412,
+    "most_affected": "solo_presumptive_tax_simplification",
+    "headline_max_rel_change_pct": 1.065
+   },
+   "max_rel_change_pct": 2.458,
+   "most_affected_value": "solo_presumptive_tax_simplification",
+   "headline_max_rel_change_pct": 1.082,
+   "headline_most_affected": "naive_sum_of_solo_effects_pct",
+   "flag": "<=5%"
+  },
+  "tax_morale.combined_discount": {
+   "group": "morale",
+   "published_values_compared": 9,
+   "plus20": {
+    "max_rel_change_pct": 14.394,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 14.394
+   },
+   "minus20": {
+    "max_rel_change_pct": 12.928,
+    "most_affected": "combined_intervention_probability",
+    "headline_max_rel_change_pct": 12.928
+   },
+   "max_rel_change_pct": 14.394,
+   "most_affected_value": "combined_intervention_probability",
+   "headline_max_rel_change_pct": 14.394,
+   "headline_most_affected": "combined_intervention_probability",
+   "flag": ">5%"
+  },
+  "twin.mm.penetration_cap": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 7.768,
+    "most_affected": "policy_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 1.848
+   },
+   "minus20": {
+    "max_rel_change_pct": 7.768,
+    "most_affected": "policy_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 1.848
+   },
+   "max_rel_change_pct": 7.768,
+   "most_affected_value": "policy_final_registered_taxpayers",
+   "headline_max_rel_change_pct": 1.848,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": ">5%"
+  },
+  "twin.mm.penetration_gap_closure": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 1.034,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 0.264
+   },
+   "minus20": {
+    "max_rel_change_pct": 1.186,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 0.264
+   },
+   "max_rel_change_pct": 1.186,
+   "most_affected_value": "policy_final_compliance_rate",
+   "headline_max_rel_change_pct": 0.264,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": "<=5%"
+  },
+  "twin.default.trust_improvement_annual": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.361,
+    "most_affected": "baseline_final_compliance_rate",
+    "headline_max_rel_change_pct": 0.075
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.529,
+    "most_affected": "baseline_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 0.075
+   },
+   "max_rel_change_pct": 0.529,
+   "most_affected_value": "baseline_final_registered_taxpayers",
+   "headline_max_rel_change_pct": 0.075,
+   "headline_most_affected": "baseline_final_tax_to_gdp_pct",
+   "flag": "<=5%"
+  },
+  "twin.cap.trust": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 7.723,
+    "most_affected": "policy_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 1.848
+   },
+   "minus20": {
+    "max_rel_change_pct": 16.933,
+    "most_affected": "policy_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 4.026
+   },
+   "max_rel_change_pct": 16.933,
+   "most_affected_value": "policy_final_registered_taxpayers",
+   "headline_max_rel_change_pct": 4.026,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": ">5%"
+  },
+  "twin.cap.compliance_rate": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.721,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 2.721,
+   "most_affected_value": "policy_final_compliance_rate",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "<=5%"
+  },
+  "twin.ussd.conversion": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 5.442,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 1.32
+   },
+   "minus20": {
+    "max_rel_change_pct": 6.566,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 1.518
+   },
+   "max_rel_change_pct": 6.566,
+   "most_affected_value": "policy_final_compliance_rate",
+   "headline_max_rel_change_pct": 1.518,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": ">5%"
+  },
+  "twin.trust_multiplier.slope": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 1.094,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 0.264
+   },
+   "minus20": {
+    "max_rel_change_pct": 1.103,
+    "most_affected": "policy_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 0.264
+   },
+   "max_rel_change_pct": 1.103,
+   "most_affected_value": "policy_final_registered_taxpayers",
+   "headline_max_rel_change_pct": 0.264,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": "<=5%"
+  },
+  "twin.msme.tin_rate": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.066,
+    "most_affected": "policy_final_tax_to_gdp_pct",
+    "headline_max_rel_change_pct": 0.066
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.066,
+   "most_affected_value": "policy_final_tax_to_gdp_pct",
+   "headline_max_rel_change_pct": 0.066,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": "<=5%"
+  },
+  "twin.presumptive.uplift_factor": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.066,
+    "most_affected": "policy_final_tax_to_gdp_pct",
+    "headline_max_rel_change_pct": 0.066
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.066,
+   "most_affected_value": "policy_final_tax_to_gdp_pct",
+   "headline_max_rel_change_pct": 0.066,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": "<=5%"
+  },
+  "twin.policy.ussd_nudge_scale": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 5.442,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 1.32
+   },
+   "minus20": {
+    "max_rel_change_pct": 6.566,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 1.518
+   },
+   "max_rel_change_pct": 6.566,
+   "most_affected_value": "policy_final_compliance_rate",
+   "headline_max_rel_change_pct": 1.518,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": ">5%"
+  },
+  "twin.policy.trust_improvement_annual": {
+   "group": "twin",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.106,
+    "most_affected": "policy_final_compliance_rate",
+    "headline_max_rel_change_pct": 0.066
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.131,
+    "most_affected": "policy_final_registered_taxpayers",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.131,
+   "most_affected_value": "policy_final_registered_taxpayers",
+   "headline_max_rel_change_pct": 0.066,
+   "headline_most_affected": "policy_final_tax_to_gdp_pct",
+   "flag": "<=5%"
+  },
+  "agents.edu.min_age": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.556,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.011
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.011,
+    "most_affected": "year10_not_registered_pct",
+    "headline_max_rel_change_pct": 0.011
+   },
+   "max_rel_change_pct": 0.556,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.011,
+   "headline_most_affected": "year10_not_registered_pct",
+   "flag": "<=5%"
+  },
+  "agents.p_comply.trust_weight": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 5.556,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.346
+   },
+   "minus20": {
+    "max_rel_change_pct": 6.111,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.367
+   },
+   "max_rel_change_pct": 6.111,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.367,
+   "headline_most_affected": "year10_not_registered_pct",
+   "flag": ">5%"
+  },
+  "agents.p_comply.morale_weight": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 7.222,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.432
+   },
+   "minus20": {
+    "max_rel_change_pct": 7.778,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.464
+   },
+   "max_rel_change_pct": 7.778,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.464,
+   "headline_most_affected": "year10_not_registered_pct",
+   "flag": ">5%"
+  },
+  "agents.p_comply.income_weight": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 2.03,
+    "most_affected": "year10_level_3_silver_pct",
+    "headline_max_rel_change_pct": 0.14
+   },
+   "minus20": {
+    "max_rel_change_pct": 5.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.184
+   },
+   "max_rel_change_pct": 5.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.184,
+   "headline_most_affected": "year10_not_registered_pct",
+   "flag": ">5%"
+  },
+  "agents.p_comply.mm_weight": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 2.222,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.14
+   },
+   "minus20": {
+    "max_rel_change_pct": 5.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.173
+   },
+   "max_rel_change_pct": 5.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.173,
+   "headline_most_affected": "year10_not_registered_pct",
+   "flag": ">5%"
+  },
+  "agents.non_earners_zero_income": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 2.778,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.173
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.778,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.173
+   },
+   "max_rel_change_pct": 2.778,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.173,
+   "headline_most_affected": "year10_not_registered_pct",
+   "flag": "<=5%"
+  },
+  "tier.initial_tenure_low": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "tier.initial_tenure_high": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "tier.filing.base": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 50.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 85.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 85.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.filing.trust_coef": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 28.679,
+    "most_affected": "year10_level_5_platinum_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 50.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 50.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.filing.morale_coef": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 25.66,
+    "most_affected": "year10_level_5_platinum_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 30.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 30.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.filing.noise_sd": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 15.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 20.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 20.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.filing.clip_low": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "tier.filing.clip_high": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 1.667,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 116.751,
+    "most_affected": "year10_level_3_silver_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 116.751,
+   "most_affected_value": "year10_level_3_silver_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.on_time_noise_sd": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 2.439,
+    "most_affected": "year10_level_2_bronze_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 10.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 10.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.threshold.platinum_on_time": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 146.667,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 73.585,
+    "most_affected": "year10_level_5_platinum_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 146.667,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.threshold.platinum_years": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 13.889,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 10.556,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 13.889,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.threshold.gold_on_time": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 86.667,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 78.889,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 86.667,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.threshold.gold_years": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 17.222,
+    "most_affected": "year10_level_4_gold_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 17.222,
+   "most_affected_value": "year10_level_4_gold_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.threshold.silver_on_time": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 151.22,
+    "most_affected": "year10_level_2_bronze_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 75.61,
+    "most_affected": "year10_level_2_bronze_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 151.22,
+   "most_affected_value": "year10_level_2_bronze_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "tier.threshold.bronze_on_time": {
+   "group": "tier",
+   "published_values_compared": 6,
+   "plus20": {
+    "max_rel_change_pct": 130.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 65.0,
+    "most_affected": "year10_level_1_entry_pct",
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 130.0,
+   "most_affected_value": "year10_level_1_entry_pct",
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": ">5%"
+  },
+  "stage.cost.seed_tzs": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 4.168,
+    "most_affected": "portfolio_roi_median_20y",
+    "headline_max_rel_change_pct": 3.876
+   },
+   "minus20": {
+    "max_rel_change_pct": 4.518,
+    "most_affected": "portfolio_roi_median_10y",
+    "headline_max_rel_change_pct": 4.518
+   },
+   "max_rel_change_pct": 4.518,
+   "most_affected_value": "portfolio_roi_median_10y",
+   "headline_max_rel_change_pct": 4.518,
+   "headline_most_affected": "portfolio_roi_median_10y",
+   "flag": "<=5%"
+  },
+  "stage.cost.entry_tzs": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 16.667,
+    "most_affected": "roi_median_20y_entry",
+    "headline_max_rel_change_pct": 16.667
+   },
+   "minus20": {
+    "max_rel_change_pct": 25.0,
+    "most_affected": "roi_median_20y_entry",
+    "headline_max_rel_change_pct": 25.0
+   },
+   "max_rel_change_pct": 25.0,
+   "most_affected_value": "roi_median_20y_entry",
+   "headline_max_rel_change_pct": 25.0,
+   "headline_most_affected": "roi_median_10y_entry",
+   "flag": ">5%"
+  },
+  "stage.cost.active_tzs": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 16.667,
+    "most_affected": "roi_median_20y_active",
+    "headline_max_rel_change_pct": 16.667
+   },
+   "minus20": {
+    "max_rel_change_pct": 25.0,
+    "most_affected": "roi_median_10y_active",
+    "headline_max_rel_change_pct": 25.0
+   },
+   "max_rel_change_pct": 25.0,
+   "most_affected_value": "roi_median_10y_active",
+   "headline_max_rel_change_pct": 25.0,
+   "headline_most_affected": "roi_median_10y_active",
+   "flag": ">5%"
+  },
+  "stage.cost.enterprise_tzs": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 16.667,
+    "most_affected": "roi_median_20y_enterprise",
+    "headline_max_rel_change_pct": 16.667
+   },
+   "minus20": {
+    "max_rel_change_pct": 25.0,
+    "most_affected": "roi_median_10y_enterprise",
+    "headline_max_rel_change_pct": 25.0
+   },
+   "max_rel_change_pct": 25.0,
+   "most_affected_value": "roi_median_10y_enterprise",
+   "headline_max_rel_change_pct": 25.0,
+   "headline_most_affected": "roi_median_10y_enterprise",
+   "flag": ">5%"
+  },
+  "stage.cost.legacy_tzs": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 16.667,
+    "most_affected": "roi_median_10y_legacy",
+    "headline_max_rel_change_pct": 16.667
+   },
+   "minus20": {
+    "max_rel_change_pct": 25.0,
+    "most_affected": "roi_median_10y_legacy",
+    "headline_max_rel_change_pct": 25.0
+   },
+   "max_rel_change_pct": 25.0,
+   "most_affected_value": "roi_median_10y_legacy",
+   "headline_max_rel_change_pct": 25.0,
+   "headline_most_affected": "roi_median_10y_legacy",
+   "flag": ">5%"
+  },
+  "stage.cost_overrun_sigma": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 1.406,
+    "most_affected": "roi_median_20y_entry",
+    "headline_max_rel_change_pct": 0.972
+   },
+   "minus20": {
+    "max_rel_change_pct": 2.197,
+    "most_affected": "roi_median_10y_entry",
+    "headline_max_rel_change_pct": 2.197
+   },
+   "max_rel_change_pct": 2.197,
+   "most_affected_value": "roi_median_10y_entry",
+   "headline_max_rel_change_pct": 2.197,
+   "headline_most_affected": "roi_median_10y_entry",
+   "flag": "<=5%"
+  },
+  "stage.reach_share": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "stage.intervention_for_uptake": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "stage.uptake_log_odds_sd": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 4.655,
+    "most_affected": "roi_median_20y_entry",
+    "headline_max_rel_change_pct": 3.555
+   },
+   "minus20": {
+    "max_rel_change_pct": 8.496,
+    "most_affected": "roi_median_10y_entry",
+    "headline_max_rel_change_pct": 8.496
+   },
+   "max_rel_change_pct": 8.496,
+   "most_affected_value": "roi_median_10y_entry",
+   "headline_max_rel_change_pct": 8.496,
+   "headline_most_affected": "roi_median_10y_entry",
+   "flag": ">5%"
+  },
+  "stage.persistence": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 81.527,
+    "most_affected": "roi_median_20y_entry",
+    "headline_max_rel_change_pct": 42.587
+   },
+   "minus20": {
+    "max_rel_change_pct": 37.476,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 25.665
+   },
+   "max_rel_change_pct": 81.527,
+   "most_affected_value": "roi_median_20y_entry",
+   "headline_max_rel_change_pct": 42.587,
+   "headline_most_affected": "roi_median_10y_enterprise",
+   "flag": ">5%"
+  },
+  "stage.ramp_years": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 7.898,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 5.518
+   },
+   "minus20": {
+    "max_rel_change_pct": 7.996,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 5.917
+   },
+   "max_rel_change_pct": 7.996,
+   "most_affected_value": "portfolio_npv_median_10y",
+   "headline_max_rel_change_pct": 5.917,
+   "headline_most_affected": "roi_median_10y_legacy",
+   "flag": ">5%"
+  },
+  "stage.horizon_years": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 3.726,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 2.633
+   },
+   "minus20": {
+    "max_rel_change_pct": 8.651,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 5.854
+   },
+   "max_rel_change_pct": 8.651,
+   "most_affected_value": "portfolio_npv_median_10y",
+   "headline_max_rel_change_pct": 5.854,
+   "headline_most_affected": "roi_median_10y_legacy",
+   "flag": ">5%"
+  },
+  "stage.discount_rate": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 11.086,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 7.686
+   },
+   "minus20": {
+    "max_rel_change_pct": 12.244,
+    "most_affected": "portfolio_npv_median_10y",
+    "headline_max_rel_change_pct": 8.976
+   },
+   "max_rel_change_pct": 12.244,
+   "most_affected_value": "portfolio_npv_median_10y",
+   "headline_max_rel_change_pct": 8.976,
+   "headline_most_affected": "roi_median_10y_legacy",
+   "flag": ">5%"
+  },
+  "stage.discount_sensitivities": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "headline_max_rel_change_pct": 0.0
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "tax.pit_schedule": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "minus20": {
+    "max_rel_change_pct": 0.0,
+    "most_affected": null,
+    "note": "no effect (integer rounding)"
+   },
+   "max_rel_change_pct": 0.0,
+   "most_affected_value": null,
+   "headline_max_rel_change_pct": 0.0,
+   "headline_most_affected": null,
+   "flag": "no effect"
+  },
+  "tax.presumptive_schedule": {
+   "group": "stage_economics",
+   "published_values_compared": 23,
+   "plus20": {
+    "max_rel_change_pct": 15.7,
+    "most_affected": "roi_median_10y_enterprise",
+    "headline_max_rel_change_pct": 15.7
+   },
+   "minus20": {
+    "max_rel_change_pct": 11.759,
+    "most_affected": "roi_median_10y_enterprise",
+    "headline_max_rel_change_pct": 11.759
+   },
+   "max_rel_change_pct": 15.7,
+   "most_affected_value": "roi_median_10y_enterprise",
+   "headline_max_rel_change_pct": 15.7,
+   "headline_most_affected": "roi_median_10y_enterprise",
+   "flag": ">5%"
+  }
+ },
+ "design_rows": {
+  "simulation.n_agents": {
+   "max_rel_change_pct": 15.0,
+   "most_affected": "year10_level_1_entry_pct",
+   "flag": ">5%",
+   "text": ">5% (max change 15.0% in year10_level_1_entry_pct with 40000 and 60000 agents instead of 50000; relative to the unperturbed run)"
+  },
+  "simulation.random_seed": {
+   "max_rel_change_pct": 10.0,
+   "most_affected": "year10_level_1_entry_pct",
+   "flag": ">5%",
+   "text": ">5% (max change 10.0% in year10_level_1_entry_pct with seeds 43 and 44 instead of 42)"
+  },
+  "simulation.n_years": {
+   "flag": "n/a",
+   "text": "not perturbed: it defines the horizon of the published year-10 values (changing it changes which year is published)"
+  },
+  "disclosure.min_base": {
+   "flag": "n/a",
+   "text": "not perturbed: a publication rule that decides which cells are suppressed or flagged; it changes no model value"
+  },
+  "disclosure.low_precision_numerator": {
+   "flag": "n/a",
+   "text": "not perturbed: a publication rule that decides which cells are suppressed or flagged; it changes no model value"
+  },
+  "dashboard.min_n_for_confident_estimate": {
+   "flag": "n/a",
+   "text": "not perturbed: a display / design parameter of the dashboard; no model output depends on it"
+  },
+  "dashboard.ngazi_standing_ceiling": {
+   "flag": "n/a",
+   "text": "not perturbed: a display / design parameter of the dashboard; no model output depends on it"
+  },
+  "dashboard.legacy_blend_weights": {
+   "flag": "n/a",
+   "text": "not perturbed: a display / design parameter of the dashboard; no model output depends on it"
+  },
+  "dashboard.illustrative_asset_score": {
+   "flag": "n/a",
+   "text": "not perturbed: a display / design parameter of the dashboard; no model output depends on it"
+  },
+  "dashboard.illustrative_legacy_score": {
+   "flag": "n/a",
+   "text": "not perturbed: a display / design parameter of the dashboard; no model output depends on it"
+  }
+ }
+}

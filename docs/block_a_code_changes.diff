@@ -1,0 +1,1653 @@
+# Block A code changes: unified diff against the project state at the start of Block A (after Phase 3).
+# 'a/' = before, 'b/' = after; new files are shown against /dev/null. Scope: src/, run_all.py, dashboard/, tests/, config.yaml,
+# environment/, pytest.ini (data, outputs, docs, report and _archive are not code).
+
+--- /dev/null
++++ b/CHANGELOG.md
+@@ -0,0 +1,27 @@
++# Changelog
++
++Dated, factual, one line per change. Newest first.
++
++## 2026-11-11 - Phase 4, Block A (pipeline foundations)
++- `run_all.py`: new switches `--from-raw` (default), `--from-processed`, `--clean`, `--fetch`, `--llm` (the last two exit non-zero: not used yet).
++- `run_all.py` now also runs `finscope_active_benchmark_loader.py` and `finscope_targeting_population_loader.py`: one command regenerates every file the dashboard reads.
++- `--from-processed` skips FinScope ingestion (steps 1, 5, 6), reads `data/interim` and `data/processed`, and stops naming any missing file; `--clean` empties only `outputs/stats`, `data/interim`, `data/processed`.
++- `intervention_registrar.register_all` replaces the register on every run (28 accumulated entries become 14) and rebuilds the interventions block of `shared_context.json`.
++- Intervention ids are deterministic: `INT-` + first 6 hex characters of SHA-1(stage + normalised title); stray markdown is stripped from titles before hashing and storing.
++- Assumption ids are `ASS-` + SHA-1(assumption text + agent); `pipeline_run_id` is SHA-1 over the SHA-256 of the input files and `config.yaml`.
++- Timestamps (generated-at, created-at, last-updated) moved out of the data outputs into `outputs/stats/run_meta.json` (new module `src/run_meta.py`); the dashboard does not read them.
++- New `src/03_features/finscope_segments.py`: single definitions of the survey weights, the lifecycle-stage assignment and the TIN mask, imported by `finscope_analysis`, `shared_context`, `economic_model` and the loaders.
++- New `tests/` (pytest): idempotency, register, `--from-processed`, segments; `pytest` pinned in `environment/requirements.txt`.
++- `data/raw/SOURCES.csv` records dataset, publisher, origin, date, SHA-256 and terms for the four raw files.
++- `PyYAML` added to `dashboard/requirements.txt`; comments, docstrings and `dashboard/README.md` no longer name the old folders.
++
++## 2026-11-11 - Phase 3 (close-out)
++- `report/submission_v1/`: the DOCX aligned to the final PDF (five text changes, TOC page numbers refreshed) plus a copy of the PDF; both read-only.
++- Previous EDITED.docx and the original-named PDF moved to `_archive/report_pre_alignment/`.
++- `docs/report_source.md` rewritten; `docs/claims_map_draft.csv` and `docs/constants_inventory_draft.csv` added.
++
++## 2026-11-11 - Phase 2 (reorganisation)
++- Project built from the two original folders by copying; layout `data/`, `src/`, `outputs/`, `report/`, `dashboard/`, `docs/`, `environment/`.
++- `src/paths.py` and `config.yaml` resolve every location from the project root; seeds and simulation sizes moved to `config.yaml` with the same values (paths-only code changes, `docs/reorg_code_changes.diff`).
++- Raw data (FinScope, ILFS 2024, MoF exemptions workbook) and unchanged producer scripts for report values that originate elsewhere copied in (`docs/imported_from_source.md`).
++- Verified value for value against the original pipeline; dashboard checked on all pages.
+
+--- a/README.md
++++ b/README.md
+@@ -17,6 +17,7 @@
+ * `run_all.py` runs five steps from the raw FinScope file in `data\raw\finscope\` and writes to
+   `data\interim\`, `data\processed\` and `outputs\stats\`. All locations come from `config.yaml` via `src\paths.py`.
+-* `run_all.py` appends to an existing `outputs\stats\intervention_register.json` instead of replacing it
+-  (known issue, see `docs\`); start from a clean `outputs\` if a 14-entry register is wanted.
++* `python run_all.py --clean` empties the generated folders first; `--from-processed` skips the FinScope ingestion
++  and reads `data\interim\` and `data\processed\`. Timestamps are written to `outputs\stats\run_meta.json`, so two
++  runs give identical data files. Tests: `.venv\Scripts\python.exe -m pytest`.
+ * `report\submission_v1\` holds the submitted report (read-only PDF + aligned DOCX; see `docs\report_source.md`). `docs\imported_from_source.md` lists the
+   report values whose origin lies outside this project's pipeline.
+
+--- a/config.yaml
++++ b/config.yaml
+@@ -13,4 +13,10 @@
+   n_agents: 500000     # agent-based and tier-migration simulations
+   n_years: 10          # simulation horizon in years
++
++# Folders that `run_all.py --clean` empties (never data/raw, outputs/frozen or report/).
++clean_dirs:
++  - outputs/stats
++  - data/interim
++  - data/processed
+ 
+ # Every file the pipeline reads or writes.
+@@ -35,4 +41,5 @@
+   assumption_ledger_summary:   outputs/stats/assumption_ledger_summary.json
+   audit_trail:                 outputs/stats/audit_trail.json
++  run_meta:                    outputs/stats/run_meta.json   # timestamps and run id (kept out of the data files)
+   # frozen: LLM-generated report sections carried over unchanged (not regenerated by this project)
+   report_sections:             outputs/frozen/report_sections.json
+
+--- a/dashboard/README.md
++++ b/dashboard/README.md
+@@ -1,7 +1,7 @@
+-# The Taxpayer Development Journey — Interactive Dashboard
++﻿# The Taxpayer Development Journey — Interactive Dashboard
+ 
+ A 6-page Streamlit app, one page per lifecycle stage, matching the figures and
+ mechanisms in the written submission. Most pages now read **real, live data**
+-from this project's own pipeline (`../../pipeline/`) rather than hardcoded
++from this project's own pipeline (`../outputs/stats/` and `../data/processed/`) rather than hardcoded
+ numbers — every page still captions clearly which figures are real and which
+ remain illustrative, and why.
+@@ -10,22 +10,24 @@
+ 
+ ```
+-TRA Innovation 2/
+-├── pipeline/                  ← standalone data/computation layer (see below)
+-└── tra_dashboard/
+-    └── tra_dashboard/         ← this Streamlit app
+-        ├── Home.py
+-        ├── common.py          ← thin re-export shim, kept for backward compatibility
+-        ├── tdj_lib/           ← the actual reusable code
+-        │   ├── styling.py     ← palette, CSS, evidence-tier tags (no data dependency)
+-        │   ├── stages.py      ← 6-stage registry + cross-page nav (no data dependency)
+-        │   └── pipeline_data.py  ← reads pipeline/'s JSON output, never guesses
+-        ├── pages/
+-        │   ├── 1_Seed.py       (illustrative — see "Current status" below)
+-        │   ├── 2_Entry.py      (live)
+-        │   ├── 3_Active.py     (live)
+-        │   ├── 4_Enterprise.py (live)
+-        │   ├── 5_Asset.py      (illustrative)
+-        │   └── 6_Legacy.py     (partially live)
+-        └── requirements.txt
++<project root>/
++├── config.yaml                ← every file location, seeds and simulation sizes
++├── run_all.py                 ← regenerates every file the dashboard reads
++├── src/                       ← pipeline code by stage (03_features, 04_models, 05_simulation) and paths.py
++├── data/ , outputs/           ← raw/interim/processed data, model outputs
++└── dashboard/                 ← this Streamlit app
++    ├── Home.py
++    ├── common.py              ← thin re-export shim, kept for backward compatibility
++    ├── tdj_lib/               ← the actual reusable code
++    │   ├── styling.py         ← palette, CSS, evidence-tier tags (no data dependency)
++    │   ├── stages.py          ← 6-stage registry + cross-page nav (no data dependency)
++    │   └── pipeline_data.py   ← reads the pipeline's JSON output (via config.yaml), never guesses
++    ├── pages/
++    │   ├── 1_Seed.py       (illustrative — see "Current status" below)
++    │   ├── 2_Entry.py      (live)
++    │   ├── 3_Active.py     (live)
++    │   ├── 4_Enterprise.py (live)
++    │   ├── 5_Asset.py      (illustrative)
++    │   └── 6_Legacy.py     (partially live)
++    └── requirements.txt
+ ```
+ 
+@@ -37,18 +39,17 @@
+ ```
+ 
+-That's it for the dashboard itself — `pipeline_data.py` reads `pipeline/`'s
+-already-generated JSON files at startup. You don't need to run the pipeline
+-to see live data; it ships with output already in place.
++That's it for the dashboard itself — `pipeline_data.py` reads the already-generated
++JSON files at startup (locations come from `config.yaml` through `src/paths.py`).
++You don't need to run the pipeline to see live data; it ships with output already in place.
+ 
+ ## Regenerating the underlying data
+ 
+-Everything the dashboard reads is computed by `../../pipeline/`, fully
++Everything the dashboard reads is computed by the project's own pipeline, fully
+ standalone — no dependency on any other project. To regenerate all of it from
+-the raw FinScope microdata:
++the raw FinScope microdata, from the project root:
+ 
+ ```bash
+-cd ../../pipeline
+-pip install -r requirements.txt
+-python run_all.py
++pip install -r environment/requirements.txt
++python run_all.py            # add --clean to start from empty outputs
+ ```
+ 
+@@ -56,19 +57,20 @@
+ model → a standalone tier-migration simulation (Enterprise's tier chart) →
+ the intervention register (parses the 8 LLM-generated interventions in
+-`report_sections.json` plus the 6 Python-modeled ones) → the FinScope
+-region×activity prevalence table (Active's page). See `pipeline/run_all.py`
+-for the exact order and why it matters, and the docstring at the top of each
+-script for what it computes and from what real source.
++`outputs/frozen/report_sections.json` plus the 6 Python-modeled ones) → the FinScope
++region×activity prevalence table (Active's page) → the active-stage benchmark → the
++Entry targeting population. See `run_all.py` for the exact order and why it matters, and
++the docstring at the top of each script for what it computes and from what real source.
++`python run_all.py --from-processed` skips the FinScope ingestion steps and reads `data/interim/`
++and `data/processed/` instead.
+ 
+-Note: `pipeline/intervention_registrar.py` mints fresh random intervention
+-IDs on every run (`register_all(force=True)`), so re-running it will change
+-the specific IDs `pipeline_data.py` looks up interventions by *title*, not
+-ID, so this doesn't break anything — but don't expect IDs to stay stable
+-across regenerations.
++Note: the intervention register is rebuilt on every run and intervention IDs are
++deterministic (`INT-` plus six hex characters of a SHA-1 over stage and title), so
++re-running does not accumulate entries or change IDs. Timestamps are kept in
++`outputs/stats/run_meta.json`, not in the data files.
+ 
+ ## Current status per page
+ 
+ - **Seed** (`1_Seed.py`): fully illustrative by design — no real model exists
+-  for this mechanism in either project (tagged HYPOTHESIS in the written
++  for this mechanism (tagged HYPOTHESIS in the written
+   submission; revenue is deliberately not scored for this stage).
+ - **Entry** (`2_Entry.py`): **live.** Cost/revenue/ROI read from
+@@ -88,5 +90,5 @@
+   `intervention_register.json`. Revenue/ROI remain illustrative — seen
+   below. The tier-migration chart is real: a standalone 500,000-agent
+-  simulation (`pipeline/economic_model.py`'s `run_tier_migration_simulation`)
++  simulation (`src/04_models/economic_model.py`'s `run_tier_migration_simulation`)
+   using the exact tier thresholds shown on the page.
+ - **Asset** (`5_Asset.py`): fully illustrative by design — tagged HYPOTHESIS
+@@ -99,14 +101,13 @@
+ **Known real gap, not a "todo":** Enterprise's and Legacy's revenue/ROI have
+ no live source. Computing those requires
+-`economic_model_per_intervention.py`, which was deliberately *not* migrated
+-into `pipeline/` — it depends on a much broader evidence base
+-(`tanzania_policy_agent`'s full evidence store) that's out of scope for this
+-dashboard's own pipeline. `pipeline_data.py` returns this as an honest,
+-captioned gap rather than reusing a stale figure.
++`economic_model_per_intervention.py`, which is kept unchanged in `src/imported/`
++but is deliberately *not* wired into the pipeline — it depends on a much broader evidence
++base (a separate evidence database) that is not part of this project.
++`pipeline_data.py` returns this as an honest, captioned gap rather than reusing a stale figure.
+ 
+ ## Deploying to share.streamlit.io
+ 
+-1. Create a new **public** GitHub repo and push `tra_dashboard/tra_dashboard/`
+-   to it — `Home.py`, `common.py`, `tdj_lib/`, `pages/`, and
++1. Create a new **public** GitHub repo containing the `dashboard/` folder contents —
++   `Home.py`, `common.py`, `tdj_lib/`, `pages/`, `assets/` and
+    `requirements.txt` all need to be at the repo root.
+ 2. Go to **share.streamlit.io**, sign in with GitHub, click **New app**.
+@@ -116,12 +117,11 @@
+    `/Enterprise`, `/Asset`, `/Legacy`).
+ 
+-**Important:** `pipeline/` (40MB+ of raw FinScope data) is deliberately
+-**not** part of the dashboard's own repo — don't push it alongside
+-`tra_dashboard/`. On a deploy that doesn't include `pipeline/`'s JSON output
+-files, every page automatically falls back to its illustrative values (the
++**Important:** the raw FinScope data (40MB+) is deliberately
++**not** part of the dashboard's own repo. On a deploy that does not include the
++pipeline's JSON output files, every page automatically falls back to its illustrative values (the
+ same honest-gap behavior as running locally without the pipeline present) —
+ nothing breaks, it just reads as a fresh, un-migrated checkout. If you want
+-live data on the deployed version too, either commit `pipeline/`'s small
+-JSON outputs (not the 40MB CSV) into the same repo, or point
++live data on the deployed version too, either include the project's small
++JSON outputs (not the 40MB CSV) together with `config.yaml` and `src/paths.py`, or point
+ `TDJ_PIPELINE_DIR` at wherever you host them.
+ 
+
+--- a/dashboard/pages/3_Active.py
++++ b/dashboard/pages/3_Active.py
+@@ -143,5 +143,5 @@
+         "Benchmark data isn't connected right now "
+         f"({regions_fig.note or activities_fig.note}). This page needs "
+-        "pipeline/finscope_active_benchmark.json to be present."
++        "data/processed/finscope_active_benchmark.json to be present."
+     )
+ else:
+
+--- a/dashboard/requirements.txt
++++ b/dashboard/requirements.txt
+@@ -2,2 +2,3 @@
+ plotly>=5.20
+ reportlab>=4.0
++PyYAML>=6.0
+
+--- a/dashboard/tdj_lib/__init__.py
++++ b/dashboard/tdj_lib/__init__.py
+@@ -7,6 +7,6 @@
+   stages.py         Stage registry + cross-page navigation.
+                     No data dependency.
+-  pipeline_data.py  Optional live bridge into tanzania_policy_agent's
+-                    real pipeline output. Degrades to an explicit,
++  pipeline_data.py  Optional live bridge into this project's
++                    pipeline output (via config.yaml). Degrades to an explicit,
+                     honest data-gap Figure when unavailable -- never
+                     raises, never guesses.
+
+--- a/dashboard/tdj_lib/benchmark_adapters.py
++++ b/dashboard/tdj_lib/benchmark_adapters.py
+@@ -82,5 +82,5 @@
+     """The only adapter that exists today. Reads
+     finscope_active_benchmark.json through PipelineData.active_benchmark_cell()
+-    -- see pipeline/finscope_active_benchmark_loader.py for exactly how
++    -- see src/03_features/finscope_active_benchmark_loader.py for exactly how
+     that file's strand_distribution_pct and registered_pct are computed
+     from raw FinScope microdata. Every FinScope-specific column name
+
+--- a/dashboard/tdj_lib/pipeline_data.py
++++ b/dashboard/tdj_lib/pipeline_data.py
+@@ -3,18 +3,15 @@
+ migrated into this project (src/, outputs/), no cross-project dependency.
+ 
+-Originally this read across to a sibling project (tanzania_policy_agent
+-in "TRA Innovation") since that's where the source data and computation
+-scripts happened to already live. Fully migrated on request: the
+-computation scripts (economic_model.py, finscope_analysis.py,
+-intervention_registrar.py, shared_context.py, assumption_ledger.py,
+-finscope_region_activity_loader.py), their raw source data (FinScope.csv,
+-the codebook), and a run_all.py orchestrator now live in
+-../../../pipeline/ relative to this file -- see that directory's
+-run_all.py to regenerate everything from scratch, standalone.
++Originally this read across to a separate sibling project. It is now fully
++migrated: the computation scripts (economic_model.py, finscope_analysis.py,
++intervention_registrar.py, shared_context.py, assumption_ledger.py and the
++FinScope loaders) live under src/, their raw source data (FinScope.csv, the
++codebook) under data/raw/, and run_all.py at the project root regenerates
++everything from scratch, standalone.
+ 
+ Every accessor here still returns a Figure with .available=False (never
+ a guess, never an exception) when a file or field can't be found -- kept
+ even after the migration because the dashboard is also meant to run
+-standalone on share.streamlit.io, where pipeline/'s large data files
++standalone on share.streamlit.io, where the project's large data files
+ (FinScope.csv is 40MB) may not be deployed alongside it.
+ 
+@@ -22,5 +19,5 @@
+ source -- economic_model_per_intervention.py (which computes real
+ per-intervention revenue) was never migrated, since it isn't part of
+-this dashboard's own pipeline and depends on tanzania_policy_agent's
++this dashboard's own pipeline and depends on a separate,
+ broader evidence base. revenue_estimate_tzs is None on both current
+ register entries; intervention_figures() returns available=True (cost
+@@ -74,6 +71,6 @@
+ class PipelineData:
+     """One instance per pipeline directory. Construct once per page
+-    load: PipelineData() picks up TDJ_PIPELINE_DIR / the default sibling
+-    path; pass pipeline_dir explicitly to point at a different checkout
++    load: PipelineData() picks up TDJ_PIPELINE_DIR / the locations in
++    config.yaml; pass pipeline_dir explicitly to point at a different checkout
+     or an uploaded copy of the two JSON files."""
+ 
+@@ -249,5 +246,5 @@
+         weighted_population, strand_distribution_pct, registered_pct) from
+         finscope_active_benchmark.json -- see
+-        pipeline/finscope_active_benchmark_loader.py for exactly how these
++        src/03_features/finscope_active_benchmark_loader.py for exactly how these
+         are computed. This is the only accessor
+         tdj_lib/benchmark_adapters.py's finscope_adapter() reads; every
+@@ -274,5 +271,5 @@
+         50,000-person model and population already backing
+         economic_model.json's ml_segmentation aggregates -- see
+-        pipeline/finscope_targeting_population_loader.py for exactly how
++        src/05_simulation/finscope_targeting_population_loader.py for exactly how
+         it's reproduced and verified against that committed model."""
+         if not self._targeting_population:
+
+--- a/environment/requirements.txt
++++ b/environment/requirements.txt
+@@ -1,4 +1,5 @@
+ # Behavioral - exact versions used to run the pipeline and the dashboard (pip freeze of .venv).
+ # Python 3.14.1 (Windows). Versions of packages also present in the MultiAgent environment are identical to it.
++# pytest (and its dependencies) added in Block A for the tests in tests/.
+ altair==6.2.2
+ anyio==4.14.0
+@@ -15,4 +16,5 @@
+ httptools==0.8.0
+ idna==3.18
++iniconfig==2.3.1
+ itsdangerous==2.2.0
+ Jinja2==3.1.6
+@@ -27,7 +29,10 @@
+ pillow==12.2.0
+ plotly==6.8.0
++pluggy==1.7.0
+ protobuf==7.35.1
+ pyarrow==24.0.0
+ pydeck==0.9.2
++Pygments==2.21.0
++pytest==9.2.0
+ python-dateutil==2.9.0.post0
+ python-multipart==0.0.32
+
+--- /dev/null
++++ b/pytest.ini
+@@ -0,0 +1,3 @@
++[pytest]
++testpaths = tests
++addopts = -p no:cacheprovider
+
+--- a/run_all.py
++++ b/run_all.py
+@@ -1,25 +1,25 @@
+ """
+-Regenerates every data file the TRA Innovation 2 dashboard reads, fully
+-standalone -- no dependency on the sibling tanzania_policy_agent project.
++Regenerates every data file the dashboard reads, fully standalone from the raw FinScope file.
+ 
+-Order matters: economic_model.py's run_economic_model() reads
+-finscope_summary.json if present (to overlay real FinScope-measured
+-values over its hardcoded defaults), and intervention_registrar.py's
+-register_all() reads both report_sections.json and economic_model.json.
+-The tier-migration simulation is deliberately NOT part of
+-run_economic_model() itself (see the "D.2" comment above
+-run_tier_migration_simulation() in economic_model.py for why -- it's
+-additive by design, not part of the main 15-step orchestration), so it's
+-run here as its own step and merged into the same economic_model.json
+-run_economic_model() just wrote. finscope_region_activity_loader.py is
+-independent of the other three (reads FinScope.csv directly) but run
+-last for a clean single pass.
++Order matters: economic_model.py's run_economic_model() reads finscope_summary.json (to overlay
++real FinScope-measured values over its hardcoded defaults), and intervention_registrar.py's
++register_all() reads both report_sections.json and economic_model.json. The tier-migration
++simulation is deliberately NOT part of run_economic_model() itself (see the "D.2" comment above
++run_tier_migration_simulation() in economic_model.py), so it is run here as its own step and
++merged into the same economic_model.json run_economic_model() just wrote.
+ 
+ Usage:
+-    python run_all.py
++    python run_all.py                    full run from data\\raw\\ (same as --from-raw)
++    python run_all.py --from-processed   skip FinScope ingestion; read data\\interim\\ and data\\processed\\
++    python run_all.py --clean            empty outputs\\stats, data\\interim, data\\processed first
++    python run_all.py --fetch / --llm    opt-in flags, not used in this project yet (exit with an error)
++
++Timestamps and the run id go to outputs\\stats\\run_meta.json, not into the data files.
+ """
+ 
++import argparse
+ import json
+ import os
++import shutil
+ import sys
+ 
+@@ -27,15 +27,82 @@
+ import paths  # resolves every location from config.yaml; puts src/<stage> folders on sys.path
+ 
+-import finscope_analysis
+-import economic_model
+-import intervention_registrar
+-import finscope_region_activity_loader
++
++def parse_args(argv=None):
++    p = argparse.ArgumentParser(description="Regenerate every file the dashboard reads.")
++    mode = p.add_mutually_exclusive_group()
++    mode.add_argument("--from-raw", action="store_true",
++                      help="full run from data/raw/ (default)")
++    mode.add_argument("--from-processed", action="store_true",
++                      help="skip FinScope ingestion; read data/interim/ and data/processed/")
++    p.add_argument("--clean", action="store_true",
++                   help="empty outputs/stats, data/interim, data/processed first (never data/raw, outputs/frozen, report/)")
++    p.add_argument("--fetch", action="store_true", help="opt-in network fetch (not used in this project yet)")
++    p.add_argument("--llm", action="store_true", help="opt-in LLM calls (not used in this project yet)")
++    return p.parse_args(argv)
+ 
+ 
+-def main():
+-    print("=" * 60)
+-    print("STEP 1: FinScope summary statistics")
+-    print("=" * 60)
+-    finscope_analysis.run_finscope_analysis()
++def clean():
++    root = os.path.realpath(paths.ROOT)
++    for d in paths.CLEAN_DIRS:
++        real = os.path.realpath(d)
++        if not real.startswith(root + os.sep):
++            raise SystemExit("refusing to clean a folder outside the project: %s" % d)
++        os.makedirs(d, exist_ok=True)
++        for name in os.listdir(d):
++            full = os.path.join(d, name)
++            if os.path.isdir(full):
++                shutil.rmtree(full)
++            else:
++                os.remove(full)
++        print("  cleaned", os.path.relpath(d, paths.ROOT))
++
++
++def required_for_processed():
++    return [paths.FINSCOPE_SUMMARY, paths.FINSCOPE_REGION_ACTIVITY, paths.FINSCOPE_ACTIVE_BENCHMARK, paths.REPORT_SECTIONS]
++
++
++def main(argv=None):
++    args = parse_args(argv)
++    for flag in ("fetch", "llm"):
++        if getattr(args, flag):
++            print("--%s: not used in this project yet" % flag, file=sys.stderr)
++            return 2
++    if args.clean and args.from_processed:
++        print("--clean cannot be combined with --from-processed (it would delete the processed inputs)", file=sys.stderr)
++        return 2
++
++    if args.from_processed:
++        missing = [os.path.relpath(p, paths.ROOT) for p in required_for_processed() if not os.path.exists(p)]
++        if missing:
++            print("--from-processed: required file(s) missing: %s\n"
++                  "Run `python run_all.py --from-raw` first." % ", ".join(missing), file=sys.stderr)
++            return 2
++    elif not os.path.exists(paths.FINSCOPE_CSV):
++        print("--from-raw: raw input missing: %s" % os.path.relpath(paths.FINSCOPE_CSV, paths.ROOT), file=sys.stderr)
++        return 2
++
++    if args.clean:
++        print("CLEAN")
++        clean()
++
++    import run_meta
++    import finscope_analysis
++    import economic_model
++    import intervention_registrar
++    import finscope_region_activity_loader
++    import finscope_active_benchmark_loader
++    import finscope_targeting_population_loader
++
++    mode = "from-processed" if args.from_processed else "from-raw"
++    run_meta.record_run(mode=mode, clean=bool(args.clean), started_at=run_meta.now(),
++                        pipeline_run_id=run_meta.pipeline_run_id(), python=sys.version.split()[0])
++
++    if not args.from_processed:
++        print("=" * 60)
++        print("STEP 1: FinScope summary statistics")
++        print("=" * 60)
++        finscope_analysis.run_finscope_analysis()
++    else:
++        print("STEP 1: skipped (--from-processed): using", os.path.relpath(paths.FINSCOPE_SUMMARY, paths.ROOT))
+ 
+     print("\n" + "=" * 60)
+@@ -59,18 +126,33 @@
+ 
+     print("\n" + "=" * 60)
+-    print("STEP 4: Intervention register")
++    print("STEP 4: Intervention register (rebuilt on every run)")
+     print("=" * 60)
+     intervention_registrar.register_all(force=True)
+ 
+-    print("\n" + "=" * 60)
+-    print("STEP 5: FinScope region x activity prevalence")
+-    print("=" * 60)
+-    finscope_region_activity_loader.build_finscope_region_activity_data()
++    if not args.from_processed:
++        print("\n" + "=" * 60)
++        print("STEP 5: FinScope region x activity prevalence")
++        print("=" * 60)
++        finscope_region_activity_loader.build_finscope_region_activity_data()
++
++        print("\n" + "=" * 60)
++        print("STEP 6: FinScope active-stage benchmark")
++        print("=" * 60)
++        finscope_active_benchmark_loader.build_finscope_active_benchmark_data()
++    else:
++        print("\nSTEPS 5-6: skipped (--from-processed): using data/processed/")
+ 
+     print("\n" + "=" * 60)
+-    print("DONE -- all files regenerated in this directory")
++    print("STEP 7: Targeting population (Entry stage)")
+     print("=" * 60)
++    finscope_targeting_population_loader.build_targeting_population()
++
++    run_meta.record_run(finished_at=run_meta.now())
++    print("\n" + "=" * 60)
++    print("DONE -- every file the dashboard reads has been regenerated (%s)" % mode)
++    print("=" * 60)
++    return 0
+ 
+ 
+ if __name__ == "__main__":
+-    main()
++    sys.exit(main())
+
+--- a/src/03_features/finscope_active_benchmark_loader.py
++++ b/src/03_features/finscope_active_benchmark_loader.py
+@@ -43,4 +43,6 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
++from finscope_segments import HOUSEHOLD_WEIGHT_VAR
+ CSV_PATH = paths.FINSCOPE_CSV
+ OUTPUT_PATH = paths.FINSCOPE_ACTIVE_BENCHMARK
+@@ -74,5 +76,5 @@
+     df = pd.read_csv(
+         csv_path,
+-        usecols=["reg_name", "IncomeMain", "Household_weight", "fasx", "D6_4a"],
++        usecols=["reg_name", "IncomeMain", HOUSEHOLD_WEIGHT_VAR, "fasx", "D6_4a"],
+         low_memory=False,
+     )
+@@ -85,5 +87,5 @@
+     for region, region_df in biz.groupby("reg_name"):
+         for activity, cell_df in region_df.groupby("IncomeMain"):
+-            cell_weight = cell_df["Household_weight"].sum()
++            cell_weight = cell_df[HOUSEHOLD_WEIGHT_VAR].sum()
+             if cell_weight <= 0:
+                 continue
+@@ -92,5 +94,5 @@
+             for strand in STRAND_CATEGORIES:
+                 strand_mask = cell_df["fasx"].astype(str).str.strip() == strand
+-                strand_weight = cell_df.loc[strand_mask, "Household_weight"].sum()
++                strand_weight = cell_df.loc[strand_mask, HOUSEHOLD_WEIGHT_VAR].sum()
+                 strand_pct[strand] = round(float(strand_weight / cell_weight * 100), 1)
+ 
+@@ -99,7 +101,7 @@
+             # denominator rather than folded into "not registered".
+             reg_valid = cell_df[cell_df["D6_4a"].astype(str).str.strip().isin(["Yes", "No"])]
+-            reg_valid_weight = reg_valid["Household_weight"].sum()
++            reg_valid_weight = reg_valid[HOUSEHOLD_WEIGHT_VAR].sum()
+             registered_weight = reg_valid.loc[
+-                reg_valid["D6_4a"].astype(str).str.strip() == "Yes", "Household_weight"
++                reg_valid["D6_4a"].astype(str).str.strip() == "Yes", HOUSEHOLD_WEIGHT_VAR
+             ].sum()
+             registered_pct = (
+
+--- a/src/03_features/finscope_analysis.py
++++ b/src/03_features/finscope_analysis.py
+@@ -53,32 +53,14 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
++from finscope_segments import (WEIGHT_VAR, yes_mask, val_mask, survey_weights, business_owner_mask,
++                              tin_holder_mask, lifecycle_stage)
+ FINSCOPE_FILE = paths.FINSCOPE_CSV
+ SUMMARY_FILE  = paths.FINSCOPE_SUMMARY
+ REPORT_FILE   = paths.FINSCOPE_REPORT
+-WEIGHT_VAR    = "population_wt"
+ 
+ # ============================================================
+ # HELPER: YES/NO variable to boolean mask
+ # ============================================================
+-def yes_mask(df, col):
+-    """Returns boolean mask where column == 'yes' (any case)."""
+-    if col not in df.columns:
+-        return pd.Series(False, index=df.index)
+-    try:
+-        series = df[col].astype(object).astype(str)
+-    except Exception:
+-        series = df[col].astype(str)
+-    return series.str.strip().str.lower() == 'yes'
+-
+-
+-def val_mask(df, col, value):
+-    """Returns boolean mask where column == value (string)."""
+-    if col not in df.columns:
+-        return pd.Series(False, index=df.index)
+-    try:
+-        series = df[col].astype(object).astype(str)
+-    except Exception:
+-        series = df[col].astype(str)
+-    return series.str.strip() == str(value)
+ 
+ 
+@@ -103,7 +85,5 @@
+ 
+     # Convert weight to numeric
+-    df[WEIGHT_VAR] = pd.to_numeric(
+-        df[WEIGHT_VAR], errors='coerce'
+-    ).fillna(0)
++    df[WEIGHT_VAR] = survey_weights(df)
+ 
+     total_pop = df[WEIGHT_VAR].sum()
+@@ -119,26 +99,5 @@
+     print("\n  Assigning lifecycle stages...")
+ 
+-    # Age is int64 — direct comparison works
+-    age = pd.to_numeric(df['c8c'], errors='coerce')
+-
+-    # Business owner: 'Business owners'
+-    is_biz = val_mask(df, 'BusO', 'Business owners')
+-
+-    conditions = [
+-        (age >= 6)  & (age < 16),
+-        (age >= 16) & (age < 25),
+-        (age >= 25) & (age < 45) & ~is_biz,
+-        (age >= 25) & (age < 65) & is_biz,
+-        (age >= 45) & (age < 65) & ~is_biz,
+-        (age >= 65),
+-    ]
+-    choices = [
+-        'seed', 'entry', 'active',
+-        'enterprise', 'asset', 'legacy'
+-    ]
+-
+-    df['lifecycle_stage'] = np.select(
+-        conditions, choices, default='unknown'
+-    )
++    df['lifecycle_stage'] = lifecycle_stage(df)
+ 
+     w = df[WEIGHT_VAR]
+@@ -202,5 +161,5 @@
+ 
+     # ── Has TIN: 'Yes' ───────────────────────────────────────
+-    tin_mask = yes_mask(df, 'c27__13')
++    tin_mask = tin_holder_mask(df)
+     has_tin  = w[tin_mask].sum()
+     funnel["has_tin"]     = int(has_tin)
+@@ -218,5 +177,5 @@
+ 
+     # ── Business registration ────────────────────────────────
+-    buso_mask = val_mask(df, 'BusO', 'Business owners')
++    buso_mask = business_owner_mask(df)
+     reg_mask  = yes_mask(df, 'D6_4a')
+     total_biz = w[buso_mask].sum()
+@@ -867,5 +826,4 @@
+ from datetime import datetime
+ 
+-WEIGHT_VAR        = "population_wt"
+ FEATURE_STORE_FILE = paths.FINSCOPE_FEATURE_STORE
+ 
+@@ -916,9 +874,7 @@
+     w     = df[WEIGHT_VAR]
+     total = w.sum()
++    run_meta.stamp("finscope_feature_store.json", "generated_at")
+     store = {
+         "source":       "FinScope Tanzania 2023",
+-        "generated_at": datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"
+-        ),
+         "total_population": int(total),
+         "domains": {}
+@@ -1073,5 +1029,5 @@
+ 
+     # Business ownership status (BusO)
+-    buso = val_mask(df, 'BusO', 'Business owners')
++    buso = business_owner_mask(df)
+     employ["is_business_owner_pct"] = pct(
+         w[buso].sum(), total
+@@ -1240,5 +1196,5 @@
+ 
+     # MM but no TIN (primary intervention target)
+-    tin_mask_col = yes_mask(df, 'c27__13')
++    tin_mask_col = tin_holder_mask(df)
+     mm_no_tin    = w[mm_mask_col & ~tin_mask_col].sum()
+     mob["mm_no_tin_count"] = int(mm_no_tin)
+@@ -1490,5 +1446,5 @@
+ 
+     # Business owners overall
+-    buso_mask = val_mask(df, 'BusO', 'Business owners')
++    buso_mask = business_owner_mask(df)
+     buz_pop   = w[buso_mask].sum()
+     biz["is_business_owner_pct"] = pct(buz_pop, total)
+@@ -1526,5 +1482,5 @@
+ 
+     # TIN ownership among business owners
+-    tin_mask_col = yes_mask(df, 'c27__13')
++    tin_mask_col = tin_holder_mask(df)
+     biz["business_owner_with_tin_pct"] = pct(
+         w[buso_mask & tin_mask_col].sum(), buz_pop
+@@ -1620,5 +1576,5 @@
+     comp = {}
+ 
+-    tin_mask_col = yes_mask(df, 'c27__13')
++    tin_mask_col = tin_holder_mask(df)
+     mm_mask_col  = val_mask(df, 'MM', 'MM')
+ 
+@@ -1748,5 +1704,5 @@
+     morale["behaviorally_responsible_with_mm_no_tin"] = int(
+         w[responsible & val_mask(df, 'MM', 'MM') &
+-          ~yes_mask(df, 'c27__13')].sum()
++          ~tin_holder_mask(df)].sum()
+     )
+     morale["note"] = (
+@@ -1797,27 +1753,8 @@
+ 
+     # Add weights as numeric
+-    df[WEIGHT_VAR] = pd.to_numeric(
+-        df[WEIGHT_VAR], errors='coerce'
+-    ).fillna(0)
+-
+-    # Assign lifecycle stages (same logic as finscope_analysis.py)
+-    age   = pd.to_numeric(df['c8c'], errors='coerce')
+-    is_biz = (
+-        df['BusO'].astype(object).astype(str).str.strip()
+-        == 'Business owners'
+-    )
+-    df['lifecycle_stage'] = np.select(
+-        [
+-            (age >= 6)  & (age < 16),
+-            (age >= 16) & (age < 25),
+-            (age >= 25) & (age < 45) & ~is_biz,
+-            (age >= 25) & (age < 65) & is_biz,
+-            (age >= 45) & (age < 65) & ~is_biz,
+-            (age >= 65),
+-        ],
+-        ['seed', 'entry', 'active', 'enterprise',
+-         'asset', 'legacy'],
+-        default='unknown'
+-    )
++    df[WEIGHT_VAR] = survey_weights(df)
++
++    # Assign lifecycle stages (single definition in finscope_segments.py)
++    df['lifecycle_stage'] = lifecycle_stage(df)
+ 
+     feature_store = extract_full_feature_store(df)
+@@ -1868,9 +1805,7 @@
+     total = w.sum()
+ 
++    run_meta.stamp("finscope_summary.json", "generated_at")
+     summary = {
+         "source":         "FinScope Tanzania 2023",
+-        "generated_at":   datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"
+-        ),
+         "acknowledgement": (
+             "The findings in this report are based on data "
+@@ -1978,9 +1913,9 @@
+ # ============================================================
+ def generate_text_report(summary):
++    run_meta.stamp("finscope_report.txt", "generated_at")
+     lines = [
+         "═" * 65,
+         "  FINSCOPE TANZANIA 2023 — ANALYSIS REPORT",
+         "  Tanzania Policy Design Agent",
+-        f"  Generated: {summary['generated_at']}",
+         "═" * 65,
+         "",
+
+--- a/src/03_features/finscope_region_activity_loader.py
++++ b/src/03_features/finscope_region_activity_loader.py
+@@ -1,11 +1,10 @@
+ """
+ FinScope Tanzania 2023 region x business-activity prevalence loader
+-(standalone copy for TRA Innovation 2 -- see the original in
+-tanzania_policy_agent/finscope_region_activity_loader.py for the full
+-investigation notes on why this is a prevalence table, not a turnover
++(standalone copy for this project -- the original lives in a separate
++project and has the full investigation notes on why this is a prevalence table, not a turnover
+ calculator).
+ 
+ Differs from the original only in HOW it persists: the original writes
+-to tanzania_policy_agent's shared evidence_store.db via evidence_db.py's
++to that project's shared evidence_store.db via evidence_db.py's
+ helpers (appropriate there, since that database is the shared home for
+ every survey this project loads). This standalone copy has no such
+@@ -35,4 +34,6 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
++from finscope_segments import HOUSEHOLD_WEIGHT_VAR
+ CSV_PATH = paths.FINSCOPE_CSV
+ OUTPUT_PATH = paths.FINSCOPE_REGION_ACTIVITY
+@@ -60,5 +61,5 @@
+ 
+     df = pd.read_csv(
+-        csv_path, usecols=["reg_name", "IncomeMain", "Household_weight"],
++        csv_path, usecols=["reg_name", "IncomeMain", HOUSEHOLD_WEIGHT_VAR],
+         low_memory=False,
+     )
+@@ -70,7 +71,7 @@
+     rows = []
+     for region, region_df in biz.groupby("reg_name"):
+-        region_total_weight = region_df["Household_weight"].sum()
++        region_total_weight = region_df[HOUSEHOLD_WEIGHT_VAR].sum()
+         for activity, activity_df in region_df.groupby("IncomeMain"):
+-            weighted_pop = activity_df["Household_weight"].sum()
++            weighted_pop = activity_df[HOUSEHOLD_WEIGHT_VAR].sum()
+             pct = (weighted_pop / region_total_weight * 100) if region_total_weight else 0.0
+             rows.append({
+
+--- /dev/null
++++ b/src/03_features/finscope_segments.py
+@@ -0,0 +1,86 @@
++"""Single definitions of the FinScope survey weight, the lifecycle-stage assignment and the TIN mask.
++
++Every module that needs them imports them from here (finscope_analysis, shared_context,
++economic_model and the loaders) instead of re-implementing them.
++
++FinScope Tanzania 2023 columns used:
++  population_wt  survey weight (sums to the weighted adult population, 34,134,251)
++  c8c            age in years (the file holds respondents aged 16 and over)
++  BusO           'Business owners' = business owner
++  c27__13        'Yes' = holds a Taxpayer Identification Number (TIN)
++  Household_weight  household weight used by the region x activity tables
++"""
++
++import numpy as np
++import pandas as pd
++
++WEIGHT_VAR = "population_wt"
++HOUSEHOLD_WEIGHT_VAR = "Household_weight"
++AGE_COLUMN = "c8c"
++BUSINESS_OWNER_COLUMN = "BusO"
++BUSINESS_OWNER_VALUE = "Business owners"
++TIN_COLUMN = "c27__13"
++
++# Six lifecycle stages, in report order.
++LIFECYCLE_STAGES = [
++    "seed",        # Age 6-18
++    "entry",       # Age 18-25
++    "active",      # Age 25-45
++    "enterprise",  # Business owners (any age)
++    "asset",       # Age 45-65
++    "legacy"       # Age 65+
++]
++
++# Stage labels used by the synthetic segmentation model (class codes 0-3).
++ML_SEGMENT_STAGES = ["entry", "active", "asset", "legacy"]
++
++
++def yes_mask(df, col):
++    """Returns boolean mask where column == 'yes' (any case)."""
++    if col not in df.columns:
++        return pd.Series(False, index=df.index)
++    try:
++        series = df[col].astype(object).astype(str)
++    except Exception:
++        series = df[col].astype(str)
++    return series.str.strip().str.lower() == 'yes'
++
++
++def val_mask(df, col, value):
++    """Returns boolean mask where column == value (string)."""
++    if col not in df.columns:
++        return pd.Series(False, index=df.index)
++    try:
++        series = df[col].astype(object).astype(str)
++    except Exception:
++        series = df[col].astype(str)
++    return series.str.strip() == str(value)
++
++
++def survey_weights(df):
++    """population_wt as a numeric series (non-numeric -> 0)."""
++    return pd.to_numeric(df[WEIGHT_VAR], errors='coerce').fillna(0)
++
++
++def business_owner_mask(df):
++    return val_mask(df, BUSINESS_OWNER_COLUMN, BUSINESS_OWNER_VALUE)
++
++
++def tin_holder_mask(df):
++    """True where the respondent holds a TIN (c27__13 == 'Yes')."""
++    return yes_mask(df, TIN_COLUMN)
++
++
++def lifecycle_stage(df):
++    """Lifecycle stage of every respondent (numpy array of stage names, 'unknown' if none applies)."""
++    age = pd.to_numeric(df[AGE_COLUMN], errors='coerce')
++    is_biz = business_owner_mask(df)
++    conditions = [
++        (age >= 6)  & (age < 16),
++        (age >= 16) & (age < 25),
++        (age >= 25) & (age < 45) & ~is_biz,
++        (age >= 25) & (age < 65) & is_biz,
++        (age >= 45) & (age < 65) & ~is_biz,
++        (age >= 65),
++    ]
++    return np.select(conditions, LIFECYCLE_STAGES, default='unknown')
+
+--- a/src/03_features/shared_context.py
++++ b/src/03_features/shared_context.py
+@@ -72,4 +72,6 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
++import re as _re
+ SHARED_CONTEXT_FILE    = paths.SHARED_CONTEXT
+ AUDIT_TRAIL_FILE       = paths.AUDIT_TRAIL
+@@ -107,12 +109,5 @@
+ # SIX LIFECYCLE STAGES
+ # ============================================================
+-LIFECYCLE_STAGES = [
+-    "seed",        # Age 6-18
+-    "entry",       # Age 18-25
+-    "active",      # Age 25-45
+-    "enterprise",  # Business owners (any age)
+-    "asset",       # Age 45-65
+-    "legacy"       # Age 65+
+-]
++from finscope_segments import LIFECYCLE_STAGES  # single definition (finscope_segments.py)
+ 
+ # ============================================================
+@@ -228,11 +223,21 @@
+ # The full structure of shared_context.json
+ # ============================================================
++def _empty_interventions() -> dict:
++    return {
++        "total_generated": 0,
++        "total_validated": 0,
++        "total_approved": 0,
++        "by_stage": {s: [] for s in LIFECYCLE_STAGES},
++        "by_objective": {o: [] for o in TRA_OBJECTIVES},
++        "top_5": []
++    }
++
++
+ def _empty_context() -> dict:
+     """Returns a fresh empty shared context object."""
++    run_meta.stamp("shared_context.json", "created_at")
+     return {
+         "meta": {
+-            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+-            "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+-            "pipeline_run_id": str(uuid.uuid4())[:8],
++            "pipeline_run_id": run_meta.pipeline_run_id(),
+             "agents_completed": [],
+             "agents_pending": [],
+@@ -262,12 +267,5 @@
+             "scenarios": {}
+         },
+-        "interventions": {
+-            "total_generated": 0,
+-            "total_validated": 0,
+-            "total_approved": 0,
+-            "by_stage": {s: [] for s in LIFECYCLE_STAGES},
+-            "by_objective": {o: [] for o in TRA_OBJECTIVES},
+-            "top_5": []
+-        },
++        "interventions": _empty_interventions(),
+         "evidence": {
+             "total_items": 0,
+@@ -325,6 +323,7 @@
+         with open(SHARED_CONTEXT_FILE, "r", encoding="utf-8") as f:
+             ctx = json.load(f)
+-        ctx["meta"]["last_updated"] = \
+-            datetime.now().strftime("%Y-%m-%d %H:%M:%S")
++        for _k in ("created_at", "last_updated"):
++            ctx["meta"].pop(_k, None)      # timestamps live in run_meta.json
++        ctx["meta"]["pipeline_run_id"] = run_meta.pipeline_run_id()
+         return ctx
+     else:
+@@ -337,6 +336,6 @@
+     Call this at the END of every agent.
+     """
+-    ctx["meta"]["last_updated"] = \
+-        datetime.now().strftime("%Y-%m-%d %H:%M:%S")
++    ctx["meta"].pop("last_updated", None)
++    run_meta.stamp("shared_context.json", "last_updated")
+     with open(SHARED_CONTEXT_FILE, "w", encoding="utf-8") as f:
+         json.dump(ctx, f, indent=2, ensure_ascii=False)
+@@ -447,4 +446,36 @@
+     with open(INTERVENTION_FILE, "w", encoding="utf-8") as f:
+         json.dump(register, f, indent=2)
++
++
++def normalise_title(title) -> str:
++    """Strip stray markdown (asterisks, backticks) and collapse whitespace."""
++    t = _re.sub(r"[*`]+", "", title or "")
++    return _re.sub(r"\s+", " ", t).strip()
++
++
++def _stable_intervention_id(lifecycle_stage, title) -> str:
++    """INT-xxxxxx, xxxxxx = first 6 hex characters of SHA-1 over (stage + normalised title).
++    If two interventions in the same register would collide, a counter is added to the second."""
++    existing = set()
++    if os.path.exists(INTERVENTION_FILE):
++        try:
++            with open(INTERVENTION_FILE, "r", encoding="utf-8") as f:
++                existing = {i.get("intervention_id") for i in json.load(f).get("interventions", [])}
++        except (json.JSONDecodeError, OSError):
++            existing = set()
++    base = "%s|%s" % ((lifecycle_stage or "").strip().lower(), normalise_title(title).lower())
++    n = 0
++    while True:
++        cand = run_meta.sha1_id("INT", base if n == 0 else "%s|%d" % (base, n))
++        if cand not in existing:
++            return cand
++        n += 1
++
++
++def reset_context_interventions() -> None:
++    """Empty the interventions block of shared_context.json (the register is rebuilt on every run)."""
++    ctx = load_context()
++    ctx["interventions"] = _empty_interventions()
++    save_context(ctx)
+ 
+ 
+@@ -486,5 +517,6 @@
+     tags                : Additional tags (e.g. "behavioral", "digital", "legal")
+     """
+-    intervention_id = f"INT-{str(uuid.uuid4())[:6].upper()}"
++    title = normalise_title(title)
++    intervention_id = _stable_intervention_id(lifecycle_stage, title)
+ 
+     roi = None
+@@ -518,5 +550,4 @@
+         "tags": tags or [],
+         "thesis_alignment": None,
+-        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+         "validated_at": None
+     }
+@@ -526,9 +557,9 @@
+             register = json.load(f)
+     else:
+-        register = {"created_at": datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"), "total": 0, "interventions": []}
++        register = {"total": 0, "interventions": []}
+ 
+     register["interventions"].append(intervention)
+     register["total"] = len(register["interventions"])
++    run_meta.stamp_item("intervention_register.json", intervention_id)
+ 
+     with open(INTERVENTION_FILE, "w", encoding="utf-8") as f:
+@@ -688,5 +719,5 @@
+     section_reference: Which report section uses this assumption
+     """
+-    assumption_id = f"ASS-{str(uuid.uuid4())[:6].upper()}"
++    assumption_id = run_meta.sha1_id("ASS", "%s|%s" % (assumption_text, made_by_agent))
+ 
+     assumption = {
+@@ -699,6 +730,5 @@
+         "stress_tested": stress_tested,
+         "stress_test_result": stress_test_result,
+-        "section_reference": section_reference,
+-        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
++        "section_reference": section_reference
+     }
+ 
+@@ -707,6 +737,5 @@
+             ledger = json.load(f)
+     else:
+-        ledger = {"created_at": datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"), "total": 0, "assumptions": []}
++        ledger = {"total": 0, "assumptions": []}
+ 
+     # Dedup on (assumption_text, made_by_agent) -- this is the PRIMARY
+@@ -724,4 +753,5 @@
+     ledger["assumptions"].append(assumption)
+     ledger["total"] = len(ledger["assumptions"])
++    run_meta.stamp_item("assumption_ledger.json", assumption_id)
+ 
+     with open(ASSUMPTION_FILE, "w", encoding="utf-8") as f:
+@@ -1091,5 +1121,5 @@
+     summary = {
+         "pipeline_run_id": ctx["meta"]["pipeline_run_id"],
+-        "last_updated": ctx["meta"]["last_updated"],
++        "last_updated": run_meta.get("shared_context.json", "last_updated"),
+         "agents_completed": len(ctx["meta"]["agents_completed"]),
+         "finscope_loaded": finscope_loaded,
+
+--- a/src/04_models/assumption_ledger.py
++++ b/src/04_models/assumption_ledger.py
+@@ -57,4 +57,5 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
+ LEDGER_FILE  = paths.ASSUMPTION_LEDGER
+ REPORT_FILE  = paths.ASSUMPTION_LEDGER_REPORT
+@@ -131,5 +132,5 @@
+ 
+     assumption = {
+-        "assumption_id": f"ASS-{str(uuid.uuid4())[:6].upper()}",
++        "assumption_id": run_meta.sha1_id("ASS", "%s|%s" % (text, agent)),
+         "assumption_text": text,
+         "made_by_agent": agent,
+@@ -139,8 +140,5 @@
+         "stress_tested": False,
+         "stress_test_result": None,
+-        "section_reference": section,
+-        "created_at": datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"
+-        )
++        "section_reference": section
+     }
+ 
+@@ -150,7 +148,4 @@
+     else:
+         ledger = {
+-            "created_at": datetime.now().strftime(
+-                "%Y-%m-%d %H:%M:%S"
+-            ),
+             "total": 0,
+             "assumptions": []
+@@ -170,4 +165,5 @@
+     ledger["assumptions"].append(assumption)
+     ledger["total"] = len(ledger["assumptions"])
++    run_meta.stamp_item("assumption_ledger.json", assumption["assumption_id"])
+ 
+     with open(LEDGER_FILE, "w", encoding="utf-8") as f:
+@@ -262,5 +258,5 @@
+     assumptions = ledger.get("assumptions", [])
+     stats = compute_statistics(assumptions)
+-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
++    run_meta.stamp("assumption_ledger_report.txt", "generated_at")
+ 
+     lines = []
+@@ -271,5 +267,4 @@
+         "  APPENDIX D — ASSUMPTION LEDGER",
+         "  Tanzania Behavioral Lifecycle Tax Compliance Strategy",
+-        f"  Generated: {timestamp}",
+         "═" * 65,
+         "",
+@@ -414,5 +409,5 @@
+         "═" * 65,
+         "  END OF APPENDIX D",
+-        f"  Tanzania Policy Design Agent — {timestamp}",
++        "  Tanzania Policy Design Agent",
+         "  FinScope Tanzania 2023 data used under FSDT",
+         "  data usage agreement for non-profit research.",
+@@ -435,8 +430,6 @@
+     stats = compute_statistics(assumptions)
+ 
++    run_meta.stamp("assumption_ledger_summary.json", "generated_at")
+     summary = {
+-        "generated_at": datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"
+-        ),
+         "statistics": {
+             "total": stats["total"],
+
+--- a/src/04_models/economic_model.py
++++ b/src/04_models/economic_model.py
+@@ -57,4 +57,6 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
++from finscope_segments import LIFECYCLE_STAGES, ML_SEGMENT_STAGES
+ FINSCOPE_SUMMARY_FILE = paths.FINSCOPE_SUMMARY
+ ECONOMIC_MODEL_OUTPUT = paths.ECONOMIC_MODEL
+@@ -164,11 +166,5 @@
+     by_stage = fs.get("by_stage", {})
+ 
+-    mapping = {
+-        "entry":      "entry_stage_population",
+-        "active":     "active_stage_population",
+-        "enterprise": "enterprise_stage_population",
+-        "asset":      "asset_stage_population",
+-        "legacy":     "legacy_stage_population",
+-    }
++    mapping = {s: s + "_stage_population" for s in LIFECYCLE_STAGES if s != "seed"}
+ 
+     for stage_key, param_key in mapping.items():
+@@ -201,5 +197,5 @@
+     Payment stage.
+ 
+-    Migrated copy: the original tanzania_policy_agent version reads
++    Migrated copy: the original (separate-project) version reads
+     this one value from evidence_store.db (a 56MB SQLite file this
+     standalone copy doesn't have, deliberately -- everything else this
+@@ -875,6 +871,6 @@
+             ages >= 65
+         ],
+-        ["entry", "active", "asset", "legacy"],
+-        default="entry"
++        ML_SEGMENT_STAGES,
++        default=ML_SEGMENT_STAGES[0]
+     )
+ 
+@@ -1023,5 +1019,5 @@
+ # ============================================================
+ # D.2 TIER-MIGRATION SIMULATION (Enterprise / Ngazi dashboard)
+-# Built to fill a specific, disclosed gap in the "TRA Innovation 2"
++# Built to fill a specific, disclosed gap in this project's
+ # submission's Enterprise-stage dashboard page, whose 5-tier
+ # progression chart (Entry/Bronze/Silver/Gold/Platinum) had no real
+@@ -2452,8 +2448,5 @@
+     # Predict dropout risk for each lifecycle stage
+     stage_predictions = {}
+-    for stage_name, stage_val in [
+-        ("entry", 0), ("active", 1),
+-        ("asset", 2), ("legacy", 3)
+-    ]:
++    for stage_name, stage_val in [(_s, _i) for _i, _s in enumerate(ML_SEGMENT_STAGES)]:
+         stage_mask = stage_enc == stage_val
+         if stage_mask.sum() > 0:
+@@ -2607,8 +2600,6 @@
+ 
+     # ── Assemble full model ──────────────────────────────────
++    run_meta.stamp("economic_model.json", "generated_at")
+     full_model = {
+-        "generated_at":   datetime.now().strftime(
+-            "%Y-%m-%d %H:%M:%S"
+-        ),
+         "data_sources": {
+             "finscope": "FinScope Tanzania 2023 "
+
+--- a/src/04_models/intervention_registrar.py
++++ b/src/04_models/intervention_registrar.py
+@@ -42,4 +42,5 @@
+ """
+ 
++import os
+ import re
+ import json
+@@ -50,5 +51,6 @@
+ import paths
+ 
+-from shared_context import register_intervention, LIFECYCLE_STAGES
++from shared_context import (register_intervention, reset_context_interventions, normalise_title,
++                            LIFECYCLE_STAGES)
+ 
+ SECTIONS_FILE = paths.REPORT_SECTIONS
+@@ -147,5 +149,5 @@
+             # a trailing "**" survived into every title. Confirmed against
+             # a real run of this standalone copy before this fix.
+-            "title": name_m.group(1).strip().strip("*").strip(),
++            "title": normalise_title(name_m.group(1)),
+             "tagline": tagline_m.group(1).strip() if tagline_m else None,
+             "lifecycle_stage": _normalize_stage(stage_m.group(1) if stage_m else None),
+@@ -223,16 +225,11 @@
+     run_pipeline.py's own --force convention).
+     """
+-    if not force:
+-        try:
+-            with open(register_path, "r", encoding="utf-8") as f:
+-                existing = json.load(f)
+-            if existing.get("total", 0) > 0:
+-                print(f"  SKIP: {register_path} already has "
+-                      f"{existing['total']} intervention(s) registered "
+-                      f"-- not re-registering (pass force=True to override).")
+-                return [(i.get("intervention_id"), i.get("title"), None)
+-                        for i in existing.get("interventions", [])]
+-        except (FileNotFoundError, json.JSONDecodeError):
+-            pass
++    # REPLACE semantics: every run rebuilds the register (and the interventions block of
++    # shared_context.json) from scratch, so repeated runs never accumulate entries.
++    # `force` is kept for compatibility with older callers and no longer changes anything.
++    os.makedirs(os.path.dirname(register_path), exist_ok=True)
++    with open(register_path, "w", encoding="utf-8") as f:
++        json.dump({"total": 0, "interventions": []}, f, indent=2, ensure_ascii=False)
++    reset_context_interventions()
+ 
+     with open(sections_path, "r", encoding="utf-8") as f:
+
+--- a/src/05_simulation/finscope_targeting_population_loader.py
++++ b/src/05_simulation/finscope_targeting_population_loader.py
+@@ -54,4 +54,6 @@
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
+ import paths
++import run_meta
++from finscope_segments import ML_SEGMENT_STAGES
+ RANDOM_SEED = paths.RANDOM_SEED
+ ECON_MODEL_PATH = paths.ECONOMIC_MODEL
+@@ -59,5 +61,5 @@
+ OUTPUT_PATH = paths.FINSCOPE_TARGETING_POPULATION
+ 
+-STAGE_NAMES = {0: "entry", 1: "active", 2: "asset", 3: "legacy"}
++STAGE_NAMES = dict(enumerate(ML_SEGMENT_STAGES))
+ 
+ 
+
+--- a/src/paths.py
++++ b/src/paths.py
+@@ -51,4 +51,9 @@
+ AUDIT_TRAIL = resolve(_F["audit_trail"])
+ 
++# run metadata (timestamps, run id)
++RUN_META = resolve(_F["run_meta"])
++CONFIG_FILE = os.path.join(ROOT, "config.yaml")
++CLEAN_DIRS = [resolve(p) for p in CFG["clean_dirs"]]
++
+ # frozen
+ REPORT_SECTIONS = resolve(_F["report_sections"])
+
+--- /dev/null
++++ b/src/run_meta.py
+@@ -0,0 +1,100 @@
++"""Run metadata kept OUT of the data outputs.
++
++* Timestamps (generated-at / created-at / last-updated) are written to outputs/stats/run_meta.json
++  instead of into the data files, so two runs of the same inputs give byte-identical data outputs.
++* Deterministic identifiers: sha1_id() builds PREFIX-xxxxxx ids from content, and pipeline_run_id()
++  hashes the SHA-256 of every input file plus config.yaml.
++"""
++
++import datetime
++import hashlib
++import json
++import os
++import sys
++
++sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
++import paths  # noqa: E402
++
++_run_id_cache = None
++
++
++def now():
++    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
++
++
++def _load():
++    try:
++        with open(paths.RUN_META, "r", encoding="utf-8") as f:
++            return json.load(f)
++    except (FileNotFoundError, json.JSONDecodeError):
++        return {}
++
++
++def _save(d):
++    os.makedirs(os.path.dirname(paths.RUN_META), exist_ok=True)
++    with open(paths.RUN_META, "w", encoding="utf-8") as f:
++        json.dump(d, f, indent=2, ensure_ascii=False)
++
++
++def stamp(file_key, field, when=None):
++    """Record a timestamp for one field of one output file."""
++    d = _load()
++    d.setdefault("files", {}).setdefault(file_key, {})[field] = when or now()
++    _save(d)
++
++
++def stamp_item(file_key, item_id, field="created_at", when=None):
++    """Record a timestamp for one item (an intervention or an assumption) of an output file."""
++    d = _load()
++    items = d.setdefault("files", {}).setdefault(file_key, {}).setdefault("items", {})
++    items.setdefault(item_id, {})[field] = when or now()
++    _save(d)
++
++
++def get(file_key, field, default="n/a"):
++    return _load().get("files", {}).get(file_key, {}).get(field, default)
++
++
++def record_run(**fields):
++    d = _load()
++    d.setdefault("run", {}).update(fields)
++    _save(d)
++
++
++def sha256_file(path):
++    h = hashlib.sha256()
++    with open(path, "rb") as f:
++        for block in iter(lambda: f.read(8 * 1024 * 1024), b""):
++            h.update(block)
++    return h.hexdigest()
++
++
++def sha1_id(prefix, text, length=6):
++    """PREFIX-xxxxxx where xxxxxx = first `length` hex characters (upper case) of SHA-1(text)."""
++    return "%s-%s" % (prefix, hashlib.sha1(text.encode("utf-8")).hexdigest()[:length].upper())
++
++
++def input_files():
++    """Every file the pipeline reads as input, plus config.yaml (project-relative names, sorted)."""
++    cands = [paths.FINSCOPE_CSV, paths.FINSCOPE_DATAMAP, paths.REPORT_SECTIONS, paths.CONFIG_FILE]
++    return sorted((os.path.relpath(p, paths.ROOT).replace(os.sep, "/"), p) for p in cands)
++
++
++def pipeline_run_id():
++    """First 8 hex characters of SHA-1 over 'name:sha256' of all input files and config.yaml.
++    If the raw files are absent (a --from-processed run on a checkout without data/raw), the id
++    recorded by the last run is reused."""
++    global _run_id_cache
++    if _run_id_cache:
++        return _run_id_cache
++    present = [(rel, p) for rel, p in input_files() if os.path.exists(p)]
++    if not os.path.exists(paths.FINSCOPE_CSV):
++        stored = _load().get("run", {}).get("pipeline_run_id")
++        if stored:
++            _run_id_cache = stored
++            return stored
++    h = hashlib.sha1()
++    for rel, p in present:
++        h.update(("%s:%s\n" % (rel, sha256_file(p))).encode("utf-8"))
++    _run_id_cache = h.hexdigest()[:8]
++    return _run_id_cache
+
+--- /dev/null
++++ b/tests/conftest.py
+@@ -0,0 +1,56 @@
++"""Shared helpers: every test works on a throw-away copy of the project, never on the real outputs."""
++import hashlib
++import os
++import shutil
++import subprocess
++import sys
++
++import pytest
++
++ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++GENERATED_DIRS = ["outputs/stats", "data/interim", "data/processed"]
++
++
++def _copy_project(dst):
++    os.makedirs(dst, exist_ok=True)
++    for name in ("run_all.py", "config.yaml"):
++        shutil.copy2(os.path.join(ROOT, name), os.path.join(dst, name))
++    shutil.copytree(os.path.join(ROOT, "src"), os.path.join(dst, "src"),
++                    ignore=shutil.ignore_patterns("__pycache__", "imported"))
++    os.makedirs(os.path.join(dst, "data", "raw", "finscope"), exist_ok=True)
++    shutil.copy2(os.path.join(ROOT, "data", "raw", "finscope", "FinScope.csv"), os.path.join(dst, "data", "raw", "finscope"))
++    shutil.copy2(os.path.join(ROOT, "data", "raw", "finscope", "FinScope Datamap.xlsx"), os.path.join(dst, "data", "raw", "finscope"))
++    os.makedirs(os.path.join(dst, "outputs", "frozen"), exist_ok=True)
++    shutil.copy2(os.path.join(ROOT, "outputs", "frozen", "report_sections.json"), os.path.join(dst, "outputs", "frozen"))
++    for d in GENERATED_DIRS:
++        os.makedirs(os.path.join(dst, d), exist_ok=True)
++
++
++@pytest.fixture
++def project(tmp_path):
++    dst = str(tmp_path / "proj")
++    _copy_project(dst)
++    return dst
++
++
++def run_all(project_dir, *args, cwd=None):
++    """Run run_all.py of the copied project in a subprocess (working directory is NOT the project)."""
++    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", PYTHONUTF8="1")
++    return subprocess.run([sys.executable, os.path.join(project_dir, "run_all.py"), *args],
++                          cwd=cwd or os.path.dirname(project_dir), capture_output=True, text=True,
++                          encoding="utf-8", errors="replace", env=env, timeout=900)
++
++
++def snapshot(project_dir, exclude=("run_meta.json",), only=None):
++    """{relative path: sha256} of every file in the generated folders."""
++    out = {}
++    for d in GENERATED_DIRS:
++        base = os.path.join(project_dir, d)
++        for r, _, files in os.walk(base):
++            for f in files:
++                if f in exclude or (only and f not in only):
++                    continue
++                p = os.path.join(r, f)
++                with open(p, "rb") as fh:
++                    out[os.path.relpath(p, project_dir).replace(os.sep, "/")] = hashlib.sha256(fh.read()).hexdigest()
++    return out
+
+--- /dev/null
++++ b/tests/test_from_processed.py
+@@ -0,0 +1,46 @@
++"""--from-processed reproduces the downstream outputs of --from-raw exactly, and fails clearly when inputs are missing."""
++import os
++
++from conftest import run_all, snapshot
++
++DOWNSTREAM = {"economic_model.json", "intervention_register.json", "shared_context.json",
++              "assumption_ledger.json", "finscope_targeting_population.json"}
++
++
++def test_from_processed_matches_from_raw(project):
++    assert run_all(project, "--clean").returncode == 0
++    raw = snapshot(project)
++    r = run_all(project, "--from-processed")
++    assert r.returncode == 0, r.stderr[-2000:]
++    assert "STEP 1: skipped" in r.stdout
++    proc = snapshot(project)
++    down_raw = {k: v for k, v in raw.items() if os.path.basename(k) in DOWNSTREAM}
++    down_proc = {k: v for k, v in proc.items() if os.path.basename(k) in DOWNSTREAM}
++    assert len(down_raw) == 5
++    assert down_raw == down_proc
++    assert raw == proc          # ingestion outputs were left untouched as well
++
++
++def test_from_processed_names_missing_files(project):
++    r = run_all(project, "--from-processed")            # nothing has been generated yet
++    assert r.returncode == 2
++    assert "finscope_summary.json" in r.stderr and "missing" in r.stderr
++
++
++def test_clean_cannot_combine_with_from_processed(project):
++    r = run_all(project, "--clean", "--from-processed")
++    assert r.returncode == 2 and "--clean" in r.stderr
++
++
++def test_opt_in_flags_exit_nonzero(project):
++    for flag in ("--fetch", "--llm"):
++        r = run_all(project, flag)
++        assert r.returncode != 0 and "not used in this project yet" in r.stderr
++
++
++def test_clean_never_touches_raw_or_frozen(project):
++    raw = os.path.join(project, "data", "raw", "finscope", "FinScope.csv")
++    frozen = os.path.join(project, "outputs", "frozen", "report_sections.json")
++    sizes = (os.path.getsize(raw), os.path.getsize(frozen))
++    assert run_all(project, "--clean").returncode == 0
++    assert (os.path.getsize(raw), os.path.getsize(frozen)) == sizes
+
+--- /dev/null
++++ b/tests/test_idempotency.py
+@@ -0,0 +1,33 @@
++"""Two consecutive --clean runs give byte-identical outputs (only run_meta.json may differ)."""
++import os
++
++from conftest import run_all, snapshot
++
++EXPECTED = {
++    "outputs/stats/assumption_ledger.json", "outputs/stats/economic_model.json", "outputs/stats/finscope_report.txt",
++    "outputs/stats/finscope_targeting_population.json", "outputs/stats/intervention_register.json",
++    "data/interim/finscope_feature_store.json", "data/interim/finscope_summary.json", "data/interim/shared_context.json",
++    "data/processed/finscope_active_benchmark.json", "data/processed/finscope_region_activity.json",
++}
++
++
++def test_two_clean_runs_are_byte_identical(project):
++    r1 = run_all(project, "--clean")
++    assert r1.returncode == 0, r1.stderr[-2000:]
++    s1 = snapshot(project)
++    assert set(s1) == EXPECTED, set(s1) ^ EXPECTED
++    assert os.path.exists(os.path.join(project, "outputs", "stats", "run_meta.json"))
++
++    r2 = run_all(project, "--clean")
++    assert r2.returncode == 0, r2.stderr[-2000:]
++    s2 = snapshot(project)
++    assert s1 == s2, [k for k in s1 if s1[k] != s2.get(k)]
++
++
++def test_no_timestamps_in_data_outputs(project):
++    import re
++    assert run_all(project, "--clean").returncode == 0
++    ts = re.compile(r"\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}")
++    for rel in snapshot(project):
++        with open(os.path.join(project, rel), encoding="utf-8") as f:
++            assert not ts.search(f.read()), rel
+
+--- /dev/null
++++ b/tests/test_register.py
+@@ -0,0 +1,35 @@
++"""The intervention register has 14 unique deterministic IDs and a second run does not change it."""
++import json
++import os
++import re
++
++from conftest import run_all, snapshot
++
++
++def _load(project, rel):
++    with open(os.path.join(project, rel), encoding="utf-8") as f:
++        return json.load(f)
++
++
++def test_register_has_14_unique_ids(project):
++    assert run_all(project, "--clean").returncode == 0
++    reg = _load(project, "outputs/stats/intervention_register.json")
++    ids = [i["intervention_id"] for i in reg["interventions"]]
++    assert reg["total"] == 14 == len(ids)
++    assert len(set(ids)) == 14
++    assert all(re.fullmatch(r"INT-[0-9A-F]{6}", x) for x in ids)
++    for i in reg["interventions"]:
++        assert "**" not in i["title"] and "created_at" not in i
++    ctx = _load(project, "data/interim/shared_context.json")
++    assert ctx["interventions"]["total_generated"] == 14
++    in_ctx = {x for v in ctx["interventions"]["by_stage"].values() for x in v}
++    assert in_ctx <= set(ids)
++
++
++def test_second_run_does_not_change_register(project):
++    assert run_all(project, "--clean").returncode == 0
++    before = snapshot(project)
++    assert run_all(project).returncode == 0          # no --clean: must not accumulate
++    after = snapshot(project)
++    assert before == after, [k for k in before if before[k] != after.get(k)]
++    assert _load(project, "outputs/stats/intervention_register.json")["total"] == 14
+
+--- /dev/null
++++ b/tests/test_segments.py
+@@ -0,0 +1,53 @@
++"""The stage masks are mutually exclusive and cover all FinScope respondents; the weights sum to 34,134,251."""
++import os
++import sys
++
++import numpy as np
++import pandas as pd
++import pytest
++
++ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++sys.path.insert(0, os.path.join(ROOT, "src"))
++import paths  # noqa: E402,F401  (puts the stage folders on sys.path)
++import finscope_segments as seg  # noqa: E402
++
++
++@pytest.fixture(scope="module")
++def df():
++    return pd.read_csv(os.path.join(ROOT, "data", "raw", "finscope", "FinScope.csv"), low_memory=False)
++
++
++def test_respondent_count(df):
++    assert len(df) == 9915
++
++
++def test_weights_sum(df):
++    assert int(round(seg.survey_weights(df).sum())) == 34134251
++
++
++def test_stages_are_exclusive_and_exhaustive(df):
++    stage = seg.lifecycle_stage(df)
++    assert set(np.unique(stage)) <= set(seg.LIFECYCLE_STAGES)          # no 'unknown'
++    masks = np.column_stack([stage == s for s in seg.LIFECYCLE_STAGES])
++    assert (masks.sum(axis=1) == 1).all()                              # exactly one stage per respondent
++    w = seg.survey_weights(df)
++    assert int(round(w.sum())) == int(round(sum(w[stage == s].sum() for s in seg.LIFECYCLE_STAGES)))
++
++
++def test_seed_is_empty_in_finscope(df):
++    # FinScope covers respondents aged 16+; the Seed stage (6-15) is not in the file
++    assert (seg.lifecycle_stage(df) == "seed").sum() == 0
++
++
++def test_stage_populations_match_the_published_values(df):
++    stage = seg.lifecycle_stage(df)
++    w = seg.survey_weights(df)
++    pops = {s: int(w[stage == s].sum()) for s in ("entry", "active", "enterprise", "asset", "legacy")}
++    # int() truncation, as in finscope_analysis.funnel_by_stage (the report text quotes 12,110,885 and 3,488,899)
++    assert pops == {"entry": 10605005, "active": 12110885, "enterprise": 3488899, "asset": 5590836, "legacy": 2338624}
++
++
++def test_tin_mask(df):
++    w = seg.survey_weights(df)
++    rate = w[seg.tin_holder_mask(df)].sum() / w.sum() * 100
++    assert round(rate, 1) == 3.8
+

@@ -1,0 +1,180 @@
+﻿"location (page of the review PDF, section)",category,old text,new text,note
+every page from the table of contents | running header (section 3),header,THE TAXPAYER DEVELOPMENT JOURNEY | [competition banner],THE TAXPAYER DEVELOPMENT JOURNEY,deleted: <tab>[competition banner]
+every page with a footer | footer (section 3),footer,,Code: [GitHub link]  ·  Data: [Zenodo DOI]  ·  Dashboard: [link],placeholders highlighted yellow
+every page with a footer | footer (section 2),footer,,Code: [GitHub link]  ·  Data: [Zenodo DOI]  ·  Dashboard: [link],placeholders highlighted yellow
+document properties | ,C5,Title: The Taxpayer Development Journey; Author: Jasco John,Title: The Taxpayer Development Journey: A Behavioral Architecture for Tax Compliance; Author: Jasco Francis John,not tracked by Word (properties); no challenge or phone data was present
+p.1 (cover; the review PDF shows the new picture and the struck-through old one),cover,"image (original, kept as a tracked deletion)",image: cover_poster_edited.png,"cover poster: competition banner, SUBMITTED BY block and phone number removed; author line added"
+p.3 | front matter,name,Asset Score,Mali-Alama za Kodi (Tax Asset Score),
+p.3 | front matter,name,the Legacy Score,Urithi wa Kodi (Tax Legacy Score),article dropped
+p.3 | front matter,C2,both documents,the report,
+p.3 | front matter,C2,proposal,report,
+p.3 | front matter,C2,proposal,report,
+p.3 | front matter,C2,A fully functional six-stage prototype has been deployed to demonstrate the platform's architecture and user journey.,A working prototype of each stage is available online.,pitch framing for a general reader
+p.4 (title page in the review PDF),title,"image (original, kept as a tracked deletion)",image: title_page_edited.png,title page image: banner and phone number painted out; author line added
+p.6 | front matter,name,Madarasa Ya Kodi,Michezo ya Kodi (Tax Learning Games),
+p.6 | front matter,name,Targeting Priority Tool (for Smart USSD Registration),Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration),
+p.6 | front matter,name,Mzani wa Kodi (Presumptive Tax Reference Tool),Mzani wa Kodi (Presumptive Tax Estimator),
+p.7 | (hand correction after the renaming pass),name,Ngazi,Hatua za Kodi (Tax Progression Dashboard),heading 'The Proposed Solution: Ngazi' (and its TOC line): the Enterprise tool's short name
+p.7 | front matter,name,Mali Alama (Asset Score),Mali-Alama za Kodi (Tax Asset Score),
+p.7 | front matter,name,Kodi Legacy Score,Urithi wa Kodi (Tax Legacy Score),
+p.9 | Executive Summary,C2,submission,report,
+p.9 | Executive Summary,C2,proposal,report,
+p.9 | Executive Summary,C2,document,report,
+p.9 | Executive Summary,C2,reviewers,readers,
+p.10 | 1. The Problem,C2,proposal,report,
+p.11 | 2. The Idea,C2,proposal,report,
+p.11 | 2. The Idea,C2,proposal,report,
+p.11 | 2. The Idea,name,Madarasa Ya Kodi,Michezo ya Kodi (Tax Learning Games),
+p.11 | 2. The Idea,name,Targeting Priority Tool,Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration),
+p.11 | 2. The Idea,name,Mzani wa Kodi (Presumptive Tax Reference Tool),Mzani wa Kodi (Presumptive Tax Estimator),
+p.11 | 2. The Idea,name,Ngazi Progression Dashboard,Hatua za Kodi (Tax Progression Dashboard),
+p.11 | 2. The Idea,name,Mali Alama (Asset Score),Mali-Alama za Kodi (Tax Asset Score),
+p.11 | 2. The Idea,name,Kodi Legacy Score,Urithi wa Kodi (Tax Legacy Score),
+p.11 | 2. The Idea,C2,proposal,report,
+p.11 | 2. The Idea,C2,proposal,report,
+p.13 | 3. Theory of Change,C2,proposal,report,
+p.13 | 3. Theory of Change,C2,proposal,report,
+p.14 | 3. Theory of Change,C2,proposal,report,
+p.15 | 3.3  WHAT HAS TO BE TRUE,C2,proposal,report,
+p.15 | 3.3  WHAT HAS TO BE TRUE,C2,proposal,report,
+p.15 | 3.3  WHAT HAS TO BE TRUE,C2,proposal,report,
+p.16 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,C2,proposal,report,
+p.17 (Fig 4.1 in the review PDF),graphic,"image (original, kept as a tracked deletion)",image: journey_graphic.png,"Chapter 4 journey graphic (Fig 4.1), new tool names"
+p.17 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,C2,document,report,
+p.17 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,C2,proposal,report,
+p.18 | 4. A Behavioural Taxpayer Lifecycle Built on the Ngazi Platform,C2,The full pilot is available at:,The working prototype of each stage is available at:,pitch framing for a general reader
+p.21 | The Proposed Solution: Madarasa Ya Kodi,name,Madarasa Ya Kodi,Michezo ya Kodi (Tax Learning Games),
+p.21 | The Proposed Solution: Madarasa Ya Kodi,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.21 | The Proposed Solution: Madarasa Ya Kodi,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.21 | How the Game Works,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.22 | How the Game Works,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.22 | How the Game Works,name,Asset Score,Mali-Alama za Kodi (Tax Asset Score),
+p.23 | How the Game Works,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.23 | How the Game Works,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.24 | Link to TRA Objectives,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.24 | Integration in the Ngazi Platform,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.27 | The Proposed Solution: Targeting Priority Tool (for Smart USSD Registr,name,Targeting Priority Tool (for Smart USSD Registration),Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration),
+p.27 | The Proposed Solution: Targeting Priority Tool (for Smart USSD Registr,name,ENgazi Registration,registration on the Ngazi Platform,
+p.27 | How the Model Works,name,the Targeting Priority Tool,Ujumuishaji wa Kikodi,article dropped
+p.28 | How the Model Works,name,Targeting Priority Tool,Ujumuishaji wa Kikodi,
+p.28 | How the Model Works,name,The Targeting Priority Tool,Ujumuishaji wa Kikodi,article dropped
+p.29 | Proposed Growth Pathway,name,Targeting Priority Tool,Ujumuishaji wa Kikodi,
+p.29 | Deliverable,name,a Targeting Priority Tool,an Ujumuishaji wa Kikodi tool,indefinite article
+p.33 | The Proposed Solution: Mzani wa Kodi (Presumptive Tax Reference Tool),name,Mzani wa Kodi (Presumptive Tax Reference Tool),Mzani wa Kodi (Presumptive Tax Estimator),
+p.35 | Proposed Growth Pathway,C2,proposal,report,
+p.35 | Deliverable,name,Presumptive Tax Reference Tool,Mzani wa Kodi,
+p.38 | The Challenge & Behavioral Nudge,C2,proposal,report,
+p.39 | (hand correction after the renaming pass),name,Ngazi,Hatua za Kodi (Tax Progression Dashboard),heading 'The Proposed Solution: Ngazi' (and its TOC line): the Enterprise tool's short name
+p.39 | (hand correction after the renaming pass),name,Ngazi Progression Dashboard,Hatua za Kodi,hand correction after the renaming pass
+p.41 | Deliverable,name,A Ngazi Progression Dashboard,A Hatua za Kodi dashboard,indefinite article
+p.42 | Strategic Contribution,name,Asset Score,Mali-Alama za Kodi (Tax Asset Score),
+p.42 | Integration in the Ngazi Platform,name,the Ngazi Progression Dashboard,Hatua za Kodi,article dropped
+p.42 | Integration in the Ngazi Platform,name,Asset Score,Mali-Alama za Kodi,
+p.42 | Integration in the Ngazi Platform,name,Kodi Legacy,Urithi wa Kodi (Tax Legacy Score),
+p.43 | Integration in the Ngazi Platform,name,Asset Score,Mali-Alama za Kodi,
+p.43 | Integration in the Ngazi Platform,name,Kodi Legacy,Urithi wa Kodi,
+p.45 | The Proposed Solution: Mali Alama (Asset Score),name,Mali Alama (Asset Score),Mali-Alama za Kodi (Tax Asset Score),
+p.45 | The Proposed Solution: Mali Alama (Asset Score),name,Asset Score,Mali-Alama za Kodi,
+p.45 | The Proposed Solution: Mali Alama (Asset Score),name,Asset Score,Mali-Alama za Kodi,
+p.45 | The Proposed Solution: Mali Alama (Asset Score),name,Asset Score,Mali-Alama za Kodi,
+p.45 | The Proposed Solution: Mali Alama (Asset Score),name,Asset Score,Mali-Alama za Kodi,
+p.46 | The Proposed Solution: Mali Alama (Asset Score),name,Mali Alama,Mali-Alama za Kodi,
+p.46 | The Proposed Solution: Mali Alama (Asset Score),name,the Asset Score,Mali-Alama za Kodi,article dropped
+p.46 | How the Score Works,name,Asset Score,Tax Asset Score,
+p.46 | How the Score Works,name,Asset Score,Tax Asset Score,
+p.46 | How the Score Works,name,Asset Score,Tax Asset Score,
+p.47 | How the Score Works,name,Asset Score,Mali-Alama za Kodi,
+p.47 | How the Score Works,name,Asset Score,Mali-Alama za Kodi,
+p.47 | How the Score Works,name,Asset Score,Mali-Alama za Kodi,
+p.48 | How the Score Works,name,Asset Score,Mali-Alama za Kodi,
+p.48 | Proposed Growth Pathway,name,Asset Score,Tax Asset Score,
+p.48 | Proposed Growth Pathway,name,Asset Scores,Tax Asset Scores,
+p.48 | Proposed Growth Pathway,name,Asset Score,Tax Asset Score,
+p.48 | Proposed Growth Pathway,name,Asset Score,Tax Asset Score,
+p.48 | Proposed Growth Pathway,name,Asset Score,Tax Asset Score,
+p.48 | Deliverable,name,an Asset Score,a Tax Asset Score,
+p.48 | Deliverable,name,Asset Score,Mali-Alama za Kodi,
+p.49 | Strategic Contribution,name,Asset Score,Mali-Alama za Kodi,
+p.49 | Strategic Contribution,name,the Asset Score,Mali-Alama za Kodi,article dropped
+p.49 | Strategic Contribution,name,the Kodi Legacy Score,Urithi wa Kodi (Tax Legacy Score),article dropped
+p.49 | (hand correction after the renaming pass),name,an Asset Score,a Tax Asset Score,indefinite article: the name is used as the score concept
+p.49 | Integration in the Ngazi Platform,name,the Asset Score,Mali-Alama za Kodi,article dropped
+p.49 | Integration in the Ngazi Platform,name,Asset Score,Mali-Alama za Kodi,
+p.53 | The Proposed Solution: Kodi Legacy Score,name,Kodi Legacy Score,Urithi wa Kodi (Tax Legacy Score),
+p.53 | The Proposed Solution: Kodi Legacy Score,name,Kodi Legacy Score,Urithi wa Kodi,
+p.53 | The Proposed Solution: Kodi Legacy Score,name,Kodi Legacy Score,Urithi wa Kodi,
+p.53 | The Proposed Solution: Kodi Legacy Score,name,Kodi Legacy Score,Urithi wa Kodi,
+p.53 | How the Score Works,name,The Kodi Legacy Score,Urithi wa Kodi,article dropped
+p.53 | How the Score Works,name,Asset Score,Mali-Alama za Kodi (Tax Asset Score),
+p.54 | How the Score Works,name,Kodi Legacy Score,Urithi wa Kodi,
+p.54 | How the Score Works,name,Kodi Legacy Score,Urithi wa Kodi,
+p.54 | How the Score Works,name,Kodi Legacy,Urithi wa Kodi,
+p.55 | How the Score Works,name,Kodi Legacy,Urithi wa Kodi,
+p.55 | How the Score Works,name,Kodi Legacy,Urithi wa Kodi,
+p.55 | How the Score Works,name,Kodi Legacy,Urithi wa Kodi,
+p.56 | Proposed Growth Pathway,name,Kodi Legacy Scores,Tax Legacy Scores,
+p.56 | Proposed Growth Pathway,name,the Kodi Legacy Score,Urithi wa Kodi,article dropped
+p.56 | Deliverable,name,a Kodi Legacy Builder,Urithi wa Kodi,indefinite article dropped
+p.56 | Deliverable,name,the Succession Builder,Urithi wa Kodi,article dropped
+p.56 | Deliverable,name,Kodi Legacy Score,Urithi wa Kodi,
+p.56 | Deliverable,name,Kodi Legacy Certificate,Urithi wa Kodi Certificate,
+p.56 | Link to TRA Objectives,name,Kodi Legacy Scores,Tax Legacy Scores,
+p.58 | 5. Portfolio-Level Impact,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.58 | 5. Portfolio-Level Impact,name,Targeting tool,Ujumuishaji wa Kikodi,
+p.58 | 5. Portfolio-Level Impact,name,Band calculator,Mzani wa Kodi,
+p.58 | 5. Portfolio-Level Impact,name,Tier tool (Ngazi),Hatua za Kodi,
+p.58 | Integration in the Ngazi Platform,name,Asset Score,Mali-Alama za Kodi,
+p.58 | 5. Portfolio-Level Impact,name,Kodi Legacy Score,Urithi wa Kodi,
+p.59 | 5.2  THE COMPUTATIONAL CHAIN,name,the Asset Score,Mali-Alama za Kodi,article dropped
+p.59 | 5.2  THE COMPUTATIONAL CHAIN,name,the Kodi Legacy Score,Urithi wa Kodi,article dropped
+p.60 | 5.3  EXTERNAL VALIDATION: CAUSAL EVIDENCE FROM TANZANIA'S OWN DATA,C2,proposal,report,
+p.63 | References,C1,[competition] submission team,Project team,reference list credit line
+p.65 | References,C2,document,appendix,
+p.65 | References,name,Madarasa Ya Kodi,Michezo ya Kodi (Tax Learning Games),
+p.65 | References,name,Targeting Priority Tool & ENgazi Registration,Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration),
+p.65 | References,name,,(Presumptive Tax Estimator),first mention in chapter: English name added
+p.65 | How the Ladder Works,name,Ngazi Progression Dashboard,Hatua za Kodi (Tax Progression Dashboard),
+p.65 | References,name,Mali Alama / Verified Economic Identity,Mali-Alama za Kodi (Tax Asset Score) / Verified Economic Identity,
+p.65 | References,name,Kodi Legacy Score & Succession Builder,Urithi wa Kodi (Tax Legacy Score),
+p.66 | References,name,Madarasa Ya Kodi,Michezo ya Kodi (Tax Learning Games),
+p.66 | 1. Conceptual View,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.66 | 1. Conceptual View,name,Madarasa Ya Kodi,Michezo ya Kodi,
+p.67 | 2. Theoretical Underpinning,C2,submission document,main report,
+p.68 | 5. Portfolio-Level Impact,name,Asset Score,Mali-Alama za Kodi,
+p.69 | 3. Technical Description,C2,submission document,main report,
+p.69 | 4. Growth Potential,C2,submission document,main report,
+p.70 | 4. Growth Potential,name,Targeting Priority Tool & ENgazi Registration,Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration),
+p.70 | 1. Conceptual View,name,The Targeting Priority Tool,Ujumuishaji wa Kikodi,article dropped
+p.70 | 1. Conceptual View,name,ENgazi Registration,Registration on the Ngazi Platform,
+p.70 | 1. Conceptual View,name,ENgazi Registration,registration on the Ngazi Platform,
+p.71 | 2. Theoretical Underpinning,name,The Targeting Priority Tool,Ujumuishaji wa Kikodi,article dropped
+p.71 | 2. Theoretical Underpinning,name,ENgazi Registration,registration on the Ngazi Platform,
+p.72 | 3. Technical Description,name,The Targeting Priority Tool,Ujumuishaji wa Kikodi,article dropped
+p.72 | 3. Technical Description,name,ENgazi Registration,Registration on the Ngazi Platform,
+p.72 | 3. Technical Description,name,ENgazi,Ngazi Platform,
+p.72 | 3. Technical Description,name,the Targeting Priority Tool,Ujumuishaji wa Kikodi,article dropped
+p.72 | 4. Growth Potential,name,ENgazi Registration,registration on the Ngazi Platform,
+p.73 | 4. Growth Potential,name,ENgazi Registration,registration on the Ngazi Platform,
+p.74 | 4. Growth Potential,name,,(Presumptive Tax Estimator),first mention in chapter: English name added
+p.78 | References,name,Ngazi Progression Dashboard,Hatua za Kodi (Tax Progression Dashboard),
+p.78 | 2. Theoretical Underpinning,name,Asset Score,Mali-Alama za Kodi (Tax Asset Score),
+p.78 | 1. Conceptual View,name,Kodi Legacy,Urithi wa Kodi (Tax Legacy Score),
+p.80 | 4. Growth Potential,name,Asset Score,Mali-Alama za Kodi,
+p.82 | 4. Growth Potential,name,Mali Alama / Verified Economic Identity,Mali-Alama za Kodi (Tax Asset Score) / Verified Economic Identity,
+p.82 | 1. Conceptual View,name,Mali Alama (Asset Score),Mali-Alama za Kodi,
+p.82 | 1. Conceptual View,name,the Asset Score,Mali-Alama za Kodi,article dropped
+p.84 | 3. Technical Description,name,Asset Score,Tax Asset Score,
+p.84 | 4. Growth Potential,name,Asset Scores,Tax Asset Scores,
+p.84 | 4. Growth Potential,name,Asset Score,Tax Asset Score,
+p.84 | 4. Growth Potential,name,Asset Score,Mali-Alama za Kodi,
+p.84 | 4. Growth Potential,name,the Kodi Legacy Score,Urithi wa Kodi (Tax Legacy Score),article dropped
+p.86 | 4. Growth Potential,name,Kodi Legacy Score & Succession Builder,Urithi wa Kodi (Tax Legacy Score),
+p.86 | 1. Conceptual View,name,Kodi Legacy Score,Urithi wa Kodi,
+p.86 | 1. Conceptual View,C2,document,report,
+p.86 | 1. Conceptual View,name,Asset Score,Mali-Alama za Kodi (Tax Asset Score),
+p.86 | 1. Conceptual View,name,the Kodi Legacy Score,Urithi wa Kodi,article dropped
+p.86 | 1. Conceptual View,C2,proposal,report,
+p.86 | 1. Conceptual View,name,Asset Score,Mali-Alama za Kodi,
+p.88 | 3. Technical Description,name,Asset Score,Mali-Alama za Kodi,
+p.88 | 3. Technical Description,name,Kodi Legacy Certificate,Urithi wa Kodi Certificate,
+p.89 | colophon (end of the document),licence,,Report and figures: CC BY 4.0. Code: MIT.,the title page has no room (its image is taller than the page): added as a closing colophon line

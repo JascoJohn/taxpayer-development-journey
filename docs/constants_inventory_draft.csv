@@ -1,0 +1,288 @@
+﻿file,line,function,kind,name_or_expression,value,basis_guess_from_comment,comment,feeds_claims
+economic_model.py,77,load_base_params,dict key,gdp_usd,78844405385,data,── Economy (World Bank 2024) ────────────────────────,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,78,load_base_params,dict key,gdp_growth_rate,0.0553,unknown,,
+economic_model.py,79,load_base_params,dict key,population,68560157,unknown,,
+economic_model.py,80,load_base_params,dict key,tax_to_gdp_current,0.128,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,81,load_base_params,dict key,tax_to_gdp_target,0.165,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,82,load_base_params,dict key,tax_to_gdp_rwanda,0.156,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,83,load_base_params,dict key,tax_to_gdp_kenya,0.141,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,84,load_base_params,dict key,tzs_per_usd,2500,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,87,load_base_params,dict key,registered_taxpayers,3200000,data,── Taxpayer base (TRA 2023) ─────────────────────────,
+economic_model.py,88,load_base_params,dict key,working_age_population,28000000,unknown,,
+economic_model.py,89,load_base_params,dict key,informal_workers_pct,0.92,unknown,,
+economic_model.py,90,load_base_params,dict key,formal_workers_pct,0.08,unknown,,
+economic_model.py,93,load_base_params,dict key,mobile_money_users,35000000,data,── Mobile money (BoT 2023) ──────────────────────────,
+economic_model.py,94,load_base_params,dict key,mobile_money_gdp_pct,0.49,unknown,,
+economic_model.py,98,load_base_params,dict key,seed_stage_population,15000000,data,── Lifecycle populations (FinScope 2023 defaults) ─── These are overwritten by load_finscope_params(),stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,99,load_base_params,dict key,entry_stage_population,10605005,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,100,load_base_params,dict key,active_stage_population,12110886,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,101,load_base_params,dict key,enterprise_stage_population,3488900,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,102,load_base_params,dict key,asset_stage_population,5590836,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,103,load_base_params,dict key,legacy_stage_population,2338624,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,106,load_base_params,dict key,tin_rate_pct,3.8,data,── FinScope compliance metrics (defaults) ───────────,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,107,load_base_params,dict key,mm_penetration_pct,71.6,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,108,load_base_params,dict key,mm_no_tin_count,23140012,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,109,load_base_params,dict key,tin_gap,32827568,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,112,load_base_params,dict key,informal_worker_avg_income_tzs,2400000,unknown,── Average incomes by segment (TZS/year) ────────────,
+economic_model.py,113,load_base_params,dict key,msme_avg_revenue_tzs,12000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,114,load_base_params,dict key,mobile_money_avg_transaction,150000,unknown,,
+economic_model.py,117,load_base_params,dict key,personal_income_tax_rate,0.15,unknown,── Tax rates ────────────────────────────────────────,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,118,load_base_params,dict key,presumptive_tax_rate,0.03,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,119,load_base_params,dict key,property_tax_rate,0.001,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,120,load_base_params,dict key,property_tax_target_rate,0.005,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,123,load_base_params,dict key,urban_property_untaxed_pct,0.6,unknown,── Property ─────────────────────────────────────────,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,124,load_base_params,dict key,urban_property_value_tzs,50000000000000,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,127,load_base_params,dict key,conservative_capture,0.3,assumption,── Scenario capture rates ───────────────────────────,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,128,load_base_params,dict key,moderate_capture,0.6,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,129,load_base_params,dict key,ambitious_capture,0.9,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,136,load_base_params,dict key,behavioral_uplift,1.35,literature,── Behavioral uplift ──────────────────────────────── 1.35x = behavioral interventions produce 35% more compliance than enforcement alone So,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,139,load_base_params,dict key,baseline_trust,0.35,unknown,── Tax morale baseline scores (0-1) ─────────────────,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,140,load_base_params,dict key,baseline_simplicity,0.25,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,141,load_base_params,dict key,baseline_enforcement,0.4,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,142,load_base_params,dict key,baseline_social_norm,0.3,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,143,load_base_params,dict key,baseline_fairness,0.3,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,314,calculate_mobile_money_opportunity,assignment,levy_rate,0.005,unknown,Conservative 0.5% levy,
+economic_model.py,315,calculate_mobile_money_opportunity,assignment,capture_pct,0.05,assumption,Current capture rate,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,379,run_scenario_analysis,dict key,avg_income,0,unknown,,
+economic_model.py,380,run_scenario_analysis,dict key,tax_rate,0,unknown,,
+economic_model.py,386,run_scenario_analysis,inline factor,params['informal_worker_avg_income_tzs'] * 0.7,0.7,unknown,,
+economic_model.py,388,run_scenario_analysis,dict key,finscope_mm_pct,60.2,unknown,,
+economic_model.py,389,run_scenario_analysis,dict key,finscope_tin_pct,0.8,unknown,,
+economic_model.py,396,run_scenario_analysis,dict key,finscope_mm_pct,77.7,unknown,,
+economic_model.py,397,run_scenario_analysis,dict key,finscope_tin_pct,4.6,unknown,,
+economic_model.py,404,run_scenario_analysis,dict key,finscope_mm_pct,91.7,unknown,,
+economic_model.py,405,run_scenario_analysis,dict key,finscope_tin_pct,9.7,unknown,,
+economic_model.py,415,run_scenario_analysis,dict key,finscope_mm_pct,75.8,unknown,,
+economic_model.py,416,run_scenario_analysis,dict key,finscope_tin_pct,4.3,unknown,,
+economic_model.py,431,run_scenario_analysis,assignment,total_annual_tzs,0,unknown,,
+economic_model.py,432,run_scenario_analysis,assignment,total_new_taxpayers,0,unknown,,
+economic_model.py,438,run_scenario_analysis,dict key,annual_revenue_tzs,0,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,511,calculate_demographic_dividend,inline factor,total_10yr * 0.2,0.2,unknown,,
+economic_model.py,513,calculate_demographic_dividend,inline factor,total_10yr * 0.8,0.8,unknown,,
+economic_model.py,520,calculate_demographic_dividend,dict key,path_a_capture_rate,0.2,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,522,calculate_demographic_dividend,dict key,path_b_capture_rate,0.8,unknown,,scenario revenue opportunity blocks (not quoted directly in the report text)
+economic_model.py,581,run_monte_carlo_simulation,inline factor,base_cap * 0.25,0.25,unknown,,
+economic_model.py,598,run_monte_carlo_simulation,inline factor,avg_income * 0.7,0.7,unknown,,
+economic_model.py,608,run_monte_carlo_simulation,assignment,total,0,unknown,,
+economic_model.py,614,run_monte_carlo_simulation,inline factor,gdp_tzs * params['mobile_money_gdp_pct'] * 0.005,0.005,unknown,,
+economic_model.py,617,run_monte_carlo_simulation,inline factor,gdp_tzs * 0.004,0.004,unknown,,
+economic_model.py,635,run_monte_carlo_simulation,inline factor,gdp_tzs * 0.037,0.037,unknown,,
+economic_model.py,640,run_monte_carlo_simulation,inline factor,ci_results[scenario]['median_tzs'] / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,642,run_monte_carlo_simulation,inline factor,ci_results[scenario]['ci_80_low'] / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,643,run_monte_carlo_simulation,inline factor,ci_results[scenario]['ci_80_high'] / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,682,build_tax_morale_model,dict key,trust,0.3,unknown,Highest weight — Tanzania key driver,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,683,build_tax_morale_model,dict key,simplicity,0.2,data,"FinScope barrier: 62.5% say ""too small""","tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,684,build_tax_morale_model,dict key,enforcement,0.15,unknown,Lower weight — Tanzania enforcement weak,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,685,build_tax_morale_model,dict key,social_norm,0.2,unknown,Community-based — high Tanzania relevance,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,686,build_tax_morale_model,dict key,fairness,0.15,unknown,Perceived value for tax paid,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,775,build_tax_morale_model,inline factor,delta * 0.6,0.6,unknown,,
+economic_model.py,941,run_agent_based_simulation,inline factor,trust * 0.3,0.3,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,942,run_agent_based_simulation,inline factor,morale * 0.35,0.35,unknown,,
+economic_model.py,943,run_agent_based_simulation,inline factor,"np.clip(income / 5000000, 0, 1) * 0.2",0.2,unknown,,
+economic_model.py,944,run_agent_based_simulation,inline factor,has_mm.astype(float) * 0.15,0.15,unknown,,
+economic_model.py,949,run_agent_based_simulation,inline factor,p_comply * 0.15,0.15,unknown,,
+economic_model.py,985,run_agent_based_simulation,inline factor,total_yr_revenue / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,1018,run_agent_based_simulation,inline factor,total_rev / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,1092,run_tier_migration_simulation,inline factor,compliant.mean() * 0.05,0.05,unknown,,
+economic_model.py,1097,run_tier_migration_simulation,inline factor,trust * 0.3,0.3,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,1097,run_tier_migration_simulation,inline factor,morale * 0.35,0.35,unknown,,
+economic_model.py,1098,run_tier_migration_simulation,inline factor,"np.clip(income / 5000000, 0, 1) * 0.2",0.2,unknown,,
+economic_model.py,1099,run_tier_migration_simulation,inline factor,has_mm.astype(float) * 0.15,0.15,unknown,,
+economic_model.py,1101,run_tier_migration_simulation,inline factor,p_comply * 0.15,0.15,unknown,,
+economic_model.py,1122,run_tier_migration_simulation,call argument,np.select(default=),0,unknown,not registered/compliant at all,
+economic_model.py,1187,run_intervention_optimizer,inline factor,budget_tzs / 1000000000.0,1000000000.0,unknown,,
+economic_model.py,1198,run_intervention_optimizer,dict key,cost_tzs,420000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1199,run_intervention_optimizer,dict key,revenue_tzs,8700000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1207,run_intervention_optimizer,dict key,cost_tzs,1200000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1208,run_intervention_optimizer,dict key,revenue_tzs,15400000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1216,run_intervention_optimizer,dict key,cost_tzs,800000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1217,run_intervention_optimizer,dict key,revenue_tzs,3200000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1225,run_intervention_optimizer,dict key,cost_tzs,600000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1226,run_intervention_optimizer,dict key,revenue_tzs,12800000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1234,run_intervention_optimizer,dict key,cost_tzs,350000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1235,run_intervention_optimizer,dict key,revenue_tzs,5600000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1243,run_intervention_optimizer,dict key,cost_tzs,3500000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1244,run_intervention_optimizer,dict key,revenue_tzs,18200000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1252,run_intervention_optimizer,dict key,cost_tzs,250000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1253,run_intervention_optimizer,dict key,revenue_tzs,4100000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1261,run_intervention_optimizer,dict key,cost_tzs,900000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1262,run_intervention_optimizer,dict key,revenue_tzs,6300000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1302,run_intervention_optimizer,assignment,remaining,0,unknown,,
+economic_model.py,1357,run_intervention_optimizer,inline factor,budget_tzs / 1000000000.0,1000000000.0,unknown,,
+economic_model.py,1358,run_intervention_optimizer,inline factor,optimal_revenue / 1000000000.0,1000000000.0,unknown,,
+economic_model.py,1396,run_digital_twin,dict key,mobile_money_levy,0.0,unknown,Currently 0,
+economic_model.py,1397,run_digital_twin,dict key,ussd_nudge_scale,0.0,unknown,Not deployed,
+economic_model.py,1398,run_digital_twin,dict key,trust_improvement_annual,0.01,unknown,Slow drift,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,1399,run_digital_twin,dict key,formalization_policy,0.005,unknown,0.5%/year natural,
+economic_model.py,1410,run_digital_twin,dict key,year,0,unknown,,
+economic_model.py,1417,run_digital_twin,inline factor,params['enterprise_stage_population'] * 0.097,0.097,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,1439,run_digital_twin,inline factor,state['mm_users'] * 1.08,1.08,unknown,,
+economic_model.py,1440,run_digital_twin,inline factor,params['population'] * 0.85,0.85,unknown,,
+economic_model.py,1456,run_digital_twin,inline factor,state['compliance_rate'] * 0.05,0.05,unknown,,
+economic_model.py,1521,run_digital_twin,assignment,mm_revenue,0,unknown,Mobile money levy on all MM transactions,
+economic_model.py,1530,run_digital_twin,assignment,pt_revenue,0,unknown,Presumptive tax simplification uplift,
+economic_model.py,1599,run_digital_twin,inline factor,result['revenue_growth_tzs'] / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,1640,run_causal_inference_analysis,dict key,mm_pct,90.1,data,FinScope 2023,
+economic_model.py,1641,run_causal_inference_analysis,dict key,tin_pct,8.3,data,FinScope 2023,
+economic_model.py,1645,run_causal_inference_analysis,dict key,mm_pct,81.3,unknown,,
+economic_model.py,1646,run_causal_inference_analysis,dict key,tin_pct,7.4,unknown,,
+economic_model.py,1650,run_causal_inference_analysis,dict key,mm_pct,63.7,unknown,,
+economic_model.py,1651,run_causal_inference_analysis,dict key,tin_pct,1.5,unknown,,
+economic_model.py,1666,run_causal_inference_analysis,assignment,pre_mm_gap,1.5,data,Assume similar pre-MM TIN rates | Pre-MM baseline (estimated from 2017 FinScope trend),"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,1699,run_causal_inference_analysis,assignment,n_sample,10000,unknown,,
+economic_model.py,1711,run_causal_inference_analysis,assignment,true_mm_effect,0.06,unknown,True TIN probability (causal model) MM has a direct causal effect of 0.06 (6pp),
+economic_model.py,1715,run_causal_inference_analysis,inline factor,income / 5000000.0 * 0.03,0.03,unknown,Income effect,
+economic_model.py,1715,run_causal_inference_analysis,inline factor,income / 5000000.0,5000000.0,unknown,Income effect,
+economic_model.py,1716,run_causal_inference_analysis,inline factor,urban.astype(float) * 0.04,0.04,unknown,Urban effect,
+economic_model.py,1717,run_causal_inference_analysis,inline factor,age / 100 * 0.02,0.02,unknown,Age effect,
+economic_model.py,1731,run_causal_inference_analysis,inline factor,income / 5000000.0 * 0.15,0.15,unknown,,
+economic_model.py,1731,run_causal_inference_analysis,inline factor,income / 5000000.0,5000000.0,unknown,,
+economic_model.py,1732,run_causal_inference_analysis,inline factor,urban.astype(float) * 0.2,0.2,unknown,,
+economic_model.py,1733,run_causal_inference_analysis,inline factor,(age - 16) / 54 * 0.1,0.1,unknown,,
+economic_model.py,1771,run_causal_inference_analysis,dict key,n_matched_pairs,1000,unknown,,
+economic_model.py,1790,run_causal_inference_analysis,dict key,Rwanda,0.15,unknown,Synthetic control weights (minimise pre-period diff),
+economic_model.py,1790,run_causal_inference_analysis,dict key,Kenya,0.45,unknown,Synthetic control weights (minimise pre-period diff),
+economic_model.py,1791,run_causal_inference_analysis,dict key,Ghana,0.25,unknown,,
+economic_model.py,1791,run_causal_inference_analysis,dict key,Uganda,0.15,unknown,,
+economic_model.py,1883,calculate_cost_benefit,dict key,implementation_cost_tzs,420000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1884,calculate_cost_benefit,dict key,annual_revenue_tzs,8700000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1891,calculate_cost_benefit,dict key,implementation_cost_tzs,1200000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1892,calculate_cost_benefit,dict key,annual_revenue_tzs,15400000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1893,calculate_cost_benefit,dict key,beneficiary_count,23140012,unknown,,
+economic_model.py,1899,calculate_cost_benefit,dict key,implementation_cost_tzs,600000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1900,calculate_cost_benefit,dict key,annual_revenue_tzs,12800000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1907,calculate_cost_benefit,dict key,implementation_cost_tzs,3500000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1908,calculate_cost_benefit,dict key,annual_revenue_tzs,18200000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1915,calculate_cost_benefit,dict key,implementation_cost_tzs,800000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1916,calculate_cost_benefit,dict key,annual_revenue_tzs,3200000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1923,calculate_cost_benefit,dict key,implementation_cost_tzs,250000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1924,calculate_cost_benefit,dict key,annual_revenue_tzs,4100000000,unknown,,Table 40 costs and revenues (C041-C053)
+economic_model.py,1957,calculate_cost_benefit,inline factor,rev * 4.33,4.33,unknown,,
+economic_model.py,2081,run_sensitivity_analysis,dict key,sensitivity_rank,0,unknown,filled below,
+economic_model.py,2094,run_sensitivity_analysis,inline factor,data['revenue_range_tzs'] / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,2135,build_compliance_funnel_model,dict key,count,34134251,unknown,,
+economic_model.py,2136,build_compliance_funnel_model,dict key,pct_of_total,100.0,unknown,,
+economic_model.py,2138,build_compliance_funnel_model,dict key,dropout_from_previous,0,unknown,,
+economic_model.py,2142,build_compliance_funnel_model,dict key,count,34134251,unknown,,
+economic_model.py,2143,build_compliance_funnel_model,dict key,pct_of_total,100.0,unknown,,
+economic_model.py,2145,build_compliance_funnel_model,dict key,dropout_from_previous,0,unknown,,
+economic_model.py,2150,build_compliance_funnel_model,dict key,count,24445601,unknown,,
+economic_model.py,2151,build_compliance_funnel_model,dict key,pct_of_total,71.6,unknown,,
+economic_model.py,2153,build_compliance_funnel_model,dict key,dropout_from_previous,9688650,unknown,,
+economic_model.py,2158,build_compliance_funnel_model,dict key,count,17978049,unknown,,
+economic_model.py,2159,build_compliance_funnel_model,dict key,pct_of_total,52.7,unknown,,
+economic_model.py,2161,build_compliance_funnel_model,dict key,dropout_from_previous,16156202,unknown,,
+economic_model.py,2166,build_compliance_funnel_model,dict key,count,1306683,unknown,,
+economic_model.py,2167,build_compliance_funnel_model,dict key,pct_of_total,3.8,unknown,,
+economic_model.py,2169,build_compliance_funnel_model,dict key,dropout_from_previous,16671366,unknown,,
+economic_model.py,2174,build_compliance_funnel_model,inline factor,1306683 * 0.65,0.65,unknown,,
+economic_model.py,2175,build_compliance_funnel_model,inline factor,1306683 * 0.65,0.65,unknown,,
+economic_model.py,2177,build_compliance_funnel_model,inline factor,1306683 * 0.35,0.35,unknown,,
+economic_model.py,2206,build_compliance_funnel_model,inline factor,exemption_pct / 100.0,100.0,unknown,,compliance-funnel payment-stage leakage (8.77%)
+economic_model.py,2294,build_compliance_funnel_model,inline factor,dropout * avg_income * tax_rate * 0.3,0.3,unknown,,
+economic_model.py,2316,build_compliance_funnel_model,dict key,total_adults,34134251,unknown,,
+economic_model.py,2317,build_compliance_funnel_model,dict key,registered_taxpayers,1306683,unknown,,
+economic_model.py,2318,build_compliance_funnel_model,dict key,compliance_gap,32827568,unknown,,"tax-to-GDP 12.8% / 16.5% benchmark / TZS 7.29T gap (C003, C005, C010; Fig 5.2)"
+economic_model.py,2319,build_compliance_funnel_model,dict key,mm_no_tin_target,23140012,unknown,,stage populations and TIN/mobile-money rates (overwritten by FinScope values when finscope_summary.json exists)
+economic_model.py,2354,build_compliance_funnel_model,inline factor,biggest['revenue_potential_tzs'] / 1000000000000.0,1000000000000.0,unknown,,
+economic_model.py,2385,build_segmentation_model,assignment,n,50000,unknown,,
+economic_model.py,2397,build_segmentation_model,call argument,np.select(default=),3,unknown,,
+economic_model.py,2403,build_segmentation_model,inline factor,(stage_enc == 1) * 0.038,0.038,unknown,Active stage,
+economic_model.py,2404,build_segmentation_model,inline factor,(stage_enc == 2) * 0.043,0.043,unknown,Asset stage,
+economic_model.py,2405,build_segmentation_model,inline factor,has_mm.astype(float) * 0.04,0.04,unknown,MM effect,
+economic_model.py,2406,build_segmentation_model,inline factor,urban.astype(float) * 0.06,0.06,unknown,Urban effect,
+economic_model.py,2407,build_segmentation_model,inline factor,income / 5000000.0 * 0.02,0.02,unknown,Income effect,
+economic_model.py,2407,build_segmentation_model,inline factor,income / 5000000.0,5000000.0,unknown,Income effect,
+economic_model.py,2408,build_segmentation_model,inline factor,is_biz.astype(float) * 0.08,0.08,unknown,Business effect,
+economic_model.py,2437,build_segmentation_model,call argument,LogisticRegression(max_iter=),500,unknown,,
+economic_model.py,2443,build_segmentation_model,call argument,cross_val_score(cv=),5,unknown,,
+economic_model.py,2558,run_economic_model,call argument,run_intervention_optimizer(budget_tzs=),10000000000,unknown,,
+economic_model.py,2569,run_economic_model,dict key,ussd_nudge_scale,0.6,unknown,,
+economic_model.py,2570,run_economic_model,dict key,mobile_money_levy,0.003,unknown,,
+economic_model.py,2571,run_economic_model,dict key,trust_improvement_annual,0.025,unknown,,"tax-morale model: 30.6% baseline, solo effects, 58.2% combined, 40.4% best single (Fig 5.1; C008, C054, C055, C069, C078)"
+economic_model.py,2660,run_economic_model,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,124,(module),dict key,value,12.4,unknown,,
+shared_context.py,124,(module),dict key,year,2022,unknown,,
+shared_context.py,125,(module),dict key,value,16.5,unknown,,
+shared_context.py,125,(module),dict key,year,2022,unknown,,
+shared_context.py,126,(module),dict key,value,4.1,unknown,,
+shared_context.py,126,(module),dict key,year,2022,unknown,,
+shared_context.py,127,(module),dict key,value,57.0,unknown,,
+shared_context.py,127,(module),dict key,year,2021,unknown,,
+shared_context.py,135,(module),dict key,value,68560157,data,Corrected 2026-07-08 (agent_v4.py output-layer rework): this dict had drifted from the live verified_data figures already validated and wire,
+shared_context.py,135,(module),dict key,year,2024,data,Corrected 2026-07-08 (agent_v4.py output-layer rework): this dict had drifted from the live verified_data figures already validated and wire,
+shared_context.py,136,(module),dict key,value,34134251,unknown,,
+shared_context.py,136,(module),dict key,year,2023,unknown,,
+shared_context.py,137,(module),dict key,value,3200000,unknown,,
+shared_context.py,137,(module),dict key,year,2023,unknown,,
+shared_context.py,138,(module),dict key,value,4.7,unknown,,
+shared_context.py,138,(module),dict key,year,2023,unknown,,
+shared_context.py,139,(module),dict key,value,35000000,unknown,,
+shared_context.py,139,(module),dict key,year,2023,unknown,,
+shared_context.py,140,(module),dict key,value,49.0,unknown,,
+shared_context.py,140,(module),dict key,year,2023,unknown,,
+shared_context.py,141,(module),dict key,value,92.0,unknown,,
+shared_context.py,141,(module),dict key,year,2022,unknown,,
+shared_context.py,142,(module),dict key,value,8.0,unknown,,
+shared_context.py,142,(module),dict key,year,2022,unknown,,
+shared_context.py,143,(module),dict key,value,51.0,unknown,,
+shared_context.py,143,(module),dict key,year,2022,unknown,,
+shared_context.py,144,(module),dict key,value,5.0,unknown,,
+shared_context.py,144,(module),dict key,year,2022,unknown,,
+shared_context.py,145,(module),dict key,value,44.0,unknown,,
+shared_context.py,145,(module),dict key,year,2023,unknown,,
+shared_context.py,146,(module),dict key,value,28700000000000,unknown,,
+shared_context.py,146,(module),dict key,year,2024,unknown,,
+shared_context.py,147,(module),dict key,value,0.1,unknown,,
+shared_context.py,147,(module),dict key,year,2022,unknown,,
+shared_context.py,148,(module),dict key,value,0.5,unknown,,
+shared_context.py,148,(module),dict key,year,2022,unknown,,
+shared_context.py,149,(module),dict key,value,15.6,unknown,,
+shared_context.py,149,(module),dict key,year,2022,unknown,,
+shared_context.py,150,(module),dict key,value,14.1,unknown,,
+shared_context.py,150,(module),dict key,year,2022,unknown,,
+shared_context.py,151,(module),dict key,value,26.4,unknown,,
+shared_context.py,151,(module),dict key,year,2022,unknown,,
+shared_context.py,152,(module),dict key,value,78844405385,unknown,,
+shared_context.py,152,(module),dict key,year,2024,unknown,,
+shared_context.py,153,(module),dict key,value,5.53,unknown,,
+shared_context.py,153,(module),dict key,year,2024,unknown,,
+shared_context.py,154,(module),dict key,value,2500,unknown,,
+shared_context.py,154,(module),dict key,year,2024,unknown,,
+shared_context.py,163,(module),dict key,population,15000000,unknown,,
+shared_context.py,164,(module),dict key,population,8000000,unknown,,
+shared_context.py,165,(module),dict key,population,20000000,unknown,,
+shared_context.py,166,(module),dict key,population,4000000,unknown,,
+shared_context.py,167,(module),dict key,population,3000000,unknown,,
+shared_context.py,168,(module),dict key,population,2000000,unknown,,
+shared_context.py,178,(module),dict key,age,17,unknown,,
+shared_context.py,186,(module),dict key,age,24,unknown,,
+shared_context.py,194,(module),dict key,age,35,unknown,,
+shared_context.py,202,(module),dict key,age,26,unknown,,
+shared_context.py,210,(module),dict key,age,45,unknown,,
+shared_context.py,218,(module),dict key,age,22,unknown,,
+shared_context.py,265,_empty_context,dict key,total_generated,0,unknown,,
+shared_context.py,266,_empty_context,dict key,total_validated,0,unknown,,
+shared_context.py,267,_empty_context,dict key,total_approved,0,unknown,,
+shared_context.py,273,_empty_context,dict key,total_items,0,unknown,,
+shared_context.py,274,_empty_context,dict key,high_confidence_count,0,unknown,,
+shared_context.py,275,_empty_context,dict key,api_verified_count,0,unknown,,
+shared_context.py,279,_empty_context,dict key,total,0,unknown,,
+shared_context.py,280,_empty_context,dict key,stress_tested,0,unknown,,
+shared_context.py,342,save_context,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,372,_initialize_audit_trail,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,425,log_agent_run,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,444,_initialize_intervention_register,dict key,total,0,unknown,,
+shared_context.py,448,_initialize_intervention_register,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,505,register_intervention,inline factor,feasibility_score * 0.4,0.4,unknown,,
+shared_context.py,505,register_intervention,inline factor,impact_score * 0.6,0.6,unknown,,
+shared_context.py,513,register_intervention,dict key,critic_approvals,0,unknown,,
+shared_context.py,514,register_intervention,dict key,critic_rejections,0,unknown,,
+shared_context.py,529,register_intervention,dict key,total,0,unknown,,
+shared_context.py,535,register_intervention,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,608,validate_intervention,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,657,_initialize_assumption_ledger,dict key,total,0,unknown,,
+shared_context.py,661,_initialize_assumption_ledger,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,710,register_assumption,dict key,total,0,unknown,,
+shared_context.py,728,register_assumption,call argument,json.dump(indent=),2,unknown,,
+shared_context.py,1039,save_report_section,call argument,json.dump(indent=),2,unknown,,
