@@ -1,0 +1,34 @@
+{
+  "title": "The Taxpayer Development Journey: Code",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "John, Jasco",
+      "orcid": "0009-0007-3630-7943"
+    }
+  ],
+  "license": "MIT",
+  "description": "<p>Code of the project <em>The Taxpayer Development Journey: A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania</em>: the pipeline that regenerates every model output from survey and published data (run_all.py, src/), the scripted figures, the tests and the Streamlit dashboard. Every number is labelled COMPUTED, MODELLED or CITED. The raw survey data are not included. Companion records: the report [Report DOI] and the aggregate data [Dataset DOI] (the two DOIs are filled in when version 1.0.0 is released; see the README).</p>",
+  "keywords": [
+    "tax compliance",
+    "Tanzania",
+    "Taxpayer Identification Number",
+    "tax morale",
+    "behavioural economics",
+    "mobile money",
+    "digital tax administration",
+    "presumptive tax",
+    "Streamlit",
+    "replication code"
+  ],
+  "language": "eng",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://taxpayer-development-journey.streamlit.app",
+      "relation": "isSourceOf",
+      "scheme": "url",
+      "resource_type": "software"
+    }
+  ]
+}

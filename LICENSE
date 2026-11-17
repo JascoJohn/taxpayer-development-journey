@@ -1,0 +1,51 @@
+MIT License
+
+Copyright (c) 2026 Jasco John
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+----------------------------------------------------------------------------
+Notice on what this licence covers
+
+The MIT licence above covers the CODE of this repository (run_all.py, src/,
+dashboard/, tests/ and the configuration and documentation files written for
+the code).
+
+The REPORT ("The Taxpayer Development Journey — A Behavioral Lifecycle
+Architecture for Tax Compliance: Evidence from Tanzania", report/final/) and
+the FIGURES (outputs/figures/) are licensed under the Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International licence
+(CC BY-NC-ND 4.0): https://creativecommons.org/licenses/by-nc-nd/4.0/ .
+Attribute: Jasco John. They may be read, shared and cited with attribution,
+but not used commercially, adapted, or presented as another's work without
+the author's written permission.
+
+The project's own AGGREGATE DATA (outputs/stats/, outputs/tables/,
+data/processed/, data/interim/) are licensed under the Creative Commons
+Attribution 4.0 International licence (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/ . Attribute: Jasco John.
+
+The RAW survey data (FinScope Tanzania 2023, ILFS 2024, Census 2022,
+Afrobarometer Round 8) and the Ministry of Finance workbook belong to their
+owners and are NOT redistributed here; see docs/data_terms.md and
+data/raw/SOURCES.csv for the terms and for how to obtain them. World Bank WDI
+snapshots are CC BY 4.0 (World Bank). Aggregate outputs derived from the
+restricted data follow the disclosure rule in docs/data_terms.md. Third-party
+data, publications and materials remain subject to their owners' rights and
+terms.

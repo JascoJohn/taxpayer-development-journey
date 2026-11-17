@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below. The datasets it analyses have their own citation requirements: see docs/data_terms.md and data/raw/SOURCES.csv."
+title: "The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania"
+type: software
+authors:
+  - family-names: "John"
+    given-names: "Jasco"
+    orcid: "https://orcid.org/0009-0007-3630-7943"
+abstract: "A behavioural lifecycle architecture for tax compliance in Tanzania (Seed, Entry, Active, Enterprise, Asset, Legacy), with the pipeline that regenerates its model outputs, the figures, and the Streamlit dashboard that reads them. Every number is COMPUTED from data, MODELLED from stated assumptions, or CITED."
+license: MIT
+repository-code: "https://github.com/JascoJohn/taxpayer-development-journey"
+url: "https://taxpayer-development-journey.streamlit.app"
+doi: "[Code DOI]"
+keywords:
+  - tax compliance
+  - Tanzania
+  - behavioural economics
+  - TIN registration
+  - mobile money
+date-released: "[date-released]"
+version: "0.9.0"
+references:
+  - type: report
+    authors:
+      - family-names: "John"
+        given-names: "Jasco"
+        orcid: "https://orcid.org/0009-0007-3630-7943"
+    title: "The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania"
+    year: 2026
+    publisher:
+      name: "Zenodo"
+    doi: "[Report DOI]"
+    license: CC-BY-NC-ND-4.0
+  - type: dataset
+    authors:
+      - family-names: "John"
+        given-names: "Jasco"
+        orcid: "https://orcid.org/0009-0007-3630-7943"
+    title: "The Taxpayer Development Journey: Aggregate Data"
+    year: 2026
+    publisher:
+      name: "Zenodo"
+    doi: "[Dataset DOI]"
+    license: CC-BY-4.0
