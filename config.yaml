@@ -39,6 +39,7 @@ worldbank:
     - {indicator: NY.GDP.MKTP.KD.ZG, countries: [TZA]}                       # GDP growth, annual % (Block E2: digital-twin base parameter)
     - {indicator: SP.POP.GROW,       countries: [TZA]}                       # population growth, annual % (Block E2)
     - {indicator: SP.POP.TOTL,       countries: [TZA]}                       # population, total (Block E2, context)
+    - {indicator: FP.CPI.TOTL,       countries: [TZA]}                       # consumer price index (2010 = 100): CPI uprating of HBS 2017/18 turnover to 2024 prices (Pass 6B-1)
   snapshots:                      # the snapshot the analysis reads, per indicator (set after a --fetch)
     GC.TAX.TOTL.GD.ZS: data/raw/worldbank/GC.TAX.TOTL.GD.ZS_2026-11-12.json
     NY.GDP.MKTP.CN: data/raw/worldbank/NY.GDP.MKTP.CN_2026-11-12.json
@@ -47,6 +48,7 @@ worldbank:
     NY.GDP.MKTP.KD.ZG: data/raw/worldbank/NY.GDP.MKTP.KD.ZG_2026-11-12.json
     SP.POP.GROW: data/raw/worldbank/SP.POP.GROW_2026-11-12.json
     SP.POP.TOTL: data/raw/worldbank/SP.POP.TOTL_2026-11-12.json
+    FP.CPI.TOTL: data/raw/worldbank/FP.CPI.TOTL_2026-11-18.json
 
 # Macro inputs (src/03_features/macro_inputs.py -> outputs/stats/macro_inputs.json)
 macro:
@@ -431,6 +433,14 @@ names:
   legacy:     {swahili: "Urithi wa Kodi",          english: "Tax Legacy Score",                    full: "Urithi wa Kodi (Tax Legacy Score)"}
   platform:   {swahili: "Jukwaa la Ngazi",         english: "Ngazi Platform",                      full: "Ngazi Platform (Jukwaa la Ngazi)"}
 
+# Pass 6B-1: HBS 2017/18 turnover of non-farm household-business owners (src/03_features/hbs_turnover.py). Every choice below is registered in docs/assumptions_register.csv (sign-off PENDING).
+hbs:
+  cpi_indicator: FP.CPI.TOTL            # World Bank WDI, Tanzania (2010 = 100)
+  cpi_survey_years: [2017, 2018]        # HBS 2017/18 fieldwork runs Dec 2017 - Dec 2018: the mean of the two annual indices is the survey price level
+  cpi_target_year: 2024                 # prices of the schedule and of the ILFS 2024 values
+  receipt_sources: [1, 2, 3, 4]         # S10C sources counted as turnover: sale of products, resale goods, construction work, services; rents, interest, dividends, gifts and other income are excluded
+  mzani_min_region_cell: 30             # Mzani wa Kodi: a region x activity cell is shown only with at least this many businesses with receipts; otherwise the zone cell, otherwise the national figure
+
 stage_economics:
   n_draws: 10000
   seed: 20260112
@@ -462,6 +472,13 @@ files:
   census_sav:          data/raw/census/TPHC2022_TenPercent_DEMOGRAPHICS.sav
   ilfs_sav:            data/raw/ilfs/ILFS2024-URT-FINAL - Anonymized.sav
   afrobarometer_sav:   data/raw/afrobarometer/afrobarometer_release-data_tan_r8_en_2021-06-10.sav
+  # Pass 6B-1: HBS 2017/18 (NBS; restricted, private) and the TRA FY2024/25 collections workbook (public, not redistributed)
+  hbs_individual:      data/raw/hbs_2017_18/HBS_2017-18_Final_Individual_Data.dta
+  hbs_consumption:     data/raw/hbs_2017_18/HBS_2017-18_Consumption_Aggregate.dta        # household weights
+  hbs_s10c:            data/raw/hbs_2017_18/Other_Sections_of_Form_I/S10C1.dta            # monthly business receipts by source
+  hbs_s10a:            data/raw/hbs_2017_18/Other_Sections_of_Form_I/S10A1.dta            # business expenses (context)
+  tra_collections_xlsx: data/raw/tra/TAX_COLLECTION_FOR_THE_FINANCIAL_YEAR_2024-25.xlsx
+  tax_club_html:       data/raw/web/tra_tax_club_2026-11-18.html
   # interim
   finscope_summary:        data/interim/finscope_summary.json
   finscope_feature_store:  data/interim/finscope_feature_store.json
@@ -500,6 +517,8 @@ files:
   agent_calibration:           data/processed/agent_calibration.json      # E2.4 calibrated parameters and fit diagnostics
   stage_economics:             outputs/stats/stage_economics.json
   table40_csv:                 outputs/tables/table40_stage_economics.csv
+  hbs_turnover:                data/processed/hbs_turnover.json           # aggregates of HBS 2017/18 owner turnover (Pass 6B-1; src/03_features/hbs_turnover.py)
+  tra_collections:             data/processed/tra_collections_2024_25.json  # aggregates of the TRA FY2024/25 workbook (src/03_features/tra_collections.py)
   ilfs_tax_base:               data/processed/ilfs_tax_base.json   # aggregates only: mean statutory tax per person of each Table 40 group and the age-earnings profiles (src/04_models/stage_economics.py)
   twin_inputs:                 data/processed/twin_inputs.json            # E2.2 base parameters of the digital twin (published figures, aggregates)
   tra_registered_taxpayers_csv: data/processed/tra_registered_taxpayers.csv

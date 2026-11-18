@@ -38,6 +38,12 @@ TAX_EXEMPTIONS_XLSX = resolve(_F["tax_exemptions_xlsx"])
 CENSUS_SAV = resolve(_F["census_sav"])
 ILFS_SAV = resolve(_F["ilfs_sav"])
 AFROBAROMETER_SAV = resolve(_F["afrobarometer_sav"])
+HBS_INDIVIDUAL = resolve(_F["hbs_individual"])
+HBS_CONSUMPTION = resolve(_F["hbs_consumption"])
+HBS_S10C = resolve(_F["hbs_s10c"])
+HBS_S10A = resolve(_F["hbs_s10a"])
+TRA_COLLECTIONS_XLSX = resolve(_F["tra_collections_xlsx"])
+TAX_CLUB_HTML = resolve(_F["tax_club_html"])
 
 # interim
 FINSCOPE_SUMMARY = resolve(_F["finscope_summary"])
@@ -92,6 +98,8 @@ CLEAN_DIRS = [resolve(p) for p in CFG["clean_dirs"]]
 # authored interventions (draft for the owner's review): read by src/04_models/intervention_registrar.py
 INTERVENTIONS_YAML = resolve(_F["interventions_yaml"])
 ILFS_TAX_BASE = resolve(_F["ilfs_tax_base"])
+HBS_TURNOVER = resolve(_F["hbs_turnover"])
+TRA_COLLECTIONS_JSON = resolve(_F["tra_collections"])
 
 DISCLOSURE = CFG["disclosure"]
 

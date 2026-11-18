@@ -83,7 +83,10 @@ The raw data are not redistributed (terms: `docs/data_terms.md`; file-by-file pr
 | Afrobarometer Round 8, Tanzania (`data/raw/afrobarometer/`) | Afrobarometer | public download, https://www.afrobarometer.org/survey-resource/tanzania-round-8-data-2021/ |
 | MoF tax exemptions and reliefs workbook (`data/raw/tax_exemptions/`) | Ministry of Finance | public page https://www.mof.go.tz/publications/tax-exemptions |
 | Published reports and statutes (`data/raw/nbs`, `tra`, `bot`, `tcra`, `mof`, `gsma`, `ey`) | NBS, TRA, Bank of Tanzania, TCRA, MoF, GSMA, EY | public downloads; the URL of each is in `data/raw/SOURCES.csv` and in `config.yaml` (`twin_inputs.documents`) |
-| World Bank WDI snapshots (`data/raw/worldbank/`) | World Bank | in the repository (CC BY 4.0); refresh with `--fetch` |
+| HBS 2017/18, Tanzania Mainland: individual file, consumption aggregate (weights) and Form I section 10C (`data/raw/hbs_2017_18/`; section 10A is context only) | NBS | NBS microdata catalogue, https://microdata.nbs.go.tz/ (register, accept the confidentiality declaration, download the Stata files and place them at the paths in `config.yaml` `files:` (`hbs_individual`, `hbs_consumption`, `hbs_s10c`, `hbs_s10a`); the form-level file names are in `data/raw/SOURCES.csv`; Form I other sections are not in every extract: ask NBS for them) |
+| TRA tax collections workbook FY2024/25 (`data/raw/tra/`) | TRA | public download, https://www.tra.go.tz/images/uploads/pages/Tax_Revenue_Collection_Statistics_2024_25FY.xlsx (rename to the `config.yaml` name `TAX_COLLECTION_FOR_THE_FINANCIAL_YEAR_2024-25.xlsx`) |
+| TRA Tax Club page (`data/raw/web/`) | TRA | public page https://www.tra.go.tz/tax-club (save the HTML with the access date; the report cites the three figures) |
+| World Bank WDI snapshots (`data/raw/worldbank/`, including the consumer price index used to uprate HBS 2017/18) | World Bank | in the repository (CC BY 4.0); refresh with `--fetch` |
 
 ## Which output backs which report table or figure
 
