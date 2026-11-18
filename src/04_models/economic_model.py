@@ -99,8 +99,9 @@ def load_base_params():
         # Seed (ages seed_age_band in config.yaml) is set by load_census_params() from the 2022 Census 10% sample
         "seed_stage_population":       None,
         "entry_stage_population":      10_605_005,
-        "active_stage_population":     12_110_886,
-        "enterprise_stage_population":  3_488_900,
+        "active_stage_population":      2_916_165,      # stage mapping B (Pass 6B-1): informal business owners 25-64
+        "enterprise_stage_population":    572_735,      # stage mapping B: owners with a formal step, 25-64
+        "workers_stage_population":    12_110_886,      # stage mapping B: non-owners 25-44, no revenue lever
         "asset_stage_population":       5_590_836,
         "legacy_stage_population":      2_338_624,
 
@@ -455,16 +456,25 @@ def run_scenario_analysis(params):
             "population": params["active_stage_population"],
             "avg_income": params["informal_worker_avg_income_tzs"] * scale,
             "tax_pp": stat.informal_mean_tax(scale),
-            "finscope_mm_pct": 77.7,
-            "finscope_tin_pct": 4.6,
+            "finscope_mm_pct": None,   # the former mapping's 77.7 does not describe this group; not recomputed here (Pass 6B-1)
+            "finscope_tin_pct": 6.4,   # mapping B, FinScope 2023 (outputs/tin_by_segment.csv)
         },
         {
             "name": "Enterprise Stage",
             "population": params["enterprise_stage_population"],
             "avg_income": params["msme_avg_revenue_tzs"] * scale,
             "tax_pp": stat.msme_mean_tax(scale),
-            "finscope_mm_pct": 91.7,
-            "finscope_tin_pct": 9.7,
+            "finscope_mm_pct": None,   # former mapping's 91.7 retired
+            "finscope_tin_pct": 26.5,  # mapping B, FinScope 2023
+        },
+        {
+            "name": "Workers 25-44 (no revenue lever)",
+            "population": params["workers_stage_population"],
+            "avg_income": 0,
+            "tax_pp": 0,
+            "note": "no revenue lever (stage mapping B)",
+            "finscope_mm_pct": None,
+            "finscope_tin_pct": 4.6,
         },
         {
             "name": "Asset Stage",
@@ -1165,6 +1175,7 @@ def run_agent_based_simulation(params, n_agents=paths.N_AGENTS,
         scale_factor = (
             params["entry_stage_population"] +
             params["active_stage_population"] +
+            params["workers_stage_population"] +
             params["asset_stage_population"]
         ) / n_agents
 
@@ -1719,6 +1730,7 @@ def build_compliance_funnel_model(params):
         params["entry_stage_population"] +
         params["active_stage_population"] +
         params["enterprise_stage_population"] +
+        params["workers_stage_population"] +
         params["asset_stage_population"] +
         params["legacy_stage_population"]
     )

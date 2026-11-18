@@ -3,7 +3,7 @@
 Not a data figure: it draws no number. Same structure and content as the submitted graphic (title, sub-title, six stage boxes joined by arrows, the reciprocity arc and its caption);
 only the tool names change (read from config.yaml `names:`, Swahili name in bold with the English descriptor under it) and the look follows the journey graphic
 (src/06_figures/journey_graphic.py): the six stage colours, the ink colour, DejaVu Sans / DejaVu Serif, flat cards with a thin line.
-The stage descriptors are the owner's role-plus-age bands of Editing Pass 2 (Seed ages 6-15, Entry 16-24, Active wage/gig earners 25-44, Enterprise business owners 25-64, Asset property owners 45-64, Legacy 65+).
+The stage descriptors are the owner's role-plus-age bands (Seed ages 6-15, Entry 16-24, Active informal business owners 25-64, Enterprise registered business owners 25-64, Asset property owners 45-64, Legacy 65+); Active and Enterprise follow stage mapping B (Pass 6B-1).
 
 Output: outputs/figures/theory_of_change.png and .svg at the original's pixel size (2837 x 1121). Deterministic. run_figures.py runs it; it can also be run alone:
     python src/06_figures/theory_of_change.py
@@ -25,8 +25,8 @@ W, H = 2837, 1121
 GOLD = "#B8780F"
 STAGES = [("seed", "SEED", ["Ages 6–15"], ["(Tax Learning Games)"]),
           ("entry", "ENTRY", ["Ages 16–24"], ["(Taxpayer Targeting", "and Registration Tool)"]),
-          ("active", "ACTIVE", ["Wage / gig earners,", "ages 25–44"], ["(Presumptive Tax", "Estimator)"]),
-          ("enterprise", "ENTERPRISE", ["Business owners,", "ages 25–64"], ["(Tax Progression", "Dashboard)"]),
+          ("active", "ACTIVE", ["Informal business owners,", "ages 25–64"], ["(Presumptive Tax", "Estimator)"]),
+          ("enterprise", "ENTERPRISE", ["Registered business owners,", "ages 25–64"], ["(Tax Progression", "Dashboard)"]),
           ("asset", "ASSET", ["Property owners,", "ages 45–64"], ["(Tax Asset Score)"]),
           ("legacy", "LEGACY", ["Ages 65+"], ["(Tax Legacy Score)"])]
 BOX_X = [28, 501, 974, 1447, 1920, 2393]

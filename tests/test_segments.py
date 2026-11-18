@@ -46,9 +46,11 @@ def test_seed_is_empty_in_finscope(df):
 def test_stage_populations_match_the_published_values(df):
     stage = seg.lifecycle_stage(df)
     w = seg.survey_weights(df)
-    pops = {s: int(w[stage == s].sum()) for s in ("entry", "active", "enterprise", "asset", "legacy")}
-    # int() truncation, as in finscope_analysis.funnel_by_stage (the report text quotes 12,110,885 and 3,488,899)
-    assert pops == {"entry": 10605005, "active": 12110885, "enterprise": 3488899, "asset": 5590836, "legacy": 2338624}
+    pops = {s: int(w[stage == s].sum()) for s in ("entry", "active", "enterprise", "workers", "asset", "legacy")}
+    # int() truncation, as in finscope_analysis.funnel_by_stage. Stage mapping B (Pass 6B-1): Active = business owners without a formal step, Enterprise = owners with D6_4a == 'Yes',
+    # Workers = non-owners 25-44 (the former Active), Entry / Asset / Legacy unchanged. The six populations add up to the 34,134,251 adults.
+    assert pops == {"entry": 10605005, "active": 2916164, "enterprise": 572735, "workers": 12110885, "asset": 5590836, "legacy": 2338624}
+    assert abs(sum(pops.values()) - 34134251) <= 6
 
 
 def test_tin_mask(df):

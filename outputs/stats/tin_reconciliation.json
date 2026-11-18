@@ -14,15 +14,17 @@
   "weights_sum_equal_across_stages": true,
   "stage_rates_pct": {
     "entry": 0.769498538500646,
-    "active": 4.6160985194007065,
-    "enterprise": 9.737920306475136,
+    "active": 6.4389203220678075,
+    "enterprise": 26.535263642091422,
+    "workers": 4.6160985194007065,
     "asset": 4.30399702288895,
     "legacy": 3.662488344640086
   },
   "stage_population_share_pct": {
     "entry": 31.068515617038905,
-    "active": 35.480156400121786,
-    "enterprise": 10.22111096494957,
+    "active": 8.543221391855106,
+    "enterprise": 1.6778895730944647,
+    "workers": 35.480156400121786,
     "asset": 16.378962903001906,
     "legacy": 6.851254114887843
   },
@@ -37,14 +39,6 @@
     "overall": {
       "report": 3.8,
       "computed_rounded_1dp": 3.8
-    },
-    "active": {
-      "report": 4.6,
-      "computed_rounded_1dp": 4.6
-    },
-    "enterprise": {
-      "report": 9.7,
-      "computed_rounded_1dp": 9.7
     }
   },
   "table": "outputs/tables/tin_by_segment.csv"

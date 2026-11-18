@@ -431,6 +431,7 @@ names:
   enterprise: {swahili: "Hatua za Kodi",           english: "Tax Progression Dashboard",           full: "Hatua za Kodi (Tax Progression Dashboard)"}
   asset:      {swahili: "Mali-Alama za Kodi",      english: "Tax Asset Score",                     full: "Mali-Alama za Kodi (Tax Asset Score)"}
   legacy:     {swahili: "Urithi wa Kodi",          english: "Tax Legacy Score",                    full: "Urithi wa Kodi (Tax Legacy Score)"}
+  workers:    {swahili: "",                         english: "Workers 25–44 (no revenue lever)",    full: "Workers 25–44 (no revenue lever)"}   # Pass 6B-1: stage mapping B; not a tool
   platform:   {swahili: "Jukwaa la Ngazi",         english: "Ngazi Platform",                      full: "Ngazi Platform (Jukwaa la Ngazi)"}
 
 # Pass 6B-1: HBS 2017/18 turnover of non-farm household-business owners (src/03_features/hbs_turnover.py). Every choice below is registered in docs/assumptions_register.csv (sign-off PENDING).
@@ -1172,7 +1173,7 @@ assumptions:
   stage.reach_share:
     value: {entry: [0.02, 0.05, 0.10], active: [0.01, 0.03, 0.08], enterprise: [0.01, 0.03, 0.08], asset: [0.005, 0.02, 0.05], legacy: [0.005, 0.02, 0.05]}
     basis: ASSUMPTION
-    source: "Share of each stage's adult population (FinScope 2023: Entry 10.6M, Active 12.1M, Enterprise 3.5M, Asset 5.6M, Legacy 2.3M) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off."
+    source: "Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Workers 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off."
     feeds: "C041-C053 (Table 40)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
@@ -1225,6 +1226,12 @@ assumptions:
     feeds: "C041-C053 (Table 40)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
+  stage.formal_step_if_not_asked:
+    value: "no_formal_step"
+    basis: ASSUMPTION
+    source: "Pass 6B-1, stage mapping B. The formal step of a business owner is D6_4a == 'Yes' (business registered with a government authority). A respondent who was not asked D6_4a, or left it blank, counts as having NO formal step, so the owner is an Active (informal) owner, not an Enterprise owner. Choice made by the analyst under the owner's decision on mapping B; the alternative (drop them) would remove owners from both stages. Sign-off PENDING."
+    feeds: "Stage populations, TIN rates and CIs by stage (Active 2,916,165 / Enterprise 572,735 adults); Table 5.1 and every stage figure"
+    group: stage_mapping
   tax.pit_schedule:
     value: [[0, 0, 0.0], [3240000, 0, 0.08], [6240000, 240000, 0.20], [9120000, 816000, 0.25], [12000000, 1536000, 0.30]]
     basis: DATA

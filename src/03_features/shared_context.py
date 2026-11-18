@@ -156,7 +156,7 @@ def _lifecycle_populations():
     try:
         with open(paths.TIN_BY_SEGMENT_CSV, "r", encoding="utf-8", newline="") as f:
             for r in csv.DictReader(f):
-                if r["segment"] in ("entry", "active", "enterprise", "asset", "legacy"):
+                if r["segment"] in ("entry", "active", "enterprise", "workers", "asset", "legacy"):
                     out[r["segment"]] = {"population": round(float(r["population_weighted"])), "age_range": r["definition"], "source": "FinScope Tanzania 2023, weighted (tin_by_segment.csv)"}
     except FileNotFoundError:
         pass

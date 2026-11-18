@@ -17,6 +17,10 @@ import assumptions  # noqa: E402
 BASES = {"DATA", "LITERATURE", "ASSUMPTION", "UNKNOWN", "CALIBRATED"}
 
 
+# Pass 6B-1 assumptions registered with sign-off PENDING (owner decision outstanding): the register shows them with an empty john_signoff
+PENDING_6B1_SIGNOFF = {"stage.formal_step_if_not_asked"}
+
+
 def _code():
     parts = []
     for f in glob.glob(os.path.join(ROOT, "src", "**", "*.py"), recursive=True):
@@ -134,6 +138,9 @@ def test_register_covers_every_key_nothing_unsigned_feeds_a_claim_and_c062_is_no
     # F0 check: no unsigned ASSUMPTION or UNKNOWN row feeds a published claim or a dashboard value (the levy lever, the one exception of Block F, was removed by the owner in Editing Pass 1)
     claim_re = re.compile(r"C\d{3}")
     unsigned = [r["key"] for r in rows if r["basis_class"] in ("ASSUMPTION", "UNKNOWN") and not r["john_signoff"]]
+    # Pass 6B-1 registered these choices with the owner's sign-off still PENDING (the brief says so); nothing else may be unsigned
+    assert set(unsigned) <= PENDING_6B1_SIGNOFF, sorted(set(unsigned) - PENDING_6B1_SIGNOFF)
+    unsigned = [k for k in unsigned if k not in PENDING_6B1_SIGNOFF]
     assert unsigned == [], unsigned
     assert all(not r["blocks_claims"] for r in rows if r["key"] not in unsigned)
     # labels

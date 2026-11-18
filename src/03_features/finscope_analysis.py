@@ -105,7 +105,7 @@ def assign_lifecycle_stages(df):
 
     w = df[WEIGHT_VAR]
     print("  Stage distribution (weighted):")
-    for stage in ['seed', 'entry', 'active', 'enterprise',
+    for stage in ['seed', 'entry', 'active', 'enterprise', 'workers',
                   'asset', 'legacy', 'unknown']:
         mask = df['lifecycle_stage'] == stage
         pop  = w[mask].sum()
@@ -225,7 +225,7 @@ def funnel_by_stage(df):
     print("\n  Running funnel by lifecycle stage...")
 
     w       = df[WEIGHT_VAR]
-    stages  = ['seed', 'entry', 'active', 'enterprise',
+    stages  = ['seed', 'entry', 'active', 'enterprise', 'workers',
                'asset', 'legacy']
     results = {}
 
@@ -445,7 +445,7 @@ def analyze_mobile_money(df):
 
     # By lifecycle stage
     mm["by_stage"] = {}
-    for stage in ['seed', 'entry', 'active', 'enterprise',
+    for stage in ['seed', 'entry', 'active', 'enterprise', 'workers',
                   'asset', 'legacy']:
         s_mask = df['lifecycle_stage'] == stage
         s_mm   = w[mm_mask & s_mask].sum()
@@ -645,7 +645,7 @@ def analyze_pension_insurance(df):
     result["pension_gap_pct"]      = round(100 - pen_pct, 1)
 
     result["pension_by_stage"] = {}
-    for stage in ["entry","active","enterprise",
+    for stage in ["entry","active","enterprise","workers",
                   "asset","legacy"]:
         s_mask = df["lifecycle_stage"] == stage
         s_pop  = w[s_mask].sum()
@@ -677,7 +677,7 @@ def analyze_pension_insurance(df):
     result["insurance_gap_pct"]      = round(100 - ins_pct, 1)
 
     result["insurance_by_stage"] = {}
-    for stage in ["entry","active","enterprise",
+    for stage in ["entry","active","enterprise","workers",
                   "asset","legacy"]:
         s_mask = df["lifecycle_stage"] == stage
         s_pop  = w[s_mask].sum()
@@ -1193,7 +1193,7 @@ def extract_full_feature_store(df):
 
     # MM by lifecycle stage
     if 'lifecycle_stage' in df.columns:
-        for stage in ['entry', 'active', 'enterprise',
+        for stage in ['entry', 'active', 'enterprise', 'workers',
                       'asset', 'legacy']:
             s_mask = df['lifecycle_stage'] == stage
             s_pop  = w[s_mask].sum()
@@ -1382,7 +1382,7 @@ def extract_full_feature_store(df):
 
     # Insurance by lifecycle stage
     if 'lifecycle_stage' in df.columns:
-        for stage in ['entry', 'active', 'enterprise',
+        for stage in ['entry', 'active', 'enterprise', 'workers',
                       'asset', 'legacy']:
             s_mask = df['lifecycle_stage'] == stage
             s_pop  = w[s_mask].sum()
@@ -1424,7 +1424,7 @@ def extract_full_feature_store(df):
 
     # Pension by lifecycle stage
     if 'lifecycle_stage' in df.columns:
-        for stage in ['entry', 'active', 'enterprise',
+        for stage in ['entry', 'active', 'enterprise', 'workers',
                       'asset', 'legacy']:
             s_mask = df['lifecycle_stage'] == stage
             s_pop  = w[s_mask].sum()
@@ -1590,7 +1590,7 @@ def extract_full_feature_store(df):
 
     # TIN by lifecycle stage
     if 'lifecycle_stage' in df.columns:
-        for stage in ['entry', 'active', 'enterprise',
+        for stage in ['entry', 'active', 'enterprise', 'workers',
                       'asset', 'legacy']:
             s_mask = df['lifecycle_stage'] == stage
             s_pop  = w[s_mask].sum()

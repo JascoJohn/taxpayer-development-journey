@@ -34,7 +34,7 @@ def test_identity_holds_exactly(result):
     assert abs(rec["difference_pct_points"]) <= 1e-9
     assert rec["unassigned_respondents"] == 0
     stage_rows = [r for r in rows if r["segment"] != "overall"]
-    assert [r["segment"] for r in stage_rows] == ["entry", "active", "enterprise", "asset", "legacy"]
+    assert [r["segment"] for r in stage_rows] == ["entry", "active", "enterprise", "workers", "asset", "legacy"]
     avg = sum(r["population_weighted"] / rec["weighted_population"] * r["tin_rate_pct"] for r in stage_rows)
     assert avg == pytest.approx(rows[0]["tin_rate_pct"], abs=1e-9)
     assert sum(r["n_unweighted"] for r in stage_rows) == 9915
@@ -45,8 +45,13 @@ def test_rounded_rates_match_the_report(result):
     rows, rec = result
     by = {r["segment"]: r for r in rows}
     assert round(by["overall"]["tin_rate_pct"], 1) == 3.8
-    assert round(by["active"]["tin_rate_pct"], 1) == 4.6
-    assert round(by["enterprise"]["tin_rate_pct"], 1) == 9.7
+    # stage mapping B (Pass 6B-1): the Active and Enterprise rates of the submitted report (4.6, 9.7) belong to the former mapping and are no longer asserted as report values
+    assert round(by["active"]["tin_rate_pct"], 1) == 6.4
+    assert round(by["enterprise"]["tin_rate_pct"], 1) == 26.5
+    assert round(by["workers"]["tin_rate_pct"], 1) == 4.6
+    assert round(by["asset"]["tin_rate_pct"], 1) == 4.3
+    assert round(rec["weighted_population"]) == 34134251
+    assert round(rows[0]["tin_holders_weighted"]) == 1306683
     for k, v in rec["report_values_pct"].items():
         assert v["report"] == v["computed_rounded_1dp"], k
 

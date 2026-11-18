@@ -38,11 +38,12 @@ from finscope_segments import (ADULT_STAGES, SEED_AGE_MAX, SEED_AGE_MIN, WEIGHT_
                                survey_weights, tin_holder_mask)
 from survey_design import ci95, design_df, linearised_ratio
 
-STAGE_LABELS = {"entry": "Entry", "active": "Active", "enterprise": "Enterprise", "asset": "Asset", "legacy": "Legacy"}
+STAGE_LABELS = {"entry": "Entry", "active": "Active", "enterprise": "Enterprise", "workers": "Workers 25–44 (no revenue lever)", "asset": "Asset", "legacy": "Legacy"}
 STAGE_DEFINITIONS = {
     "entry": "age %d-24" % (SEED_AGE_MAX + 1),
-    "active": "age 25-44, not a business owner (BusO != 'Business owners')",
-    "enterprise": "age 25-64, business owner (BusO == 'Business owners')",
+    "active": "business owner (BusO == 'Business owners') with no formal step (D6_4a != 'Yes', including not asked), age 25-64",
+    "enterprise": "business owner (BusO == 'Business owners') with a formal step (D6_4a == 'Yes'), age 25-64",
+    "workers": "not a business owner, age 25-44 (wage, casual, farm and dependent adults; no revenue lever)",
     "asset": "age 45-64, not a business owner",
     "legacy": "age 65+",
 }
@@ -50,7 +51,7 @@ TOLERANCE = 1e-9          # the identity is exact up to floating-point error
 DESIGN_COLUMNS = ["reg_code", "dist_code", "ward_code1", "ea_code", "clustertype"]
 
 # values quoted in the submitted report (rounded, per cent) - compared in the reconciliation file
-REPORT_VALUES_PCT = {"overall": 3.8, "active": 4.6, "enterprise": 9.7}
+REPORT_VALUES_PCT = {"overall": 3.8}        # the Active and Enterprise rates quoted in the submitted report (4.6, 9.7) belong to the former mapping (Pass 6B-1)
 
 
 class ReconciliationError(RuntimeError):
