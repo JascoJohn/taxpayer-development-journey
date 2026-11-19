@@ -447,8 +447,9 @@
     "share_below_4m_pct": 98.52224207269488,
     "share_4m_to_11m_pct": 1.4777579273051142,
     "share_above_11m_pct": 0.0,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Central",
@@ -463,8 +464,9 @@
     "share_below_4m_pct": 71.51518250350482,
     "share_4m_to_11m_pct": 22.23589318122519,
     "share_above_11m_pct": 6.248924315269963,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Central",
@@ -479,8 +481,9 @@
     "share_below_4m_pct": 76.35028201356607,
     "share_4m_to_11m_pct": 11.387006298412919,
     "share_above_11m_pct": 12.262711688020994,
+    "low_precision": true,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Eastern",
@@ -495,8 +498,9 @@
     "share_below_4m_pct": 75.77485581614555,
     "share_4m_to_11m_pct": 11.790374081863431,
     "share_above_11m_pct": 12.434770101991049,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Eastern",
@@ -511,8 +515,9 @@
     "share_below_4m_pct": 79.8425778048234,
     "share_4m_to_11m_pct": 13.593936374410514,
     "share_above_11m_pct": 6.563485820766083,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Eastern",
@@ -527,8 +532,9 @@
     "share_below_4m_pct": 60.47988891580165,
     "share_4m_to_11m_pct": 28.383930904508723,
     "share_above_11m_pct": 11.136180179689651,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Lake",
@@ -543,8 +549,9 @@
     "share_below_4m_pct": 87.57923173371637,
     "share_4m_to_11m_pct": 8.852757869534862,
     "share_above_11m_pct": 3.5680103967487518,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Lake",
@@ -559,8 +566,9 @@
     "share_below_4m_pct": 87.8450479281579,
     "share_4m_to_11m_pct": 8.566323228629498,
     "share_above_11m_pct": 3.5886288432126228,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Lake",
@@ -575,8 +583,9 @@
     "share_below_4m_pct": 87.75097490092168,
     "share_4m_to_11m_pct": 9.646740865134143,
     "share_above_11m_pct": 2.602284233944175,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Northern",
@@ -591,8 +600,9 @@
     "share_below_4m_pct": 92.05563917601758,
     "share_4m_to_11m_pct": 7.944360823982407,
     "share_above_11m_pct": 0.0,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Northern",
@@ -607,8 +617,9 @@
     "share_below_4m_pct": 74.3518336105322,
     "share_4m_to_11m_pct": 19.151825018649692,
     "share_above_11m_pct": 6.496341370818095,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Northern",
@@ -623,8 +634,9 @@
     "share_below_4m_pct": 88.84218997554927,
     "share_4m_to_11m_pct": 8.29975195432592,
     "share_above_11m_pct": 2.8580580701248146,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Southern",
@@ -639,8 +651,9 @@
     "share_below_4m_pct": 80.82745126456255,
     "share_4m_to_11m_pct": 12.14014401395396,
     "share_above_11m_pct": 7.032404721483483,
+    "low_precision": true,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Southern",
@@ -655,8 +668,9 @@
     "share_below_4m_pct": 73.48758534155672,
     "share_4m_to_11m_pct": 5.099573944260611,
     "share_above_11m_pct": 21.41284071418265,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Southern",
@@ -671,8 +685,9 @@
     "share_below_4m_pct": 69.91950696286867,
     "share_4m_to_11m_pct": 19.831959852435784,
     "share_above_11m_pct": 10.24853318469555,
+    "low_precision": true,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Southern Highlands",
@@ -687,8 +702,9 @@
     "share_below_4m_pct": 93.88315947958402,
     "share_4m_to_11m_pct": 1.6053715632985817,
     "share_above_11m_pct": 4.51146895711743,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Southern Highlands",
@@ -703,8 +719,9 @@
     "share_below_4m_pct": 76.75162259482686,
     "share_4m_to_11m_pct": 10.467614375579648,
     "share_above_11m_pct": 12.780763029593501,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Southern Highlands",
@@ -719,8 +736,9 @@
     "share_below_4m_pct": 67.8866698016909,
     "share_4m_to_11m_pct": 22.228580863951798,
     "share_above_11m_pct": 9.884749334357302,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Southwest Highlands",
@@ -735,8 +753,9 @@
     "share_below_4m_pct": 96.79425418072267,
     "share_4m_to_11m_pct": 0.0,
     "share_above_11m_pct": 3.205745819277329,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Southwest Highlands",
@@ -751,8 +770,9 @@
     "share_below_4m_pct": 88.18281042502775,
     "share_4m_to_11m_pct": 1.0890462808346568,
     "share_above_11m_pct": 10.728143294137594,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Southwest Highlands",
@@ -767,8 +787,9 @@
     "share_below_4m_pct": 90.78011698278019,
     "share_4m_to_11m_pct": 4.671762463359668,
     "share_above_11m_pct": 4.548120553860146,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "zone": "Western",
@@ -783,8 +804,9 @@
     "share_below_4m_pct": 85.7902423897943,
     "share_4m_to_11m_pct": 14.209757610205703,
     "share_above_11m_pct": 0.0,
+    "low_precision": true,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "zone": "Western",
@@ -799,8 +821,9 @@
     "share_below_4m_pct": 88.00194806814244,
     "share_4m_to_11m_pct": 11.998051931857562,
     "share_above_11m_pct": 0.0,
+    "low_precision": true,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "zone": "Western",
@@ -815,8 +838,9 @@
     "share_below_4m_pct": 95.32345390126066,
     "share_4m_to_11m_pct": 0.0,
     "share_above_11m_pct": 4.676546098739333,
+    "low_precision": true,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    }
   ],
   "region_activity": [
@@ -824,56 +848,33 @@
     "region": "Arusha",
     "n_businesses": 48,
     "n_with_receipts": 19,
-    "p25_tzs": 188730.2143558052,
-    "median_tzs": 452952.51445393247,
-    "p75_tzs": 1585333.8005887638,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 92.44435101725396,
-    "share_4m_to_11m_pct": 7.555648982746047,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Arusha",
     "n_businesses": 37,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Non-agricultural goods and trade"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Arusha",
     "n_businesses": 28,
     "n_with_receipts": 10,
-    "p25_tzs": 1177676.5375802245,
-    "median_tzs": 1358857.5433617975,
-    "p75_tzs": 3019683.429692883,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 75.2884878858164,
-    "share_4m_to_11m_pct": 17.69732745295246,
-    "share_above_11m_pct": 7.014184661231158,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Dar Es Salaam",
     "n_businesses": 49,
     "n_with_receipts": 22,
-    "p25_tzs": 402624.4572923844,
-    "median_tzs": 905905.0289078649,
-    "p75_tzs": 4152064.7158277147,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 4561.941474831439,
-    "share_below_4m_pct": 74.2755634314566,
-    "share_4m_to_11m_pct": 9.340653814336038,
-    "share_above_11m_pct": 16.383782754207346,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Dar Es Salaam",
@@ -888,8 +889,9 @@
     "share_below_4m_pct": 76.733936383508,
     "share_4m_to_11m_pct": 16.392811852637447,
     "share_above_11m_pct": 6.873251763854575,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Dar Es Salaam",
@@ -904,47 +906,33 @@
     "share_below_4m_pct": 41.033571750757126,
     "share_4m_to_11m_pct": 47.06366809000304,
     "share_above_11m_pct": 11.902760159239808,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "region": "Dodoma",
     "n_businesses": 45,
     "n_with_receipts": 20,
-    "p25_tzs": 125820.14290387013,
-    "median_tzs": 226476.25722696623,
-    "p75_tzs": 905905.0289078649,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Dodoma",
     "n_businesses": 48,
     "n_with_receipts": 23,
-    "p25_tzs": 138402.15719425716,
-    "median_tzs": 402624.4572923844,
-    "p75_tzs": 6794287.716808988,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 83828.63150426964,
-    "share_below_4m_pct": 63.453535605379116,
-    "share_4m_to_11m_pct": 32.837295362991924,
-    "share_above_11m_pct": 3.709169031628951,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Dodoma",
     "n_businesses": 24,
     "n_with_receipts": 8,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Geita",
@@ -959,88 +947,49 @@
     "share_below_4m_pct": 71.19636072205131,
     "share_4m_to_11m_pct": 23.56941461694044,
     "share_above_11m_pct": 5.2342246610082475,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Geita",
     "n_businesses": 46,
     "n_with_receipts": 14,
-    "p25_tzs": 125820.14290387013,
-    "median_tzs": 161049.7829169538,
-    "p75_tzs": 2264762.5722696623,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 90.8148651378,
-    "share_4m_to_11m_pct": 9.185134862200028,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Geita",
     "n_businesses": 41,
     "n_with_receipts": 14,
-    "p25_tzs": 120787.33718771533,
-    "median_tzs": 629100.7145193507,
-    "p75_tzs": 1358857.5433617975,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 95.1911731100297,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 4.8088268899703035,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Iringa",
     "n_businesses": 33,
     "n_with_receipts": 10,
-    "p25_tzs": 402624.4572923844,
-    "median_tzs": 754920.8574232208,
-    "p75_tzs": 2415746.743754307,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 97.6896260612236,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 2.3103739387763755,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Iringa",
     "n_businesses": 56,
     "n_with_receipts": 25,
-    "p25_tzs": 364878.4144212234,
-    "median_tzs": 1449448.0462525839,
-    "p75_tzs": 5032805.716154805,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 30984.17148464416,
-    "share_below_4m_pct": 59.26952273288843,
-    "share_4m_to_11m_pct": 20.51258855250427,
-    "share_above_11m_pct": 20.217888714607284,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Iringa",
     "n_businesses": 34,
     "n_with_receipts": 16,
-    "p25_tzs": 805248.9145847688,
-    "median_tzs": 2516402.8580774027,
-    "p75_tzs": 7549208.574232209,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 106476.25722696626,
-    "share_below_4m_pct": 50.34085957879155,
-    "share_4m_to_11m_pct": 39.66218559543074,
-    "share_above_11m_pct": 9.9969548257777,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Kagera",
@@ -1055,8 +1004,9 @@
     "share_below_4m_pct": 95.99033384725206,
     "share_4m_to_11m_pct": 0.0,
     "share_above_11m_pct": 4.009666152747939,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Kagera",
@@ -1071,272 +1021,177 @@
     "share_below_4m_pct": 95.84874257426893,
     "share_4m_to_11m_pct": 2.6006269920230283,
     "share_above_11m_pct": 1.5506304337080354,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Kagera",
     "n_businesses": 45,
     "n_with_receipts": 27,
-    "p25_tzs": 211377.84007850182,
-    "median_tzs": 603936.6859385767,
-    "p75_tzs": 1811810.0578157299,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 89.48528465855564,
-    "share_4m_to_11m_pct": 10.51471534144434,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Katavi",
     "n_businesses": 34,
     "n_with_receipts": 10,
-    "p25_tzs": 440370.5001635455,
-    "median_tzs": 880741.000327091,
-    "p75_tzs": 1698571.929202247,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Katavi",
     "n_businesses": 30,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Non-agricultural goods and trade"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Katavi",
     "n_businesses": 33,
     "n_with_receipts": 11,
-    "p25_tzs": 138402.15719425716,
-    "median_tzs": 1132381.2861348311,
-    "p75_tzs": 3875260.4014392,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 82.79088105664843,
-    "share_4m_to_11m_pct": 9.202303673768252,
-    "share_above_11m_pct": 8.00681526958334,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Kigoma",
     "n_businesses": 44,
     "n_with_receipts": 7,
     "suppressed": true,
-    "activity": "Agricultural products"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Kigoma",
     "n_businesses": 20,
     "n_with_receipts": 5,
     "suppressed": true,
-    "activity": "Non-agricultural goods and trade"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Kigoma",
     "n_businesses": 42,
     "n_with_receipts": 11,
-    "p25_tzs": 80524.8914584769,
-    "median_tzs": 603936.6859385767,
-    "p75_tzs": 2516402.8580774027,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 92.01214527618825,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 7.987854723811746,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Kilimanjaro",
     "n_businesses": 27,
     "n_with_receipts": 16,
-    "p25_tzs": 754291.7567087015,
-    "median_tzs": 1660825.8863310858,
-    "p75_tzs": 4725804.567469362,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 21774.137024080865,
-    "share_below_4m_pct": 73.93434035825736,
-    "share_4m_to_11m_pct": 26.065659641742656,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Kilimanjaro",
     "n_businesses": 25,
     "n_with_receipts": 10,
-    "p25_tzs": 603936.6859385767,
-    "median_tzs": 1132381.2861348311,
-    "p75_tzs": 9059050.28907865,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 151771.50867235946,
-    "share_below_4m_pct": 72.56930128059517,
-    "share_4m_to_11m_pct": 7.736033377532491,
-    "share_above_11m_pct": 19.694665341872316,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Kilimanjaro",
     "n_businesses": 46,
     "n_with_receipts": 17,
-    "p25_tzs": 132111.15004906364,
-    "median_tzs": 402624.4572923844,
-    "p75_tzs": 830412.9431655429,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 95.55106130894296,
-    "share_4m_to_11m_pct": 4.448938691057032,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Lindi",
     "n_businesses": 26,
     "n_with_receipts": 8,
     "suppressed": true,
-    "activity": "Agricultural products"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Lindi",
     "n_businesses": 33,
     "n_with_receipts": 10,
-    "p25_tzs": 396333.45014719095,
-    "median_tzs": 754920.8574232208,
-    "p75_tzs": 2959289.7610990256,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 83.12955332684174,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 16.87044667315824,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Lindi",
     "n_businesses": 25,
     "n_with_receipts": 7,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Manyara",
     "n_businesses": 25,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Agricultural products"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Manyara",
     "n_businesses": 27,
     "n_with_receipts": 18,
-    "p25_tzs": 603936.6859385767,
-    "median_tzs": 3472635.9441468157,
-    "p75_tzs": 9059050.28907865,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 151771.50867235946,
-    "share_below_4m_pct": 64.80176209500566,
-    "share_4m_to_11m_pct": 13.93584232241526,
-    "share_above_11m_pct": 21.262395582579092,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Manyara",
     "n_businesses": 13,
     "n_with_receipts": 6,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Mara",
     "n_businesses": 67,
     "n_with_receipts": 28,
-    "p25_tzs": 138402.15719425716,
-    "median_tzs": 550463.1252044318,
-    "p75_tzs": 1358857.5433617975,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 91.09801450735083,
-    "share_4m_to_11m_pct": 8.901985492649176,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Mara",
     "n_businesses": 52,
     "n_with_receipts": 24,
-    "p25_tzs": 377460.4287116104,
-    "median_tzs": 1207873.3718771534,
-    "p75_tzs": 6039366.859385766,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 61181.00578157298,
-    "share_below_4m_pct": 74.78618133394977,
-    "share_4m_to_11m_pct": 20.56500114245044,
-    "share_above_11m_pct": 4.648817523599775,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Mara",
     "n_businesses": 28,
     "n_with_receipts": 14,
-    "p25_tzs": 251640.28580774026,
-    "median_tzs": 754920.8574232208,
-    "p75_tzs": 3019683.429692883,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 80.13442932230535,
-    "share_4m_to_11m_pct": 19.865570677694638,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Mbeya",
     "n_businesses": 53,
     "n_with_receipts": 17,
-    "p25_tzs": 483149.3487508613,
-    "median_tzs": 1056889.200392509,
-    "p75_tzs": 2959289.7610990256,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 89.0466176047716,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 10.953382395228413,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Mbeya",
     "n_businesses": 33,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Non-agricultural goods and trade"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Mbeya",
@@ -1351,24 +1206,17 @@
     "share_below_4m_pct": 86.5130613395904,
     "share_4m_to_11m_pct": 9.44147082654778,
     "share_above_11m_pct": 4.045467833861825,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "region": "Morogoro",
     "n_businesses": 54,
     "n_with_receipts": 20,
-    "p25_tzs": 169857.19292022468,
-    "median_tzs": 880741.000327091,
-    "p75_tzs": 4340794.93018352,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 10223.847905505589,
-    "share_below_4m_pct": 73.74801187813986,
-    "share_4m_to_11m_pct": 7.2876622850323685,
-    "share_above_11m_pct": 18.964325836827793,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Morogoro",
@@ -1383,189 +1231,113 @@
     "share_below_4m_pct": 90.02105378500268,
     "share_4m_to_11m_pct": 6.274408291530093,
     "share_above_11m_pct": 3.7045379234672366,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Morogoro",
     "n_businesses": 33,
     "n_with_receipts": 17,
-    "p25_tzs": 352296.40013083635,
-    "median_tzs": 692010.7859712858,
-    "p75_tzs": 1509841.7148464415,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 95.51578609454687,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 4.4842139054531325,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Mtwara",
     "n_businesses": 22,
     "n_with_receipts": 14,
-    "p25_tzs": 50328.05716154805,
-    "median_tzs": 301968.34296928835,
-    "p75_tzs": 2959289.7610990256,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 81.8891555856531,
-    "share_4m_to_11m_pct": 13.138036287017743,
-    "share_above_11m_pct": 4.972808127329145,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Mtwara",
     "n_businesses": 43,
     "n_with_receipts": 20,
-    "p25_tzs": 452952.51445393247,
-    "median_tzs": 2717715.086723595,
-    "p75_tzs": 8757081.946109362,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 142712.45838328084,
-    "share_below_4m_pct": 71.231981768328,
-    "share_4m_to_11m_pct": 6.29254795414872,
-    "share_above_11m_pct": 22.475470277523243,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Mtwara",
     "n_businesses": 32,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Mwanza",
     "n_businesses": 65,
     "n_with_receipts": 28,
-    "p25_tzs": 377460.4287116104,
-    "median_tzs": 1132381.2861348311,
-    "p75_tzs": 3321651.7726621716,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 78.3242578785842,
-    "share_4m_to_11m_pct": 14.826017811051024,
-    "share_above_11m_pct": 6.849724310364794,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Mwanza",
     "n_businesses": 33,
     "n_with_receipts": 12,
-    "p25_tzs": 377460.4287116104,
-    "median_tzs": 1811810.0578157299,
-    "p75_tzs": 2853600.8410597746,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 88.61225873733511,
-    "share_4m_to_11m_pct": 6.544678886589023,
-    "share_above_11m_pct": 4.843062376075875,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Mwanza",
     "n_businesses": 39,
     "n_with_receipts": 14,
-    "p25_tzs": 188730.2143558052,
-    "median_tzs": 629100.7145193507,
-    "p75_tzs": 1006561.143230961,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 90.8228168304833,
-    "share_4m_to_11m_pct": 9.177183169516693,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Njombe",
     "n_businesses": 30,
     "n_with_receipts": 16,
-    "p25_tzs": 113238.12861348312,
-    "median_tzs": 251640.28580774026,
-    "p75_tzs": 603936.6859385767,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 84.90240169548134,
-    "share_4m_to_11m_pct": 4.381637362825607,
-    "share_above_11m_pct": 10.715960941693064,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Njombe",
     "n_businesses": 43,
     "n_with_receipts": 17,
-    "p25_tzs": 189485.13521322844,
-    "median_tzs": 641682.7288097377,
-    "p75_tzs": 1358857.5433617975,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Njombe",
     "n_businesses": 23,
     "n_with_receipts": 8,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Pwani",
     "n_businesses": 62,
     "n_with_receipts": 29,
-    "p25_tzs": 603936.6859385767,
-    "median_tzs": 1132381.2861348311,
-    "p75_tzs": 3019683.429692883,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 79.96667226058261,
-    "share_4m_to_11m_pct": 20.03332773941741,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Pwani",
     "n_businesses": 39,
     "n_with_receipts": 13,
-    "p25_tzs": 754920.8574232208,
-    "median_tzs": 1698571.929202247,
-    "p75_tzs": 4529525.144539325,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 15885.754336179736,
-    "share_below_4m_pct": 69.63846229642039,
-    "share_4m_to_11m_pct": 17.18520854154643,
-    "share_above_11m_pct": 13.176329162033193,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Pwani",
     "n_businesses": 31,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Rukwa",
@@ -1580,219 +1352,137 @@
     "share_below_4m_pct": 100.0,
     "share_4m_to_11m_pct": 0.0,
     "share_above_11m_pct": 0.0,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Rukwa",
     "n_businesses": 47,
     "n_with_receipts": 21,
-    "p25_tzs": 135885.75433617976,
-    "median_tzs": 509571.57876067405,
-    "p75_tzs": 936101.8632047938,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 96.49342517219786,
-    "share_4m_to_11m_pct": 3.5065748278021287,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Rukwa",
     "n_businesses": 42,
     "n_with_receipts": 17,
-    "p25_tzs": 226476.25722696623,
-    "median_tzs": 452952.51445393247,
-    "p75_tzs": 1087086.034689438,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 92.16936187644785,
-    "share_4m_to_11m_pct": 5.460282799666092,
-    "share_above_11m_pct": 2.3703553238860553,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Ruvuma",
     "n_businesses": 17,
     "n_with_receipts": 12,
-    "p25_tzs": 125820.14290387013,
-    "median_tzs": 339714.38584044937,
-    "p75_tzs": 1509841.7148464415,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Ruvuma",
     "n_businesses": 34,
     "n_with_receipts": 11,
-    "p25_tzs": 301968.34296928835,
-    "median_tzs": 754920.8574232208,
-    "p75_tzs": 1887302.1435580521,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 90.51437151969299,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 9.48562848030701,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Ruvuma",
     "n_businesses": 12,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Shinyanga",
     "n_businesses": 40,
     "n_with_receipts": 12,
-    "p25_tzs": 22647.625722696623,
-    "median_tzs": 181181.00578157298,
-    "p75_tzs": 1207873.3718771534,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Shinyanga",
     "n_businesses": 19,
     "n_with_receipts": 5,
     "suppressed": true,
-    "activity": "Non-agricultural goods and trade"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Shinyanga",
     "n_businesses": 37,
     "n_with_receipts": 11,
-    "p25_tzs": 396333.45014719095,
-    "median_tzs": 724724.0231262919,
-    "p75_tzs": 1761482.000654182,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 94.68589702110813,
-    "share_4m_to_11m_pct": 5.3141029788918654,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Simiyu",
     "n_businesses": 33,
     "n_with_receipts": 11,
-    "p25_tzs": 50328.05716154805,
-    "median_tzs": 301968.34296928835,
-    "p75_tzs": 981397.1146501871,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Simiyu",
     "n_businesses": 28,
     "n_with_receipts": 7,
     "suppressed": true,
-    "activity": "Non-agricultural goods and trade"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Simiyu",
     "n_businesses": 43,
     "n_with_receipts": 16,
-    "p25_tzs": 656781.1459582021,
-    "median_tzs": 3019683.429692883,
-    "p75_tzs": 3397143.858404494,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 77.36203434044859,
-    "share_4m_to_11m_pct": 9.246554370272536,
-    "share_above_11m_pct": 13.391411289278853,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Singida",
     "n_businesses": 18,
     "n_with_receipts": 5,
     "suppressed": true,
-    "activity": "Agricultural products"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Singida",
     "n_businesses": 43,
     "n_with_receipts": 21,
-    "p25_tzs": 226476.25722696623,
-    "median_tzs": 452952.51445393247,
-    "p75_tzs": 2038286.3150426962,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 91.1591137716113,
-    "share_4m_to_11m_pct": 8.840886228388692,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Singida",
     "n_businesses": 34,
     "n_with_receipts": 8,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Songwe",
     "n_businesses": 42,
     "n_with_receipts": 14,
-    "p25_tzs": 27680.43143885143,
-    "median_tzs": 150984.17148464418,
-    "p75_tzs": 407657.2630085392,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Songwe",
     "n_businesses": 25,
     "n_with_receipts": 12,
-    "p25_tzs": 150984.17148464418,
-    "median_tzs": 377460.4287116104,
-    "p75_tzs": 3774604.2871161043,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 75.36570290502024,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 24.63429709497974,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Songwe",
@@ -1807,63 +1497,41 @@
     "share_below_4m_pct": 94.14779706012291,
     "share_4m_to_11m_pct": 0.0,
     "share_above_11m_pct": 5.852202939877098,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    },
    {
     "region": "Tabora",
     "n_businesses": 38,
     "n_with_receipts": 15,
-    "p25_tzs": 320841.36440486886,
-    "median_tzs": 1207873.3718771534,
-    "p75_tzs": 2327672.6437215977,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 94.60151556899228,
-    "share_4m_to_11m_pct": 5.3984844310077085,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Tabora",
     "n_businesses": 31,
     "n_with_receipts": 12,
-    "p25_tzs": 188730.2143558052,
-    "median_tzs": 905905.0289078649,
-    "p75_tzs": 1811810.0578157299,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 81.85511351082665,
-    "share_4m_to_11m_pct": 18.14488648917338,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Tabora",
     "n_businesses": 31,
     "n_with_receipts": 9,
     "suppressed": true,
-    "activity": "Services"
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    },
    {
     "region": "Tanga",
     "n_businesses": 51,
     "n_with_receipts": 24,
-    "p25_tzs": 251640.28580774026,
-    "median_tzs": 644199.1316678151,
-    "p75_tzs": 1006561.143230961,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 100.0,
-    "share_4m_to_11m_pct": 0.0,
-    "share_above_11m_pct": 0.0,
-    "suppressed": false,
-    "activity": "Agricultural products"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "region": "Tanga",
@@ -1878,24 +1546,17 @@
     "share_below_4m_pct": 74.1240998144596,
     "share_4m_to_11m_pct": 22.206836279259925,
     "share_above_11m_pct": 3.6690639062804653,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "region": "Tanga",
     "n_businesses": 30,
     "n_with_receipts": 14,
-    "p25_tzs": 67942.87716808988,
-    "median_tzs": 346005.3929856429,
-    "p75_tzs": 1358857.5433617975,
-    "tax_at_p25_tzs": 0.0,
-    "tax_at_median_tzs": 0.0,
-    "tax_at_p75_tzs": 0.0,
-    "share_below_4m_pct": 88.50290386715491,
-    "share_4m_to_11m_pct": 8.14721799341232,
-    "share_above_11m_pct": 3.3498781394327777,
-    "suppressed": false,
-    "activity": "Services"
+    "suppressed": true,
+    "reason": "fewer than 30 businesses with receipts",
+    "activity": "Service providers"
    }
   ],
   "national_activity": [
@@ -1911,8 +1572,9 @@
     "share_below_4m_pct": 87.76722482456849,
     "share_4m_to_11m_pct": 7.378946819323931,
     "share_above_11m_pct": 4.853828356107571,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Agricultural products"
+    "activity": "Traders - agricultural products (fishers cannot be separated)"
    },
    {
     "n_businesses": 1201,
@@ -1926,8 +1588,9 @@
     "share_below_4m_pct": 79.46980411094574,
     "share_4m_to_11m_pct": 12.784064666468936,
     "share_above_11m_pct": 7.746131222585322,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Non-agricultural goods and trade"
+    "activity": "Traders - non-agricultural"
    },
    {
     "n_businesses": 988,
@@ -1941,8 +1604,9 @@
     "share_below_4m_pct": 78.80600505091819,
     "share_4m_to_11m_pct": 14.307628288597165,
     "share_above_11m_pct": 6.886366660484644,
+    "low_precision": false,
     "suppressed": false,
-    "activity": "Services"
+    "activity": "Service providers"
    }
   ]
  },

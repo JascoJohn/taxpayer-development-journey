@@ -1,0 +1,79 @@
+region,activity,n_businesses,n_with_receipts,suppressed,p25_tzs,median_tzs,p75_tzs,tax_at_p25_tzs,tax_at_median_tzs,tax_at_p75_tzs,share_below_4m_pct,share_4m_to_11m_pct,share_above_11m_pct,evidence_type
+Arusha,Traders - agricultural products (fishers cannot be separated),48,19,True,,,,,,,,,,COMPUTED
+Arusha,Traders - non-agricultural,37,9,True,,,,,,,,,,COMPUTED
+Arusha,Service providers,28,10,True,,,,,,,,,,COMPUTED
+Dar Es Salaam,Traders - agricultural products (fishers cannot be separated),49,22,True,,,,,,,,,,COMPUTED
+Dar Es Salaam,Traders - non-agricultural,208,85,False,754921,1.81181e+06,3.7746e+06,0,0,0,76.7339,16.3928,6.87325,COMPUTED
+Dar Es Salaam,Service providers,107,46,False,1.05689e+06,5.88838e+06,6.79429e+06,0,56651.5,83828.6,41.0336,47.0637,11.9028,COMPUTED
+Dodoma,Traders - agricultural products (fishers cannot be separated),45,20,True,,,,,,,,,,COMPUTED
+Dodoma,Traders - non-agricultural,48,23,True,,,,,,,,,,COMPUTED
+Dodoma,Service providers,24,8,True,,,,,,,,,,COMPUTED
+Geita,Traders - agricultural products (fishers cannot be separated),61,30,False,301968,503281,4.52953e+06,0,0,15885.8,71.1964,23.5694,5.23422,COMPUTED
+Geita,Traders - non-agricultural,46,14,True,,,,,,,,,,COMPUTED
+Geita,Service providers,41,14,True,,,,,,,,,,COMPUTED
+Iringa,Traders - agricultural products (fishers cannot be separated),33,10,True,,,,,,,,,,COMPUTED
+Iringa,Traders - non-agricultural,56,25,True,,,,,,,,,,COMPUTED
+Iringa,Service providers,34,16,True,,,,,,,,,,COMPUTED
+Kagera,Traders - agricultural products (fishers cannot be separated),100,38,False,75492.1,264222,1.20787e+06,0,0,0,95.9903,0,4.00967,COMPUTED
+Kagera,Traders - non-agricultural,66,32,False,150984,362362,805249,0,0,0,95.8487,2.60063,1.55063,COMPUTED
+Kagera,Service providers,45,27,True,,,,,,,,,,COMPUTED
+Katavi,Traders - agricultural products (fishers cannot be separated),34,10,True,,,,,,,,,,COMPUTED
+Katavi,Traders - non-agricultural,30,9,True,,,,,,,,,,COMPUTED
+Katavi,Service providers,33,11,True,,,,,,,,,,COMPUTED
+Kigoma,Traders - agricultural products (fishers cannot be separated),44,7,True,,,,,,,,,,COMPUTED
+Kigoma,Traders - non-agricultural,20,5,True,,,,,,,,,,COMPUTED
+Kigoma,Service providers,42,11,True,,,,,,,,,,COMPUTED
+Kilimanjaro,Traders - agricultural products (fishers cannot be separated),27,16,True,,,,,,,,,,COMPUTED
+Kilimanjaro,Traders - non-agricultural,25,10,True,,,,,,,,,,COMPUTED
+Kilimanjaro,Service providers,46,17,True,,,,,,,,,,COMPUTED
+Lindi,Traders - agricultural products (fishers cannot be separated),26,8,True,,,,,,,,,,COMPUTED
+Lindi,Traders - non-agricultural,33,10,True,,,,,,,,,,COMPUTED
+Lindi,Service providers,25,7,True,,,,,,,,,,COMPUTED
+Manyara,Traders - agricultural products (fishers cannot be separated),25,9,True,,,,,,,,,,COMPUTED
+Manyara,Traders - non-agricultural,27,18,True,,,,,,,,,,COMPUTED
+Manyara,Service providers,13,6,True,,,,,,,,,,COMPUTED
+Mara,Traders - agricultural products (fishers cannot be separated),67,28,True,,,,,,,,,,COMPUTED
+Mara,Traders - non-agricultural,52,24,True,,,,,,,,,,COMPUTED
+Mara,Service providers,28,14,True,,,,,,,,,,COMPUTED
+Mbeya,Traders - agricultural products (fishers cannot be separated),53,17,True,,,,,,,,,,COMPUTED
+Mbeya,Traders - non-agricultural,33,9,True,,,,,,,,,,COMPUTED
+Mbeya,Service providers,63,32,False,452953,905905,2.26476e+06,0,0,0,86.5131,9.44147,4.04547,COMPUTED
+Morogoro,Traders - agricultural products (fishers cannot be separated),54,20,True,,,,,,,,,,COMPUTED
+Morogoro,Traders - non-agricultural,72,32,False,452953,2.26476e+06,3.01968e+06,0,0,0,90.0211,6.27441,3.70454,COMPUTED
+Morogoro,Service providers,33,17,True,,,,,,,,,,COMPUTED
+Mtwara,Traders - agricultural products (fishers cannot be separated),22,14,True,,,,,,,,,,COMPUTED
+Mtwara,Traders - non-agricultural,43,20,True,,,,,,,,,,COMPUTED
+Mtwara,Service providers,32,9,True,,,,,,,,,,COMPUTED
+Mwanza,Traders - agricultural products (fishers cannot be separated),65,28,True,,,,,,,,,,COMPUTED
+Mwanza,Traders - non-agricultural,33,12,True,,,,,,,,,,COMPUTED
+Mwanza,Service providers,39,14,True,,,,,,,,,,COMPUTED
+Njombe,Traders - agricultural products (fishers cannot be separated),30,16,True,,,,,,,,,,COMPUTED
+Njombe,Traders - non-agricultural,43,17,True,,,,,,,,,,COMPUTED
+Njombe,Service providers,23,8,True,,,,,,,,,,COMPUTED
+Pwani,Traders - agricultural products (fishers cannot be separated),62,29,True,,,,,,,,,,COMPUTED
+Pwani,Traders - non-agricultural,39,13,True,,,,,,,,,,COMPUTED
+Pwani,Service providers,31,9,True,,,,,,,,,,COMPUTED
+Rukwa,Traders - agricultural products (fishers cannot be separated),63,33,False,301968,679429,1.15755e+06,0,0,0,100,0,0,COMPUTED
+Rukwa,Traders - non-agricultural,47,21,True,,,,,,,,,,COMPUTED
+Rukwa,Service providers,42,17,True,,,,,,,,,,COMPUTED
+Ruvuma,Traders - agricultural products (fishers cannot be separated),17,12,True,,,,,,,,,,COMPUTED
+Ruvuma,Traders - non-agricultural,34,11,True,,,,,,,,,,COMPUTED
+Ruvuma,Service providers,12,9,True,,,,,,,,,,COMPUTED
+Shinyanga,Traders - agricultural products (fishers cannot be separated),40,12,True,,,,,,,,,,COMPUTED
+Shinyanga,Traders - non-agricultural,19,5,True,,,,,,,,,,COMPUTED
+Shinyanga,Service providers,37,11,True,,,,,,,,,,COMPUTED
+Simiyu,Traders - agricultural products (fishers cannot be separated),33,11,True,,,,,,,,,,COMPUTED
+Simiyu,Traders - non-agricultural,28,7,True,,,,,,,,,,COMPUTED
+Simiyu,Service providers,43,16,True,,,,,,,,,,COMPUTED
+Singida,Traders - agricultural products (fishers cannot be separated),18,5,True,,,,,,,,,,COMPUTED
+Singida,Traders - non-agricultural,43,21,True,,,,,,,,,,COMPUTED
+Singida,Service providers,34,8,True,,,,,,,,,,COMPUTED
+Songwe,Traders - agricultural products (fishers cannot be separated),42,14,True,,,,,,,,,,COMPUTED
+Songwe,Traders - non-agricultural,25,12,True,,,,,,,,,,COMPUTED
+Songwe,Service providers,72,37,False,301968,490699,1.2582e+06,0,0,0,94.1478,0,5.8522,COMPUTED
+Tabora,Traders - agricultural products (fishers cannot be separated),38,15,True,,,,,,,,,,COMPUTED
+Tabora,Traders - non-agricultural,31,12,True,,,,,,,,,,COMPUTED
+Tabora,Service providers,31,9,True,,,,,,,,,,COMPUTED
+Tanga,Traders - agricultural products (fishers cannot be separated),51,24,True,,,,,,,,,,COMPUTED
+Tanga,Traders - non-agricultural,63,31,False,377460,905905,4.91453e+06,0,0,27436,74.1241,22.2068,3.66906,COMPUTED
+Tanga,Service providers,30,14,True,,,,,,,,,,COMPUTED

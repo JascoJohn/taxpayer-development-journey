@@ -121,8 +121,7 @@ def test_the_active_page_schedule_is_the_configured_finance_act_2026_schedule(da
         assert needle in cap, needle
     for old in ("3.5%", "100,000,000"):
         assert old not in cap
-    bands = " ".join(b[0] for b in ba.PRESUMPTIVE_BANDS)
-    assert "11,000,000 – 200,000,000" in bands and "4.0%" in bands and "3.5%" not in bands
+    assert not hasattr(ba, "PRESUMPTIVE_BANDS")                                              # the strand-to-band bridge is retired (Pass 6B-1)
     at = AppTest.from_file(os.path.join(DASH, "pages", "3_Active.py"), default_timeout=180)
     at.run()
     assert not at.exception

@@ -12,7 +12,7 @@ Streamlit multipage app it was built for:
                     raises, never guesses.
   benchmark_adapters.py
                     Source-agnostic region+sector benchmarking for the
-                    Active stage. finscope_adapter is the only adapter
+                    Active stage. mzani_adapter is the only adapter
                     today; a future TRA-collections or BRELA adapter
                     plugs in beside it without changing the page.
   demo_identity.py  Shared demo-safety rules for every screen that asks
@@ -39,7 +39,7 @@ from .styling import (
 )
 from .stages import STAGES, stage_header, stage_nav_footer
 from .pipeline_data import PipelineData, Figure
-from .benchmark_adapters import BenchmarkResult, finscope_adapter
+from .benchmark_adapters import BenchmarkResult, mzani_adapter
 from .demo_identity import DEMO_SAFETY_NOTICE, demo_safety_banner, looks_like_nida, looks_like_phone
 from .documents import (
     build_asset_verification_report, build_digital_asset_profile, build_legacy_certificate,
@@ -51,7 +51,7 @@ __all__ = [
     "EVIDENCE_TIER_HELP", "inject_base_style", "inject_hero_style", "callout", "evidence_tag",
     "STAGES", "stage_header", "stage_nav_footer",
     "PipelineData", "Figure",
-    "BenchmarkResult", "finscope_adapter",
+    "BenchmarkResult", "mzani_adapter",
     "DEMO_SAFETY_NOTICE", "demo_safety_banner", "looks_like_nida", "looks_like_phone",
     "build_asset_verification_report", "build_digital_asset_profile", "build_legacy_certificate",
 ]

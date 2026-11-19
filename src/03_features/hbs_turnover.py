@@ -155,36 +155,69 @@ def taxable_capacity(d, fs_pop):
     return rows, zrows
 
 
+MZANI_LABEL = "HBS 2017/18, CPI-uprated to 2024, last-month receipts annualised by months operated; owners with receipts"
+MZANI_COVERAGE = ["Farmers and fishers are not covered: farm businesses are outside section 10 of the HBS questionnaire, and fishers cannot be separated from traders in agricultural products",
+                  "Zanzibar is not covered: the HBS 2017/18 is a Mainland survey",
+                  "The bands are for owners with receipts in the reference month (about 42% of non-farm business owners); owners with no receipts that month are not in them",
+                  "Turnover is a survey estimate for the average business of the cell, not an assessment of any one business; the presumptive tax is the schedule in force applied to the band's turnover"]
+
+
 def mzani_tables(d):
-    """Zone x activity and region x activity turnover bands of owners WITH receipts, plus the national figure; the presumptive tax at P25, median and P75."""
+    """Zone x activity and region x activity turnover bands of owners WITH receipts, plus the national figure; the presumptive tax at P25, median and P75.
+    Fallback order for a user: region cell (only with at least `mzani_min_region_cell` businesses with receipts) -> zone cell (disclosure minimum) -> national cell."""
     b = d[d["owner"] & d["cpc_group"].notna()].copy()
     ceiling = A("tax.presumptive_schedule")["threshold_turnover"]
+    min_region = int(CFG["mzani_min_region_cell"])
 
     def tax_at(x):
-        return 0.0 if x > ceiling else float(presumptive(np.array([x]))[0])
+        return None if x > ceiling else float(presumptive(np.array([x]))[0])          # above the ceiling the presumptive regime does not apply (the ordinary schedule does)
 
-    def cells(df, keys):
+    def cells(df, keys, min_n):
         out = []
         for key, g in df.groupby(keys):
             rep = g[g["reported"]]
             rec = dict(zip(keys, key if isinstance(key, tuple) else (key,)))
             rec.update({"n_businesses": int(len(g)), "n_with_receipts": int(len(rep))})
-            if disclosure.is_suppressed(len(rep)):
-                rec.update({"suppressed": True})
+            if len(rep) < min_n or disclosure.is_suppressed(len(rep)):
+                rec.update({"suppressed": True, "reason": "fewer than %d businesses with receipts" % min_n})
             else:
-                w, t = rep["w"].to_numpy(), rep["turnover"].to_numpy()
-                q = [_wq(t, w, p) for p in (0.25, 0.5, 0.75)]
+                w, t_ = rep["w"].to_numpy(), rep["turnover"].to_numpy()
+                q = [_wq(t_, w, p) for p in (0.25, 0.5, 0.75)]
                 rec.update({"p25_tzs": q[0], "median_tzs": q[1], "p75_tzs": q[2], "tax_at_p25_tzs": tax_at(q[0]), "tax_at_median_tzs": tax_at(q[1]), "tax_at_p75_tzs": tax_at(q[2]),
-                            "share_below_4m_pct": _wmean(t <= 4e6, w) * 100, "share_4m_to_11m_pct": _wmean((t > 4e6) & (t <= 11e6), w) * 100, "share_above_11m_pct": _wmean(t > 11e6, w) * 100, "suppressed": False})
+                            "share_below_4m_pct": _wmean(t_ <= 4e6, w) * 100, "share_4m_to_11m_pct": _wmean((t_ > 4e6) & (t_ <= 11e6), w) * 100, "share_above_11m_pct": _wmean(t_ > 11e6, w) * 100,
+                            "low_precision": bool(len(rep) < min_region), "suppressed": False})
             out.append(rec)
         return out
-    zone = cells(b.dropna(subset=["zone"]), ["zone", "cpc_group"])
-    region = cells(b, ["region", "cpc_group"])
-    national = cells(b, ["cpc_group"])
+    zone = cells(b.dropna(subset=["zone"]), ["zone", "cpc_group"], 10)
+    region = cells(b, ["region", "cpc_group"], min_region)
+    national = cells(b, ["cpc_group"], 10)
     for lst in (zone, region, national):
         for r in lst:
-            r["activity"] = r.pop("cpc_group")
+            r["activity"] = ACTIVITY_GROUPS[r.pop("cpc_group")]
     return {"zone_activity": zone, "region_activity": region, "national_activity": national}
+
+
+def _write_csv(path, rows, cols):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        wr = csv.writer(f, lineterminator="\n")
+        wr.writerow(cols + ["evidence_type"])
+        for r in rows:
+            wr.writerow([("" if r.get(c) is None else (("%.6g" % r[c]) if isinstance(r[c], float) else r[c])) for c in cols] + ["COMPUTED"])
+
+
+def write_outputs(result):
+    """The Mzani wa Kodi file read by the dashboard, the Mzani cell tables and the taxable-capacity tables (aggregates only; every cell under the disclosure minimum is suppressed)."""
+    mz = result["mzani"]
+    doc = {"label": MZANI_LABEL, "type": "COMPUTED (survey data)", "coverage": MZANI_COVERAGE, "min_businesses_with_receipts_region_cell": int(CFG["mzani_min_region_cell"]),
+           "fallback": "region cell (at least %d businesses with receipts) -> zone cell (at least %d) -> national cell" % (int(CFG["mzani_min_region_cell"]), disclosure.MIN_BASE),
+           "presumptive_schedule": "config.yaml assumptions tax.presumptive_schedule (Finance Act 2026); above the TZS 200M ceiling the presumptive regime does not apply", "cpi": result["cpi"], **mz}
+    os.makedirs(os.path.dirname(paths.MZANI_TURNOVER), exist_ok=True)
+    with open(paths.MZANI_TURNOVER, "w", encoding="utf-8") as f:
+        json.dump(doc, f, indent=1, ensure_ascii=False)
+    cols = ["n_businesses", "n_with_receipts", "suppressed", "p25_tzs", "median_tzs", "p75_tzs", "tax_at_p25_tzs", "tax_at_median_tzs", "tax_at_p75_tzs", "share_below_4m_pct", "share_4m_to_11m_pct", "share_above_11m_pct"]
+    _write_csv(paths.MZANI_ZONE_CSV, mz["zone_activity"], ["zone", "activity"] + cols)
+    _write_csv(paths.MZANI_REGION_CSV, mz["region_activity"], ["region", "activity"] + cols)
 
 
 def run_hbs_turnover(from_processed=False, json_path=None):
@@ -213,6 +246,7 @@ def run_hbs_turnover(from_processed=False, json_path=None):
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=1, ensure_ascii=False)
+    write_outputs(result)
     return result
 
 

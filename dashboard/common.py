@@ -12,7 +12,7 @@ from tdj_lib import (
     EVIDENCE_TIER_HELP, inject_base_style, inject_hero_style, callout, evidence_tag,
     STAGES, stage_header, stage_nav_footer,
     PipelineData, Figure,
-    BenchmarkResult, finscope_adapter,
+    BenchmarkResult, mzani_adapter,
     DEMO_SAFETY_NOTICE, demo_safety_banner, looks_like_nida, looks_like_phone,
     build_asset_verification_report, build_digital_asset_profile, build_legacy_certificate,
 )
@@ -23,7 +23,7 @@ __all__ = [
     "EVIDENCE_TIER_HELP", "inject_base_style", "inject_hero_style", "callout", "evidence_tag",
     "STAGES", "stage_header", "stage_nav_footer",
     "PipelineData", "Figure",
-    "BenchmarkResult", "finscope_adapter",
+    "BenchmarkResult", "mzani_adapter",
     "DEMO_SAFETY_NOTICE", "demo_safety_banner", "looks_like_nida", "looks_like_phone",
     "build_asset_verification_report", "build_digital_asset_profile", "build_legacy_certificate",
 ]

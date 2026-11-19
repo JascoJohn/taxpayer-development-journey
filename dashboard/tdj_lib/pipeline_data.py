@@ -80,6 +80,7 @@ class PipelineData:
         self._register = _load_json(pipeline_dir, "intervention_register.json")
         self._region_activity = _load_json(pipeline_dir, "finscope_region_activity.json")
         self._active_benchmark = _load_json(pipeline_dir, "finscope_active_benchmark.json")
+        self._mzani = _load_json(pipeline_dir, "mzani_turnover.json")
         self._targeting_model = _load_json(pipeline_dir, "targeting_model.json")
         self._afrobarometer = _load_json(pipeline_dir, "afrobarometer_morale.json")
         self._stage_economics = _load_json(pipeline_dir, "stage_economics.json")
@@ -239,6 +240,28 @@ class PipelineData:
             return Figure(value=None, available=False, note="afrobarometer_morale.json not found in pipeline directory")
         est = {e["indicator"]: e for e in self._afrobarometer["estimates"] if e["level"] == "All adults 18+" and not e.get("suppressed")}
         return Figure(value={"indicators": est, "citation": self._afrobarometer["source"]["citation"], "fieldwork": self._afrobarometer["source"]["fieldwork"]}, available=True)
+
+    def mzani_meta(self) -> Figure:
+        """Label, coverage statements and cell minimum of the Mzani wa Kodi turnover bands (outputs/stats/mzani_turnover.json, written by src/03_features/hbs_turnover.py)."""
+        if not self._mzani:
+            return Figure(value=None, available=False, note="mzani_turnover.json not found in pipeline directory")
+        return Figure(value=self._mzani, available=True)
+
+    def mzani_activities(self) -> Figure:
+        """The three activity groups of the HBS turnover bands."""
+        if not self._mzani:
+            return Figure(value=None, available=False, note="mzani_turnover.json not found in pipeline directory")
+        return Figure(value=sorted({r["activity"] for r in self._mzani["national_activity"]}), available=True)
+
+    def mzani_cell(self, level: str, key: Optional[str], activity: str) -> Figure:
+        """One turnover-band cell: level 'region' (key = region), 'zone' (key = zone) or 'national' (key None) x activity group. A suppressed cell has suppressed=True and no numbers."""
+        if not self._mzani:
+            return Figure(value=None, available=False, note="mzani_turnover.json not found in pipeline directory")
+        rows, field = {"region": (self._mzani["region_activity"], "region"), "zone": (self._mzani["zone_activity"], "zone"), "national": (self._mzani["national_activity"], None)}[level]
+        for r in rows:
+            if r["activity"] == activity and (field is None or r[field] == key):
+                return Figure(value=r, available=True)
+        return Figure(value=None, available=False, note=f"no {level} turnover cell for {activity!r} in {key!r}")
 
     def active_benchmark_zone_cell(self, zone: str, activity: str) -> Figure:
         """Zone x activity benchmark cell (same fields as the region cell; the disclosure rule is applied at this level too), used by the

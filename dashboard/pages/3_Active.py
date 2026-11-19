@@ -11,7 +11,7 @@ from tdj_lib.benchmark_adapters import presumptive_caption
 from common import (
     inject_base_style, inject_hero_style, stage_header, callout, evidence_tag,
     stage_nav_footer, GREEN, GREEN_DARK, AMBER,
-    PipelineData, finscope_adapter,
+    PipelineData, mzani_adapter,
 )
 
 st.set_page_config(page_title=f"Active — {N.active.full}", page_icon="⚖️", layout="wide")
@@ -101,11 +101,10 @@ with hc2:
         st.image(_PERSONA_PATH, width="stretch")
 
 st.markdown(
-    '<span class="tdj-demo-note">This tool cannot and does not estimate a specific '
-    "income or tax-liability figure — FinScope Tanzania 2023 has no income or "
-    "turnover variable at all. Every figure below is either a real survey "
-    "comparison or a clearly labeled illustrative reference, never a single "
-    "confident number.</span>",
+    '<span class="tdj-demo-note">This tool does not estimate any one business\'s turnover or tax. '
+    "The bands below are survey figures for businesses like it: Household Budget Survey 2017/18, "
+    "CPI-uprated to 2024, last-month receipts annualised by months operated, owners with receipts. "
+    "Farmers and fishers are not covered, and Zanzibar is not covered.</span>",
     unsafe_allow_html=True,
 )
 
@@ -129,13 +128,13 @@ viewer = st.radio(
 # Inputs -- real FinScope categories only
 # ---------------------------------------------------------------------------
 regions_fig = pipeline.active_benchmark_regions()
-activities_fig = pipeline.active_benchmark_activities()
+activities_fig = pipeline.mzani_activities()
 
 if not (regions_fig.available and activities_fig.available):
     st.warning(
         "Benchmark data isn't connected right now "
         f"({regions_fig.note or activities_fig.note}). This page needs "
-        "data/processed/finscope_active_benchmark.json to be present."
+        "outputs/stats/mzani_turnover.json and data/processed/finscope_active_benchmark.json to be present."
     )
 else:
     ic1, ic2 = st.columns(2)
@@ -149,12 +148,11 @@ else:
             "Business activity", activities_fig.value,
             index=activities_fig.value.index("Service providers")
             if "Service providers" in activities_fig.value else 0,
-            help="Drawn from FinScope's own business-activity categories — the same "
-                 "four activity types used throughout this project's real "
-                 "region-level data.",
+            help="The three activity groups of the Household Budget Survey 2017/18 (traders in "
+                 "agricultural products, non-agricultural traders, service providers).",
         )
 
-    result = finscope_adapter(region, activity, pipeline=pipeline)
+    result = mzani_adapter(region, activity, pipeline=pipeline)
 
     st.write("")
 
@@ -179,7 +177,7 @@ else:
         # result is shown, distinct from just visiting this page.
         st.session_state.active_benchmark_completed = True
 
-        # ---- The real comparison ------------------------------------------
+        # ---- The turnover band (HBS 2017/18) --------------------------------
         _where = result.geography or region
         headline = (
             f"Businesses like yours in {_where}" if viewer == "taxpayer"
@@ -192,84 +190,42 @@ else:
         st.caption(result.source_label)
 
         m1, m2, m3 = st.columns(3)
-        m1.metric("Survey respondents in this cell", result.sample_size)
-        m2.metric("Represents (weighted)", f"{result.weighted_population:,.0f} people")
-        m3.metric(
-            "Currently registered / formal",
-            f"{result.formality_rate_pct:.1f}%" if result.formality_rate_pct is not None else "suppressed (fewer than 10 answers)",
-        )
+        m1.metric("Businesses with receipts in this cell (survey)", result.sample_size)
+        m2.metric("Median yearly turnover", f"TZS {result.median_tzs:,.0f}")
+        m3.metric("Middle half of businesses", f"TZS {result.p25_tzs:,.0f} – {result.p75_tzs:,.0f}")
         if result.low_precision:
             st.caption("⚠ " + result.low_precision_note)
 
-        strand = result.strand_distribution
-        order = sorted(strand, key=lambda k: -strand[k])
+        st.markdown("#### Presumptive tax at these turnovers")
+        evidence_tag("computed")
+
+        def _tax(v):
+            return "above the presumptive ceiling" if v is None else f"TZS {v:,.0f}"
+        t1, t2, t3 = st.columns(3)
+        t1.metric("At the lower quartile", _tax(result.tax_p25_tzs))
+        t2.metric("At the median", _tax(result.tax_median_tzs))
+        t3.metric("At the upper quartile", _tax(result.tax_p75_tzs))
+        st.caption(presumptive_caption())
         fig = go.Figure(go.Bar(
-            y=order, x=[strand[k] for k in order], orientation="h",
-            marker_color=[GREEN_DARK, GREEN, "#5FA867", "#9CC79F"][:len(order)],
-            text=[f"{strand[k]:.1f}%" for k in order], textposition="outside",
+            y=["Above TZS 11M", "TZS 4M – 11M", "Up to TZS 4M"],
+            x=[result.share_above_11m_pct, result.share_4m_to_11m_pct, result.share_below_4m_pct], orientation="h",
+            marker_color=[GREEN_DARK, GREEN, "#9CC79F"],
+            text=[f"{v:.1f}%" for v in (result.share_above_11m_pct, result.share_4m_to_11m_pct, result.share_below_4m_pct)], textposition="outside",
         ))
-        fig.update_layout(
-            height=220, margin=dict(t=10, b=10, l=10, r=40),
-            xaxis_title="% of businesses like this (financial access strand)",
-            plot_bgcolor="white",
-        )
+        fig.update_layout(height=200, margin=dict(t=10, b=10, l=10, r=40), xaxis_title="% of businesses like this, by yearly turnover", plot_bgcolor="white")
         st.plotly_chart(fig, width="stretch")
-        st.caption(
-            "FinScope's own financial-access-strand classification (Banked / Other "
-            "formal non-bank / Informal only / Excluded) — the closest real, "
-            "respondent-level signal this survey has for economic engagement, in "
-            "the absence of any income or turnover variable."
-        )
-
-        st.divider()
-
-        # ---- The illustrative bridge to a presumptive category ------------
-        st.markdown("#### Reference presumptive category")
-        evidence_tag(result.presumptive_evidence_tier)
-
-        gauge = go.Figure(go.Indicator(
-            mode="gauge+number",
-            value=round(result.composite_score * 100),
-            number={"suffix": "", "font": {"size": 28}},
-            gauge={
-                "axis": {"range": [0, 100], "tickvals": [0, 34, 67, 100]},
-                "bar": {"color": AMBER},
-                "steps": [
-                    {"range": [0, 34], "color": "#EFEFEF"},
-                    {"range": [34, 67], "color": "#D8E7D8"},
-                    {"range": [67, 100], "color": "#9CC79F"},
-                ],
-            },
-            domain={"x": [0, 1], "y": [0, 1]},
-        ))
-        gauge.update_layout(height=220, margin=dict(t=20, b=10, l=30, r=30))
-        gc1, gc2 = st.columns([1, 2])
-        with gc1:
-            st.plotly_chart(gauge, width="stretch")
-        with gc2:
-            st.markdown(
-                f'<div class="tdj-note-card">'
-                f'<div class="tdj-note-label">{result.presumptive_category}</div>'
-                "<p>An illustrative reference point, not a computed liability — see "
-                "how this is estimated below.</p></div>",
-                unsafe_allow_html=True,
-            )
-            st.caption(presumptive_caption())
 
         with st.expander("How is this estimated?"):
             st.write(
-                f"This combines two real, FinScope-derived figures for this exact "
-                f"region/sector cell: the share in a formal or banked financial "
-                f"tier ({strand.get('Banked', 0) + strand.get('Other formal non-bank', 0):.1f}%, "
-                f"weighted 60%) and the business-registration rate "
-                f"({result.formality_rate_pct:.1f}%, weighted 40%), giving a composite "
-                f"score of {result.composite_score:.2f} on a 0–1 scale. That score is "
-                "then mapped onto Tanzania's three presumptive-tax bands as an "
-                "**assumption that higher financial/formality engagement roughly "
-                "tracks higher turnover** — an illustrative starting assumption, not a "
-                "measurement. FinScope has no income or turnover variable, so no "
-                "step in this calculation ever touches an actual shilling figure."
+                "The turnover of each business is its receipts last month (sales of products, resale goods, construction and services) "
+                "times the months it operated in the last 12, raised to 2024 prices with the consumer price index. The band is the "
+                "25th, 50th and 75th percentile of the businesses with receipts in this cell, weighted to the survey population. "
+                "The presumptive tax is the schedule in force applied to each of those turnovers; it is a reference, not an assessment. "
+                "A region is shown only when at least 30 businesses with receipts were surveyed there; otherwise the zone, then the whole Mainland."
             )
+            st.markdown("**Not covered:** " + "; ".join(c.rstrip(".") for c in (result.coverage or [])[:2]) + ".")
+        if result.formality_label:
+            st.caption(result.formality_label)
 
         st.markdown(
             f'<div class="tdj-note-card">'
