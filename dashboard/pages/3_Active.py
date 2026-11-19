@@ -189,10 +189,11 @@ else:
         evidence_tag(result.evidence_tier)
         st.caption(result.source_label)
 
-        m1, m2, m3 = st.columns(3)
+        m1, m2, m3, m4 = st.columns(4)
         m1.metric("Businesses with receipts in this cell (survey)", result.sample_size)
-        m2.metric("Median yearly turnover", f"TZS {result.median_tzs:,.0f}")
-        m3.metric("Middle half of businesses", f"TZS {result.p25_tzs:,.0f} – {result.p75_tzs:,.0f}")
+        m2.metric("Lower quartile, yearly turnover", f"TZS {result.p25_tzs:,.0f}")
+        m3.metric("Median yearly turnover", f"TZS {result.median_tzs:,.0f}")
+        m4.metric("Upper quartile, yearly turnover", f"TZS {result.p75_tzs:,.0f}")
         if result.low_precision:
             st.caption("⚠ " + result.low_precision_note)
 

@@ -1,4 +1,5 @@
-"""Cost / revenue / ROI card of a stage, read from outputs/stats/stage_economics.json (Block E2.5, Table 40; 20-year sensitivity added in Block E3.4).
+"""Cost / revenue / ROI card of a stage, read from outputs/stats/stage_economics.json (Block E2.5, Table 40; 20-year sensitivity added in Block E3.4). Since Pass 6B-1 the figures are the CENTRAL case
+(HBS 2017/18 receipts of owners with receipts) with the bracket of the median (HBS all owners ... ILFS gross) for Active and Enterprise, and P(ROI >= 1).
 
 Replaces the typed cost and revenue figures the stage pages used to show (Entry 420M / 8.7-9B / 20.7x, Active 600M / 12.8-13B / 21.3x, Enterprise 750M / 4.1B / ~5.5x,
 Legacy 700M / 2.5B / ~3.6x). The figures are the median and 80% interval of a Monte Carlo over assumed reach, uptake and persistence, with the statutory tax on ILFS
@@ -36,5 +37,13 @@ def show_stage_economics(st, pipeline, stage: str) -> None:
         p90 = s["variants"].get("horizon_20_aged_persistence_0.90", {}).get("0.1", {}).get("roi", {}).get("median")
         st.caption(f"20-year sensitivity (earnings follow the cohort's age path, persistence as signed off): ROI median {r20['median']:.2f}x, 80% interval {r20['p10']:.2f}x to {r20['p90']:.2f}x"
                    + (f"; at persistence 0.90: {p90:.2f}x." if p90 is not None else "."))
+    br = pipeline.stage_economics_bases(stage)
+    if br.available and "revenue_note" not in s:
+        c_, h_, l_ = br.value["central"], br.value["high"], br.value["low"]
+        if stage in ("active", "enterprise"):
+            st.caption(f"Central case: revenue per registrant TZS {c_['revenue_per_registrant_tzs']:,.0f} a year ({c_['share_paying_any_tax_pct']:.1f}% of registrants owe tax; HBS 2017/18 receipts of owners with receipts). "
+                       f"Bracket of the median ROI: {l_['roi_10y']['median']:.2f}x (HBS, all owners) to {h_['roi_10y']['median']:.2f}x (ILFS gross receipts).")
+        if c_.get("p_roi_ge_1") is not None:
+            st.caption(f"Chance the programme pays for itself (ROI >= 1) in the Monte Carlo: {c_['p_roi_ge_1'] * 100:.0f}%.")
     st.caption(f"Mechanism in the report: {s.get('report_name', '')} (internal reference: {s.get('morale_model_key')}).")
-    st.caption("Scenario calculation (MODELLED): statutory tax on survey earnings x reach and uptake (signed-off assumptions), 10% discount rate. Not a forecast.")
+    st.caption("Scenario calculation (MODELLED): statutory tax on survey receipts (revenue per registrant COMPUTED) x reach and uptake (assumptions, sign-off pending), 10% discount rate. Not a forecast.")
