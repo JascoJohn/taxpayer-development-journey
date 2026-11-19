@@ -78,7 +78,7 @@ def test_the_home_page_states_the_thesis_and_the_scenario_sentence(dash):
     at = AppTest.from_file(os.path.join(DASH, "Home.py"), default_timeout=180)
     at.run()
     blob = " ".join(m.value for m in at.markdown) + " ".join(c.value for c in at.caption)
-    assert "Willingness is already high; the barriers are friction and voice." in blob
+    assert "Most adults report positive attitudes to tax; the barriers are friction and voice." in blob          # Pass 6B-3 wording (was 'Willingness is already high')
     assert ("In the project's model, the six stages together reach more than any single stage, because each reaches people the others do not. "
             "These are scenario results on assumed effects, not measured outcomes.") in blob.replace("\n", " ")
     assert "No single stage reaches the compliance outcome" not in blob

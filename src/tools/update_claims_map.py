@@ -224,6 +224,11 @@ def build():
     a1, a2 = est["trust_tax_office_somewhat_or_a_lot"], est["finding_out_taxes_difficult"]
     put("C108", "Afrobarometer Round 8 Tanzania 2021 (weighted): trust the tax/revenue office somewhat or a lot (Q41J) %.1f%% (95%% CI %.1f-%.1f); finding out which taxes one owes is difficult (Q46A) %.1f%% (95%% CI %.1f-%.1f); n = 2,398." % (
         a1["pct"], a1["ci95_low_pct"], a1["ci95_high_pct"], a2["pct"], a2["ci95_low_pct"], a2["ci95_high_pct"]), status=ST_6B2, script="src/03_features/afrobarometer_morale.py", out="data/processed/afrobarometer_morale.json", label="COMPUTED", typ="COMPUTED", loc="Executive Summary; Sections 3.2, 5.1", reason="figures in the text had no claim")
+    ST_6B3 = "NEW (Pass 6B-3): ADD TO TEXT"
+    put("C109", "Entry targeting model (FinScope 2023): the full survey model uses 1,293 encoded features, led by banking, mobile-money and other formal-financial-use items (logistic standardised coefficients; gradient boosting: mobile-money registration and tenure first). The register-only model (age, sex, region, urban/rural: four variables, 37 encoded features) is led by age (standardised logit coefficient 3.08, with its square -2.84), then region (largest: Kaskazini Unguja -0.76), urban residence 0.39 and sex 0.24; the EXTENDED variant adds mobile money, business ownership and income source (seven variables, 55 encoded features).", status=ST_6B3,
+        script="src/04_models/targeting_model.py; _archive/diagnostics/pass6b3/core_coef.py", out="outputs/stats/targeting_model.json", label="COMPUTED", typ="COMPUTED", loc="Section 4.2; Entry annex", reason="D5: the 'strongest single signal' statements of Section 4.2 and the annex reconciled")
+    put("C110", "Table 5.1 notes: the portfolio (without Asset) cost of TZS 3.20B (median) includes Seed's cost (median TZS 0.66B); no cost is included for the shared platform layer; revenue counts only the new registrants a stage adds (Enterprise: the businesses that begin to report a TIN, not the 26.5% who already do); Legacy's 20-year return (0.24) is below its 10-year return (0.28) because the 20-year basis follows the age-earnings path, on which mean tax falls with age above 65 (stage_economics.py: simulate(), age_earnings_multiplier).", status=ST_6B3,
+        script="src/04_models/stage_economics.py", out="outputs/stats/stage_economics.json; outputs/tables/table5_1_stage_economics.csv", label="MODELLED", typ="MODELLED", loc="Section 5.3 | note under Table 5.1", reason="D6 checks")
     return new
 
 
@@ -255,8 +260,8 @@ def main():
         "C002": lambda s: "3.83% of adults report holding a TIN (survey-reported; 95% CI 3.24-4.52; n=9915, 361 respondents reporting a TIN)",
         "C011": lambda s: "3.83% (survey-reported TIN holding)",
         "C039": lambda s: s.replace("Legacy TIN rate 3.66%", "Legacy survey-reported TIN rate 3.66%").replace("25 TIN holders", "25 respondents reporting a TIN"),
-        "C007": lambda s: s.replace("TIN rate 5.3% among mobile-money users", "survey-reported TIN rate 5.3% among mobile-money users"),
-        "C056": lambda s: s.replace("TIN rate 5.3% among mobile-money users", "survey-reported TIN rate 5.3% among mobile-money users"),
+        "C007": lambda s: s if "survey-reported TIN rate 5.3%" in s else s.replace("TIN rate 5.3% among mobile-money users", "survey-reported TIN rate 5.3% among mobile-money users"),
+        "C056": lambda s: s if "survey-reported TIN rate 5.3%" in s else s.replace("TIN rate 5.3% among mobile-money users", "survey-reported TIN rate 5.3% among mobile-money users"),
         "C008": lambda s: s.replace("observed adult TIN rate", "observed adult survey-reported TIN rate"),
         "C055": lambda s: "Baseline 3.83% plus the sum of the six separate gains (8.19 percentage points) = 12.02%, against a combined 10.17%: the combined result is below the like-for-like sum (diminishing returns), see C099.",
     }
@@ -274,6 +279,11 @@ def main():
         r79["current value"] = "RETIRED (Pass 6B-1): " + r79["current value"].split(". New taxpayers pay")[0] + ". Reason: the digital twin was retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); Figure 5.2 is now the reach scenarios (C089-C091)."
         r79["output file"] = "src/retired/digital_twin_v0.py"
         r79["source script"] = "src/retired/digital_twin_v0.py"
+    r14 = by["C014"]
+    if r14["status"] != "RETIRED (Pass 6B-3)":
+        changes.append({"claim_id": "C014", "old": r14["current value"], "new": "RETIRED", "status": "RETIRED (Pass 6B-3)", "reason": "the 42.6 percentage-point duty-voice gap is no longer published (Table 3.1 row and Executive Summary clause removed in Pass 6B-3); its two components (65.7% and 23.1%) remain as separate claims"})
+        r14["current value"] = "RETIRED (Pass 6B-3): no longer published. " + r14["current value"]
+        r14["status"] = "RETIRED (Pass 6B-3)"
     rows.sort(key=lambda r: r["claim_id"])
     with open(CLAIMS, "w", encoding="utf-8-sig", newline="") as f:
         wr = csv.DictWriter(f, fieldnames=COLS, lineterminator="\r\n")
