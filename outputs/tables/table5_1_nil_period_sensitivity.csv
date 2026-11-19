@@ -1,0 +1,4 @@
+variant,active_roi_median,enterprise_roi_median,portfolio_roi_median,portfolio_roi_p10,portfolio_roi_p90,evidence_type
+headline (no nil period),0.2965,1.2955,0.6287,0.2179,1.3445,MODELLED; SENSITIVITY only
+legally fitted share of new businesses,0.2716,1.2482,0.6109,0.2102,1.3047,MODELLED; SENSITIVITY only
+"full first year, Enterprise",0.2965,0.8157,0.5073,0.1855,1.0607,MODELLED; SENSITIVITY only

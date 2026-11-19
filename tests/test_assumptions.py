@@ -18,7 +18,7 @@ BASES = {"DATA", "LITERATURE", "ASSUMPTION", "UNKNOWN", "CALIBRATED"}
 
 
 # Pass 6B-1 assumptions registered with sign-off PENDING (owner decision outstanding): the register shows them with an empty john_signoff
-PENDING_6B1_SIGNOFF = {"stage.formal_step_if_not_asked"}
+PENDING_6B1_SIGNOFF = {"stage.formal_step_if_not_asked", "stage.workers_unpriced", "stage.income_basis_bracket", "hbs.owners_with_receipts_central", "hbs.receipts_annualisation", "hbs.cpi_uprating"}
 
 
 def _code():

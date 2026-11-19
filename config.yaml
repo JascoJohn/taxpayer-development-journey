@@ -518,6 +518,10 @@ files:
   agent_calibration:           data/processed/agent_calibration.json      # E2.4 calibrated parameters and fit diagnostics
   stage_economics:             outputs/stats/stage_economics.json
   table40_csv:                 outputs/tables/table40_stage_economics.csv
+  table5_1_csv:                outputs/tables/table5_1_stage_economics.csv            # Pass 6B-1: Table 5.1, central basis and bracket (src/04_models/stage_economics.py)
+  table5_2_csv:                outputs/tables/table5_2_persistence_sensitivity.csv
+  table5_1_nil_period_csv:     outputs/tables/table5_1_nil_period_sensitivity.csv
+  fig5_4_tornado_csv:          outputs/tables/fig5_4_tornado_central.csv
   hbs_turnover:                data/processed/hbs_turnover.json           # aggregates of HBS 2017/18 owner turnover (Pass 6B-1; src/03_features/hbs_turnover.py)
   tra_collections:             data/processed/tra_collections_2024_25.json  # aggregates of the TRA FY2024/25 workbook (src/03_features/tra_collections.py)
   ilfs_tax_base:               data/processed/ilfs_tax_base.json   # aggregates only: mean statutory tax per person of each Table 40 group and the age-earnings profiles (src/04_models/stage_economics.py)
@@ -1231,6 +1235,36 @@ assumptions:
     basis: ASSUMPTION
     source: "Pass 6B-1, stage mapping B. The formal step of a business owner is D6_4a == 'Yes' (business registered with a government authority). A respondent who was not asked D6_4a, or left it blank, counts as having NO formal step, so the owner is an Active (informal) owner, not an Enterprise owner. Choice made by the analyst under the owner's decision on mapping B; the alternative (drop them) would remove owners from both stages. Sign-off PENDING."
     feeds: "Stage populations, TIN rates and CIs by stage (Active 2,916,165 / Enterprise 572,735 adults); Table 5.1 and every stage figure"
+    group: stage_mapping
+  stage.workers_unpriced:
+    value: true
+    basis: ASSUMPTION
+    source: "Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING."
+    feeds: "Table 5.1, Table 5.2, Figures 5.2-5.4 (the Workers group is excluded from every priced stage)"
+    group: stage_mapping
+  stage.income_basis_bracket:
+    value: {central: hbs_receipts_owners, high: ilfs_gross, low: hbs_all_owners}
+    basis: ASSUMPTION
+    source: "Pass 6B-1. Revenue per registrant of Active and Enterprise: CENTRAL = HBS 2017/18 receipts of owners with receipts in the reference month (Pass 6D variant V3); BRACKET HIGH = ILFS 2024 gross receipts of owners (V1); BRACKET LOW = HBS all owners with zeros kept (V2). ILFS is never shown alone. The bracket is a range of the median, not a confidence interval. Sign-off PENDING."
+    feeds: "Table 5.1 central and bracket columns, Figure 5.3, taxable capacity, targeting and dashboard Active/Enterprise pages"
+    group: stage_mapping
+  hbs.owners_with_receipts_central:
+    value: true
+    basis: ASSUMPTION
+    source: "Pass 6B-1. The central HBS case restricts owners to those with receipts from sources 1-4 in the reference month (about 42% of owners; 58% report none). Owners with no receipts in the month may be seasonal or dormant, or may under-report; the low case keeps them at zero. Sign-off PENDING."
+    feeds: "Active and Enterprise revenue per registrant (central); share of registrants owing tax"
+    group: stage_mapping
+  hbs.receipts_annualisation:
+    value: "last_month_receipts_x_months_operated"
+    basis: ASSUMPTION
+    source: "Pass 6B-1. Annual turnover = last month's receipts (HBS Form I S10C1, sources 1-4: sales, resale, construction, services) x months the business operated in the last 12 months (S10_06, capped at 12). Seasonality is not modelled; one reference month stands for the whole year. Sign-off PENDING."
+    feeds: "HBS turnover of owners; Mzani wa Kodi bands; taxable capacity; Active and Enterprise revenue per registrant"
+    group: stage_mapping
+  hbs.cpi_uprating:
+    value: "wdi_fp_cpi_totl_mean_of_survey_years_to_target_year"
+    basis: ASSUMPTION
+    source: "Pass 6B-1. HBS 2017/18 turnover is uprated to 2024 prices with the World Bank WDI consumer price index (FP.CPI.TOTL, Tanzania): CPI(2024) / mean of CPI(2017) and CPI(2018) = 1.2582 (HBS fieldwork Dec 2017 - Dec 2018). A general price index, not a business-turnover deflator; real growth in business size since 2017/18 is not modelled. Sign-off PENDING."
+    feeds: "HBS turnover of owners; Mzani wa Kodi bands; taxable capacity; Active and Enterprise revenue per registrant"
     group: stage_mapping
   tax.pit_schedule:
     value: [[0, 0, 0.0], [3240000, 0, 0.08], [6240000, 240000, 0.20], [9120000, 816000, 0.25], [12000000, 1536000, 0.30]]

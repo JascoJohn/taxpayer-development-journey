@@ -1,5 +1,5 @@
 {
-  "total": 97,
+  "total": 102,
   "assumptions": [
     {
       "assumption_id": "ASS-3F6B1844",
@@ -510,6 +510,54 @@
       "group": "twin"
     },
     {
+      "assumption_id": "ASS-D855A551",
+      "key": "hbs.cpi_uprating",
+      "assumption_text": "hbs.cpi_uprating = \"wdi_fp_cpi_totl_mean_of_survey_years_to_target_year\": Pass 6B-1. HBS 2017/18 turnover is uprated to 2024 prices with the World Bank WDI consumer price index (FP.CPI.TOTL, Tanzania): CPI(2024) / mean of CPI(2017) and CPI(2018) = 1.2582 (HBS fieldwork Dec 2017 - Dec 2018). A general price index, not a business-turnover deflator; real growth in business size since 2017/18 is not modelled. Sign-off PENDING.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Pass 6B-1. HBS 2017/18 turnover is uprated to 2024 prices with the World Bank WDI consumer price index (FP.CPI.TOTL, Tanzania): CPI(2024) / mean of CPI(2017) and CPI(2018) = 1.2582 (HBS fieldwork Dec 2017 - Dec 2018). A general price index, not a business-turnover deflator; real growth in business size since 2017/18 is not modelled. Sign-off PENDING.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "HBS turnover of owners; Mzani wa Kodi bands; taxable capacity; Active and Enterprise revenue per registrant",
+      "basis": "ASSUMPTION",
+      "value": "wdi_fp_cpi_totl_mean_of_survey_years_to_target_year",
+      "feeds": "HBS turnover of owners; Mzani wa Kodi bands; taxable capacity; Active and Enterprise revenue per registrant",
+      "group": "stage_mapping"
+    },
+    {
+      "assumption_id": "ASS-DE5405B0",
+      "key": "hbs.owners_with_receipts_central",
+      "assumption_text": "hbs.owners_with_receipts_central = true: Pass 6B-1. The central HBS case restricts owners to those with receipts from sources 1-4 in the reference month (about 42% of owners; 58% report none). Owners with no receipts in the month may be seasonal or dormant, or may under-report; the low case keeps them at zero. Sign-off PENDING.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Pass 6B-1. The central HBS case restricts owners to those with receipts from sources 1-4 in the reference month (about 42% of owners; 58% report none). Owners with no receipts in the month may be seasonal or dormant, or may under-report; the low case keeps them at zero. Sign-off PENDING.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "Active and Enterprise revenue per registrant (central); share of registrants owing tax",
+      "basis": "ASSUMPTION",
+      "value": true,
+      "feeds": "Active and Enterprise revenue per registrant (central); share of registrants owing tax",
+      "group": "stage_mapping"
+    },
+    {
+      "assumption_id": "ASS-BF7F8F0F",
+      "key": "hbs.receipts_annualisation",
+      "assumption_text": "hbs.receipts_annualisation = \"last_month_receipts_x_months_operated\": Pass 6B-1. Annual turnover = last month's receipts (HBS Form I S10C1, sources 1-4: sales, resale, construction, services) x months the business operated in the last 12 months (S10_06, capped at 12). Seasonality is not modelled; one reference month stands for the whole year. Sign-off PENDING.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Pass 6B-1. Annual turnover = last month's receipts (HBS Form I S10C1, sources 1-4: sales, resale, construction, services) x months the business operated in the last 12 months (S10_06, capped at 12). Seasonality is not modelled; one reference month stands for the whole year. Sign-off PENDING.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "HBS turnover of owners; Mzani wa Kodi bands; taxable capacity; Active and Enterprise revenue per registrant",
+      "basis": "ASSUMPTION",
+      "value": "last_month_receipts_x_months_operated",
+      "feeds": "HBS turnover of owners; Mzani wa Kodi bands; taxable capacity; Active and Enterprise revenue per registrant",
+      "group": "stage_mapping"
+    },
+    {
       "assumption_id": "ASS-E4C97DA4",
       "key": "macro.gdp_usd",
       "assumption_text": "macro.gdp_usd = read from outputs/stats/macro_inputs.json: GDP, current US$ (WDI NY.GDP.MKTP.CD, latest year 2024): outputs/stats/macro_inputs.json tanzania.gdp_usd. Replaced the typed 78,844,405,385.",
@@ -902,6 +950,26 @@
       "group": "stage_economics"
     },
     {
+      "assumption_id": "ASS-5C8777EF",
+      "key": "stage.income_basis_bracket",
+      "assumption_text": "stage.income_basis_bracket = {\"central\": \"hbs_receipts_owners\", \"high\": \"ilfs_gross\", \"low\": \"hbs_all_owners\"}: Pass 6B-1. Revenue per registrant of Active and Enterprise: CENTRAL = HBS 2017/18 receipts of owners with receipts in the reference month (Pass 6D variant V3); BRACKET HIGH = ILFS 2024 gross receipts of owners (V1); BRACKET LOW = HBS all owners with zeros kept (V2). ILFS is never shown alone. The bracket is a range of the median, not a confidence interval. Sign-off PENDING.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Pass 6B-1. Revenue per registrant of Active and Enterprise: CENTRAL = HBS 2017/18 receipts of owners with receipts in the reference month (Pass 6D variant V3); BRACKET HIGH = ILFS 2024 gross receipts of owners (V1); BRACKET LOW = HBS all owners with zeros kept (V2). ILFS is never shown alone. The bracket is a range of the median, not a confidence interval. Sign-off PENDING.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "Table 5.1 central and bracket columns, Figure 5.3, taxable capacity, targeting and dashboard Active/Enterprise pages",
+      "basis": "ASSUMPTION",
+      "value": {
+        "central": "hbs_receipts_owners",
+        "high": "ilfs_gross",
+        "low": "hbs_all_owners"
+      },
+      "feeds": "Table 5.1 central and bracket columns, Figure 5.3, taxable capacity, targeting and dashboard Active/Enterprise pages",
+      "group": "stage_mapping"
+    },
+    {
       "assumption_id": "ASS-8EFECFA1",
       "key": "stage.intervention_for_uptake",
       "assumption_text": "stage.intervention_for_uptake = {\"entry\": \"USSD_registration_nudge\", \"active\": \"presumptive_tax_simplification\", \"enterprise\": \"community_compliance_norms\", \"asset\": \"visible_tax_returns\", \"legacy\": \"civic_tax_education\"}: Which of the six morale-model interventions stands for each stage's tool when converting the recalibrated morale model into registrations (odds ratio at the stage's observed TIN rate, E2.3). A judgement mapping; Seed has no registrations claimed. For the owner's sign-off.",
@@ -1106,6 +1174,22 @@
       "value": 0.3,
       "feeds": "C041-C053 (Table 40)",
       "group": "stage_economics"
+    },
+    {
+      "assumption_id": "ASS-56D0485F",
+      "key": "stage.workers_unpriced",
+      "assumption_text": "stage.workers_unpriced = true: Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING.",
+      "made_by_agent": "config.yaml assumptions",
+      "category": "technical",
+      "confidence": "MEDIUM",
+      "evidence_support": "Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING.",
+      "stress_tested": false,
+      "stress_test_result": null,
+      "section_reference": "Table 5.1, Table 5.2, Figures 5.2-5.4 (the Workers group is excluded from every priced stage)",
+      "basis": "ASSUMPTION",
+      "value": true,
+      "feeds": "Table 5.1, Table 5.2, Figures 5.2-5.4 (the Workers group is excluded from every priced stage)",
+      "group": "stage_mapping"
     },
     {
       "assumption_id": "ASS-DD248E35",

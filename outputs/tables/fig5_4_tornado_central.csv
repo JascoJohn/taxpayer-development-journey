@@ -1,0 +1,10 @@
+driver,setting,median_roi_unfavourable,median_roi_favourable,central_median_roi,swing,evidence_type
+"Reach share, all stages",lower / upper half of the stated range,0.2771,1.0188,0.6287,0.7417,MODELLED (scenario)
+"Uptake odds ratio, all stages",x0.8 / x1.2,0.2705,1.0114,0.6287,0.7409,MODELLED (scenario)
+Yearly persistence,fixed 0.50 / 0.90,0.4087,0.9822,0.6287,0.5735,MODELLED (scenario)
+Stage populations,x0.8 / x1.2,0.5029,0.7544,0.6287,0.2515,MODELLED (scenario)
+Revenue per registrant,x0.8 / x1.2,0.5029,0.7544,0.6287,0.2515,MODELLED (scenario)
+Programme costs (four stages),x1.2 / x0.8,0.5438,0.7478,0.6287,0.2039,MODELLED (scenario)
+Discount rate,12% / 5%,0.5812,0.7779,0.6287,0.1967,MODELLED (scenario)
+Observed TIN rates,x0.8 / x1.2,0.5296,0.7151,0.6287,0.1855,MODELLED (scenario)
+Seed programme cost,upper / lower bound,0.5580,0.7180,0.6287,0.1599,MODELLED (scenario)

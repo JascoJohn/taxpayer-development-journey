@@ -1,0 +1,41 @@
+horizon_years,stage,persistence,roi_median,roi_p10,roi_p90,pv_revenue_median_tzs,tax_basis,evidence_type
+10,entry,signed-off (triangular 0.5-0.75-0.9),0.4280,0.0000,2.5970,182878253,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,entry,fixed 0.75,0.4588,0.0000,2.7178,198411169,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,entry,fixed 0.90,0.6752,0.0000,4.0000,292011984,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,entry,fixed 0.95,0.7805,0.0000,4.6236,337542812,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,active,signed-off (triangular 0.5-0.75-0.9),0.2965,0.0016,1.0003,182395949,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,active,fixed 0.75,0.3179,0.0019,1.0431,193447072,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,active,fixed 0.90,0.4679,0.0028,1.5352,284706067,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,active,fixed 0.95,0.5409,0.0032,1.7746,329097748,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,enterprise,signed-off (triangular 0.5-0.75-0.9),1.2955,0.0000,3.9660,991491316,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,enterprise,fixed 0.75,1.3947,0.0000,4.0955,1068609866,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,enterprise,fixed 0.90,2.0527,0.0000,6.0276,1572728439,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,enterprise,fixed 0.95,2.3728,0.0000,6.9675,1817949975,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,legacy,signed-off (triangular 0.5-0.75-0.9),0.2804,0.0000,1.3437,198626498,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,legacy,fixed 0.75,0.3012,0.0000,1.3988,212780409,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,legacy,fixed 0.90,0.4433,0.0000,2.0588,313159939,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,legacy,fixed 0.95,0.5125,0.0000,2.3798,361988179,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,portfolio_excluding_asset,signed-off (triangular 0.5-0.75-0.9),0.6287,0.2179,1.3445,2001353922,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,portfolio_excluding_asset,fixed 0.75,0.6674,0.2338,1.3882,2127281638,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,portfolio_excluding_asset,fixed 0.90,0.9822,0.3441,2.0431,3130830469,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+10,portfolio_excluding_asset,fixed 0.95,1.1354,0.3977,2.3616,3618992977,flat tax per registrant (the signed-off headline basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,entry,signed-off (triangular 0.5-0.75-0.9),0.5892,0.0000,3.7462,253905138,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,entry,fixed 0.75,0.6660,0.0000,3.9455,288035071,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,entry,fixed 0.90,1.3455,0.0000,7.9704,581871987,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,entry,fixed 0.95,1.8309,0.0000,10.8460,791795536,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,active,signed-off (triangular 0.5-0.75-0.9),0.3264,0.0016,1.1045,199333654,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,active,fixed 0.75,0.3513,0.0021,1.1526,213754325,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,active,fixed 0.90,0.6189,0.0037,2.0306,376580791,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,active,fixed 0.95,0.7999,0.0048,2.6245,486720134,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,enterprise,signed-off (triangular 0.5-0.75-0.9),1.4217,0.0000,4.4319,1085535827,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,enterprise,fixed 0.75,1.5412,0.0000,4.5255,1180787996,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,enterprise,fixed 0.90,2.7151,0.0000,7.9727,2080248327,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,enterprise,fixed 0.95,3.5092,0.0000,10.3045,2688662752,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,legacy,signed-off (triangular 0.5-0.75-0.9),0.2387,0.0000,1.1440,169697768,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,legacy,fixed 0.75,0.2533,0.0000,1.1761,178893047,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,legacy,fixed 0.90,0.3743,0.0000,1.7380,264368007,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,legacy,fixed 0.95,0.4485,0.0000,2.0829,316835998,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,portfolio_excluding_asset,signed-off (triangular 0.5-0.75-0.9),0.6986,0.2363,1.5364,2213809832,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,portfolio_excluding_asset,fixed 0.75,0.7478,0.2590,1.5707,2386033631,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,portfolio_excluding_asset,fixed 0.90,1.3256,0.4579,2.8120,4231486513,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty
+20,portfolio_excluding_asset,fixed 0.95,1.7177,0.5896,3.6682,5479848679,tax per registrant follows the cohort's age-earnings path (sensitivity basis),MODELLED; assumed; no data fixes it; key uncertainty

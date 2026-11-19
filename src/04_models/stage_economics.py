@@ -30,7 +30,16 @@ Block E3.4 additions
   * Asset: the 617.5M placeholder cost is retired; the BREAK-EVEN COST (the programme cost at which ROI = 1, i.e. the discounted revenue) is reported at 10 / 5 / 12% and for
     10 and 20 years; Asset is excluded from the portfolio cost and ROI, and its revenue is reported separately.
 
-Outputs: outputs/stats/stage_economics.json, outputs/tables/table40_stage_economics.csv
+Pass 6B-1 (stage mapping B and bracketed revenue per registrant)
+  * Active = business owners without a formal step, Enterprise = owners with a formal step (both 25-64); Workers 25-44 are unpriced (no revenue lever); Asset = non-owners 45-64.
+  * INCOME BASIS of the Active and Enterprise revenue per registrant (`income_basis`): hbs_receipts_owners = CENTRAL (HBS 2017/18 receipts of owners with receipts, CPI-uprated, presumptive
+    schedule; Pass 6D variant V3), ilfs_gross = bracket HIGH (ILFS 2024 gross receipts, V1), hbs_all_owners = bracket LOW (HBS, all owners, zeros kept, V2). ILFS is never shown alone. Entry, Asset
+    and Legacy keep the ILFS values in every basis.
+  * The twelve-month nil period is a SENSITIVITY only (legally fitted share of new businesses; full first-year variant).
+  * Table 5.1 (central + bracket), Table 5.2 (persistence), break-even revenue per registrant, P(ROI >= 1), 20-year ROI and the central-case tornado are written next to Table 40.
+
+Outputs: outputs/stats/stage_economics.json, outputs/tables/table40_stage_economics.csv (central basis), table5_1_stage_economics.csv, table5_2_persistence_sensitivity.csv,
+table5_1_nil_period_sensitivity.csv, fig5_4_tornado_central.csv
 """
 
 import csv
@@ -39,11 +48,14 @@ import math
 import os
 import sys
 
+import copy
+
 import numpy as np
 import pyreadstat
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # src/
 import paths
+import assumptions
 from assumptions import A
 import disclosure
 
@@ -53,7 +65,16 @@ PORTFOLIO_STAGES = ["seed", "entry", "active", "enterprise", "legacy"]      # As
 REPORT_TABLE40 = {"seed": "260M-1.06B / not scored", "entry": "420M / 8.7-9B / 20.7x", "active": "600M / 12.8-13B / 21.3x", "enterprise": "750M / 4.1B / ~5.5x",
                   "asset": "not yet modeled", "legacy": "700M / 2.5B / ~3.6x"}
 # stage -> (age range of the target group, type of persons whose age-earnings profile applies)
-GROUP = {"entry": (16, 24, "all"), "active": (25, 44, "nonowner"), "enterprise": (25, 64, "owner"), "asset": (45, 64, "nonowner"), "legacy": (65, 97, "all")}
+GROUP = {"entry": (16, 24, "all"), "active": (25, 64, "owner"), "enterprise": (25, 64, "owner"), "asset": (45, 64, "nonowner"), "legacy": (65, 97, "all")}      # stage mapping B (Pass 6B-1)
+OWNER_STAGES = ("active", "enterprise")
+LEVERS = ["entry", "active", "enterprise", "legacy"]                         # the four stages with a revenue lever (Seed is cost only, Asset has no cost, Workers are unpriced)
+# income basis -> role in the bracket (owner decision 2)
+BASES = {"central": "hbs_receipts_owners", "high": "ilfs_gross", "low": "hbs_all_owners"}
+assert A("stage.income_basis_bracket") == BASES, "config.yaml stage.income_basis_bracket differs from the bases implemented in stage_economics.py"
+assert A("stage.workers_unpriced") is True, "only the Workers-unpriced mapping is implemented"
+BASIS_LABEL = {"hbs_receipts_owners": "HBS 2017/18 receipts of owners with receipts in the reference month (central)", "ilfs_gross": "ILFS 2024 gross receipts of owners (bracket high; never shown alone)",
+               "hbs_all_owners": "HBS 2017/18 receipts of all owners, zeros kept (bracket low)"}
+HBS_KEY = {"hbs_receipts_owners": "central_owners_with_receipts", "hbs_all_owners": "low_all_owners"}
 MAX_AGE = 97
 
 
@@ -133,12 +154,13 @@ def ilfs_tax_base(sav_path=None):
     thr = A("tax.presumptive_schedule")["threshold_turnover"]
     tax_pit = pit(annual)
     tax_owner = owner_tax(turnover, annual)
-    groups = {"entry": (age >= 16) & (age <= 24), "active": (age >= 25) & (age <= 44) & ~owner, "enterprise": (age >= 25) & (age <= 64) & owner,
+    # stage mapping B: ILFS has no formal-step flag that matches FinScope's, so Active and Enterprise share the owners' age-earnings profile (the 20-year path); their level comes from income_basis
+    groups = {"entry": (age >= 16) & (age <= 24), "active": (age >= 25) & (age <= 64) & owner, "enterprise": (age >= 25) & (age <= 64) & owner,
               "asset": (age >= 45) & (age <= 64) & ~owner, "legacy": age >= 65}
     groups = {k: v & outside_formal for k, v in groups.items()}
     out = {}
     for s, m in groups.items():
-        if s == "enterprise":
+        if s in OWNER_STAGES:
             tax = tax_owner[m]
             basis = "presumptive income tax on annualised gross business receipts (Q87B, records kept) up to TZS 100M, income tax on annual net earnings above it"
         else:
@@ -149,6 +171,15 @@ def ilfs_tax_base(sav_path=None):
         out[s] = {"n_unweighted": int(m.sum()), "mean_tax_per_person_tzs": mean, "se_tzs": se, "share_paying_any_tax_pct": float(np.average(tax > 0, weights=wm) * 100),
                   "share_with_earnings_pct": float(np.average((turnover[m] if s == "enterprise" else annual[m]) > 0, weights=wm) * 100), "tax_basis": basis}
         assert not disclosure.is_suppressed(out[s]["n_unweighted"])
+
+    # ---- ILFS gross-receipts owner groups (the bracket HIGH: Pass 6D variant V1): owners (Q25 == 2) without / with a registered business (Q38A 1-5), aged 25-64, all owners incl. those outside the formal net
+    registered = df["Q38A"].isin([1, 2, 3, 4, 5]).to_numpy()
+    gross_groups = {"active": owner & ~registered & (age >= 25) & (age <= 64), "enterprise": owner & registered & (age >= 25) & (age <= 64)}
+    for s, m in gross_groups.items():
+        mean, sem = _weighted_mean_se(tax_owner[m], w[m])
+        out[s + "_ilfs_gross"] = {"n_unweighted": int(m.sum()), "mean_tax_per_person_tzs": mean, "se_tzs": sem, "share_paying_any_tax_pct": float(np.average(tax_owner[m] > 0, weights=w[m]) * 100),
+                                  "tax_basis": "presumptive income tax on annualised ILFS gross business receipts (Q87B) up to TZS 200M, owners aged 25-64 %s a registered business (Q38A 1-5)" % ("without" if s == "active" else "with")}
+        assert not disclosure.is_suppressed(out[s + "_ilfs_gross"]["n_unweighted"])
 
     # ---- age-earnings profiles (aggregate: 5-year bands) of the three person types, and the stage groups' band shares
     bands = [tuple(b) for b in cfg()["age_bands"]]
@@ -230,9 +261,11 @@ def simulate(stage, spec, inp, rate, horizon, aged=False, persist=None, holiday=
     """Arrays of registrants, PV revenue (and cost, NPV, ROI where the stage has a cost) for one stage and one variant.
 
     horizon  number of years of revenue; aged: revenue per registrant follows the age-earnings path (else flat); persist: a fixed yearly persistence (else the draws);
-    holiday  the Finance Act 2026's twelve-month nil presumptive tax from the date of obtaining a TIN, applied to the Enterprise stage's first year (a sensitivity: it covers individuals who
-             obtain a TIN to commence a business, which the modelled registrants mostly are not)."""
+    holiday  the Finance Act 2026's twelve-month nil presumptive tax from the date of obtaining a TIN (a SENSITIVITY: it covers individuals who obtain a TIN to commence a business, which the
+             modelled registrants mostly are not). True = the Enterprise stage's first year of revenue is zero; a dict {stage: factor} = the share of the first year's tax that is still collected
+             (the legally fitted variant: 1 - the share of new businesses)."""
     ramp = int(A("stage.ramp_years"))
+    first_year = float(holiday.get(stage, 1.0)) if isinstance(holiday, dict) else (0.0 if (holiday and stage == "enterprise") else 1.0)
     if stage == "seed":
         z = np.zeros_like(inp["cost"])
         return {"registrants": z, "revenue_pv": z, "cost": inp["cost"], "npv": -inp["cost"], "roi": z}
@@ -245,7 +278,7 @@ def simulate(stage, spec, inp, rate, horizon, aged=False, persist=None, holiday=
         stock_value = np.zeros_like(new_total)
         for c in range(1, min(t, ramp) + 1):
             k = t - c
-            stock_value = stock_value + pers ** k * (mult[min(k, len(mult) - 1)] if mult is not None else 1.0) * (0.0 if (holiday and stage == "enterprise" and k < 1) else 1.0)
+            stock_value = stock_value + pers ** k * (mult[min(k, len(mult) - 1)] if mult is not None else 1.0) * (first_year if k < 1 else 1.0)
         rev = rev + new_total / ramp * inp["tax"] * stock_value * (1 + rate) ** (-t)
     out = {"registrants": new_total, "revenue_pv": rev}
     if "cost" in inp:
@@ -267,7 +300,7 @@ def _portfolio(sims):
     return port
 
 
-def variant_defs():
+def variant_defs(nil_fit=None):
     n_long = int(cfg()["long_horizon_years"])
     n_short = int(A("stage.horizon_years"))
     defs = {"horizon_%d_flat" % n_short: dict(horizon=n_short, aged=False, persist=None),
@@ -278,6 +311,8 @@ def variant_defs():
         defs["horizon_%d_aged_persistence_%s" % (n_long, ("%.2f" % pv))] = dict(horizon=n_long, aged=True, persist=float(pv))
         defs["horizon_%d_flat_persistence_%s" % (n_short, ("%.2f" % pv))] = dict(horizon=n_short, aged=False, persist=float(pv))        # Block F3: the 10-year headline basis too
     defs["horizon_%d_flat_new_tin_holiday" % n_short] = dict(horizon=n_short, aged=False, persist=None, holiday=True)
+    if nil_fit:
+        defs["horizon_%d_flat_new_tin_holiday_fitted" % n_short] = dict(horizon=n_short, aged=False, persist=None, holiday=dict(nil_fit))
     return defs
 
 
@@ -302,6 +337,135 @@ def persistence_block(results, rates, base_rate, n_years, n_long):
             "horizons": blocks}
 
 
+def load_hbs():
+    """HBS 2017/18 aggregates (data/processed/hbs_turnover.json, written by src/03_features/hbs_turnover.py)."""
+    try:
+        with open(paths.HBS_TURNOVER, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise SystemExit("%s is missing: run `python run_all.py --from-raw` once with the HBS 2017/18 microdata (it is written by src/03_features/hbs_turnover.py)" % paths.HBS_TURNOVER) from None
+
+
+def tax_for(stage, basis, tax, hbs):
+    """(mean tax per registrant, standard error, share owing any tax in %, description) of one stage under one income basis. Only Active and Enterprise depend on the basis."""
+    if stage in OWNER_STAGES:
+        if basis == "ilfs_gross":
+            t = tax[stage + "_ilfs_gross"]
+            return t["mean_tax_per_person_tzs"], t["se_tzs"], t["share_paying_any_tax_pct"], t["tax_basis"]
+        g = hbs["groups_mapping_B"][stage][HBS_KEY[basis]]
+        return g["tax_mean_tzs"], g["tax_se_tzs"], g["share_owing_tax_pct"], BASIS_LABEL[basis]
+    t = tax[stage]
+    return t["mean_tax_per_person_tzs"], t["se_tzs"], t["share_paying_any_tax_pct"], t["tax_basis"]
+
+
+def build_specs(seg, tax, hbs, basis, conv, mapping, seed_pop):
+    """Stage specifications (population, TIN rate, odds ratio, revenue per registrant, ageing path) of one income basis."""
+    specs = {}
+    for s in STAGES[1:]:
+        r = seg[s]
+        mean, sem, _, _ = tax_for(s, basis, tax, hbs)
+        specs[s] = {"population": float(r["population_weighted"]), "p": float(r["tin_rate_pct"]) / 100.0, "p_se": float(r["se_pct"]) / 100.0 if r.get("se_pct") else 0.0,
+                    "intervention": mapping[s], "odds_ratio": conv[mapping[s]]["fitted_odds_ratio"], "tax_mean": mean, "tax_se": sem,
+                    "multiplier": np.array(tax[s]["age_earnings_multiplier_by_years_since_registration"])}
+    specs["seed"] = {"population": seed_pop}
+    return specs
+
+
+def draw_all(specs):
+    """One set of random inputs (common random numbers: the stream does not depend on the spec values, so bases and scalings differ only by what is tested)."""
+    rng = np.random.default_rng(int(cfg()["seed"]))
+    return {s: draw_inputs(s, specs[s], rng, int(cfg()["n_draws"])) for s in STAGES}
+
+
+def median_roi(specs, stage=None, rate=None, horizon=None, persist=None):
+    rate = float(A("stage.discount_rate")) if rate is None else rate
+    horizon = int(A("stage.horizon_years")) if horizon is None else horizon
+    inp = draw_all(specs)
+    sims = {s: simulate(s, specs[s], inp[s], rate, horizon, False, persist) for s in STAGES}
+    return float(np.median(_portfolio(sims)["roi"] if stage is None else sims[stage]["roi"]))
+
+
+def break_even_tau(specs, stages, target_stage=None):
+    """Factor by which the revenue per registrant of `stages` must be scaled for the median ROI (of `target_stage`, or of the portfolio) to equal 1 (bisection on the log scale)."""
+    lo, hi = 1e-4, 1e4
+    for _ in range(60):
+        mid = (lo * hi) ** 0.5
+        sp = copy.deepcopy(specs)
+        for s in stages:
+            sp[s]["tax_mean"] *= mid
+            sp[s]["tax_se"] *= mid
+        if median_roi(sp, target_stage) < 1.0:
+            lo = mid
+        else:
+            hi = mid
+    return (lo * hi) ** 0.5
+
+
+def break_even_block(specs):
+    """Break-even revenue per registrant (TZS a year): the tax at which the median 10-year ROI is 1 for Active, Enterprise (each alone) and for the portfolio (the four levers scaled together)."""
+    out = {}
+    for s in OWNER_STAGES:
+        lam = break_even_tau(specs, [s], s)
+        out[s] = {"lambda": lam, "revenue_per_registrant_in_basis_tzs": specs[s]["tax_mean"], "break_even_revenue_per_registrant_tzs": specs[s]["tax_mean"] * lam}
+    lam = break_even_tau(specs, LEVERS, None)
+    out["portfolio_four_levers_scaled_together"] = {"lambda": lam, **{s + "_tzs": specs[s]["tax_mean"] * lam for s in LEVERS}}
+    return out
+
+
+def tornado_central(specs):
+    """Tornado of the portfolio's median 10-year ROI on the central case (Figure 5.4): each driver at a low and a high setting, everything else at the central case."""
+    base = median_roi(specs)
+
+    def scaled(key, f, stages=LEVERS):
+        sp = copy.deepcopy(specs)
+        for st in stages:
+            sp[st][key] *= f
+            if key == "tax_mean":
+                sp[st]["tax_se"] *= f
+        return sp
+
+    def pm(sp, overrides=None, rate=None, persist=None):
+        with assumptions.override(overrides or {}):
+            return median_roi(sp, rate=rate, persist=persist)
+    reach = A("stage.reach_share")
+    rlow = {st: [l, l, m] for st, (l, m, h) in reach.items()}
+    rhigh = {st: [m, h, h] for st, (l, m, h) in reach.items()}
+    cost_keys = ["stage.cost.%s_tzs" % s for s in ("entry", "active", "enterprise", "legacy")]
+    slo, shi = A("stage.cost.seed_tzs")
+    disc = [float(A("stage.discount_rate"))] + [float(r) for r in A("stage.discount_sensitivities")]
+    rows = [("Reach share, all stages", "lower / upper half of the stated range", pm(specs, {"stage.reach_share": rlow}), pm(specs, {"stage.reach_share": rhigh})),
+            ("Uptake odds ratio, all stages", "x0.8 / x1.2", pm(scaled("odds_ratio", 0.8)), pm(scaled("odds_ratio", 1.2))),
+            ("Revenue per registrant", "x0.8 / x1.2", pm(scaled("tax_mean", 0.8)), pm(scaled("tax_mean", 1.2))),
+            ("Stage populations", "x0.8 / x1.2", pm(scaled("population", 0.8)), pm(scaled("population", 1.2))),
+            ("Observed TIN rates", "x0.8 / x1.2", pm(scaled("p", 0.8)), pm(scaled("p", 1.2))),
+            ("Programme costs (four stages)", "x1.2 / x0.8", pm(specs, {k: A(k) * 1.2 for k in cost_keys}), pm(specs, {k: A(k) * 0.8 for k in cost_keys})),
+            ("Discount rate", "%.0f%% / %.0f%%" % (max(disc) * 100, min(disc) * 100), pm(specs, rate=max(disc)), pm(specs, rate=min(disc))),
+            ("Seed programme cost", "upper / lower bound", pm(specs, {"stage.cost.seed_tzs": [shi, shi]}), pm(specs, {"stage.cost.seed_tzs": [slo, slo]})),
+            ("Yearly persistence", "fixed 0.50 / 0.90", pm(specs, persist=0.50), pm(specs, persist=0.90))]
+    out = [{"driver": a, "setting": b, "median_roi_unfavourable": x, "median_roi_favourable": y, "central": base, "swing": abs(y - x)} for a, b, x, y in rows]
+    return sorted(out, key=lambda r: -r["swing"]), base
+
+
+def compute_results(specs, inputs, central, defs, rates):
+    """results[variant][rate] = {"stages": {...}, "portfolio": {...}} for one set of specs (one income basis)."""
+    results = {}
+    for vname, vd in defs.items():
+        results[vname] = {}
+        for rate in rates:
+            sims = {s: simulate(s, specs[s], inputs[s], rate, vd["horizon"], vd["aged"], vd["persist"], vd.get("holiday", False)) for s in STAGES}
+            cent = {s: simulate(s, specs[s], central[s], rate, vd["horizon"], vd["aged"], vd["persist"], vd.get("holiday", False)) for s in STAGES}
+            port = _portfolio(sims)
+            pc = {k: float(sum(cent[s][k][0] for s in PORTFOLIO_STAGES)) for k in ("registrants", "revenue_pv", "cost", "npv")}
+            pc["roi"] = pc["revenue_pv"] / pc["cost"]
+            stages = {}
+            for s in STAGES:
+                stages[s] = {"central": {k: float(v[0]) for k, v in cent[s].items()}, **_summ_all(sims[s])}
+                if "roi" in sims[s] and s != "seed":
+                    stages[s]["p_roi_ge_1"] = float(np.mean(sims[s]["roi"] >= 1.0))
+            results[vname][rate] = {"stages": stages, "portfolio": {"central": pc, **_summ_all(port), "p_roi_ge_1": float(np.mean(port["roi"] >= 1.0))}}
+    return results
+
+
 def load_tax_base(sav_path=None, from_processed=False):
     """The ILFS tax base of Table 40 (mean statutory tax per person of each group, standard errors, age-earnings profiles): computed from the ILFS 2024 microdata and written to
     data/processed/ilfs_tax_base.json (aggregates only), or, with from_processed (the outsider's run without the restricted microdata), read back from that file."""
@@ -324,6 +488,9 @@ def load_tax_base(sav_path=None, from_processed=False):
 def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_processed=False):
     json_path = json_path or paths.STAGE_ECONOMICS
     csv_path = csv_path or paths.TABLE40_CSV
+    side = (lambda default, name: default) if csv_path == paths.TABLE40_CSV else (lambda default, name: os.path.join(os.path.dirname(csv_path), name))       # the extra tables follow csv_path when it is overridden (tests)
+    table51_path, table52_path = side(paths.TABLE51_CSV, "table5_1_stage_economics.csv"), side(paths.TABLE52_CSV, "table5_2_persistence_sensitivity.csv")
+    nil_path, tornado_path = side(paths.NIL_PERIOD_CSV, "table5_1_nil_period_sensitivity.csv"), side(paths.TORNADO_CSV, "fig5_4_tornado_central.csv")
     draws, seed = int(cfg()["n_draws"]), int(cfg()["seed"])
     base_rate = float(A("stage.discount_rate"))
     rates = [base_rate] + [float(r) for r in A("stage.discount_sensitivities")]
@@ -333,8 +500,6 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
     pers_keys = ["horizon_%d_aged_persistence_%s" % (n_long, "%.2f" % pv) for pv in cfg()["persistence_sensitivity"]]
     pers10_keys = ["horizon_%d_flat_persistence_%s" % (n_years, "%.2f" % pv) for pv in cfg()["persistence_sensitivity"]]
     PERS_LABEL = "assumed; no data fixes it; key uncertainty"
-    defs = variant_defs()
-
     # observed stage populations and TIN rates (FinScope 2023)
     seg = {}
     with open(paths.TIN_BY_SEGMENT_CSV, encoding="utf-8", newline="") as f:
@@ -350,30 +515,22 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
     rn = names()
     for s in STAGES[1:]:                                   # the mapping of the config assumption and the report names must agree
         assert mapping[s] == rn[s]["morale_model_key"], (s, mapping[s], rn[s]["morale_model_key"])
-    specs = {}
-    for s in STAGES[1:]:
-        r = seg[s]
-        specs[s] = {"population": float(r["population_weighted"]), "p": float(r["tin_rate_pct"]) / 100.0, "p_se": float(r["se_pct"]) / 100.0 if r.get("se_pct") else 0.0,
-                    "intervention": mapping[s], "odds_ratio": conv[mapping[s]]["fitted_odds_ratio"], "tax_mean": tax[s]["mean_tax_per_person_tzs"], "tax_se": tax[s]["se_tzs"],
-                    "multiplier": np.array(tax[s]["age_earnings_multiplier_by_years_since_registration"])}
-    specs["seed"] = {"population": seed_pop}
+    hbs = load_hbs()
+    basis_specs = {b: build_specs(seg, tax, hbs, BASES[b], conv, mapping, seed_pop) for b in BASES}
+    specs = basis_specs["central"]                                        # the central income basis: HBS receipts of owners with receipts
+    tax_used = {b: {s: dict(zip(("mean_tax_per_person_tzs", "se_tzs", "share_paying_any_tax_pct", "tax_basis"), tax_for(s, BASES[b], tax, hbs))) for s in STAGES[1:]} for b in BASES}
+    nb = hbs["groups_mapping_B"]
+    nil_fit = {s: 1.0 - nb[s]["central_owners_with_receipts"]["new_business_share_pct"] / 100.0 for s in OWNER_STAGES}      # legally fitted nil period: only businesses younger than 12 months qualify
+    defs = variant_defs(nil_fit)
 
-    # one set of random inputs, shared by every rate and variant (common random numbers); the stream equals Block E2's
-    rng = np.random.default_rng(seed)
-    inputs = {s: draw_inputs(s, specs[s], rng, draws) for s in STAGES}
+    # one set of random inputs, shared by every rate, variant and income basis (common random numbers); the stream equals Block E2's
+    inputs = draw_all(specs)
     central = {s: central_inputs(s, specs[s]) for s in STAGES}
-
-    results = {}                       # results[variant][rate] = {"stages": {s: {...}}, "portfolio": {...}}
-    for vname, vd in defs.items():
-        results[vname] = {}
-        for rate in rates:
-            sims = {s: simulate(s, specs[s], inputs[s], rate, vd["horizon"], vd["aged"], vd["persist"], vd.get("holiday", False)) for s in STAGES}
-            cent = {s: simulate(s, specs[s], central[s], rate, vd["horizon"], vd["aged"], vd["persist"], vd.get("holiday", False)) for s in STAGES}
-            port = _portfolio(sims)
-            pc = {k: float(sum(cent[s][k][0] for s in PORTFOLIO_STAGES)) for k in ("registrants", "revenue_pv", "cost", "npv")}
-            pc["roi"] = pc["revenue_pv"] / pc["cost"]
-            results[vname][rate] = {"stages": {s: {"central": {k: float(v[0]) for k, v in cent[s].items()}, **_summ_all(sims[s])} for s in STAGES},
-                                    "portfolio": {"central": pc, **_summ_all(port)}}
+    results = compute_results(specs, inputs, central, defs, rates)
+    basis_results = {"central": results}
+    for b in ("high", "low"):
+        sp = basis_specs[b]
+        basis_results[b] = compute_results(sp, draw_all(sp), {s: central_inputs(s, sp[s]) for s in STAGES}, defs, rates)
 
     def stage_variant_block(s, vname):
         return {"%g" % r: {k: v for k, v in results[vname][r]["stages"][s].items() if k != "central"} for r in rates}
@@ -393,7 +550,7 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
             entry["revenue_note"] = "no revenue claimed (the report does not score Seed on revenue; no intervention effect is mapped to Seed)"
         else:
             entry.update({"observed_tin_rate": specs[s]["p"], "observed_tin_rate_se": specs[s]["p_se"], "mapped_intervention": specs[s]["intervention"], "odds_ratio_morale_model": specs[s]["odds_ratio"],
-                          "reach_share_triangular_low_mode_high": A("stage.reach_share")[s], "tax_per_registrant_per_year": tax[s]})
+                          "reach_share_triangular_low_mode_high": A("stage.reach_share")[s], "tax_per_registrant_per_year": tax_used["central"][s], "income_basis": BASES["central"]})
         if s == "asset":
             be = {}
             for vname in (V10, V10A, V20F, V20, *pers_keys):
@@ -490,7 +647,7 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
                                          "stage's type (all persons / non-owners / owners) outside the formal net at that age. multiplier(k) = mean tax at age + k / mean tax at registration, k = 0..%d. Registrants are spread uniformly "
                                          "over the ages of each band inside the group's age range; ages above %d keep the profile of %d; deaths and drop-outs are covered by the persistence rate; no wage growth." % (n_long - 1, MAX_AGE, MAX_AGE)),
                               **ageing},
-        "tax_schedule_sources": "Income Tax Act Cap. 332 R.E. 2023, First Schedule paras 1(1) and 2(2)-(3), printed pp. 675-676 (PDF pp. 131-132); data/raw/tra/The_Income_Tax_Act.pdf; schedules in config.yaml assumptions tax.pit_schedule and tax.presumptive_schedule",
+        "tax_schedule_sources": "Income Tax Act Cap. 332 R.E. 2023, First Schedule paras 1(1) and 2(2)-(3), printed pp. 675-676 (PDF pp. 131-132); schedules in config.yaml assumptions tax.pit_schedule and tax.presumptive_schedule",
         "ilfs_tax_base": tax,
         "stages": out_stages,
         "portfolio": {"excludes": ["asset"], "note": "Asset is excluded from the portfolio cost and ROI (no stated cost); its revenue is reported separately under stages.asset. Seed is in the portfolio as cost only.",
@@ -506,6 +663,95 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
         "assumptions_for_signoff": ["twin penetration cap (E3.3)"],
         "seed_upper_cost_bound_tzs": float(A("stage.cost.seed_tzs")[1]),
     }
+    # ---------- Pass 6B-1: bracket, break-even revenue per registrant, nil period, tornado, Tables 5.1 / 5.2
+    V10F = "horizon_%d_flat_new_tin_holiday_fitted" % n_years
+    bases_out = {}
+    for b, bn in BASES.items():
+        R = basis_results[b]
+        blk = {"income_basis": bn, "label": BASIS_LABEL[bn], "stages": {}, "break_even_revenue_per_registrant": break_even_block(basis_specs[b])}
+        for s in STAGES:
+            r10, r20 = R[V10][base_rate]["stages"][s], R[V20][base_rate]["stages"][s]
+            d = {"revenue_per_registrant_tzs": tax_used[b][s]["mean_tax_per_person_tzs"] if s != "seed" else None, "share_paying_any_tax_pct": tax_used[b][s]["share_paying_any_tax_pct"] if s != "seed" else None,
+                 "revenue_pv": {k: r10["revenue_pv"][k] for k in ("median", "p10", "p90")}, "revenue_pv_central": r10["central"]["revenue_pv"]}
+            if "roi" in r10:
+                d.update({"roi_10y": {k: r10["roi"][k] for k in ("median", "p10", "p90")}, "roi_10y_central": r10["central"]["roi"], "p_roi_ge_1": r10.get("p_roi_ge_1"),
+                          "roi_20y": {k: r20["roi"][k] for k in ("median", "p10", "p90")}})
+            if s == "asset":
+                d["break_even_cost_10y_tzs"] = {k: r10["revenue_pv"][k] for k in ("median", "p10", "p90")}
+                d["break_even_cost_20y_tzs"] = {k: r20["revenue_pv"][k] for k in ("median", "p10", "p90")}
+            blk["stages"][s] = d
+        p10, p20 = R[V10][base_rate]["portfolio"], R[V20][base_rate]["portfolio"]
+        blk["portfolio_excluding_asset"] = {"roi_10y": {k: p10["roi"][k] for k in ("median", "p10", "p90")}, "roi_10y_central": p10["central"]["roi"], "p_roi_ge_1": p10["p_roi_ge_1"],
+                                            "roi_20y": {k: p20["roi"][k] for k in ("median", "p10", "p90")}, "revenue_pv": {k: p10["revenue_pv"][k] for k in ("median", "p10", "p90")}}
+        bases_out[b] = blk
+    tor, tor_base = tornado_central(specs)
+    nil = {"label": "SENSITIVITY only (not in the headline): Finance Act 2026, First Schedule para 2(3) item 2, nil presumptive tax for the first twelve months from obtaining a TIN to commence a business",
+           "new_business_share_pct_hbs": {s: nb[s]["central_owners_with_receipts"]["new_business_share_pct"] for s in OWNER_STAGES},
+           "headline_portfolio_roi": {k: results[V10][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")},
+           "legally_fitted_share_of_new_businesses": {"first_year_share_collected": nil_fit, "active_roi_median": results[V10F][base_rate]["stages"]["active"]["roi"]["median"],
+                                                      "enterprise_roi_median": results[V10F][base_rate]["stages"]["enterprise"]["roi"]["median"],
+                                                      "portfolio_roi": {k: results[V10F][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")}},
+           "full_first_year_variant_enterprise": {"enterprise_roi_median": results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]["stages"]["enterprise"]["roi"]["median"],
+                                                  "portfolio_roi": {k: results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")}}}
+    result.update({"income_basis_central": BASES["central"], "income_bases": bases_out,
+                   "bracket_definition": "central = HBS 2017/18 receipts of owners with receipts in the reference month; high = ILFS 2024 gross receipts of owners; low = HBS all owners, zeros kept (ILFS is never shown alone)",
+                   "nil_period_sensitivity": nil, "tornado_central": {"portfolio_median_roi_10y_central": tor_base, "drivers": tor},
+                   "workers_25_44": {"population": float(seg["workers"]["population_weighted"]), "observed_tin_rate": float(seg["workers"]["tin_rate_pct"]) / 100.0, "note": "no revenue lever: not priced, no cost, no reach"},
+                   "evidence_type": "MODELLED (scenario); revenue per registrant COMPUTED from survey data (HBS 2017/18, ILFS 2024) with the statutory schedules CITED"})
+
+    pers_names = [("signed_off_triangular_0.5_0.75_0.9", "signed-off (triangular 0.5-0.75-0.9)")] + [("fixed_%s" % ("%.2f" % pv), "fixed %.2f" % pv) for pv in cfg()["persistence_sensitivity"]]
+    t52 = []
+    for h, blk in result["persistence_sensitivity"]["horizons"].items():
+        for s in [x for x in STAGES if x not in ("seed", "asset")] + ["portfolio_excluding_asset"]:
+            for key, lab in pers_names:
+                d = (blk["portfolio_excluding_asset"] if s == "portfolio_excluding_asset" else blk["stages"][s])[key]
+                t52.append([h, s, lab] + ["%.4f" % d["roi"][k] for k in ("median", "p10", "p90")] + ["%.0f" % d["revenue_pv"]["median"], blk["tax_basis"], "MODELLED; " + PERS_LABEL])
+    with open(table52_path, "w", encoding="utf-8", newline="") as f:
+        wr = csv.writer(f, lineterminator="\n")
+        wr.writerow(["horizon_years", "stage", "persistence", "roi_median", "roi_p10", "roi_p90", "pv_revenue_median_tzs", "tax_basis", "evidence_type"])
+        wr.writerows(t52)
+
+    cols51 = ["stage", "report_name", "population", "observed_tin_rate_pct", "programme_cost_median_tzs", "new_registrants_median", "new_registrants_p10", "new_registrants_p90"]
+    for b in BASES:
+        cols51 += ["%s_revenue_per_registrant_tzs" % b, "%s_share_paying_pct" % b, "%s_pv_revenue_median_tzs" % b, "%s_roi_median" % b, "%s_roi_p10" % b, "%s_roi_p90" % b, "%s_p_roi_ge_1" % b, "%s_roi_20y_median" % b]
+    cols51 += ["break_even_revenue_per_registrant_central_tzs", "break_even_cost_10y_median_central_tzs", "evidence_type"]
+    rows51 = []
+    for s in STAGES + ["portfolio_excluding_asset"]:
+        port_row = s == "portfolio_excluding_asset"
+        rc = results[V10][base_rate]
+        src = rc["portfolio"] if port_row else rc["stages"][s]
+        row = [s, "Seed + Entry + Active + Enterprise + Legacy (Asset excluded)" if port_row else rn[s]["name"], "" if (port_row or s == "seed") else "%.0f" % specs[s]["population"],
+               "" if (port_row or s == "seed") else "%.4f" % (specs[s]["p"] * 100), "%.0f" % src["cost"]["median"] if "cost" in src else "", "%.0f" % src["registrants"]["median"], "%.0f" % src["registrants"]["p10"], "%.0f" % src["registrants"]["p90"]]
+        for b in BASES:
+            blk = bases_out[b]["portfolio_excluding_asset"] if port_row else bases_out[b]["stages"][s]
+            if s == "seed":
+                row += [""] * 8
+            elif s == "asset":
+                row += ["%.0f" % blk["revenue_per_registrant_tzs"], "%.2f" % blk["share_paying_any_tax_pct"], "%.0f" % blk["revenue_pv"]["median"], "", "", "", "", ""]
+            else:
+                row += ["" if port_row else "%.0f" % blk["revenue_per_registrant_tzs"], "" if port_row else "%.2f" % blk["share_paying_any_tax_pct"], "%.0f" % blk["revenue_pv"]["median"],
+                        "%.4f" % blk["roi_10y"]["median"], "%.4f" % blk["roi_10y"]["p10"], "%.4f" % blk["roi_10y"]["p90"], "%.4f" % blk["p_roi_ge_1"], "%.4f" % blk["roi_20y"]["median"]]
+        be = bases_out["central"]["break_even_revenue_per_registrant"]
+        row.append("%.0f" % be[s]["break_even_revenue_per_registrant_tzs"] if s in OWNER_STAGES else "")
+        row.append("%.0f" % bases_out["central"]["stages"]["asset"]["break_even_cost_10y_tzs"]["median"] if s == "asset" else "")
+        row.append("MODELLED (scenario); revenue per registrant COMPUTED")
+        rows51.append(row)
+    with open(table51_path, "w", encoding="utf-8", newline="") as f:
+        wr = csv.writer(f, lineterminator="\n")
+        wr.writerow(cols51)
+        wr.writerows(rows51)
+    with open(tornado_path, "w", encoding="utf-8", newline="") as f:
+        wr = csv.writer(f, lineterminator="\n")
+        wr.writerow(["driver", "setting", "median_roi_unfavourable", "median_roi_favourable", "central_median_roi", "swing", "evidence_type"])
+        wr.writerows([[r["driver"], r["setting"], "%.4f" % r["median_roi_unfavourable"], "%.4f" % r["median_roi_favourable"], "%.4f" % r["central"], "%.4f" % r["swing"], "MODELLED (scenario)"] for r in tor])
+    with open(nil_path, "w", encoding="utf-8", newline="") as f:
+        wr = csv.writer(f, lineterminator="\n")
+        wr.writerow(["variant", "active_roi_median", "enterprise_roi_median", "portfolio_roi_median", "portfolio_roi_p10", "portfolio_roi_p90", "evidence_type"])
+        full = results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]
+        for name, rr in (("headline (no nil period)", results[V10][base_rate]), ("legally fitted share of new businesses", results[V10F][base_rate]), ("full first year, Enterprise", full)):
+            wr.writerow([name, "%.4f" % rr["stages"]["active"]["roi"]["median"], "%.4f" % rr["stages"]["enterprise"]["roi"]["median"], "%.4f" % rr["portfolio"]["roi"]["median"],
+                         "%.4f" % rr["portfolio"]["roi"]["p10"], "%.4f" % rr["portfolio"]["roi"]["p90"], "MODELLED; SENSITIVITY only"])
+
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=1, ensure_ascii=False)

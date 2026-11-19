@@ -64,12 +64,12 @@ def clean():
 def required_for_processed():
     """Files a --from-processed run reads instead of the raw microdata (census and ILFS aggregates included)."""
     return [paths.FINSCOPE_SUMMARY, paths.FINSCOPE_REGION_ACTIVITY, paths.FINSCOPE_ACTIVE_BENCHMARK, paths.INTERVENTIONS_YAML,
-            paths.CENSUS_AGE_COUNTS, paths.ILFS_INDICATORS, paths.AGENT_CELLS, paths.AFROBAROMETER_MORALE, paths.AGENT_TRUST_MORALE, paths.AGENT_INCOME, paths.TWIN_INPUTS, paths.TRA_REGISTERED_TAXPAYERS_CSV, paths.AGENT_CALIBRATION, paths.ILFS_TAX_BASE]
+            paths.CENSUS_AGE_COUNTS, paths.ILFS_INDICATORS, paths.AGENT_CELLS, paths.AFROBAROMETER_MORALE, paths.AGENT_TRUST_MORALE, paths.AGENT_INCOME, paths.TWIN_INPUTS, paths.TRA_REGISTERED_TAXPAYERS_CSV, paths.AGENT_CALIBRATION, paths.ILFS_TAX_BASE, paths.HBS_TURNOVER]
 
 
 def required_raw():
     """Raw inputs a --from-raw run needs."""
-    return [paths.FINSCOPE_CSV, paths.TAX_EXEMPTIONS_XLSX, paths.CENSUS_SAV, paths.ILFS_SAV, paths.AFROBAROMETER_SAV]
+    return [paths.FINSCOPE_CSV, paths.TAX_EXEMPTIONS_XLSX, paths.CENSUS_SAV, paths.ILFS_SAV, paths.AFROBAROMETER_SAV, paths.HBS_INDIVIDUAL, paths.HBS_CONSUMPTION, paths.HBS_S10C]
 
 
 def main(argv=None):
@@ -130,6 +130,7 @@ def main(argv=None):
     import agent_inputs
     import twin_inputs
     import agent_calibration
+    import hbs_turnover
     import stage_economics
 
     mode = "from-processed" if args.from_processed else "from-raw"
@@ -238,6 +239,11 @@ def main(argv=None):
     model["tier_migration_simulation"] = tier_result
     with open(paths.ECONOMIC_MODEL, "w", encoding="utf-8") as f:
         json.dump(model, f, indent=2, ensure_ascii=False)
+
+    print("\n" + "=" * 60)
+    print("STEP 8a: HBS 2017/18 turnover of household-business owners (aggregates; revenue per registrant, taxable capacity, Mzani wa Kodi bands)")
+    print("=" * 60)
+    hbs_turnover.run_hbs_turnover(from_processed=args.from_processed)           # with --from-processed the aggregates are read from data/processed/hbs_turnover.json (no microdata)
 
     print("\n" + "=" * 60)
     print("STEP 8b: Table 40 stage economics (costs, revenue, NPV, ROI for the six stages; Monte Carlo)")
