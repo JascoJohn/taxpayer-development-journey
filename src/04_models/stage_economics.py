@@ -181,6 +181,13 @@ def ilfs_tax_base(sav_path=None):
                                   "tax_basis": "presumptive income tax on annualised ILFS gross business receipts (Q87B) up to TZS 200M, owners aged 25-64 %s a registered business (Q38A 1-5)" % ("without" if s == "active" else "with")}
         assert not disclosure.is_suppressed(out[s + "_ilfs_gross"]["n_unweighted"])
 
+    # ---- Workers 25-44 (non-owners outside the formal net): the ILFS value used ONLY to price the TRA registration trend in reach_scenarios.py (Workers have no revenue lever and are not a Table 5.1 stage)
+    wm = (age >= 25) & (age <= 44) & ~owner & outside_formal
+    mean, sem = _weighted_mean_se(tax_pit[wm], w[wm])
+    out["workers_ilfs"] = {"n_unweighted": int(wm.sum()), "mean_tax_per_person_tzs": mean, "se_tzs": sem, "share_paying_any_tax_pct": float(np.average(tax_pit[wm] > 0, weights=w[wm]) * 100),
+                           "tax_basis": "resident individual income tax on annual earnings of non-owners aged 25-44 outside the formal net (ILFS 2024); prices the registration trend only"}
+    assert not disclosure.is_suppressed(out["workers_ilfs"]["n_unweighted"])
+
     # ---- age-earnings profiles (aggregate: 5-year bands) of the three person types, and the stage groups' band shares
     bands = [tuple(b) for b in cfg()["age_bands"]]
     type_mask = {"all": outside_formal, "nonowner": outside_formal & ~owner, "owner": outside_formal & owner}
@@ -485,7 +492,7 @@ def load_tax_base(sav_path=None, from_processed=False):
     return tax, ageing
 
 
-def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_processed=False):
+def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_processed=False, with_extras=True):
     json_path = json_path or paths.STAGE_ECONOMICS
     csv_path = csv_path or paths.TABLE40_CSV
     side = (lambda default, name: default) if csv_path == paths.TABLE40_CSV else (lambda default, name: os.path.join(os.path.dirname(csv_path), name))       # the extra tables follow csv_path when it is overridden (tests)
@@ -663,94 +670,95 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
         "assumptions_for_signoff": ["twin penetration cap (E3.3)"],
         "seed_upper_cost_bound_tzs": float(A("stage.cost.seed_tzs")[1]),
     }
-    # ---------- Pass 6B-1: bracket, break-even revenue per registrant, nil period, tornado, Tables 5.1 / 5.2
-    V10F = "horizon_%d_flat_new_tin_holiday_fitted" % n_years
-    bases_out = {}
-    for b, bn in BASES.items():
-        R = basis_results[b]
-        blk = {"income_basis": bn, "label": BASIS_LABEL[bn], "stages": {}, "break_even_revenue_per_registrant": break_even_block(basis_specs[b])}
-        for s in STAGES:
-            r10, r20 = R[V10][base_rate]["stages"][s], R[V20][base_rate]["stages"][s]
-            d = {"revenue_per_registrant_tzs": tax_used[b][s]["mean_tax_per_person_tzs"] if s != "seed" else None, "share_paying_any_tax_pct": tax_used[b][s]["share_paying_any_tax_pct"] if s != "seed" else None,
-                 "revenue_pv": {k: r10["revenue_pv"][k] for k in ("median", "p10", "p90")}, "revenue_pv_central": r10["central"]["revenue_pv"]}
-            if "roi" in r10:
-                d.update({"roi_10y": {k: r10["roi"][k] for k in ("median", "p10", "p90")}, "roi_10y_central": r10["central"]["roi"], "p_roi_ge_1": r10.get("p_roi_ge_1"),
-                          "roi_20y": {k: r20["roi"][k] for k in ("median", "p10", "p90")}})
-            if s == "asset":
-                d["break_even_cost_10y_tzs"] = {k: r10["revenue_pv"][k] for k in ("median", "p10", "p90")}
-                d["break_even_cost_20y_tzs"] = {k: r20["revenue_pv"][k] for k in ("median", "p10", "p90")}
-            blk["stages"][s] = d
-        p10, p20 = R[V10][base_rate]["portfolio"], R[V20][base_rate]["portfolio"]
-        blk["portfolio_excluding_asset"] = {"roi_10y": {k: p10["roi"][k] for k in ("median", "p10", "p90")}, "roi_10y_central": p10["central"]["roi"], "p_roi_ge_1": p10["p_roi_ge_1"],
-                                            "roi_20y": {k: p20["roi"][k] for k in ("median", "p10", "p90")}, "revenue_pv": {k: p10["revenue_pv"][k] for k in ("median", "p10", "p90")}}
-        bases_out[b] = blk
-    tor, tor_base = tornado_central(specs)
-    nil = {"label": "SENSITIVITY only (not in the headline): Finance Act 2026, First Schedule para 2(3) item 2, nil presumptive tax for the first twelve months from obtaining a TIN to commence a business",
-           "new_business_share_pct_hbs": {s: nb[s]["central_owners_with_receipts"]["new_business_share_pct"] for s in OWNER_STAGES},
-           "headline_portfolio_roi": {k: results[V10][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")},
-           "legally_fitted_share_of_new_businesses": {"first_year_share_collected": nil_fit, "active_roi_median": results[V10F][base_rate]["stages"]["active"]["roi"]["median"],
-                                                      "enterprise_roi_median": results[V10F][base_rate]["stages"]["enterprise"]["roi"]["median"],
-                                                      "portfolio_roi": {k: results[V10F][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")}},
-           "full_first_year_variant_enterprise": {"enterprise_roi_median": results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]["stages"]["enterprise"]["roi"]["median"],
-                                                  "portfolio_roi": {k: results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")}}}
-    result.update({"income_basis_central": BASES["central"], "income_bases": bases_out,
-                   "bracket_definition": "central = HBS 2017/18 receipts of owners with receipts in the reference month; high = ILFS 2024 gross receipts of owners; low = HBS all owners, zeros kept (ILFS is never shown alone)",
-                   "nil_period_sensitivity": nil, "tornado_central": {"portfolio_median_roi_10y_central": tor_base, "drivers": tor},
-                   "workers_25_44": {"population": float(seg["workers"]["population_weighted"]), "observed_tin_rate": float(seg["workers"]["tin_rate_pct"]) / 100.0, "note": "no revenue lever: not priced, no cost, no reach"},
-                   "evidence_type": "MODELLED (scenario); revenue per registrant COMPUTED from survey data (HBS 2017/18, ILFS 2024) with the statutory schedules CITED"})
+    if with_extras:                      # the sensitivity tool turns this off (headline values only)
+        # ---------- Pass 6B-1: bracket, break-even revenue per registrant, nil period, tornado, Tables 5.1 / 5.2
+        V10F = "horizon_%d_flat_new_tin_holiday_fitted" % n_years
+        bases_out = {}
+        for b, bn in BASES.items():
+            R = basis_results[b]
+            blk = {"income_basis": bn, "label": BASIS_LABEL[bn], "stages": {}, "break_even_revenue_per_registrant": break_even_block(basis_specs[b])}
+            for s in STAGES:
+                r10, r20 = R[V10][base_rate]["stages"][s], R[V20][base_rate]["stages"][s]
+                d = {"revenue_per_registrant_tzs": tax_used[b][s]["mean_tax_per_person_tzs"] if s != "seed" else None, "share_paying_any_tax_pct": tax_used[b][s]["share_paying_any_tax_pct"] if s != "seed" else None,
+                     "revenue_pv": {k: r10["revenue_pv"][k] for k in ("median", "p10", "p90")}, "revenue_pv_central": r10["central"]["revenue_pv"]}
+                if "roi" in r10:
+                    d.update({"roi_10y": {k: r10["roi"][k] for k in ("median", "p10", "p90")}, "roi_10y_central": r10["central"]["roi"], "p_roi_ge_1": r10.get("p_roi_ge_1"),
+                              "roi_20y": {k: r20["roi"][k] for k in ("median", "p10", "p90")}})
+                if s == "asset":
+                    d["break_even_cost_10y_tzs"] = {k: r10["revenue_pv"][k] for k in ("median", "p10", "p90")}
+                    d["break_even_cost_20y_tzs"] = {k: r20["revenue_pv"][k] for k in ("median", "p10", "p90")}
+                blk["stages"][s] = d
+            p10, p20 = R[V10][base_rate]["portfolio"], R[V20][base_rate]["portfolio"]
+            blk["portfolio_excluding_asset"] = {"roi_10y": {k: p10["roi"][k] for k in ("median", "p10", "p90")}, "roi_10y_central": p10["central"]["roi"], "p_roi_ge_1": p10["p_roi_ge_1"],
+                                                "roi_20y": {k: p20["roi"][k] for k in ("median", "p10", "p90")}, "revenue_pv": {k: p10["revenue_pv"][k] for k in ("median", "p10", "p90")}}
+            bases_out[b] = blk
+        tor, tor_base = tornado_central(specs)
+        nil = {"label": "SENSITIVITY only (not in the headline): Finance Act 2026, First Schedule para 2(3) item 2, nil presumptive tax for the first twelve months from obtaining a TIN to commence a business",
+               "new_business_share_pct_hbs": {s: nb[s]["central_owners_with_receipts"]["new_business_share_pct"] for s in OWNER_STAGES},
+               "headline_portfolio_roi": {k: results[V10][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")},
+               "legally_fitted_share_of_new_businesses": {"first_year_share_collected": nil_fit, "active_roi_median": results[V10F][base_rate]["stages"]["active"]["roi"]["median"],
+                                                          "enterprise_roi_median": results[V10F][base_rate]["stages"]["enterprise"]["roi"]["median"],
+                                                          "portfolio_roi": {k: results[V10F][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")}},
+               "full_first_year_variant_enterprise": {"enterprise_roi_median": results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]["stages"]["enterprise"]["roi"]["median"],
+                                                      "portfolio_roi": {k: results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]["portfolio"]["roi"][k] for k in ("median", "p10", "p90")}}}
+        result.update({"income_basis_central": BASES["central"], "income_bases": bases_out,
+                       "bracket_definition": "central = HBS 2017/18 receipts of owners with receipts in the reference month; high = ILFS 2024 gross receipts of owners; low = HBS all owners, zeros kept (ILFS is never shown alone)",
+                       "nil_period_sensitivity": nil, "tornado_central": {"portfolio_median_roi_10y_central": tor_base, "drivers": tor},
+                       "workers_25_44": {"population": float(seg["workers"]["population_weighted"]), "observed_tin_rate": float(seg["workers"]["tin_rate_pct"]) / 100.0, "note": "no revenue lever: not priced, no cost, no reach"},
+                       "evidence_type": "MODELLED (scenario); revenue per registrant COMPUTED from survey data (HBS 2017/18, ILFS 2024) with the statutory schedules CITED"})
 
-    pers_names = [("signed_off_triangular_0.5_0.75_0.9", "signed-off (triangular 0.5-0.75-0.9)")] + [("fixed_%s" % ("%.2f" % pv), "fixed %.2f" % pv) for pv in cfg()["persistence_sensitivity"]]
-    t52 = []
-    for h, blk in result["persistence_sensitivity"]["horizons"].items():
-        for s in [x for x in STAGES if x not in ("seed", "asset")] + ["portfolio_excluding_asset"]:
-            for key, lab in pers_names:
-                d = (blk["portfolio_excluding_asset"] if s == "portfolio_excluding_asset" else blk["stages"][s])[key]
-                t52.append([h, s, lab] + ["%.4f" % d["roi"][k] for k in ("median", "p10", "p90")] + ["%.0f" % d["revenue_pv"]["median"], blk["tax_basis"], "MODELLED; " + PERS_LABEL])
-    with open(table52_path, "w", encoding="utf-8", newline="") as f:
-        wr = csv.writer(f, lineterminator="\n")
-        wr.writerow(["horizon_years", "stage", "persistence", "roi_median", "roi_p10", "roi_p90", "pv_revenue_median_tzs", "tax_basis", "evidence_type"])
-        wr.writerows(t52)
+        pers_names = [("signed_off_triangular_0.5_0.75_0.9", "signed-off (triangular 0.5-0.75-0.9)")] + [("fixed_%s" % ("%.2f" % pv), "fixed %.2f" % pv) for pv in cfg()["persistence_sensitivity"]]
+        t52 = []
+        for h, blk in result["persistence_sensitivity"]["horizons"].items():
+            for s in [x for x in STAGES if x not in ("seed", "asset")] + ["portfolio_excluding_asset"]:
+                for key, lab in pers_names:
+                    d = (blk["portfolio_excluding_asset"] if s == "portfolio_excluding_asset" else blk["stages"][s])[key]
+                    t52.append([h, s, lab] + ["%.4f" % d["roi"][k] for k in ("median", "p10", "p90")] + ["%.0f" % d["revenue_pv"]["median"], blk["tax_basis"], "MODELLED; " + PERS_LABEL])
+        with open(table52_path, "w", encoding="utf-8", newline="") as f:
+            wr = csv.writer(f, lineterminator="\n")
+            wr.writerow(["horizon_years", "stage", "persistence", "roi_median", "roi_p10", "roi_p90", "pv_revenue_median_tzs", "tax_basis", "evidence_type"])
+            wr.writerows(t52)
 
-    cols51 = ["stage", "report_name", "population", "observed_tin_rate_pct", "programme_cost_median_tzs", "new_registrants_median", "new_registrants_p10", "new_registrants_p90"]
-    for b in BASES:
-        cols51 += ["%s_revenue_per_registrant_tzs" % b, "%s_share_paying_pct" % b, "%s_pv_revenue_median_tzs" % b, "%s_roi_median" % b, "%s_roi_p10" % b, "%s_roi_p90" % b, "%s_p_roi_ge_1" % b, "%s_roi_20y_median" % b]
-    cols51 += ["break_even_revenue_per_registrant_central_tzs", "break_even_cost_10y_median_central_tzs", "evidence_type"]
-    rows51 = []
-    for s in STAGES + ["portfolio_excluding_asset"]:
-        port_row = s == "portfolio_excluding_asset"
-        rc = results[V10][base_rate]
-        src = rc["portfolio"] if port_row else rc["stages"][s]
-        row = [s, "Seed + Entry + Active + Enterprise + Legacy (Asset excluded)" if port_row else rn[s]["name"], "" if (port_row or s == "seed") else "%.0f" % specs[s]["population"],
-               "" if (port_row or s == "seed") else "%.4f" % (specs[s]["p"] * 100), "%.0f" % src["cost"]["median"] if "cost" in src else "", "%.0f" % src["registrants"]["median"], "%.0f" % src["registrants"]["p10"], "%.0f" % src["registrants"]["p90"]]
+        cols51 = ["stage", "report_name", "population", "observed_tin_rate_pct", "programme_cost_median_tzs", "new_registrants_median", "new_registrants_p10", "new_registrants_p90"]
         for b in BASES:
-            blk = bases_out[b]["portfolio_excluding_asset"] if port_row else bases_out[b]["stages"][s]
-            if s == "seed":
-                row += [""] * 8
-            elif s == "asset":
-                row += ["%.0f" % blk["revenue_per_registrant_tzs"], "%.2f" % blk["share_paying_any_tax_pct"], "%.0f" % blk["revenue_pv"]["median"], "", "", "", "", ""]
-            else:
-                row += ["" if port_row else "%.0f" % blk["revenue_per_registrant_tzs"], "" if port_row else "%.2f" % blk["share_paying_any_tax_pct"], "%.0f" % blk["revenue_pv"]["median"],
-                        "%.4f" % blk["roi_10y"]["median"], "%.4f" % blk["roi_10y"]["p10"], "%.4f" % blk["roi_10y"]["p90"], "%.4f" % blk["p_roi_ge_1"], "%.4f" % blk["roi_20y"]["median"]]
-        be = bases_out["central"]["break_even_revenue_per_registrant"]
-        row.append("%.0f" % be[s]["break_even_revenue_per_registrant_tzs"] if s in OWNER_STAGES else "")
-        row.append("%.0f" % bases_out["central"]["stages"]["asset"]["break_even_cost_10y_tzs"]["median"] if s == "asset" else "")
-        row.append("MODELLED (scenario); revenue per registrant COMPUTED")
-        rows51.append(row)
-    with open(table51_path, "w", encoding="utf-8", newline="") as f:
-        wr = csv.writer(f, lineterminator="\n")
-        wr.writerow(cols51)
-        wr.writerows(rows51)
-    with open(tornado_path, "w", encoding="utf-8", newline="") as f:
-        wr = csv.writer(f, lineterminator="\n")
-        wr.writerow(["driver", "setting", "median_roi_unfavourable", "median_roi_favourable", "central_median_roi", "swing", "evidence_type"])
-        wr.writerows([[r["driver"], r["setting"], "%.4f" % r["median_roi_unfavourable"], "%.4f" % r["median_roi_favourable"], "%.4f" % r["central"], "%.4f" % r["swing"], "MODELLED (scenario)"] for r in tor])
-    with open(nil_path, "w", encoding="utf-8", newline="") as f:
-        wr = csv.writer(f, lineterminator="\n")
-        wr.writerow(["variant", "active_roi_median", "enterprise_roi_median", "portfolio_roi_median", "portfolio_roi_p10", "portfolio_roi_p90", "evidence_type"])
-        full = results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]
-        for name, rr in (("headline (no nil period)", results[V10][base_rate]), ("legally fitted share of new businesses", results[V10F][base_rate]), ("full first year, Enterprise", full)):
-            wr.writerow([name, "%.4f" % rr["stages"]["active"]["roi"]["median"], "%.4f" % rr["stages"]["enterprise"]["roi"]["median"], "%.4f" % rr["portfolio"]["roi"]["median"],
-                         "%.4f" % rr["portfolio"]["roi"]["p10"], "%.4f" % rr["portfolio"]["roi"]["p90"], "MODELLED; SENSITIVITY only"])
+            cols51 += ["%s_revenue_per_registrant_tzs" % b, "%s_share_paying_pct" % b, "%s_pv_revenue_median_tzs" % b, "%s_roi_median" % b, "%s_roi_p10" % b, "%s_roi_p90" % b, "%s_p_roi_ge_1" % b, "%s_roi_20y_median" % b]
+        cols51 += ["break_even_revenue_per_registrant_central_tzs", "break_even_cost_10y_median_central_tzs", "evidence_type"]
+        rows51 = []
+        for s in STAGES + ["portfolio_excluding_asset"]:
+            port_row = s == "portfolio_excluding_asset"
+            rc = results[V10][base_rate]
+            src = rc["portfolio"] if port_row else rc["stages"][s]
+            row = [s, "Seed + Entry + Active + Enterprise + Legacy (Asset excluded)" if port_row else rn[s]["name"], "" if (port_row or s == "seed") else "%.0f" % specs[s]["population"],
+                   "" if (port_row or s == "seed") else "%.4f" % (specs[s]["p"] * 100), "%.0f" % src["cost"]["median"] if "cost" in src else "", "%.0f" % src["registrants"]["median"], "%.0f" % src["registrants"]["p10"], "%.0f" % src["registrants"]["p90"]]
+            for b in BASES:
+                blk = bases_out[b]["portfolio_excluding_asset"] if port_row else bases_out[b]["stages"][s]
+                if s == "seed":
+                    row += [""] * 8
+                elif s == "asset":
+                    row += ["%.0f" % blk["revenue_per_registrant_tzs"], "%.2f" % blk["share_paying_any_tax_pct"], "%.0f" % blk["revenue_pv"]["median"], "", "", "", "", ""]
+                else:
+                    row += ["" if port_row else "%.0f" % blk["revenue_per_registrant_tzs"], "" if port_row else "%.2f" % blk["share_paying_any_tax_pct"], "%.0f" % blk["revenue_pv"]["median"],
+                            "%.4f" % blk["roi_10y"]["median"], "%.4f" % blk["roi_10y"]["p10"], "%.4f" % blk["roi_10y"]["p90"], "%.4f" % blk["p_roi_ge_1"], "%.4f" % blk["roi_20y"]["median"]]
+            be = bases_out["central"]["break_even_revenue_per_registrant"]
+            row.append("%.0f" % be[s]["break_even_revenue_per_registrant_tzs"] if s in OWNER_STAGES else "")
+            row.append("%.0f" % bases_out["central"]["stages"]["asset"]["break_even_cost_10y_tzs"]["median"] if s == "asset" else "")
+            row.append("MODELLED (scenario); revenue per registrant COMPUTED")
+            rows51.append(row)
+        with open(table51_path, "w", encoding="utf-8", newline="") as f:
+            wr = csv.writer(f, lineterminator="\n")
+            wr.writerow(cols51)
+            wr.writerows(rows51)
+        with open(tornado_path, "w", encoding="utf-8", newline="") as f:
+            wr = csv.writer(f, lineterminator="\n")
+            wr.writerow(["driver", "setting", "median_roi_unfavourable", "median_roi_favourable", "central_median_roi", "swing", "evidence_type"])
+            wr.writerows([[r["driver"], r["setting"], "%.4f" % r["median_roi_unfavourable"], "%.4f" % r["median_roi_favourable"], "%.4f" % r["central"], "%.4f" % r["swing"], "MODELLED (scenario)"] for r in tor])
+        with open(nil_path, "w", encoding="utf-8", newline="") as f:
+            wr = csv.writer(f, lineterminator="\n")
+            wr.writerow(["variant", "active_roi_median", "enterprise_roi_median", "portfolio_roi_median", "portfolio_roi_p10", "portfolio_roi_p90", "evidence_type"])
+            full = results["horizon_%d_flat_new_tin_holiday" % n_years][base_rate]
+            for name, rr in (("headline (no nil period)", results[V10][base_rate]), ("legally fitted share of new businesses", results[V10F][base_rate]), ("full first year, Enterprise", full)):
+                wr.writerow([name, "%.4f" % rr["stages"]["active"]["roi"]["median"], "%.4f" % rr["stages"]["enterprise"]["roi"]["median"], "%.4f" % rr["portfolio"]["roi"]["median"],
+                             "%.4f" % rr["portfolio"]["roi"]["p10"], "%.4f" % rr["portfolio"]["roi"]["p90"], "MODELLED; SENSITIVITY only"])
 
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
     with open(json_path, "w", encoding="utf-8") as f:

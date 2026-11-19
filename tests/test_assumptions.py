@@ -133,7 +133,7 @@ def test_register_covers_every_key_nothing_unsigned_feeds_a_claim_and_c062_is_no
     assert set(r["john_signoff"] for r in rows) <= {"", ok}
     by_key = {r["key"]: r for r in rows}
     assert "stage.cost.asset_tzs" not in assumptions.keys()                                                      # the Asset placeholder is RETIRED (E3.4)
-    assert by_key["twin.mm.penetration_cap"]["john_signoff"] == ok                                               # signed in Block F0
+    assert by_key["twin.mm.penetration_cap"]["basis_class"] == "RETIRED"                                          # the digital twin is retired (Pass 6B-1)
     assert set(assumptions.keys()) <= set(by_key)
     # F0 check: no unsigned ASSUMPTION or UNKNOWN row feeds a published claim or a dashboard value (the levy lever, the one exception of Block F, was removed by the owner in Editing Pass 1)
     claim_re = re.compile(r"C\d{3}")

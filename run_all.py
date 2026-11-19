@@ -64,12 +64,12 @@ def clean():
 def required_for_processed():
     """Files a --from-processed run reads instead of the raw microdata (census and ILFS aggregates included)."""
     return [paths.FINSCOPE_SUMMARY, paths.FINSCOPE_REGION_ACTIVITY, paths.FINSCOPE_ACTIVE_BENCHMARK, paths.INTERVENTIONS_YAML,
-            paths.CENSUS_AGE_COUNTS, paths.ILFS_INDICATORS, paths.AGENT_CELLS, paths.AFROBAROMETER_MORALE, paths.AGENT_TRUST_MORALE, paths.AGENT_INCOME, paths.TWIN_INPUTS, paths.TRA_REGISTERED_TAXPAYERS_CSV, paths.AGENT_CALIBRATION, paths.ILFS_TAX_BASE, paths.HBS_TURNOVER]
+            paths.CENSUS_AGE_COUNTS, paths.ILFS_INDICATORS, paths.AGENT_CELLS, paths.AFROBAROMETER_MORALE, paths.AGENT_TRUST_MORALE, paths.AGENT_INCOME, paths.TWIN_INPUTS, paths.TRA_REGISTERED_TAXPAYERS_CSV, paths.AGENT_CALIBRATION, paths.ILFS_TAX_BASE, paths.HBS_TURNOVER, paths.TRA_COLLECTIONS_JSON]
 
 
 def required_raw():
     """Raw inputs a --from-raw run needs."""
-    return [paths.FINSCOPE_CSV, paths.TAX_EXEMPTIONS_XLSX, paths.CENSUS_SAV, paths.ILFS_SAV, paths.AFROBAROMETER_SAV, paths.HBS_INDIVIDUAL, paths.HBS_CONSUMPTION, paths.HBS_S10C]
+    return [paths.FINSCOPE_CSV, paths.TAX_EXEMPTIONS_XLSX, paths.CENSUS_SAV, paths.ILFS_SAV, paths.AFROBAROMETER_SAV, paths.HBS_INDIVIDUAL, paths.HBS_CONSUMPTION, paths.HBS_S10C, paths.TRA_COLLECTIONS_XLSX]
 
 
 def main(argv=None):
@@ -131,6 +131,8 @@ def main(argv=None):
     import twin_inputs
     import agent_calibration
     import hbs_turnover
+    import tra_collections
+    import reach_scenarios
     import stage_economics
 
     mode = "from-processed" if args.from_processed else "from-raw"
@@ -244,11 +246,17 @@ def main(argv=None):
     print("STEP 8a: HBS 2017/18 turnover of household-business owners (aggregates; revenue per registrant, taxable capacity, Mzani wa Kodi bands)")
     print("=" * 60)
     hbs_turnover.run_hbs_turnover(from_processed=args.from_processed)           # with --from-processed the aggregates are read from data/processed/hbs_turnover.json (no microdata)
+    tra_collections.run_tra_collections(from_processed=args.from_processed)    # TRA FY2024/25 collections (CITED aggregates) for the scale check
 
     print("\n" + "=" * 60)
     print("STEP 8b: Table 40 stage economics (costs, revenue, NPV, ROI for the six stages; Monte Carlo)")
     print("=" * 60)
     stage_economics.run_stage_economics(from_processed=args.from_processed)      # with --from-processed the ILFS tax base is read from data/processed/ilfs_tax_base.json (no microdata)
+
+    print("\n" + "=" * 60)
+    print("STEP 8c: Reach scenarios (Figure 5.2; the digital twin is retired) with the scale check against TRA FY2024/25")
+    print("=" * 60)
+    reach_scenarios.run_reach_scenarios(from_processed=args.from_processed)
 
     print("\n" + "=" * 60)
     print("STEP 9: Intervention register (rebuilt on every run)")

@@ -25,7 +25,7 @@ EXPECTED = {
     "outputs/stats/stage_economics.json", "outputs/tables/table40_stage_economics.csv",
     # Block F
     "data/processed/ilfs_tax_base.json",
-} | {"outputs/figures/%s.%s" % (n, e) for n in ("fig_5_1_modelled_compliance", "fig_5_2_digital_twin", "fig_5_3_table40_roi_by_stage", "fig_5_4_tornado_central", "fig_a1_tin_by_segment",
+} | {"outputs/figures/%s.%s" % (n, e) for n in ("fig_5_1_modelled_compliance", "fig_5_2_reach_scenarios", "fig_5_3_table40_roi_by_stage", "fig_5_4_tornado_central", "fig_a1_tin_by_segment",
                                               "fig_a2_tax_morale_components", "fig_a3_targeting_deciles", "fig_a4_targeting_variants", "fig_a5_macro_gap", "journey_graphic", "cover_poster", "theory_of_change") for e in ("png", "svg")}
 
 

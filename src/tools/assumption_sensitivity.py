@@ -57,21 +57,6 @@ def run_morale():
     return out
 
 
-def run_twin():
-    p = em.load_base_params()
-    base = _quiet(em.run_digital_twin, p)
-    pol = _quiet(em.run_digital_twin, p, policy_changes={
-        "ussd_nudge_scale": assumptions.A("twin.policy.ussd_nudge_scale"),
-        "trust_improvement_annual": assumptions.A("twin.policy.trust_improvement_annual"),
-        "presumptive_tax_simplification": True})
-    out = {}
-    for tag, r in (("baseline", base), ("policy", pol)):
-        out[tag + "_final_tax_to_gdp_pct"] = r["final_tax_to_gdp_pct"]
-        out[tag + "_final_compliance_rate"] = r["final_compliance_rate"]
-        out[tag + "_final_registered_taxpayers"] = r["final_registered_taxpayers"]
-    return out
-
-
 def run_tier():
     r = _quiet(em.run_tier_migration_simulation, em.load_base_params(), n_agents=TIER_AGENTS)
     last = r["yearly_tier_distribution"][-1]
@@ -85,7 +70,7 @@ def run_stage():
     paths.CFG["stage_economics"]["n_draws"] = 4000
     try:
         with tempfile.TemporaryDirectory() as d:
-            r = _quiet(se.run_stage_economics, json_path=os.path.join(d, "s.json"), csv_path=os.path.join(d, "s.csv"))
+            r = _quiet(se.run_stage_economics, json_path=os.path.join(d, "s.json"), csv_path=os.path.join(d, "s.csv"), with_extras=False)
     finally:
         paths.CFG["stage_economics"]["n_draws"] = saved
     out = {}
@@ -109,7 +94,6 @@ def run_stage():
 # the headline published values of each group (used for the ranking of the most sensitive constants)
 HEADLINE = {
     "morale": ("baseline_compliance_probability", "combined_intervention_probability", "naive_sum_of_solo_effects_pct"),
-    "twin": ("baseline_final_tax_to_gdp_pct", "policy_final_tax_to_gdp_pct"),
     "tier": ("year10_not_registered_pct",),
     "stage_economics": ("portfolio_roi_median_10y", "roi_median_10y_"),
 }
@@ -119,7 +103,7 @@ def is_headline(group, name):
     return any(name == h or (h.endswith("_") and name.startswith(h)) for h in HEADLINE[group])
 
 
-RUNNERS = {"morale": run_morale, "twin": run_twin, "tier": run_tier, "stage_economics": run_stage}
+RUNNERS = {"morale": run_morale, "tier": run_tier, "stage_economics": run_stage}
 
 
 # ------------------------------------------------------------------ perturbation

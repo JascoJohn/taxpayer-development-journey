@@ -1,0 +1,9 @@
+set,scenario,registrants_cum,alive_registrants,active_payers_owing_tax,payers_p10,payers_p90,incremental_revenue_tzs,revenue_p10,revenue_p90,incremental_tax_to_gdp_pp,evidence_type
+four_levers,table5_1_reach,6910.47,833.84,162.633,47.9043,441.059,1.10065e+08,3.22412e+07,2.94176e+08,3.26163e-05,MODELLED (scenario)
+four_levers,reach_10pct,18120.8,2187.99,440.877,134.826,1082.24,3.0071e+08,9.19384e+07,7.36145e+08,8.91112e-05,MODELLED (scenario)
+four_levers,reach_25pct,45301.9,5469.97,1102.19,337.065,2705.6,7.51775e+08,2.29846e+08,1.84036e+09,0.000222778,MODELLED (scenario)
+four_levers,reach_50pct,90603.8,10939.9,2204.38,674.129,5411.2,1.50355e+09,4.59692e+08,3.68073e+09,0.000445556,MODELLED (scenario)
+entry_active,table5_1_reach,4237.37,463.466,45.8726,6.95141,160.07,2.42415e+07,3.37461e+06,9.34261e+07,7.18362e-06,MODELLED (scenario)
+entry_active,reach_10pct,10428.6,1102.54,111.282,17.3337,373.294,5.48977e+07,8.4748e+06,1.87639e+08,1.62682e-05,MODELLED (scenario)
+entry_active,reach_25pct,26071.5,2756.35,278.205,43.3342,933.236,1.37244e+08,2.1187e+07,4.69099e+08,4.06704e-05,MODELLED (scenario)
+entry_active,reach_50pct,52143,5512.69,556.41,86.6684,1866.47,2.74489e+08,4.2374e+07,9.38197e+08,8.13408e-05,MODELLED (scenario)

@@ -98,7 +98,7 @@ def test_the_trust_morale_uplift_path_is_retired_with_the_stated_reason():
     for k in RETIRED:
         assert 'A("%s")' % k not in code, k
     # the tier simulation shares the mechanism
-    tier = code[code.index("def run_tier_migration_simulation"):code.index("def _bot_accounts_context")]
+    tier = code[code.index("def run_tier_migration_simulation"):code.index("# F. DIGITAL TWIN: RETIRED")]
     assert "_registration_hazard(" in tier
     assert not re.search(r"trust\[.*\]\s*\+=", tier) and not re.search(r"morale\[.*\]\s*\+=", tier)
 

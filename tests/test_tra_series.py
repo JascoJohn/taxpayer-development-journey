@@ -83,12 +83,11 @@ def test_the_twin_reads_the_series_and_the_other_base_parameters(pipeline_run):
         assert e["basis"] == basis and "value" not in e and e["from"].endswith("twin_inputs.json"), key
         assert assumptions.A(key) == tw["parameters"][key.replace(".", "_")]["value"]
     assert tw["parameters"]["twin_default_formalization_policy"]["calibration"]["method"].startswith("ordinary least squares")
-    for key in ("twin.ussd.conversion", "twin.trust_multiplier.slope", "twin.presumptive.uplift_factor"):
-        assert assumptions.entry(key)["basis"] == "ASSUMPTION" and assumptions.entry(key)["source"], key
+    for key in ("twin.ussd.conversion", "twin.trust_multiplier.slope", "twin.presumptive.uplift_factor"):          # retired with the digital twin (Pass 6B-1)
+        assert key not in assumptions.keys() and paths.CFG["retired_assumptions"][key]["retired_in"] == "Pass 6B-1", key
     with open(paths.ECONOMIC_MODEL, encoding="utf-8") as f:
         model = json.load(f)
-    twin = model["digital_twin_baseline"]
-    assert "NOT FinScope's 1.31 million ADULT TIN holders" in twin["registered_taxpayers_definition"]
+    assert "digital_twin_baseline" not in model                                                                   # retired (Pass 6B-1)
     assert model["base_parameters"]["registered_taxpayers"] == base
     # the typed values are gone
     code = open(os.path.join(ROOT, "src", "04_models", "economic_model.py"), encoding="utf-8").read()

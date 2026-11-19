@@ -1,0 +1,29 @@
+{
+ "label": "CITED: TRA quarterly collections workbook FY2024/25, million TZS nominal, gross; annual = sum of the four quarterly 'Total' columns",
+ "type": "CITED",
+ "fiscal_year": "2024/25",
+ "source": "Tanzania Revenue Authority, quarterly tax collections workbook FY2024/25 (data/raw/SOURCES.csv)",
+ "unit_of_source": "million TZS",
+ "million_tzs": {
+  "domestic_revenue": 6843724.836970847,
+  "customs_excise": 12306540.756029367,
+  "large_taxpayers": 12443791.11817698,
+  "total_gross": 31594056.711177193,
+  "total_net": 30095736.15095331,
+  "individuals_income_tax": 305952.9909260201,
+  "rental_tax": 131287.34596378,
+  "paye": 1756142.9962786,
+  "direct_tax_gross": 4265306.0117796175
+ },
+ "tzs": {
+  "domestic_revenue": 6843724836970.847,
+  "customs_excise": 12306540756029.367,
+  "large_taxpayers": 12443791118176.98,
+  "total_gross": 31594056711177.19,
+  "total_net": 30095736150953.312,
+  "individuals_income_tax": 305952990926.0201,
+  "rental_tax": 131287345963.78001,
+  "paye": 1756142996278.6,
+  "direct_tax_gross": 4265306011779.6177
+ }
+}

@@ -86,6 +86,12 @@ TWIN_INPUTS = resolve(_F["twin_inputs"])
 STAGE_ECONOMICS = resolve(_F["stage_economics"])
 TABLE40_CSV = resolve(_F["table40_csv"])
 TABLE51_CSV = resolve(_F["table5_1_csv"])
+REACH_SCENARIOS = resolve(_F["reach_scenarios"])
+MZANI_TURNOVER = resolve(_F["mzani_turnover"])
+MZANI_ZONE_CSV = resolve(_F["mzani_zone_csv"])
+MZANI_REGION_CSV = resolve(_F["mzani_region_csv"])
+REACH_YEAR10_CSV = resolve(_F["reach_year10_csv"])
+REACH_BY_YEAR_CSV = resolve(_F["reach_by_year_csv"])
 TABLE52_CSV = resolve(_F["table5_2_csv"])
 NIL_PERIOD_CSV = resolve(_F["table5_1_nil_period_csv"])
 TORNADO_CSV = resolve(_F["fig5_4_tornado_csv"])
@@ -128,6 +134,7 @@ PIPELINE_FILES = {
     "intervention_register.json": INTERVENTION_REGISTER,
     "finscope_region_activity.json": FINSCOPE_REGION_ACTIVITY,
     "finscope_active_benchmark.json": FINSCOPE_ACTIVE_BENCHMARK,
+    "mzani_turnover.json": MZANI_TURNOVER,
     "targeting_model.json": TARGETING_MODEL,
     "tin_mobile_money.json": TIN_MOBILE_MONEY,
     "afrobarometer_morale.json": AFROBAROMETER_MORALE,

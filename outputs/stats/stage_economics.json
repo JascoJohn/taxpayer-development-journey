@@ -572,6 +572,13 @@
    "se_tzs": 615290.3267029601,
    "share_paying_any_tax_pct": 81.42296248839281,
    "tax_basis": "presumptive income tax on annualised ILFS gross business receipts (Q87B) up to TZS 200M, owners aged 25-64 with a registered business (Q38A 1-5)"
+  },
+  "workers_ilfs": {
+   "n_unweighted": 8509,
+   "mean_tax_per_person_tzs": 298594.0543717811,
+   "se_tzs": 23643.587890456423,
+   "share_paying_any_tax_pct": 23.771337954935163,
+   "tax_basis": "resident individual income tax on annual earnings of non-owners aged 25-44 outside the formal net (ILFS 2024); prices the registration trend only"
   }
  },
  "stages": {

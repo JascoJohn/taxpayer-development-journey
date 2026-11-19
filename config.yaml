@@ -77,6 +77,11 @@ targeting:
   permutation_candidates: 40         # columns (highest single-feature AUC on the training set) whose permutation importance is reported for boosting
   label_search_terms: ['\btax', '\bTIN\b', '\bTRA\b', 'revenue authority', 'registration', 'registered', 'licen[cs]e', 'permit', '\bVAT\b', 'receipt', 'identity', 'national id', 'passport', 'voter', 'pay ?slip', 'invoice', 'ledger', 'bookkeep', 'record']
   bootstrap_replicates: 500
+  bootstrap_replicates_full: 1000     # Pass 6B-1: respondent bootstrap of the Entry top-decile multiplier behind `run_all.py --full-bootstrap` (src/04_models/targeting_bootstrap.py)
+  leakage_adjustment:                 # Pass 6A D4: the survey model refit without formal-product columns (AUC 0.946 -> 0.941)
+    consequence_source_columns: [comm7_1__3, ins3_1__1, comm7_2, ins3_1__11, pb2, comm4_1]     # the six top-30 columns the analyst classified as plausibly a consequence of holding a TIN (PASS6A D4)
+    formal_product_families: ["banking", "bank current / cheque account", "formal credit (bank, MFI, SACCOS, mobile)", "insurance", "motor insurance", "pension / social security", "vehicle ownership",
+                              "land title documents", "government securities / investments", "formal employment"]
   scoring_card_C: 1.0
   feature_rules:
     max_levels: 30                   # categorical columns with more levels are excluded (free-form / codes)
@@ -518,6 +523,12 @@ files:
   agent_calibration:           data/processed/agent_calibration.json      # E2.4 calibrated parameters and fit diagnostics
   stage_economics:             outputs/stats/stage_economics.json
   table40_csv:                 outputs/tables/table40_stage_economics.csv
+  mzani_turnover:              outputs/stats/mzani_turnover.json                      # Pass 6B-1: Mzani wa Kodi turnover bands (src/03_features/hbs_turnover.py)
+  mzani_zone_csv:              outputs/tables/mzani_turnover_zone_activity.csv
+  mzani_region_csv:            outputs/tables/mzani_turnover_region_activity.csv
+  reach_scenarios:             outputs/stats/reach_scenarios.json                    # Pass 6B-1: Figure 5.2 (src/04_models/reach_scenarios.py)
+  reach_year10_csv:            outputs/tables/reach_scenarios_year10.csv
+  reach_by_year_csv:           outputs/tables/reach_scenarios_by_year.csv
   table5_1_csv:                outputs/tables/table5_1_stage_economics.csv            # Pass 6B-1: Table 5.1, central basis and bracket (src/04_models/stage_economics.py)
   table5_2_csv:                outputs/tables/table5_2_persistence_sensitivity.csv
   table5_1_nil_period_csv:     outputs/tables/table5_1_nil_period_sensitivity.csv
@@ -827,27 +838,6 @@ assumptions:
     source: "Yearly growth factor of the adult population = 1 + the mean World Bank WDI population growth (SP.POP.GROW, last 5 years with data). Replaced the account-based mobile-money growth (Block E3.3)."
     feeds: "C079 (Fig 5.2 digital twin)"
     group: twin
-  twin.mm.penetration_cap:
-    value: 0.90
-    basis: ASSUMPTION
-    source: "Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.mm.penetration_gap_closure:
-    value: 0.10
-    basis: ASSUMPTION
-    source: "Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin, not measured. NEW in Block E3.3, not yet signed off."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.default.trust_improvement_annual:
-    value: 0.01
-    basis: ASSUMPTION
-    source: "Slow annual drift of the trust score in the no-new-policy scenario."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
   twin.default.formalization_policy:
     basis: CALIBRATED
     from: "data/processed/twin_inputs.json"
@@ -857,61 +847,6 @@ assumptions:
     calibration: {target: "TRA registered taxpayers, Mainland, 7 fiscal years 2017/18-2023/24 (NBS Tax Statistics)", method: "ordinary least squares, one free parameter (the slope) against 7 points, closed form (src/03_features/twin_inputs.py)", output: "data/processed/twin_inputs.json"}
     feeds: "C079 (Fig 5.2 digital twin)"
     group: twin
-  twin.cap.trust:
-    value: 0.85
-    basis: ASSUMPTION
-    source: "Structural ceiling for the trust score."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.cap.compliance_rate:
-    value: 0.8
-    basis: ASSUMPTION
-    source: "Structural ceiling for the compliance rate."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.ussd.conversion:
-    value: 0.15
-    basis: ASSUMPTION
-    source: "Share of non-compliant mobile-money users who register per year when the USSD nudge is fully scaled (15%): a scenario input; the project holds no trial or administrative evidence of USSD registration conversion. Kept for sign-off; the registration trend cannot identify it because no USSD nudge was in place."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.trust_multiplier.slope:
-    value: 2
-    basis: ASSUMPTION
-    source: "Registration rises by 2 x (trust - baseline trust): a structural elasticity of the model; no panel or trial data link trust to registration here. Kept for sign-off."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.msme.tin_rate:
-    value: 0.097
-    basis: DATA
-    source: "Enterprise-stage TIN rate, FinScope 2023: 9.74% in outputs/tables/tin_by_segment.csv (typed 0.097 is its rounded value)."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-  twin.presumptive.uplift_factor:
-    value: 0.5
-    basis: ASSUMPTION
-    source: "Share of registered MSME presumptive-tax potential collected once simplification is on (0.5): a scenario input with no collection data behind it. Kept for sign-off."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.policy.ussd_nudge_scale:
-    value: 0.6
-    basis: ASSUMPTION
-    source: "Policy scenario: USSD nudge deployed at 60% of full scale."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
-  twin.policy.trust_improvement_annual:
-    value: 0.025
-    basis: ASSUMPTION
-    source: "Policy scenario: annual trust gain of 2.5 points."
-    feeds: "C079 (Fig 5.2 digital twin)"
-    group: twin
-    signoff: "approved (John, 2026-11-12)"
   agents.income_lognormal_sigma:
     basis: DATA
     from: "data/processed/agent_income.json"
@@ -1292,6 +1227,94 @@ register_extra_signoffs:
   simulation.random_seed: "approved (John, 2026-11-12)"
 
 retired_assumptions:
+  twin.mm.penetration_cap:
+    value: 0.90
+    basis: ASSUMPTION
+    source: "Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.mm.penetration_gap_closure:
+    value: 0.10
+    basis: ASSUMPTION
+    source: "Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin, not measured. NEW in Block E3.3, not yet signed off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.default.trust_improvement_annual:
+    value: 0.01
+    basis: ASSUMPTION
+    source: "Slow annual drift of the trust score in the no-new-policy scenario."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.cap.trust:
+    value: 0.85
+    basis: ASSUMPTION
+    source: "Structural ceiling for the trust score."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.cap.compliance_rate:
+    value: 0.8
+    basis: ASSUMPTION
+    source: "Structural ceiling for the compliance rate."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.ussd.conversion:
+    value: 0.15
+    basis: ASSUMPTION
+    source: "Share of non-compliant mobile-money users who register per year when the USSD nudge is fully scaled (15%): a scenario input; the project holds no trial or administrative evidence of USSD registration conversion. Kept for sign-off; the registration trend cannot identify it because no USSD nudge was in place."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.trust_multiplier.slope:
+    value: 2
+    basis: ASSUMPTION
+    source: "Registration rises by 2 x (trust - baseline trust): a structural elasticity of the model; no panel or trial data link trust to registration here. Kept for sign-off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.msme.tin_rate:
+    value: 0.097
+    basis: DATA
+    source: "Enterprise-stage TIN rate, FinScope 2023: 9.74% in outputs/tables/tin_by_segment.csv (typed 0.097 is its rounded value)."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.presumptive.uplift_factor:
+    value: 0.5
+    basis: ASSUMPTION
+    source: "Share of registered MSME presumptive-tax potential collected once simplification is on (0.5): a scenario input with no collection data behind it. Kept for sign-off."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.policy.ussd_nudge_scale:
+    value: 0.6
+    basis: ASSUMPTION
+    source: "Policy scenario: USSD nudge deployed at 60% of full scale."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+  twin.policy.trust_improvement_annual:
+    value: 0.025
+    basis: ASSUMPTION
+    source: "Policy scenario: annual trust gain of 2.5 points."
+    feeds: "C079 (Fig 5.2 digital twin)"
+    group: twin
+    retired_in: "Pass 6B-1"
+    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
   synthetic.urban_share:
     value: 0.36
     basis: ASSUMPTION

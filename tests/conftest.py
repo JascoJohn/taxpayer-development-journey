@@ -22,6 +22,7 @@ RAW_FILES = {
     "HBS 2017/18 individual file": "data/raw/hbs_2017_18/HBS_2017-18_Final_Individual_Data.dta",
     "HBS 2017/18 consumption aggregate": "data/raw/hbs_2017_18/HBS_2017-18_Consumption_Aggregate.dta",
     "HBS 2017/18 Form I S10C1": "data/raw/hbs_2017_18/Other_Sections_of_Form_I/S10C1.dta",
+    "TRA collections workbook FY2024/25": "data/raw/tra/TAX_COLLECTION_FOR_THE_FINANCIAL_YEAR_2024-25.xlsx",
 }
 RAW_DOCUMENTS = ["data/raw/nbs", "data/raw/tra", "data/raw/bot", "data/raw/tcra", "data/raw/tax_exemptions"]
 
@@ -67,7 +68,8 @@ def _copy_project(dst):
         cfg = fh.read()
     for rel in ("data/raw/census/TPHC2022_TenPercent_DEMOGRAPHICS.sav", "data/raw/ilfs/ILFS2024-URT-FINAL - Anonymized.sav",
                 "data/raw/afrobarometer/afrobarometer_release-data_tan_r8_en_2021-06-10.sav",
-                "data/raw/hbs_2017_18/HBS_2017-18_Final_Individual_Data.dta", "data/raw/hbs_2017_18/HBS_2017-18_Consumption_Aggregate.dta", "data/raw/hbs_2017_18/Other_Sections_of_Form_I/S10C1.dta"):
+                "data/raw/hbs_2017_18/HBS_2017-18_Final_Individual_Data.dta", "data/raw/hbs_2017_18/HBS_2017-18_Consumption_Aggregate.dta", "data/raw/hbs_2017_18/Other_Sections_of_Form_I/S10C1.dta",
+                "data/raw/tra/TAX_COLLECTION_FOR_THE_FINANCIAL_YEAR_2024-25.xlsx"):
         assert rel in cfg, rel
         cfg = cfg.replace(rel, os.path.join(ROOT, *rel.split("/")).replace(os.sep, "/"))
     # the targeting model is run with a lighter cross-validation in the tests (same code, seeds and data; fewer repeats, a shorter

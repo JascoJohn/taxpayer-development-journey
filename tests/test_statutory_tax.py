@@ -72,7 +72,7 @@ def test_the_flat_rates_are_retired_and_the_twin_reads_the_derived_means():
     assert assumptions.A("base.new_taxpayer_mean_tax_tzs") == pytest.approx(st.informal_mean_tax(), rel=1e-9)
     assert assumptions.A("base.msme_mean_presumptive_tax_tzs") == pytest.approx(st.msme_mean_tax(), rel=1e-9)
     code = open(os.path.join(ROOT, "src", "04_models", "economic_model.py"), encoding="utf-8").read()
-    assert "personal_income_tax_rate" not in code and "presumptive_tax_rate" not in code and "informal_worker_avg_income_tzs\"] *" not in code.split("def run_digital_twin")[1].split("def run_sensitivity")[0]
+    assert "personal_income_tax_rate" not in code and "presumptive_tax_rate" not in code and "def run_digital_twin" not in code
 
 
 def test_the_new_tin_holiday_is_reported_as_a_sensitivity_only():
@@ -94,8 +94,7 @@ def test_the_policy_twin_has_no_mobile_money_levy_lever():
     assert "hypothetical_additional_levy" not in code and "mm_revenue" not in code and "levy_context" not in code
     with open(paths.ECONOMIC_MODEL, encoding="utf-8") as f:
         m = json.load(f)
-    for k in ("digital_twin_baseline", "digital_twin_policy"):
-        assert "levy_context" not in m[k] and "hypothetical_additional_levy" not in m[k]["policy_scenario"], k
+    assert "digital_twin_baseline" not in m and "digital_twin_policy" not in m                      # the twin is retired (Pass 6B-1)
 
 
 def test_the_levy_document_records_the_basis_the_schedule_and_the_citation():
