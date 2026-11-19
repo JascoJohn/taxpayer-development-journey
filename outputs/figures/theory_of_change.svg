@@ -112,8 +112,8 @@ z
 " clip-path="url(#pa368e23d03)" style="fill: #37474f"/>
    </g>
    <g id="text_1">
-    <!-- Theory of Change: The Behavioral Lifecycle -->
-    <g style="fill: #2b3a42" transform="translate(528.73245 112.715325) scale(0.4032 -0.4032)">
+    <!-- Theory of Change: The Behavioural Lifecycle -->
+    <g style="fill: #2b3a42" transform="translate(514.0755 112.715325) scale(0.4032 -0.4032)">
      <defs>
       <path id="DejaVuSerif-Bold-37" d="M 1159 0 
 L 1159 378 
@@ -514,6 +514,31 @@ L 1797 3322
 L 1797 378 
 z
 " transform="scale(0.015625)"/>
+      <path id="DejaVuSerif-Bold-58" d="M 3963 3322 
+L 3963 378 
+L 4434 378 
+L 4434 0 
+L 2853 0 
+L 2853 469 
+Q 2656 172 2400 40 
+Q 2144 -91 1753 -91 
+Q 1194 -91 908 239 
+Q 622 569 622 1209 
+L 622 2944 
+L 147 2944 
+L 147 3322 
+L 1728 3322 
+L 1728 1381 
+Q 1728 763 1831 595 
+Q 1934 428 2209 428 
+Q 2544 428 2698 675 
+Q 2853 922 2853 1459 
+L 2853 2944 
+L 2450 2944 
+L 2450 3322 
+L 3963 3322 
+z
+" transform="scale(0.015625)"/>
       <path id="DejaVuSerif-Bold-4f" d="M 1797 378 
 L 2272 378 
 L 2272 0 
@@ -596,19 +621,20 @@ z
      <use xlink:href="#DejaVuSerif-Bold-59" transform="translate(1593.875 0)"/>
      <use xlink:href="#DejaVuSerif-Bold-4c" transform="translate(1651.984375 0)"/>
      <use xlink:href="#DejaVuSerif-Bold-52" transform="translate(1689.96875 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-55" transform="translate(1756.671875 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-44" transform="translate(1809.359375 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-4f" transform="translate(1874.15625 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-3" transform="translate(1912.140625 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-2f" transform="translate(1946.953125 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-4c" transform="translate(2017.265625 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-49" transform="translate(2055.25 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-48" transform="translate(2098.265625 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-46" transform="translate(2161.890625 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-5c" transform="translate(2222.78125 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-46" transform="translate(2280.890625 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-4f" transform="translate(2341.78125 0)"/>
-     <use xlink:href="#DejaVuSerif-Bold-48" transform="translate(2379.765625 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-58" transform="translate(1756.671875 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-55" transform="translate(1829.375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-44" transform="translate(1882.0625 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-4f" transform="translate(1946.859375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-3" transform="translate(1984.84375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-2f" transform="translate(2019.65625 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-4c" transform="translate(2089.96875 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-49" transform="translate(2127.953125 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-48" transform="translate(2170.96875 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-46" transform="translate(2234.59375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-5c" transform="translate(2295.484375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-46" transform="translate(2353.59375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-4f" transform="translate(2414.484375 0)"/>
+     <use xlink:href="#DejaVuSerif-Bold-48" transform="translate(2452.46875 0)"/>
     </g>
    </g>
    <g id="text_2">

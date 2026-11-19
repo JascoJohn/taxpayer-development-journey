@@ -1,4 +1,4 @@
-"""Theory of Change graphic of Chapter 3 ("Theory of Change: The Behavioral Lifecycle"), redrawn in Editing Pass 1b with the agreed tool names.
+"""Theory of Change graphic of Chapter 3 ("Theory of Change: The Behavioural Lifecycle"), redrawn in Editing Pass 1b with the agreed tool names.
 
 Not a data figure: it draws no number. Same structure and content as the submitted graphic (title, sub-title, six stage boxes joined by arrows, the reciprocity arc and its caption);
 only the tool names change (read from config.yaml `names:`, Swahili name in bold with the English descriptor under it) and the look follows the journey graphic
@@ -31,7 +31,7 @@ STAGES = [("seed", "SEED", ["Ages 6–15"], ["(Tax Learning Games)"]),
           ("legacy", "LEGACY", ["Ages 65+"], ["(Tax Legacy Score)"])]
 BOX_X = [28, 501, 974, 1447, 1920, 2393]
 BOX_W, BOX_TOP, BOX_BOTTOM = 416, 282, 836
-TITLE = "Theory of Change: The Behavioral Lifecycle"
+TITLE = "Theory of Change: The Behavioural Lifecycle"
 SUB = "Each stage converts existing willingness into a designed, visible exchange — removing friction before enforcement is ever required"
 CAPTION = "Reciprocity made visible at each stage compounds into sustained participation and stronger norms for the next generation"
 

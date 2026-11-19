@@ -208,8 +208,8 @@ def make(out_dir=None):
     c.poly([[160, 154], [895, 154], [922, 199], [895, 244], [160, 244], [133, 199]], GREEN, z=3)
     c.circ(202, 199, 34, fc="none", ec="white", lw=2.0, z=4)
     icon(c, "group", 202, 197, 15, "white", GREEN)
-    for k, ln in enumerate(["The Ngazi Platform transforms six disconnected taxpayer interactions", "into one lifelong taxpayer relationship, enabling trust, compliance, and",
-                            "revenue to compound over time rather than reset at every encounter."]):
+    for k, ln in enumerate(["The Ngazi Platform transforms six disconnected taxpayer interactions", "into one lifelong taxpayer relationship, enabling trust, compliance and",
+                            "continuity to build over time rather than reset at every encounter."]):
         c.t(563, 176 + k * 23, ln, 15.5, "white", "bold" if k == 1 else "normal")
     # ---- journey
     c.t(527, 270, "THE TAXPAYER DEVELOPMENT JOURNEY", 19, GREEN, "bold")
@@ -246,12 +246,12 @@ def make(out_dir=None):
     c.line([674, 1040], [612, 612], color=DIVIDER, lw=1.5)
     c.box(14, 626, 1026, 166, fc="white", ec="#CFD8DC", lw=1.2, r=12, z=2)
     tiles = [("people", "34.1M", ["Adults in Tanzania", "(weighted population", "base)"], "FinScope Tanzania 2023", GREEN),
-             ("idcard", "3.83%", ["Adults reporting a", "Taxpayer Identification", "Number (TIN)"], "FinScope Tanzania 2023", GREEN),
+             ("idcard", "3.83%", ["Adults reporting a TIN", "(survey-reported)"], "FinScope Tanzania 2023", GREEN),
              ("phone", "23.1M", ["Mobile-money adults", "with no TIN"], "FinScope Tanzania 2023", GREEN),
              ("heart", "65.7%", ["Say good citizens", "should always pay the", "taxes they owe"], "Afrobarometer R8, 2021", GREEN),
-             ("bars", "11.68%", ["Tax-to-GDP ratio,", "Tanzania, 2023", "(12.26% in 2024)"], "World Bank WDI", GREEN),
-             ("target", "13.12%", ["Peer-average", "tax-to-GDP benchmark", "(2023)"], "World Bank WDI (peers)", GREEN),
-             ("coins", "TZS 2.72T", ["Estimated annual gap", "to the peer-average", "benchmark"], "Computed from WDI", GOLD)]
+             ("bars", "11.68%", ["Tanzania tax-to-GDP,", "2023", "(12.26% in 2024)"], "World Bank WDI", GREEN),
+             ("target", "13.12%", ["Peer average,", "2023"], "World Bank WDI (peers)", GREEN),
+             ("coins", "TZS 2.72T", ["Annual gap to the", "peer average, 2023"], "Computed from WDI", GOLD)]
     for k, (ic, num, lab, src, colr) in enumerate(tiles):
         x = 14 + 1026 / 14.0 * (2 * k + 1)
         if k:
@@ -324,7 +324,7 @@ def make(out_dir=None):
         c.box(336, top + 31, 110, 77, fc="none", ec=INK, lw=3, r=4, z=5)
     else:
         c.box(336, top + 31, 110, 77, fc="#EEF1F2", ec=INK, lw=3, r=4, z=3)
-    for j, ln in enumerate(["All six stages are built, live, and", "cross-linked. A citizen's actual progress", "in one stage computes forward into", "the next — within the same session."]):
+    for j, ln in enumerate(["All six stages are prototyped", "and linked in a live demonstration."]):
         c.t(391, top + 116 + 13 * j, ln, 9.7, INK)
     # a real QR code for the dashboard (vector squares; qrcode only supplies the module matrix)
     qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=1, border=0)
@@ -379,13 +379,13 @@ def make(out_dir=None):
     c.t(34, 1392, "“", 46, GOLD, "bold", family="DejaVu Serif")
     for j, ln in enumerate(["NGAZI IS NOT SIX INNOVATIONS.", "IT IS ONE TAXPAYER RELATIONSHIP ARCHITECTURE", "DEMONSTRATED THROUGH SIX CONNECTED INTERVENTIONS."]):
         c.t(74, 1385 + 16 * j, ln, 12, "white" if j else GOLD, "bold", ha="left")
-    for k, (ic, lab) in enumerate([("share", "Stronger\nRelationships"), ("shield", "Higher\nCompliance"), ("bars", "Sustainable\nRevenue"), ("group", "Shared\nProsperity")]):
-        x = 558 + 107 * k
+    for k, (ic, lab) in enumerate([("steps", "Progression"), ("share", "Reciprocity"), ("cycle", "Continuity")]):
+        x = 592 + 130 * k
         icon(c, ic, x, 1390, 10, "white", GREEN)
         for j, ln in enumerate(lab.split("\n")):
             c.t(x, 1409 + 11 * j, ln, 9.4, "white")
         if k:
-            c.line([x - 53, x - 53], [1382, 1422], color="#5C8F60", lw=1.0, linestyle=(0, (2, 2)))
+            c.line([x - 65, x - 65], [1382, 1422], color="#5C8F60", lw=1.0, linestyle=(0, (2, 2)))
     for r in range(3):
         for q in range(3):
             c.poly([[994 + 20 * q + 10, 1374 + 18 * r], [994 + 20 * q + 20, 1383 + 18 * r], [994 + 20 * q + 10, 1392 + 18 * r], [994 + 20 * q, 1383 + 18 * r]], GOLD, z=3)
