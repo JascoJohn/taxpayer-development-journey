@@ -42,3 +42,4 @@ _publish_staging/
 *.tar.gz
 *.bak
 
+data/interim/targeting_bootstrap/

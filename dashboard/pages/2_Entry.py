@@ -118,6 +118,15 @@ if targeting.available:
         "An observational ranking by how closely a profile matches current TIN holders: it is not a causal "
         "estimate and has not been checked against tax authority registration records."
     )
+    _tbf = pipeline.targeting_bootstrap()
+    if _tbf.available:
+        _tb = _tbf.value
+        _lk, _lz = _tb["leakage_adjusted_auc"], _tb["leave_one_zone_out"]
+        st.caption(
+            f"Without every banking, credit, insurance, pension, vehicle, land-title, securities and formal-employment item the held-out weighted AUC is "
+            f"{_lk['without_formal_product_columns']['held_out_auc_weighted']:.3f}, so it is not carried by those items. For the register-only model (age, sex, region, urban/rural) "
+            f"the AUC on a zone the model never saw is {_lz['pooled_loZo_auc_weighted']:.3f} pooled ({_lz['range_by_zone'][0]:.2f}–{_lz['range_by_zone'][1]:.2f} by zone; zones with few TIN holders are noisy)."
+        )
 else:
     st.caption(
         "The real-data targeting model is not connected (targeting_model.json missing); nothing is shown "
@@ -256,9 +265,17 @@ with tab_scale:
                              "Mean predicted TIN %": f"{d['mean_predicted_pct']:.1f}",
                              "Observed TIN %": f"{d['observed_tin_rate_pct']:.1f}{mark}"})
             st.dataframe(rows, hide_index=True, width="stretch")
-            st.caption("† low precision: fewer than 10 TIN holders among the unweighted respondents of that decile. "
-                       f"Multiplier at the top 10%: {mult['modelled_top_decile']:.1f}× "
-                       f"(95% bootstrap interval {mult['bootstrap_ci95_top_decile'][0]:.1f}–{mult['bootstrap_ci95_top_decile'][1]:.1f}×).")
+            _tbs = pipeline.targeting_bootstrap()
+            if _tbs.available:
+                _sv, _rg = _tbs.value["models"]["survey"], _tbs.value["models"]["register"]
+                _pr = _tbs.value["dashboard_pair_per_10000_reached"]["register_only"]
+                st.caption("† low precision: fewer than 10 TIN holders among the unweighted respondents of that decile. "
+                           f"Multiplier at the top 10%, refit in every bootstrap replicate: survey model {_sv['multiplier']['median']:.1f}× "
+                           f"(95% interval {_sv['multiplier']['ci95'][0]:.1f}–{_sv['multiplier']['ci95'][1]:.1f}); register data alone (what TRA holds) {_rg['multiplier']['median']:.1f}× "
+                           f"(95% interval {_rg['multiplier']['ci95'][0]:.1f}–{_rg['multiplier']['ci95'][1]:.1f}), about {_pr['targeted']['median']:.0f} against {_pr['random']:.0f} TIN holders per 10,000 reached. "
+                           "The observed top-decile ratio is not shown: too few Entry-age TIN holders for it to be published as a number.")
+            else:
+                st.caption("† low precision: fewer than 10 TIN holders among the unweighted respondents of that decile. The bootstrap intervals are not connected (run `python run_all.py --full-bootstrap`).")
 
         st.caption(
             "\"TIN likelihood\" here means how closely someone's profile matches people who already hold a TIN in the "

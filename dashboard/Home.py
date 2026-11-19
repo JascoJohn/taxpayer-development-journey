@@ -126,6 +126,44 @@ if _mm.available:
 else:
     st.info(f"The mobile-money and TIN analysis is not connected right now ({_mm.note}).")
 
+st.divider()
+
+# ---- Targeting: who to reach first, with intervals ---------------------------
+st.markdown("### Who to Reach First: Targeting With Intervals")
+_tb = PipelineData().targeting_bootstrap()
+if _tb.available:
+    _b = _tb.value
+    _reg, _sur = _b["models"]["register"], _b["models"]["survey"]
+    _leak, _lozo = _b["leakage_adjusted_auc"], _b["leave_one_zone_out"]
+    k1, k2, k3, k4 = st.columns(4)
+    with k1:
+        evidence_tag("computed")
+        k1.metric("Register data alone (age, sex, region, urban/rural)", f"{_reg['multiplier']['median']:.1f}×",
+                  delta=f"95% interval {_reg['multiplier']['ci95'][0]:.1f}–{_reg['multiplier']['ci95'][1]:.1f}", delta_color="off",
+                  help="Top-decile Entry-age adults versus the Entry average, modelled TIN holding, respondent bootstrap refitting the model in every replicate. A ratio of model predictions, not a causal effect.")
+    with k2:
+        evidence_tag("computed")
+        k2.metric("Survey model (all questionnaire items)", f"{_sur['multiplier']['median']:.1f}×",
+                  delta=f"95% interval {_sur['multiplier']['ci95'][0]:.1f}–{_sur['multiplier']['ci95'][1]:.1f}", delta_color="off",
+                  help="Same construction with the full FinScope feature set; it uses items TRA does not hold, so it is an upper reference.")
+    with k3:
+        evidence_tag("computed")
+        k3.metric("Survey model AUC without formal-product items", f"{_leak['without_formal_product_columns']['held_out_auc_weighted']:.3f}",
+                  help="Held-out weighted ROC-AUC after dropping every banking, credit, insurance, pension, vehicle, land-title, securities and formal-employment column (%d source columns)." % _leak["source_columns_dropped"])
+    with k4:
+        evidence_tag("computed")
+        k4.metric("Register-only AUC on a zone it never saw", f"{_lozo['pooled_loZo_auc_weighted']:.3f}",
+                  delta=f"by zone {_lozo['range_by_zone'][0]:.2f}–{_lozo['range_by_zone'][1]:.2f}", delta_color="off",
+                  help="Leave-one-zone-out, nine zones; the held-out zone gets no region effect. Zones with few TIN holders are noisy.")
+    _pair = _b["dashboard_pair_per_10000_reached"]["register_only"]
+    st.caption(
+        f"Per 10,000 Entry-age adults reached, register data alone would find about {_pair['targeted']['median']:.0f} TIN holders (interval {_pair['targeted']['ci95'][0]:.0f}–{_pair['targeted']['ci95'][1]:.0f}) "
+        f"against about {_pair['random']:.0f} by random selection. The observed top-decile ratio is not shown: too few Entry-age TIN holders for it to be published as a number. "
+        "Modelled from FinScope Tanzania 2023; not a measured campaign result."
+    )
+else:
+    st.info(f"The targeting intervals are not connected right now ({_tb.note}).")
+
 st.caption(EVIDENCE_TIER_HELP)
 
 st.divider()

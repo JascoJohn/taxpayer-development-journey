@@ -1,0 +1,204 @@
+{
+ "label": "COMPUTED from FinScope Tanzania 2023 (respondent bootstrap, 95% intervals); a ratio of model predictions, not a causal effect",
+ "type": "COMPUTED (survey data)",
+ "evidence_type": "COMPUTED",
+ "parameters": {
+  "replicates": 1000,
+  "shards": 8,
+  "seed_base": 20230604,
+  "cv_seed_base": 20230603,
+  "cv_folds": 5,
+  "entry_ages": "16-24",
+  "top_decile_share": 0.1,
+  "c_not_retuned_per_replicate": true,
+  "python": "3.14.1",
+  "scikit_learn": "1.9.0",
+  "numpy": "2.4.6",
+  "pandas": "3.0.3",
+  "hashes": {
+   "finscope_csv_sha256": "f55c4f885dee09d32184e4263eb5cb053485ece8d2bc33a80b8c102c026af984",
+   "targeting_config_sha256": "fb68bf3908a5b0f4a14adf41cfb52ba88a4c855bb9d0dd19b009560b7cea1495",
+   "targeting_model_json_sha256": "7dc6fc7342fb6ff07d19f950b0775334486fd89b99631b5fcae8c38b9c5a71e8",
+   "code_sha256": "d8a2d8cd7d5795dbe3c4780a2cd70b1a3536e8db35aefc75c852fdcd26bfdcb3"
+  }
+ },
+ "models": {
+  "register": {
+   "model": "register",
+   "replicates_used": 1000,
+   "replicates_requested": 1000,
+   "multiplier": {
+    "median": 4.432455840832004,
+    "ci95": [
+     3.800939058472374,
+     5.105087795363616
+    ]
+   },
+   "share_replicates_multiplier_below_1": 0.0,
+   "top_decile_per_10000_reached": {
+    "median": 335.29863825940504,
+    "ci95": [
+     133.44942535054753,
+     664.7030145174967
+    ]
+   },
+   "entry_per_10000": 74.62497758251035,
+   "observed_ratio": {
+    "published": false,
+    "reason": "in at least one replicate fewer than 10 TIN holders fall in the top decile: the observed ratio is low precision and its interval reaches zero; do not publish it as a number",
+    "ci95_for_the_record": [
+     0.0,
+     7.739618738222852
+    ]
+   },
+   "observed_ratio_published": false
+  },
+  "survey": {
+   "model": "survey",
+   "replicates_used": 1000,
+   "replicates_requested": 1000,
+   "multiplier": {
+    "median": 6.39482233096149,
+    "ci95": [
+     5.586318098002564,
+     7.359838584915117
+    ]
+   },
+   "share_replicates_multiplier_below_1": 0.0,
+   "top_decile_per_10000_reached": {
+    "median": 480.5875431706387,
+    "ci95": [
+     194.40721049867608,
+     904.632118840856
+    ]
+   },
+   "entry_per_10000": 74.62497758050364,
+   "observed_ratio": {
+    "published": false,
+    "reason": "in at least one replicate fewer than 10 TIN holders fall in the top decile: the observed ratio is low precision and its interval reaches zero; do not publish it as a number",
+    "ci95_for_the_record": [
+     2.231852515644441,
+     9.787161540988993
+    ]
+   },
+   "observed_ratio_published": false
+  }
+ },
+ "leakage_adjusted_auc": {
+  "published_survey_model": {
+   "n_encoded_features": 1293,
+   "held_out_auc_weighted": 0.9456604902109682,
+   "held_out_auc_unweighted": 0.9451421594278736
+  },
+  "without_formal_product_columns": {
+   "n_encoded_features": 809,
+   "held_out_auc_weighted": 0.9410491575290603,
+   "held_out_auc_unweighted": 0.9404834583406012
+  },
+  "source_columns_dropped": 243
+ },
+ "leave_one_zone_out": {
+  "C": 3.0,
+  "pooled_loZo_auc_weighted": 0.7951945049951942,
+  "random_split_auc_weighted": 0.8290760007249449,
+  "range_by_zone": [
+   0.7454413187167295,
+   0.862860325736273
+  ],
+  "by_zone": [
+   {
+    "zone": "Central",
+    "n": 1153,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.7987608212722722,
+    "tin_holders": 55
+   },
+   {
+    "zone": "Eastern",
+    "n": 1295,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.749229768573054,
+    "tin_holders": 79
+   },
+   {
+    "zone": "Lake",
+    "n": 2196,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.8310285761636764,
+    "tin_holders": 69
+   },
+   {
+    "zone": "Northern",
+    "n": 1079,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.7771505291656083,
+    "tin_holders": 51
+   },
+   {
+    "zone": "Southern",
+    "n": 599,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.823158099159394,
+    "tin_holders": 15
+   },
+   {
+    "zone": "Southern Highlands",
+    "n": 720,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.7454413187167295,
+    "tin_holders": 34
+   },
+   {
+    "zone": "Southwest Highlands",
+    "n": 1018,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.8514409593171954,
+    "tin_holders": 31
+   },
+   {
+    "zone": "Western",
+    "n": 838,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.7609972667660312,
+    "tin_holders": 12
+   },
+   {
+    "zone": "Zanzibar",
+    "n": 1017,
+    "low_precision": false,
+    "loZo_auc_weighted": 0.862860325736273,
+    "tin_holders": 15
+   }
+  ],
+  "note": "the zones have few TIN holders; zones flagged low_precision rest on fewer than 10 TIN holders"
+ },
+ "publication_rules": [
+  "a multiplier is published with its 95% interval",
+  "the observed top-decile ratio is published only with its interval and only when every replicate has at least 10 TIN holders in the top decile",
+  "numerators under 10 are never written"
+ ],
+ "dashboard_pair_per_10000_reached": {
+  "random_is_the_observed_entry_rate_per_10000": 76.95,
+  "register_only": {
+   "targeted": {
+    "median": 341.0774769520227,
+    "ci95": [
+     292.4822605494492,
+     392.8365058532303
+    ]
+   },
+   "random": 76.95
+  },
+  "survey_model": {
+   "targeted": {
+    "median": 492.08157836748666,
+    "ci95": [
+     429.8671776412973,
+     566.3395791092183
+    ]
+   },
+   "random": 76.95
+  }
+ },
+ "elapsed_seconds": 2268
+}

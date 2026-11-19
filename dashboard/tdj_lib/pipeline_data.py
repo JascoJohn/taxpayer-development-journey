@@ -81,6 +81,7 @@ class PipelineData:
         self._region_activity = _load_json(pipeline_dir, "finscope_region_activity.json")
         self._active_benchmark = _load_json(pipeline_dir, "finscope_active_benchmark.json")
         self._mzani = _load_json(pipeline_dir, "mzani_turnover.json")
+        self._targeting_bootstrap = _load_json(pipeline_dir, "targeting_bootstrap.json")
         self._targeting_model = _load_json(pipeline_dir, "targeting_model.json")
         self._afrobarometer = _load_json(pipeline_dir, "afrobarometer_morale.json")
         self._stage_economics = _load_json(pipeline_dir, "stage_economics.json")
@@ -233,6 +234,16 @@ class PipelineData:
             return Figure(value=None, available=False, note=f"stage '{stage}' not in stage_economics.json")
         return Figure(value=s, available=True)
 
+    def stage_economics_bases(self, stage: str) -> Figure:
+        """Table 5.1 bracket of one stage: {"central": ..., "high": ..., "low": ...}, each with the income basis, revenue per registrant, share owing tax, ROI (median, 80% interval) and P(ROI >= 1), from
+        stage_economics.json (income_bases). Only Active and Enterprise differ between bases."""
+        if not self._stage_economics or "income_bases" not in self._stage_economics:
+            return Figure(value=None, available=False, note="stage_economics.json has no income_bases")
+        out = {k: v["stages"].get(stage) for k, v in self._stage_economics["income_bases"].items()}
+        if not all(out.values()):
+            return Figure(value=None, available=False, note=f"stage '{stage}' not in the income bases")
+        return Figure(value={k: dict(v, label=self._stage_economics["income_bases"][k]["label"]) for k, v in out.items()}, available=True)
+
     def tax_morale_components(self) -> Figure:
         """Tax-morale COMPONENTS from Afrobarometer Round 8 Tanzania (weighted percentages with 95% CIs, aggregates only; no composite):
         {indicator id: {"pct", "ci95_low_pct", "ci95_high_pct", "variable", "n_unweighted_base"}} for all adults 18+, plus the source citation."""
@@ -240,6 +251,13 @@ class PipelineData:
             return Figure(value=None, available=False, note="afrobarometer_morale.json not found in pipeline directory")
         est = {e["indicator"]: e for e in self._afrobarometer["estimates"] if e["level"] == "All adults 18+" and not e.get("suppressed")}
         return Figure(value={"indicators": est, "citation": self._afrobarometer["source"]["citation"], "fieldwork": self._afrobarometer["source"]["fieldwork"]}, available=True)
+
+    def targeting_bootstrap(self) -> Figure:
+        """Cached respondent bootstrap of the Entry top-decile multiplier (register-only and survey model, 95% intervals), the leakage-adjusted AUC and the leave-one-zone-out AUC
+        (outputs/cache/targeting_bootstrap.json, src/04_models/targeting_bootstrap.py). Aggregates only; the observed ratio is published only with its interval."""
+        if not self._targeting_bootstrap:
+            return Figure(value=None, available=False, note="targeting_bootstrap.json not found (run `python run_all.py --full-bootstrap`)")
+        return Figure(value=self._targeting_bootstrap, available=True)
 
     def mzani_meta(self) -> Figure:
         """Label, coverage statements and cell minimum of the Mzani wa Kodi turnover bands (outputs/stats/mzani_turnover.json, written by src/03_features/hbs_turnover.py)."""

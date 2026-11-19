@@ -39,6 +39,7 @@ def parse_args(argv=None):
                    help="empty outputs/stats, outputs/tables, outputs/figures, data/interim, data/processed first (never data/raw, docs, report/)")
     p.add_argument("--fetch", action="store_true", help="opt-in network fetch of the World Bank WDI snapshots (data/raw/worldbank/); no network call without it")
     p.add_argument("--screenshots", action="store_true", help="opt-in: screenshots of the 7 dashboard pages with Playwright (outputs/figures/dashboard_*.png); needs environment/requirements-screenshots.txt and a Chromium download")
+    p.add_argument("--full-bootstrap", action="store_true", help="recompute the targeting multiplier bootstrap (1,000 respondent replicates x 2 models, refit in every replicate; tens of minutes) and its cache outputs/cache/targeting_bootstrap.json; without it the cache is read")
     p.add_argument("--llm", action="store_true", help="opt-in LLM calls (not used in this project yet)")
     return p.parse_args(argv)
 
@@ -126,6 +127,7 @@ def main(argv=None):
     import finscope_active_benchmark_loader
     import tin_mobile_money
     import targeting_model
+    import targeting_bootstrap
     import afrobarometer_morale
     import agent_inputs
     import twin_inputs
@@ -171,6 +173,14 @@ def main(argv=None):
         targeting_model.run_targeting_model()
     else:
         print("  skipped (--from-processed): using", os.path.relpath(paths.AGENT_CELLS, paths.ROOT), "and", os.path.relpath(paths.TARGETING_MODEL, paths.ROOT), "if present")
+
+    print("\n" + "=" * 60)
+    print("STEP 2c: Targeting multiplier intervals (respondent bootstrap), leakage-adjusted AUC, leave-one-zone-out AUC (cached; --full-bootstrap recomputes)")
+    print("=" * 60)
+    if args.full_bootstrap and (args.from_processed or not os.path.exists(paths.FINSCOPE_CSV)):
+        print("--full-bootstrap needs the FinScope microdata and cannot be combined with --from-processed", file=sys.stderr)
+        return 2
+    targeting_bootstrap.run_targeting_bootstrap(full=args.full_bootstrap)
 
     print("\n" + "=" * 60)
     print("STEP 3: Tax exemption and relief rates (MoF workbook, Q1 2023/24)")
