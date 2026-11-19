@@ -1,4 +1,4 @@
-"""Fig 5.1 data: modelled probability that an adult holds a TIN: today (the observed rate), each intervention alone, all combined (tax-morale model, outputs/stats/economic_model.json)."""
+"""Fig 5.1 data: modelled probability that an adult reports a TIN, if every adult were reached: today (the observed rate), each intervention alone, all combined (tax-morale model, outputs/stats/economic_model.json)."""
 import textwrap
 
 import _style as S
@@ -16,11 +16,11 @@ def make():
     vals = [v for _, v in solo] + [m["combined_intervention_probability"] * 100]
     fig, ax = plt.subplots(figsize=(8.6, 4.8))
     bars = ax.bar(range(len(vals)), vals, color=[S.SLATE] * len(solo) + [S.NAVY], width=0.62)
-    ax.axhline(base, color=S.GOLD, linestyle="--", linewidth=1.3, label="Today: observed adult TIN rate (%.2f%%)" % base)
-    ax.axhline(m["naive_sum_of_solo_effects_pct"], color=S.GREY, linestyle=":", linewidth=1.1, label="Naive sum of the six solo effects (%.1f%%; not a meaningful probability)" % m["naive_sum_of_solo_effects_pct"])
+    ax.axhline(base, color=S.GOLD, linestyle="--", linewidth=1.3, label="Today: survey-reported adult TIN rate (%.2f%%)" % base)
+    ax.axhline(m["naive_sum_of_solo_effects_pct"], color=S.GREY, linestyle=":", linewidth=1.1, label="Today's rate plus the six separate gains (%.2f%%)" % m["naive_sum_of_solo_effects_pct"])
     ax.set_xticks(range(len(vals)))
-    ax.set_xticklabels(["\n".join(textwrap.wrap(l, 13)) for l in labels], fontsize=8)
-    ax.set_ylabel("Modelled probability that an adult holds a TIN (%)")
+    ax.set_xticklabels(["\n".join(textwrap.wrap(l, 13, break_long_words=False)) for l in labels], fontsize=8)
+    ax.set_ylabel("Modelled probability that an adult reports a TIN (%),\nif every adult were reached")
     ax.set_ylim(0, max(max(vals), m["naive_sum_of_solo_effects_pct"]) * 1.25)
     S.label_bars(ax, bars, "{:.1f}", "%")
     ax.legend(loc="upper left", fontsize=8)
