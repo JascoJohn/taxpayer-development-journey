@@ -1,4 +1,6 @@
 """TIN holding by lifecycle segment, FinScope Tanzania 2023, survey-weighted, with 95% confidence intervals (outputs/tables/tin_by_segment.csv)."""
+import textwrap
+
 import _style as S
 import matplotlib.pyplot as plt
 
@@ -16,8 +18,8 @@ def make():
             b.set_hatch("//")
             b.set_edgecolor("white")
     ax.set_xticks(list(x))
-    ax.set_xticklabels([r["label"].replace(" (", "\n(") for r in rows], fontsize=8)
-    ax.set_ylabel("Adults holding a TIN (%)")
+    ax.set_xticklabels([textwrap.fill(r["label"].replace(" (", "\n("), 17, replace_whitespace=False) for r in rows], fontsize=8)
+    ax.set_ylabel("Adults reporting a TIN (%)")
     ax.set_ylim(0, max(float(r["ci95_high_pct"]) for r in rows) * 1.15)
-    ax.text(0.99, 0.97, "bars: estimate; whiskers: 95% CI; hatched: low precision (fewer than 10 TIN holders)", transform=ax.transAxes, ha="right", va="top", fontsize=7.5, color=S.GREY)
+    ax.text(0.99, 0.97, "bars: estimate; whiskers: 95% CI; hatched: low precision (fewer than 10 survey-reported TIN holders)", transform=ax.transAxes, ha="right", va="top", fontsize=7.5, color=S.GREY)
     return S.save(fig, "fig_a1_tin_by_segment")

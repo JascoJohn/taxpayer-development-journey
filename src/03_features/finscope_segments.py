@@ -106,7 +106,7 @@ def lifecycle_stage(df):
         (age > SEED_AGE_MAX) & (age < 25),
         (age >= 25) & (age < 65) & is_biz & ~formal,           # active: informal business owners
         (age >= 25) & (age < 65) & is_biz & formal,            # enterprise: owners with a formal step
-        (age >= 25) & (age < 45) & ~is_biz,                    # workers 25-44
+        (age >= 25) & (age < 45) & ~is_biz,                    # non-business owners 25-44
         (age >= 45) & (age < 65) & ~is_biz,                    # asset
         (age >= 65),
     ]

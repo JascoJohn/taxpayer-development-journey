@@ -17,7 +17,7 @@ def make():
     ax.plot(x, pred, color=S.GOLD, marker="o", linewidth=2, label="Mean predicted rate (calibrated)")
     ax.set_xticks(x)
     ax.set_xlabel("Decile of predicted propensity (1 = highest ... 10 = lowest)")
-    ax.set_ylabel("Adults holding a TIN (%)")
+    ax.set_ylabel("Adults reporting a TIN (%)")
     ax.legend(loc="upper right", fontsize=8)
     ax.text(0.99, 0.66, "hatched: low precision (fewer than 10 TIN holders);\ndeciles without a bar have no TIN holder in the sample", transform=ax.transAxes, ha="right", va="top", fontsize=7.5, color=S.GREY)
     return S.save(fig, "fig_a3_targeting_deciles")

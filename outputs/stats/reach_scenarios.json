@@ -2262,7 +2262,7 @@
   "table5_1_new_registrants_median_four_levers": 6910.468636871816
  },
  "notes": [
-  "Workers 25-44 have no revenue lever and are not in any scenario",
+  "Non-business owners 25-44 have no revenue lever and are not in any scenario",
   "constant 2024 TZS: no wage growth or inflation; revenue is income tax and presumptive tax only (no VAT, no second-round effects)",
   "80% bands are the 10th to 90th percentile of the Monte Carlo (the same draws as Table 5.1)"
  ]

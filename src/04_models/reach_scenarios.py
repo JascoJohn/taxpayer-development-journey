@@ -3,11 +3,11 @@
 Replaces the retired digital twin (src/retired/README.md; PASS6A D2, PASS6C E1, PASS6D F4/F5). Same arithmetic as Table 5.1 (stage_economics.py), so the two cannot disagree:
     new registrants of a stage = population x reach x [expit(logit p + ln OR) - p]      (the same 10,000 draws and seed as Table 5.1)
     registrants alive in year t = sum over entry years c (ramp of 5 years) of new/ramp x persistence^(t - c)
-    incremental revenue in year t = alive x revenue per registrant (CENTRAL income basis: HBS 2017/18 receipts of owners with receipts; stage mapping B; Workers 25-44 have no lever)
+    incremental revenue in year t = alive x revenue per registrant (CENTRAL income basis: HBS 2017/18 receipts of owners with receipts; stage mapping B; Non-business owners 25-44 have no lever)
     active payers owing tax = alive x the share of the stage's registrants who owe tax (> nil) under the central basis
 Levers: Entry, Active, Enterprise, Legacy (four) and, as a secondary set, Entry + Active. Reach: Table 5.1's own draws (triangular, stage-specific) and a flat 10, 25 and 50%.
 The TRA REGISTRATION TREND is its own component, drawn as its own dashed line and never added to a tool's effect: the formalisation trend of twin_inputs.json (calibrated on the TRA series)
-registers new taxpayers each year whatever the tools do; they are priced with the TIN-holder-weighted mix of the stages' revenue per registrant (Workers 25-44 at the ILFS non-owner value).
+registers new taxpayers each year whatever the tools do; they are priced with the TIN-holder-weighted mix of the stages' revenue per registrant (Non-business owners 25-44 at the ILFS non-owner value).
 Scale check: the year-10 increment against the TRA FY2024/25 collections (individuals' income tax; domestic revenue; total gross), CITED from the workbook (tra_collections.py).
 Also stored: the full-reach implication of Figure 5.1 (the morale model has no reach factor), so that it is not read as comparable with Table 5.1.
 Everything here is MODELLED (scenario); revenue per registrant is COMPUTED from survey data; the TRA figures are CITED. Not a forecast.
@@ -67,7 +67,7 @@ def trend_component(tax, hbs, specs, inputs, seg_rows, draws, ramp):
     taxd, owing = np.zeros(draws), 0.0
     for s, h in holders.items():
         wk = h / tot
-        if s == "workers":                                                       # HBS has no wage income: Workers 25-44 are priced at the ILFS non-owner value (the published Active value of Table 40)
+        if s == "workers":                                                       # HBS has no wage income: Non-business owners 25-44 are priced at the ILFS non-owner value (the published Active value of Table 40)
             w = tax["workers_ilfs"]
             taxd += wk * np.clip(rng.normal(w["mean_tax_per_person_tzs"], w["se_tzs"], draws), 0.0, None)
             owing += wk * w["share_paying_any_tax_pct"] / 100.0
@@ -153,7 +153,7 @@ def run_reach_scenarios(from_processed=False, json_path=None, year10_csv=None, b
                                                                       "mix_revenue_per_registrant_median_tzs": tr["mix_tax_median_tzs"], "share_owing_tax": tr["share_owing"],
                                                                       "year10_active_payers_owing_tax_median": float(np.median(tr["payers"][-1])), "year10_revenue_median_tzs": float(np.median(tr["rev"][-1]))},
               "scale_check_tra_fy2024_25": scale, "figure_5_1_full_reach_implication": fig51,
-              "notes": ["Workers 25-44 have no revenue lever and are not in any scenario", "constant 2024 TZS: no wage growth or inflation; revenue is income tax and presumptive tax only (no VAT, no second-round effects)",
+              "notes": ["Non-business owners 25-44 have no revenue lever and are not in any scenario", "constant 2024 TZS: no wage growth or inflation; revenue is income tax and presumptive tax only (no VAT, no second-round effects)",
                         "80% bands are the 10th to 90th percentile of the Monte Carlo (the same draws as Table 5.1)"]}
     for p in (json_path, year10_csv, by_year_csv):
         os.makedirs(os.path.dirname(p), exist_ok=True)

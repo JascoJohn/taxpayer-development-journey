@@ -436,7 +436,7 @@ names:
   enterprise: {swahili: "Hatua za Kodi",           english: "Tax Progression Dashboard",           full: "Hatua za Kodi (Tax Progression Dashboard)"}
   asset:      {swahili: "Mali-Alama za Kodi",      english: "Tax Asset Score",                     full: "Mali-Alama za Kodi (Tax Asset Score)"}
   legacy:     {swahili: "Urithi wa Kodi",          english: "Tax Legacy Score",                    full: "Urithi wa Kodi (Tax Legacy Score)"}
-  workers:    {swahili: "",                         english: "Workers 25–44 (no revenue lever)",    full: "Workers 25–44 (no revenue lever)"}   # Pass 6B-1: stage mapping B; not a tool
+  workers:    {swahili: "",                         english: "Non-business owners 25–44",    full: "Non-business owners 25–44"}   # Pass 6B-1: stage mapping B; not a tool
   platform:   {swahili: "Jukwaa la Ngazi",         english: "Ngazi Platform",                      full: "Ngazi Platform (Jukwaa la Ngazi)"}
 
 # Pass 6B-1: HBS 2017/18 turnover of non-farm household-business owners (src/03_features/hbs_turnover.py). Every choice below is registered in docs/assumptions_register.csv (sign-off PENDING).
@@ -1156,7 +1156,7 @@ assumptions:
   stage.reach_share:
     value: {entry: [0.02, 0.05, 0.10], active: [0.01, 0.03, 0.08], enterprise: [0.01, 0.03, 0.08], asset: [0.005, 0.02, 0.05], legacy: [0.005, 0.02, 0.05]}
     basis: ASSUMPTION
-    source: "Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Workers 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off."
+    source: "Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Non-business owners 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off."
     feeds: "C041-C053 (Table 40)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
@@ -1218,8 +1218,8 @@ assumptions:
   stage.workers_unpriced:
     value: true
     basis: ASSUMPTION
-    source: "Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING."
-    feeds: "Table 5.1, Table 5.2, Figures 5.2-5.4 (the Workers group is excluded from every priced stage)"
+    source: "Pass 6B-1, stage mapping B. Non-business owners 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING."
+    feeds: "Table 5.1, Table 5.2, Figures 5.2-5.4 (the non-business owners 25-44 group is excluded from every priced stage)"
     group: stage_mapping
   stage.income_basis_bracket:
     value: {central: hbs_receipts_owners, high: ilfs_gross, low: hbs_all_owners}

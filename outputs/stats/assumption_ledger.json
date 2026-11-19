@@ -1084,11 +1084,11 @@
     {
       "assumption_id": "ASS-6AA17FDF",
       "key": "stage.reach_share",
-      "assumption_text": "stage.reach_share = {\"entry\": [0.02, 0.05, 0.1], \"active\": [0.01, 0.03, 0.08], \"enterprise\": [0.01, 0.03, 0.08], \"asset\": [0.005, 0.02, 0.05], \"legacy\": [0.005, 0.02, 0.05]}: Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Workers 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off.",
+      "assumption_text": "stage.reach_share = {\"entry\": [0.02, 0.05, 0.1], \"active\": [0.01, 0.03, 0.08], \"enterprise\": [0.01, 0.03, 0.08], \"asset\": [0.005, 0.02, 0.05], \"legacy\": [0.005, 0.02, 0.05]}: Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Non-business owners 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Workers 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off.",
+      "evidence_support": "Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Non-business owners 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -1178,17 +1178,17 @@
     {
       "assumption_id": "ASS-56D0485F",
       "key": "stage.workers_unpriced",
-      "assumption_text": "stage.workers_unpriced = true: Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING.",
+      "assumption_text": "stage.workers_unpriced = true: Pass 6B-1, stage mapping B. Non-business owners 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING.",
+      "evidence_support": "Pass 6B-1, stage mapping B. Non-business owners 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no programme cost and no reach: neither survey records their taxable income reliably (HBS 2017/18 has no wage income; ILFS earnings are not a taxable-turnover base for a registrant). Owner decision; the effect is that the 12.1M adults are absent from every revenue and ROI figure. Sign-off PENDING.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "Table 5.1, Table 5.2, Figures 5.2-5.4 (the Workers group is excluded from every priced stage)",
+      "section_reference": "Table 5.1, Table 5.2, Figures 5.2-5.4 (the non-business owners 25-44 group is excluded from every priced stage)",
       "basis": "ASSUMPTION",
       "value": true,
-      "feeds": "Table 5.1, Table 5.2, Figures 5.2-5.4 (the Workers group is excluded from every priced stage)",
+      "feeds": "Table 5.1, Table 5.2, Figures 5.2-5.4 (the non-business owners 25-44 group is excluded from every priced stage)",
       "group": "stage_mapping"
     },
     {

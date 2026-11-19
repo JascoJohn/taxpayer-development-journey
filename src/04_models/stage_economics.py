@@ -31,7 +31,7 @@ Block E3.4 additions
     10 and 20 years; Asset is excluded from the portfolio cost and ROI, and its revenue is reported separately.
 
 Pass 6B-1 (stage mapping B and bracketed revenue per registrant)
-  * Active = business owners without a formal step, Enterprise = owners with a formal step (both 25-64); Workers 25-44 are unpriced (no revenue lever); Asset = non-owners 45-64.
+  * Active = business owners without a formal step, Enterprise = owners with a formal step (both 25-64); Non-business owners 25-44 are unpriced (no revenue lever); Asset = non-owners 45-64.
   * INCOME BASIS of the Active and Enterprise revenue per registrant (`income_basis`): hbs_receipts_owners = CENTRAL (HBS 2017/18 receipts of owners with receipts, CPI-uprated, presumptive
     schedule; Pass 6D variant V3), ilfs_gross = bracket HIGH (ILFS 2024 gross receipts, V1), hbs_all_owners = bracket LOW (HBS, all owners, zeros kept, V2). ILFS is never shown alone. Entry, Asset
     and Legacy keep the ILFS values in every basis.
@@ -67,11 +67,11 @@ REPORT_TABLE40 = {"seed": "260M-1.06B / not scored", "entry": "420M / 8.7-9B / 2
 # stage -> (age range of the target group, type of persons whose age-earnings profile applies)
 GROUP = {"entry": (16, 24, "all"), "active": (25, 64, "owner"), "enterprise": (25, 64, "owner"), "asset": (45, 64, "nonowner"), "legacy": (65, 97, "all")}      # stage mapping B (Pass 6B-1)
 OWNER_STAGES = ("active", "enterprise")
-LEVERS = ["entry", "active", "enterprise", "legacy"]                         # the four stages with a revenue lever (Seed is cost only, Asset has no cost, Workers are unpriced)
+LEVERS = ["entry", "active", "enterprise", "legacy"]                         # the four stages with a revenue lever (Seed is cost only, Asset has no cost, Non-business owners 25-44 are unpriced)
 # income basis -> role in the bracket (owner decision 2)
 BASES = {"central": "hbs_receipts_owners", "high": "ilfs_gross", "low": "hbs_all_owners"}
 assert A("stage.income_basis_bracket") == BASES, "config.yaml stage.income_basis_bracket differs from the bases implemented in stage_economics.py"
-assert A("stage.workers_unpriced") is True, "only the Workers-unpriced mapping is implemented"
+assert A("stage.workers_unpriced") is True, "only the non-business-owners-unpriced mapping is implemented"
 BASIS_LABEL = {"hbs_receipts_owners": "HBS 2017/18 receipts of owners with receipts in the reference month (central)", "ilfs_gross": "ILFS 2024 gross receipts of owners (bracket high; never shown alone)",
                "hbs_all_owners": "HBS 2017/18 receipts of all owners, zeros kept (bracket low)"}
 HBS_KEY = {"hbs_receipts_owners": "central_owners_with_receipts", "hbs_all_owners": "low_all_owners"}
@@ -181,7 +181,7 @@ def ilfs_tax_base(sav_path=None):
                                   "tax_basis": "presumptive income tax on annualised ILFS gross business receipts (Q87B) up to TZS 200M, owners aged 25-64 %s a registered business (Q38A 1-5)" % ("without" if s == "active" else "with")}
         assert not disclosure.is_suppressed(out[s + "_ilfs_gross"]["n_unweighted"])
 
-    # ---- Workers 25-44 (non-owners outside the formal net): the ILFS value used ONLY to price the TRA registration trend in reach_scenarios.py (Workers have no revenue lever and are not a Table 5.1 stage)
+    # ---- Non-business owners 25-44 (non-owners outside the formal net): the ILFS value used ONLY to price the TRA registration trend in reach_scenarios.py (Non-business owners 25-44 have no revenue lever and are not a Table 5.1 stage)
     wm = (age >= 25) & (age <= 44) & ~owner & outside_formal
     mean, sem = _weighted_mean_se(tax_pit[wm], w[wm])
     out["workers_ilfs"] = {"n_unweighted": int(wm.sum()), "mean_tax_per_person_tzs": mean, "se_tzs": sem, "share_paying_any_tax_pct": float(np.average(tax_pit[wm] > 0, weights=w[wm]) * 100),

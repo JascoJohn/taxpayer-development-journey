@@ -468,7 +468,7 @@ def run_scenario_analysis(params):
             "finscope_tin_pct": 26.5,  # mapping B, FinScope 2023
         },
         {
-            "name": "Workers 25-44 (no revenue lever)",
+            "name": "Non-business owners 25-44",
             "population": params["workers_stage_population"],
             "avg_income": 0,
             "tax_pp": 0,

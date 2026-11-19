@@ -3,6 +3,7 @@
 # pytest (and its dependencies) added in Block A for the tests in tests/.
 # openpyxl, et_xmlfile (MoF workbook) and pyreadstat (ILFS and census .sav files) added in Block B; same versions as the MultiAgent environment.
 # matplotlib (and its dependencies) added in Block F4 for src/06_figures; versions as in the MultiAgent environment.
+# python-docx and lxml added in Pass 6B-2 (src/tools/claims_check.py reads the report .docx to locate the numbers of the claims map).
 # PyMuPDF added in Block F5: the tests that check transcribed figures against the saved TRA / NBS / BoT documents read them (those tests skip when the documents are absent).
 altair==6.2.2
 anyio==4.14.0
@@ -26,6 +27,7 @@ iniconfig==2.3.1
 itsdangerous==2.2.0
 Jinja2==3.1.6
 joblib==1.5.3
+lxml==6.1.1
 jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 kiwisolver==1.5.0
@@ -50,6 +52,7 @@ pytest==9.2.0
 python-dateutil==2.9.0.post0
 python-multipart==0.0.32
 qrcode==8.2
+python-docx==1.2.0
 PyYAML==6.0.3
 referencing==0.37.0
 reportlab==5.0.0

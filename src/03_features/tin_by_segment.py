@@ -38,7 +38,7 @@ from finscope_segments import (ADULT_STAGES, SEED_AGE_MAX, SEED_AGE_MIN, WEIGHT_
                                survey_weights, tin_holder_mask)
 from survey_design import ci95, design_df, linearised_ratio
 
-STAGE_LABELS = {"entry": "Entry", "active": "Active", "enterprise": "Enterprise", "workers": "Workers 25–44 (no revenue lever)", "asset": "Asset", "legacy": "Legacy"}
+STAGE_LABELS = {"entry": "Entry", "active": "Active", "enterprise": "Enterprise", "workers": "Non-business owners 25–44", "asset": "Asset", "legacy": "Legacy"}
 STAGE_DEFINITIONS = {
     "entry": "age %d-24" % (SEED_AGE_MAX + 1),
     "active": "business owner (BusO == 'Business owners') with no formal step (D6_4a != 'Yes', including not asked), age 25-64",

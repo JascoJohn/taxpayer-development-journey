@@ -3,7 +3,9 @@
 Same layout and sections as the submitted poster (title and tagline, banner, six-stage journey, "key evidence at a glance", problem / platform / solution, evidence base,
 demonstrated and live, modelled impact, implications for tax administration, closing quote and author line) with: the agreed tool names (config.yaml `names:`), no tax-authority
 logo, no challenge text, a neutral QR placeholder, and every number taken from the CURRENT values of docs/claims_map.csv (POSTER_NUMBERS below lists each one with its claim_id;
-the WVS 61.8 % is gone; the old modelled 58.2 % / 40.4 % are replaced by the current modelled 10.17 % / 5.56 %, labelled MODELLED). The look follows the journey graphic
+the WVS 61.8 % is gone). Pass 6B-2: Tanzania's tax-to-GDP tile is 2023 against the peers' 2023 (2024 in brackets); the "MODELLED IMPACT (PORTFOLIO)" panel is replaced by "THREE PRINCIPLES"
+(progression, reciprocity, continuity), so the poster carries no modelled compliance probability (10.17 %, 5.56 %, 12.0 %); the evidence base lists the Household Budget Survey 2017/18 and the
+TRA collection statistics FY2024/25. The look follows the journey graphic
 (src/06_figures/journey_graphic.py): stage colours, ink, DejaVu Sans / Serif, flat cards.
 
 The two portrait/emblem crops in src/06_figures/assets are taken from the submitted poster (illustrations without text). The laptop picture is assets/poster_dashboard_home.png
@@ -34,17 +36,13 @@ ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 # every number on the poster, with the claim of docs/claims_map.csv it comes from (current value) and its label
 POSTER_NUMBERS = [
     ("34.1M", "adults, weighted population base (FinScope Tanzania 2023)", "C001 (C016)", "COMPUTED"),
-    ("3.83%", "adults holding a TIN (key-evidence tile and problem panel)", "C002 (C011)", "COMPUTED"),
+    ("3.83%", "adults reporting a TIN (survey-reported; key-evidence tile and problem panel)", "C002 (C011)", "COMPUTED"),
     ("23.1M", "mobile-money adults with no TIN", "C015", "COMPUTED"),
     ("65.7%", "civic duty: good citizens should always pay the taxes they owe (Afrobarometer R8, 2021; replaces the removed 61.8% WVS / 59.8%)", "C068 (C004, C013)", "COMPUTED"),
-    ("12.26%", "Tanzania tax-to-GDP, 2024 (WDI)", "C003 (C005, C010)", "COMPUTED from CITED series"),
+    ("11.68%", "Tanzania tax-to-GDP, 2023 (12.26% in 2024), like for like with the peers", "C003 (C005, C010)", "COMPUTED from CITED series"),
     ("13.12%", "peer-average benchmark, 2023 (GHA, KEN, RWA, UGA)", "C003 (C005, C010)", "COMPUTED from CITED series"),
-    ("TZS 2.72T", "estimated annual gap to the peer-average benchmark (1.45 pp)", "C003 (C005, C010)", "COMPUTED from CITED series"),
+    ("TZS 2.72T", "estimated annual gap to the peer-average benchmark (1.45 pp, 2023)", "C003 (C005, C010)", "COMPUTED from CITED series"),
     ("n = 9,915", "FinScope Tanzania 2023 respondents (evidence base box)", "C006", "COMPUTED"),
-    ("10.17%", "modelled compliance probability, all interventions combined (replaces 58.2%)", "C054, C069 (C008)", "MODELLED"),
-    ("5.56%", "modelled compliance probability, best single intervention (replaces 40.4%)", "C054, C069 (C008)", "MODELLED"),
-    ("12.0%", "naive sum of the solo effects (not a probability; 'below the naive sum of parts')", "C008", "MODELLED"),
-    ("3.83%", "modelled baseline, recalibrated to the observed TIN rate", "C008, C069", "MODELLED"),
 ]
 
 STAGES = [("seed", "LEARN", ["Play. Learn. Build", "identity early."], ["(Tax Learning Games)"]),
@@ -248,10 +246,10 @@ def make(out_dir=None):
     c.line([674, 1040], [612, 612], color=DIVIDER, lw=1.5)
     c.box(14, 626, 1026, 166, fc="white", ec="#CFD8DC", lw=1.2, r=12, z=2)
     tiles = [("people", "34.1M", ["Adults in Tanzania", "(weighted population", "base)"], "FinScope Tanzania 2023", GREEN),
-             ("idcard", "3.83%", ["Adults holding a", "Taxpayer Identification", "Number (TIN)"], "FinScope Tanzania 2023", GREEN),
+             ("idcard", "3.83%", ["Adults reporting a", "Taxpayer Identification", "Number (TIN)"], "FinScope Tanzania 2023", GREEN),
              ("phone", "23.1M", ["Mobile-money adults", "with no TIN"], "FinScope Tanzania 2023", GREEN),
              ("heart", "65.7%", ["Say good citizens", "should always pay the", "taxes they owe"], "Afrobarometer R8, 2021", GREEN),
-             ("bars", "12.26%", ["Tax-to-GDP ratio,", "Tanzania, 2024"], "World Bank WDI", GREEN),
+             ("bars", "11.68%", ["Tax-to-GDP ratio,", "Tanzania, 2023", "(12.26% in 2024)"], "World Bank WDI", GREEN),
              ("target", "13.12%", ["Peer-average", "tax-to-GDP benchmark", "(2023)"], "World Bank WDI (peers)", GREEN),
              ("coins", "TZS 2.72T", ["Estimated annual gap", "to the peer-average", "benchmark"], "Computed from WDI", GOLD)]
     for k, (ic, num, lab, src, colr) in enumerate(tiles):
@@ -273,7 +271,7 @@ def make(out_dir=None):
     c.t(844, 830, "THE SOLUTION: WHY NGAZI IS DIFFERENT", 14.5, GREEN, "bold")
     prob = [["Current reforms improve transactions", "— registration, filing, enforcement —", "not relationships."],
             ["Each life-stage interaction", "resets to zero — we treat the same", "citizen as a stranger."],
-            ["High civic duty (65.7% say", "taxes should always be paid)", "but very low formal participation", "(3.83% TIN) — a relationship gap,", "not a willingness gap."]]
+            ["High civic duty (65.7% say", "taxes should always be paid)", "but very low formal participation", "(3.83% report a TIN) — a relationship gap,", "not a willingness gap."]]
     sol = [["Relationship architecture,", "not standalone products."], ["Persistent taxpayer identity", "across the entire life journey."],
            ["Trust, history, and compliance", "compound over time — never", "reset at every encounter."]]
     prow = [(892, "gear"), (975, "cycle"), (1057, "chart_down")]
@@ -306,13 +304,14 @@ def make(out_dir=None):
     top, hbox = 1110, 258
     c.box(14, top, 238, hbox, fc="white", ec="#CFD8DC", lw=1.0, r=10, z=2)
     c.t(133, top + 20, "EVIDENCE BASE", 13.5, INK, "bold")
-    ev = ["FinScope Tanzania 2023 (n = 9,915)", "& ILFS 2024", "World Bank & International", "Benchmarks", "Behavioural Economics &", "Tax Morale Studies", "Monte Carlo Simulation",
-          "Agent-Based Modelling", "Survey-weighted Firth logit", "Held-out targeting model (ROC-AUC)"]
-    ys = [46, 60, 80, 94, 114, 128, 152, 174, 196, 218]
-    for yy, ln in zip(ys, ev):
-        c.t(48, top + yy, ln, 9.9, INK, ha="left")
-    for yy in (46, 80, 114, 152, 174, 196, 218):
+    ev = [("FinScope Tanzania 2023 (n = 9,915)", "& ILFS 2024"), ("Household Budget Survey 2017/18",), ("TRA collection statistics,", "FY2024/25"), ("World Bank & International", "Benchmarks"),
+          ("Behavioural Economics &", "Tax Morale Studies"), ("Monte Carlo & Agent-Based Models",), ("Survey-weighted Firth logit",), ("Held-out targeting model (ROC-AUC)",)]
+    yy = 42
+    for item in ev:
         icon(c, "check", 30, top + yy, 6.5, GREEN)
+        for j, ln in enumerate(item):
+            c.t(48, top + yy + 12 * j, ln, 9.6, INK, ha="left")
+        yy += 12 * len(item) + 5
     c.t(133, top + 238, "Every number is labelled by evidence type:", 9.2, DARK, style="italic")
     c.t(133, top + 251, "COMPUTED · MODELLED · CITED", 9.2, DARK, style="italic")
     c.box(266, top, 250, hbox, fc="white", ec="#CFD8DC", lw=1.0, r=10, z=2)
@@ -350,25 +349,24 @@ def make(out_dir=None):
     c.t(372, top + 213, "taxpayer-development-", 8.9, INK, ha="left")
     c.t(372, top + 226, "journey.streamlit.app", 8.9, INK, ha="left")
     c.box(530, top, 238, hbox, fc="white", ec="#CFD8DC", lw=1.0, r=10, z=2)
-    c.t(649, top + 20, "MODELLED IMPACT (PORTFOLIO)", 12, INK, "bold")
-    c.t(550, top + 76, "10.17%", 33, GREEN, "bold", ha="left")
-    for j, ln in enumerate(["Modelled compliance probability", "(all interventions combined)"]):
-        c.t(550, top + 106 + 13.5 * j, ln, 9.9, INK, ha="left")
-    c.t(550, top + 152, "5.56%", 27, GOLD, "bold", ha="left")
-    c.t(550, top + 178, "Best single intervention", 9.9, INK, ha="left")
-    icon(c, "target", 566, top + 214, 15, GOLD)
-    for j, ln in enumerate(["Below the naive sum (12.0%),", "consistent with diminishing", "returns."]):
-        c.t(590, top + 202 + 12.5 * j, ln, 9.5, INK, ha="left")
-    c.box(618, top + 34, 62, 17, fc=GOLD, r=8, z=4)
-    c.t(649, top + 43, "MODELLED", 9.0, "white", "bold")
-    c.t(649, top + 243, "Project economic model, recalibrated", 9.0, DARK, style="italic")
-    c.t(649, top + 254, "to the observed 3.83% TIN rate", 9.0, DARK, style="italic")
+    c.t(649, top + 20, "THREE PRINCIPLES", 12, INK, "bold")
+    principles = [("PROGRESSION", GREEN, ["Citizens understand their obligations", "and can see the next step as their", "economic circumstances change."]),
+                  ("RECIPROCITY", GOLD, ["Citizens who engage receive fair,", "transparent and useful treatment."]),
+                  ("CONTINUITY", GREEN, ["Taxpayer identity and verified history", "stay meaningful as people move", "between activities and stages of life."])]
+    yy = top + 46
+    for head, colr, body in principles:
+        c.t(550, yy, head, 14, colr, "bold", ha="left")
+        for j, ln in enumerate(body):
+            c.t(550, yy + 17 + 12 * j, ln, 9.6, INK, ha="left")
+        yy += 17 + 12 * len(body) + 13
+    c.t(649, top + 243, "Chapter 7: the behavioural change sought,", 9.0, DARK, style="italic")
+    c.t(649, top + 254, "judged by pilots, not assumed", 9.0, DARK, style="italic")
     c.box(782, top, 258, hbox, fc="white", ec="#CFD8DC", lw=1.0, r=10, z=2)
     c.t(911, top + 20, "IMPLICATIONS FOR", 12.8, INK, "bold")
     c.t(911, top + 37, "TAX ADMINISTRATION", 12.8, INK, "bold")
     imp = [("bank", "Scalable Relationship Infrastructure", ["A reusable platform every future", "intervention can plug into."]),
            ("puzzle", "Institutional Capability That Endures", ["Builds long-term taxpayer trust,", "compliance, and data intelligence."]),
-           ("diamond", "Sustainable Revenue Growth", ["Compounding relationships unlock", "revenue well beyond incremental", "transaction gains."])]
+           ("diamond", "Active Taxpayers, Not Just Numbers", ["Turning registrations already under", "way into filing, paying taxpayers."])]
     yy = top + 90
     for ic, head, body in imp:
         icon(c, ic, 812, yy + 10, 14, GREEN)

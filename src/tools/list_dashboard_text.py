@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(HERE))  # src/
 import paths  # noqa: E402
 
 RULES = [
-    (r"12[.,]1\d*\s?M|12,110", "former Active population (non-owners 25-44, now Workers 25-44)"),
+    (r"12[.,]1\d*\s?M|12,110", "former Active population (non-owners 25-44, now Non-business owners 25-44)"),
     (r"3[.,]49\s?M|3,488", "former Enterprise population (all business owners 25-64)"),
     (r"\b4\.6\s?%|\b9\.7\s?%|9\.74", "former Active / Enterprise TIN rate (stage mapping A)"),
     (r"25\s?[–-]\s?44|ages? 25|aged 25", "age band of the former Active stage / stage definition"),

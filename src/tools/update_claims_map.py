@@ -20,7 +20,7 @@ import paths  # noqa: E402
 
 COLS = ["claim_id", "location", "current value", "type", "label", "source script", "output file", "status"]
 CLAIMS = os.path.join(paths.ROOT, "docs", "claims_map.csv")
-CHANGES = os.path.join(paths.ROOT, "docs", "claims_map_6b1_changes.csv")
+CHANGES = os.path.join(paths.ROOT, "docs", "claims_map_6b2_changes.csv")        # Pass 6B-2 record (the Pass 6B-1 record is docs/claims_map_6b1_changes.csv, written by the earlier run)
 ST_RE = "RECOMPUTED (Pass 6B-1): TEXT TO CHANGE"
 ST_REP = "REPLACED (Pass 6B-1): TEXT TO CHANGE"
 ST_NEW = "NEW (Pass 6B-1): ADD TO TEXT"
@@ -57,7 +57,7 @@ def build():
     ib = se["income_bases"]
     c, hi, lo = ib["central"], ib["high"], ib["low"]
     P = lambda s: seg[s]
-    seg_txt = lambda s, name: "%s %.2f%% (95%% CI %.2f-%.2f; n=%s, %s TIN holders)" % (name, float(P(s)["tin_rate_pct"]), float(P(s)["ci95_low_pct"]), float(P(s)["ci95_high_pct"]), P(s)["n_unweighted"], P(s)["tin_holders_unweighted"])
+    seg_txt = lambda s, name: "%s %.2f%% (95%% CI %.2f-%.2f; n=%s, %s respondents reporting a TIN)" % (name, float(P(s)["tin_rate_pct"]), float(P(s)["ci95_low_pct"]), float(P(s)["ci95_high_pct"]), P(s)["n_unweighted"], P(s)["tin_holders_unweighted"])
     pers = se["persistence_sensitivity"]["horizons"]
     names = ["signed_off_triangular_0.5_0.75_0.9", "fixed_0.75", "fixed_0.90", "fixed_0.95"]
 
@@ -84,14 +84,14 @@ def build():
         gap["tanzania_same_year_pct"], gap["benchmark_pct"], *[gap["peers"][k]["tax_to_gdp_pct"] for k in ("GHA", "KEN", "RWA", "UGA")], abs(gap["gap_pp"]), gap["revenue_gap_tzs"] / 1e12, gap["revenue_gap_usd"] / 1e9, macro["tanzania"]["tax_to_gdp_pct"])
     for cid in ("C003", "C005", "C010"):
         put(cid, macro_txt, status=ST_RE, script="src/03_features/macro_inputs.py; src/06_figures/fig_a5_macro_gap.py", out="outputs/stats/macro_inputs.json; outputs/figures/fig_a5_macro_gap.png", reason="Figure 1.1 like for like (owner decision 9)")
-    put("C017", "Overall %.2f%%; %s; %s; %s; %s; %s; %s (stage mapping B)" % (float(P("overall")["tin_rate_pct"]), seg_txt("entry", "Entry"), seg_txt("active", "Active"), seg_txt("enterprise", "Enterprise"), seg_txt("workers", "Workers 25-44"), seg_txt("asset", "Asset"), seg_txt("legacy", "Legacy")),
+    put("C017", "Survey-reported TIN holding (adults reporting a TIN): overall %.2f%%; %s; %s; %s; %s; %s; %s (stage mapping B)" % (float(P("overall")["tin_rate_pct"]), seg_txt("entry", "Entry"), seg_txt("active", "Active"), seg_txt("enterprise", "Enterprise"), seg_txt("workers", "Non-business owners 25-44"), seg_txt("asset", "Asset"), seg_txt("legacy", "Legacy")),
         status=ST_RE, script="src/03_features/tin_by_segment.py", out="outputs/stats/tin_reconciliation.json; outputs/tables/tin_by_segment.csv", reason="stage mapping B (owner decision 1)")
-    put("C031", "%s; Active population %s (business owners without a formal step, ages 25-64; was 12,110,885 = non-owners 25-44, now the named group Workers 25-44, population %s, no revenue lever)" % (
+    put("C031", "%s; Active population %s (business owners without a formal step, ages 25-64; was 12,110,885 = non-owners 25-44, now the named group Non-business owners 25-44, population %s, no revenue lever)" % (
         seg_txt("active", "Active"), T(float(P("active")["population_weighted"]), 0), T(float(P("workers")["population_weighted"]), 0)), status=ST_RE, script="src/03_features/finscope_segments.py; src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", reason="stage mapping B")
     put("C034", "%s" % T(float(P("enterprise")["population_weighted"]), 0), status=ST_RE, script="src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", reason="stage mapping B: owners with a formal step, ages 25-64 (was 3,488,899 = all owners 25-64)")
-    put("C035", "%.1f%% TIN holds (%s). Registration/licence share: NOT 46.9%%: 20.8%% of non-agricultural self-employed (headline base), 13.7%% of all workers, 32.2%% of non-agricultural private-business workers" % (
+    put("C035", "%.1f%% report holding a TIN (survey-reported; %s). Registration/licence share: NOT 46.9%%: 20.8%% of non-agricultural self-employed (headline base), 13.7%% of all workers, 32.2%% of non-agricultural private-business workers" % (
         float(P("enterprise")["tin_rate_pct"]), seg_txt("enterprise", "Enterprise")), status=ST_RE, script="src/03_features/ilfs_indicators.py; src/03_features/tin_by_segment.py", out="outputs/stats/ilfs_summary.json; outputs/tables/tin_by_segment.csv", reason="stage mapping B")
-    put("C072", "%.2fM (Active: informal business owners 25-64); Workers 25-44 %.1fM" % (float(P("active")["population_weighted"]) / 1e6, float(P("workers")["population_weighted"]) / 1e6), status=ST_RE, script="src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", reason="Figure 4.10 shows the former Active (12.1M); under mapping B that group is Workers 25-44")
+    put("C072", "%.2fM (Active: informal business owners 25-64); Non-business owners 25-44 %.1fM" % (float(P("active")["population_weighted"]) / 1e6, float(P("workers")["population_weighted"]) / 1e6), status=ST_RE, script="src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", reason="Figure 4.10 shows the former Active (12.1M); under mapping B that group is Non-business owners 25-44")
     put("C073", "%.2fM" % (float(P("enterprise")["population_weighted"]) / 1e6), status=ST_RE, script="src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", reason="Figure 4.14 shows 3.49M; under mapping B Enterprise is %.2fM" % (float(P("enterprise")["population_weighted"]) / 1e6))
     figs = "outputs/figures/fig_5_3_table40_roi_by_stage.png; outputs/figures/fig_5_4_tornado_central.png; outputs/stats/stage_economics.json; outputs/tables/table5_1_stage_economics.csv; outputs/tables/table5_2_persistence_sensitivity.csv"
     for s, cid_cost, cid_rev, cid_roi, cost, label in (("active", "C045", "C046", "C047", 600, "Active"), ("enterprise", "C048", "C049", "C050", 750, "Enterprise")):
@@ -162,11 +162,11 @@ def build():
         sc["tra_fy2024_25_tzs"]["individuals_income_tax"] / 1e9, sc["tra_fy2024_25_tzs"]["domestic_revenue"] / 1e12, sc["tra_fy2024_25_tzs"]["total_gross"] / 1e12, sc["pct_of"]["four_levers_table5_1_reach"]["individuals_income_tax"], sc["pct_of"]["four_levers_reach_50pct"]["individuals_income_tax"]),
         status=ST_NEW, script="src/03_features/tra_collections.py; src/04_models/reach_scenarios.py", out="data/processed/tra_collections_2024_25.json; outputs/stats/reach_scenarios.json", label="CITED", typ="CITED", loc="Section 5 | Figure 5.2 scale check", reason="new")
     f51 = reach["figure_5_1_full_reach_implication"]
-    put("C091", "Figure 5.1 has no reach factor (the effect if every adult is reached): +%s TIN holders (best single, %.2f%% -> %.2f%%) and +%s (combined, %.2f%%) of %.1fM adults, against %s new registrants (median) across the four stages at Table 5.1's reach." % (
+    put("C091", "Figure 5.1 has no reach factor (the effect if every adult is reached): +%s adults reporting a TIN (best single, %.2f%% -> %.2f%%) and +%s (combined, %.2f%%) of %.1fM adults, against %s new registrants (median) across the four stages at Table 5.1's reach." % (
         T(f51["extra_tin_holders_best_single_at_full_reach"], 0), f51["baseline_tin_probability"] * 100, f51["best_single_probability"] * 100, T(f51["extra_tin_holders_combined_at_full_reach"], 0), f51["combined_probability"] * 100, f51["adults_16_plus"] / 1e6,
         T(f51["table5_1_new_registrants_median_four_levers"], 0)), status=ST_NEW, script="src/04_models/reach_scenarios.py", out="outputs/stats/reach_scenarios.json", label="MODELLED", typ="MODELLED", loc="Section 5 | Figure 5.1", reason="new")
-    put("C092", "Stage mapping B (FinScope 2023): Active = business owners (BusO) with no formal step (D6_4a not 'Yes', not asked counts as none), ages 25-64; Enterprise = business owners with D6_4a 'Yes', 25-64; Workers 25-44 = non-owners 25-44 (named group, no revenue lever); Asset = non-owners 45-64; Entry 16-24, Legacy 65+, Seed 6-15 unchanged. "
-        "Populations: Active %s, Enterprise %s, Workers %s, Asset %s; they add up to %s adults." % (T(float(P("active")["population_weighted"]), 0), T(float(P("enterprise")["population_weighted"]), 0), T(float(P("workers")["population_weighted"]), 0), T(float(P("asset")["population_weighted"]), 0), T(float(P("overall")["population_weighted"]), 0)),
+    put("C092", "Stage mapping B (FinScope 2023): Active = business owners (BusO) with no formal step (D6_4a not 'Yes', not asked counts as none), ages 25-64; Enterprise = business owners with D6_4a 'Yes', 25-64; Non-business owners 25-44 = non-owners 25-44 (named group, no revenue lever); Asset = non-owners 45-64; Entry 16-24, Legacy 65+, Seed 6-15 unchanged. "
+        "Populations: Active %s, Enterprise %s, non-business owners 25-44 %s, Asset %s; they add up to %s adults." % (T(float(P("active")["population_weighted"]), 0), T(float(P("enterprise")["population_weighted"]), 0), T(float(P("workers")["population_weighted"]), 0), T(float(P("asset")["population_weighted"]), 0), T(float(P("overall")["population_weighted"]), 0)),
         status=ST_NEW, script="src/03_features/finscope_segments.py; src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", label="COMPUTED", typ="COMPUTED", loc="Section 4 | stage definitions", reason="owner decision 1")
     if tb:
         put("C093", "Targeting (Entry, ages 16-24): register-only %.1fx (95%% interval %.1f-%.1f), survey model %.1fx (%.1f-%.1f); per 10,000 reached %.0f (%.0f-%.0f) vs %.0f; the earlier survey interval 5.8-7.1 is dropped." % (
@@ -185,6 +185,45 @@ def build():
         status=ST_NEW, script="src/03_features/cited_facts.py", out="outputs/stats/cited_facts.json", label="CITED", typ="CITED", loc="Section 1 / 4.2 | TIN registers", reason="owner decision (cited facts)")
     put("C097", "NIN to TIN: %s (%s)." % (cf["nin_to_tin_provision"]["value"], cf["nin_to_tin_provision"]["source"]), status=ST_NEW, script="src/03_features/cited_facts.py", out="outputs/stats/cited_facts.json", label="CITED", typ="CITED", loc="Section 4.2 | registration", reason="cited fact")
     put("C098", "Afrobarometer Rounds 9 and 10, Tanzania: %s." % cf["afrobarometer_r9_r10_tax_module"]["value"], status=ST_NEW, script="src/03_features/cited_facts.py", out="outputs/stats/cited_facts.json", label="CITED", typ="CITED", loc="Section 4.5 | tax morale evidence", reason="cited fact")
+
+    # ---------------------------------------------------------------- Pass 6B-2: claims for the new text (C099 onwards) and survey-reported wording
+    ST_6B2 = "NEW (Pass 6B-2): ADD TO TEXT"
+    v = J(os.path.join(paths.ROOT, "_archive", "diagnostics", "pass6b2", "verification.json"))
+    v1, v5, v3 = v["V1_figure_5_1_12_0_percent"], v["V5_small_checks"], v["V3_tzs_306b_comparison"]
+    g = v1["separate_gains_pct_points"]
+    put("C099", "Figure 5.1, like for like: today's survey-reported rate %.2f%% plus the six separate gains (%s percentage points; %.2f in all) = %.2f%%, against the combined model's %.2f%%: the combined result is below the sum of the separate gains (diminishing returns); the 12.0%% of the earlier text is the baseline plus the sum of the gains." % (
+        v1["baseline_pct"], ", ".join("%.2f" % x for x in g.values()), v1["sum_of_gains_pct_points"], v1["baseline_plus_sum_pct"], v1["combined_pct"]), status=ST_6B2, script="src/04_models/economic_model.py", out="outputs/stats/economic_model.json",
+        label="MODELLED", typ="MODELLED", loc="Section 5.2 | Figure 5.1 cautions", reason="V1: what 12.0% is")
+    e = v5["entry_break_even_persistence_20y_age_path"]
+    put("C100", "Entry's break-even yearly persistence over 20 years (age-earnings path, central basis) is %.3f: 12-month retention %.0f%% and 24-month retention (persistence squared) %.0f%%, the retention at which Entry pays back (PASS6A D1, reproduced with the current code)." % (
+        e["persistence"], e["retention_12_months_pct"], e["retention_24_months_pct"]), status=ST_6B2, script="src/04_models/stage_economics.py; _archive/diagnostics/pass6b2/verification.py", out="_archive/diagnostics/pass6b2/verification.json",
+        label="MODELLED", typ="MODELLED", loc="Section 7.3 | economic reference points", reason="PASS6A D1")
+    pw = v5["power_calculation"]
+    put("C101", "Illustrative sample size (not a result): detecting a rise in first filing from 2%% to 3%% (two-sided 5%% test, 80%% power, two-proportion z test) needs about %s people per compared group (%.0f)." % ("3,800", pw["n_per_group_pooled_variance"]), status=ST_6B2,
+        script="_archive/diagnostics/pass6b2/verification.py", out="_archive/diagnostics/pass6b2/verification.json", label="ILLUSTRATIVE (design example)", typ="n/a", loc="Section 7.2 | Entry trial design", reason="illustrative power calculation")
+    put("C102", "Scale of the reach scenarios: at 50%% reach the year-10 increment raises the tax-to-GDP ratio by %.4f percentage points (below 0.001); the registration trend's year-10 revenue (TZS %.0fB) is %.0f times the largest lever. Basis of the comparison with TRA FY2024/25 individuals' income tax (TZS 306B, nominal): modelled revenue is in constant 2024 TZS, %.0f%% presumptive tax (Active, Enterprise) and %.0f%% personal income tax on ILFS earnings of Entry and Legacy outside the formal net, of which about %.1f%% of the total is employee cash earnings (PAYE-type, outside the 'Individuals' line)." % (
+        v3["tax_to_gdp_year10_50pct_reach_pp"], v3["trend_revenue_year10_tzs"] / 1e9, v3["trend_over_largest_lever"], v3["share_of_year10_increment_by_tax_type_at_table_5_1_reach"]["presumptive_tax_active_enterprise_pct"],
+        v3["share_of_year10_increment_by_tax_type_at_table_5_1_reach"]["personal_income_tax_entry_legacy_pct"], v3["paye_type_wage_share"]["approx_pct_of_total_modelled_revenue"]), status=ST_6B2, script="src/04_models/reach_scenarios.py; _archive/diagnostics/pass6b2/v3_composition.py",
+        out="outputs/stats/reach_scenarios.json; _archive/diagnostics/pass6b2/v3_composition.json", label="MODELLED", typ="MODELLED", loc="Section 5.3 | Figure 5.2 footnote", reason="V3")
+    t16 = v5["figure_4_16a_tier_year10"]
+    put("C103", "Figure 4.16a (modelled, year 10): %.1f%% of adults registered; of those, %.1f%% are at Silver or above and %.1f%% below it." % (t16["registered_pct"], t16["silver_or_above_share_of_registered_pct"], 100 - t16["silver_or_above_share_of_registered_pct"]), status=ST_6B2,
+        script="src/04_models/economic_model.py", out="outputs/stats/economic_model.json", label="MODELLED", typ="MODELLED", loc="Section 4.4 | Figure 4.16a", reason="draft 4.4-3 numbers confirmed")
+    ft = v5["finscope_timing"]
+    put("C104", "FinScope Tanzania 2023 fieldwork: %s. Item C27: '%s'" % (ft["fieldwork"], ft["item_C27"]), status=ST_6B2, script="_archive/diagnostics/pass6b2/verification.py", out="_archive/diagnostics/pass6b2/verification.json", label="CITED", typ="CITED", loc="Section 1 | survey and register", reason="V5 FinScope timing")
+    ob = se["income_bases"]
+    put("C105", "Why the revenue estimates are bracketed: in the HBS reference month 58%% of business owners had no receipts (42%% had); revenue per registrant on ILFS 2024 gross receipts is %.1f times the HBS central value for Active (TZS %s vs %s) and %.1f times for Enterprise (TZS %s vs %s)." % (
+        ob["high"]["stages"]["active"]["revenue_per_registrant_tzs"] / ob["central"]["stages"]["active"]["revenue_per_registrant_tzs"], T(ob["high"]["stages"]["active"]["revenue_per_registrant_tzs"], 0), T(ob["central"]["stages"]["active"]["revenue_per_registrant_tzs"], 0),
+        ob["high"]["stages"]["enterprise"]["revenue_per_registrant_tzs"] / ob["central"]["stages"]["enterprise"]["revenue_per_registrant_tzs"], T(ob["high"]["stages"]["enterprise"]["revenue_per_registrant_tzs"], 0), T(ob["central"]["stages"]["enterprise"]["revenue_per_registrant_tzs"], 0)),
+        status=ST_6B2, script="src/03_features/hbs_turnover.py; src/04_models/stage_economics.py", out="data/processed/hbs_turnover.json; outputs/stats/stage_economics.json", label="COMPUTED", typ="COMPUTED", loc="Section 4.3 | limitation box; Section 5.3", reason="draft 4.3-8")
+    put("C106", "About one adult in %.0f has business turnover above TZS 4 million (%.2f%% of adults; HBS 2017/18, uprated to 2024 prices)." % (v5["one_in_nine_and_7_4"]["one_adult_in"], cap["all_adults"]["share_above_4m_pct"]), status=ST_6B2, script="src/03_features/hbs_turnover.py", out="outputs/stats/taxable_capacity.json",
+        label="COMPUTED", typ="COMPUTED", loc="Executive Summary; Section 3.3", reason="1 / 1.19% = 83.7 (the draft said 85)")
+    put("C107", "FinScope Tanzania 2023: %s of %s adults (%.2f%%) report holding a TIN in their name (survey-reported; item C27); the TRA counts business TINs (1,851,184 active) and TINs on its register (6.272M) are different units (C096)." % (
+        T(float(P("overall")["tin_holders_weighted"]), 0), T(float(P("overall")["population_weighted"]), 0), float(P("overall")["tin_rate_pct"])), status=ST_6B2, script="src/03_features/tin_by_segment.py", out="outputs/tables/tin_by_segment.csv", label="COMPUTED", typ="COMPUTED", loc="Section 1 | survey and register", reason="draft 1-3")
+    af = J(paths.AFROBAROMETER_MORALE)
+    est = {x["indicator"]: x for x in af["estimates"] if x["level"] == "All adults 18+"}
+    a1, a2 = est["trust_tax_office_somewhat_or_a_lot"], est["finding_out_taxes_difficult"]
+    put("C108", "Afrobarometer Round 8 Tanzania 2021 (weighted): trust the tax/revenue office somewhat or a lot (Q41J) %.1f%% (95%% CI %.1f-%.1f); finding out which taxes one owes is difficult (Q46A) %.1f%% (95%% CI %.1f-%.1f); n = 2,398." % (
+        a1["pct"], a1["ci95_low_pct"], a1["ci95_high_pct"], a2["pct"], a2["ci95_low_pct"], a2["ci95_high_pct"]), status=ST_6B2, script="src/03_features/afrobarometer_morale.py", out="data/processed/afrobarometer_morale.json", label="COMPUTED", typ="COMPUTED", loc="Executive Summary; Sections 3.2, 5.1", reason="figures in the text had no claim")
     return new
 
 
@@ -211,13 +250,30 @@ def main():
             old["source script"] = n["script"]
         if n.get("out"):
             old["output file"] = n["out"]
+    # survey-reported wording of the FinScope TIN-rate claims and the corrected 12.0% reading (Pass 6B-2)
+    REWORD = {
+        "C002": lambda s: "3.83% of adults report holding a TIN (survey-reported; 95% CI 3.24-4.52; n=9915, 361 respondents reporting a TIN)",
+        "C011": lambda s: "3.83% (survey-reported TIN holding)",
+        "C039": lambda s: s.replace("Legacy TIN rate 3.66%", "Legacy survey-reported TIN rate 3.66%").replace("25 TIN holders", "25 respondents reporting a TIN"),
+        "C007": lambda s: s.replace("TIN rate 5.3% among mobile-money users", "survey-reported TIN rate 5.3% among mobile-money users"),
+        "C056": lambda s: s.replace("TIN rate 5.3% among mobile-money users", "survey-reported TIN rate 5.3% among mobile-money users"),
+        "C008": lambda s: s.replace("observed adult TIN rate", "observed adult survey-reported TIN rate"),
+        "C055": lambda s: "Baseline 3.83% plus the sum of the six separate gains (8.19 percentage points) = 12.02%, against a combined 10.17%: the combined result is below the like-for-like sum (diminishing returns), see C099.",
+    }
+    for cid, fn in REWORD.items():
+        r = by[cid]
+        newv = fn(r["current value"])
+        if newv != r["current value"]:
+            changes.append({"claim_id": cid, "old": r["current value"], "new": newv, "status": "REWORDED (Pass 6B-2): survey-reported TIN wording", "reason": "Pass 6B-2: survey-reported terminology / V1"})
+            r["current value"], r["status"] = newv, "REWORDED (Pass 6B-2): survey-reported TIN wording"
     # the retired claim: the digital twin
     r79 = by["C079"]
-    changes.append({"claim_id": "C079", "old": r79["current value"], "new": "RETIRED", "status": "RETIRED", "reason": "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5): its year-10 increment was about TZS 6.15 trillion, about 22 times the FY2023/24 individuals' income tax; replaced by the reach scenarios (C089-C091)"})
-    r79["status"] = "RETIRED"
-    r79["current value"] = "RETIRED (Pass 6B-1): " + r79["current value"].split(". New taxpayers pay")[0] + ". Reason: the digital twin was retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); Figure 5.2 is now the reach scenarios (C089-C091)."
-    r79["output file"] = "src/retired/digital_twin_v0.py"
-    r79["source script"] = "src/retired/digital_twin_v0.py"
+    if r79["status"] != "RETIRED":
+        changes.append({"claim_id": "C079", "old": r79["current value"], "new": "RETIRED", "status": "RETIRED", "reason": "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5): its year-10 increment was about TZS 6.15 trillion, about 22 times the FY2023/24 individuals' income tax; replaced by the reach scenarios (C089-C091)"})
+        r79["status"] = "RETIRED"
+        r79["current value"] = "RETIRED (Pass 6B-1): " + r79["current value"].split(". New taxpayers pay")[0] + ". Reason: the digital twin was retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); Figure 5.2 is now the reach scenarios (C089-C091)."
+        r79["output file"] = "src/retired/digital_twin_v0.py"
+        r79["source script"] = "src/retired/digital_twin_v0.py"
     rows.sort(key=lambda r: r["claim_id"])
     with open(CLAIMS, "w", encoding="utf-8-sig", newline="") as f:
         wr = csv.DictWriter(f, fieldnames=COLS, lineterminator="\r\n")

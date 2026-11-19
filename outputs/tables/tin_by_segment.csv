@@ -3,6 +3,6 @@ overall,All adults (16+),every respondent,9915,361,34134251.40,100.0000,1306683.
 entry,Entry,age 16-24,1984,14,10605005.23,31.0685,81605.36,0.7695,0.2952,0.3616,1.6300,False,False
 active,Active,"business owner (BusO == 'Business owners') with no formal step (D6_4a != 'Yes', including not asked), age 25-64",893,46,2916164.67,8.5432,187769.52,6.4389,1.3838,4.1992,9.7516,False,False
 enterprise,Enterprise,"business owner (BusO == 'Business owners') with a formal step (D6_4a == 'Yes'), age 25-64",174,48,572735.05,1.6779,151976.75,26.5353,5.1042,17.7622,37.6573,False,False
-workers,Workers 25–44 (no revenue lever),"not a business owner, age 25-44 (wage, casual, farm and dependent adults; no revenue lever)",3756,150,12110885.78,35.4802,559050.42,4.6161,0.5331,3.6751,5.7835,False,False
+workers,Non-business owners 25–44,"not a business owner, age 25-44 (wage, casual, farm and dependent adults; no revenue lever)",3756,150,12110885.78,35.4802,559050.42,4.6161,0.5331,3.6751,5.7835,False,False
 asset,Asset,"age 45-64, not a business owner",2193,78,5590836.37,16.3790,240629.43,4.3040,0.7149,3.0994,5.9481,False,False
 legacy,Legacy,age 65+,915,25,2338624.30,6.8513,85651.84,3.6625,1.1850,1.9279,6.8488,False,False

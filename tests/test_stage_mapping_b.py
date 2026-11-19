@@ -1,4 +1,4 @@
-"""Stage mapping B (Pass 6B-1): Active = business owners without a formal step; Enterprise = owners with D6_4a == 'Yes'; Workers 25-44 = non-owners, no revenue lever. Runs on a small
+"""Stage mapping B (Pass 6B-1): Active = business owners without a formal step; Enterprise = owners with D6_4a == 'Yes'; Non-business owners 25-44 = non-owners, no revenue lever. Runs on a small
 synthetic respondent table, so it needs no restricted data."""
 import os
 import sys
@@ -59,5 +59,5 @@ def test_stages_are_exclusive_and_exhaustive_on_every_age():
 
 
 def test_workers_have_a_name_and_no_tool():
-    assert paths.CFG["names"]["workers"]["english"] == "Workers 25–44 (no revenue lever)"
+    assert paths.CFG["names"]["workers"]["english"] == "Non-business owners 25–44"
     assert paths.CFG["names"]["workers"]["swahili"] == ""

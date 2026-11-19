@@ -101,7 +101,7 @@ def test_every_number_on_the_cover_poster_is_listed_with_a_claim_that_carries_it
     sys.path.insert(0, FIG_SRC)
     import cover_poster
     claims = {r["claim_id"]: r["current value"] for r in csv.DictReader(open(os.path.join(ROOT, "docs", "claims_map.csv"), encoding="utf-8-sig"))}
-    assert len(cover_poster.POSTER_NUMBERS) >= 12
+    assert len(cover_poster.POSTER_NUMBERS) >= 8
     for shown, what, ids, label in cover_poster.POSTER_NUMBERS:
         token = re.search(r"\d[\d,.]*\d|\d", shown).group(0)
         listed = re.findall(r"C\d{3}", ids)
@@ -117,5 +117,5 @@ def test_the_theory_of_change_uses_the_owner_age_bands():
     for needle in ("Ages 6\u201315", "Ages 16\u201324", "ages 25\u201364", "ages 45\u201364", "Ages 65+"):
         assert needle in src, needle
     assert "Informal business owners," in src and "Registered business owners," in src      # stage mapping B (Pass 6B-1): Active = informal owners 25-64, Enterprise = registered owners 25-64
-    assert "ages 25\u201344" not in src                                                      # Workers 25-44 are a named group with no tool, not a stage box
+    assert "ages 25\u201344" not in src                                                      # Non-business owners 25-44 are a named group with no tool, not a stage box
     assert "Birth" not in src and "Age 15" not in src

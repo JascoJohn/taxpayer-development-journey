@@ -54,7 +54,7 @@ These rows feed no published claim and no dashboard value; they are listed so th
 | area | key | value | class | what it is | recommendation |
 |---|---|---|---|---|---|
 | Stage economics | `stage.formal_step_if_not_asked` | "no_formal_step" | ASSUMPTION | Pass 6B-1, stage mapping B. The formal step of a business owner is D6_4a == 'Yes' (business registered with a government authority). A respondent who was not as | **SIGN as is** |
-| Stage economics | `stage.workers_unpriced` | true | ASSUMPTION | Pass 6B-1, stage mapping B. Workers 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no | **SIGN as is** |
+| Stage economics | `stage.workers_unpriced` | true | ASSUMPTION | Pass 6B-1, stage mapping B. Non-business owners 25-44 (non-owners aged 25-44: wage, casual, farm and dependent adults) stay in the population but carry no revenue lever, no | **SIGN as is** |
 | Other | `hbs.cpi_uprating` | "wdi_fp_cpi_totl_mean_of_survey_years_to | ASSUMPTION | Pass 6B-1. HBS 2017/18 turnover is uprated to 2024 prices with the World Bank WDI consumer price index (FP.CPI.TOTL, Tanzania): CPI(2024) / mean of CPI(2017) an | **SIGN as is** |
 | Other | `hbs.owners_with_receipts_central` | true | ASSUMPTION | Pass 6B-1. The central HBS case restricts owners to those with receipts from sources 1-4 in the reference month (about 42% of owners; 58% report none). Owners w | **SIGN as is** |
 | Other | `hbs.receipts_annualisation` | "last_month_receipts_x_months_operated" | ASSUMPTION | Pass 6B-1. Annual turnover = last month's receipts (HBS Form I S10C1, sources 1-4: sales, resale, construction, services) x months the business operated in the  | **SIGN as is** |

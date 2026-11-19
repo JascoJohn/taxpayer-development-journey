@@ -13,7 +13,7 @@ Definitions (all labelled in docs/assumptions_register.csv, sign-off PENDING):
   formal step    BRELA registration (S10_15) or paying income tax or VAT (S10_16a)
   tax owed       the project's presumptive schedule (statutory_tax.presumptive; Finance Act 2026) up to the TZS 200M ceiling; turnover above the ceiling is flagged and excluded
   new business   started in the 12 months before the interview (for the 12-month nil period sensitivity)
-Stage mapping B (finscope_segments.py): Active = owner, no formal step, 25-64; Enterprise = owner with a formal step, 25-64; Entry 16-24 and Legacy 65+ whoever they are; Workers 25-44 = non-owners; Asset = non-owners 45-64.
+Stage mapping B (finscope_segments.py): Active = owner, no formal step, 25-64; Enterprise = owner with a formal step, 25-64; Entry 16-24 and Legacy 65+ whoever they are; Non-business owners 25-44 = non-owners; Asset = non-owners 45-64.
 HBS is Mainland only, 2017/18; wage and salary income is not recorded: non-owners have no taxable turnover here.
 Disclosure (config.yaml disclosure): cells with fewer than min_base respondents are suppressed; numerators below the threshold are flagged low precision.
 
