@@ -102,6 +102,7 @@ with hc2:
 
 st.markdown(
     '<span class="tdj-demo-note">This tool does not estimate any one business\'s turnover or tax. '
+    "Mzani wa Kodi is a reference for assessment and review, shown in shadow mode for officers; it is not a determination of liability. "
     "The bands below are survey figures for businesses like it: Household Budget Survey 2017/18, "
     "CPI-uprated to 2024, last-month receipts annualised by months operated, owners with receipts. "
     "Farmers and fishers are not covered, and Zanzibar is not covered.</span>",

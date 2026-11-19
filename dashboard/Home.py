@@ -47,6 +47,11 @@ for col, stage in zip(cols, STAGES):
         st.page_link(stage["page"], label=f"{stage['icon']}  {stage['label']}", icon=None)
         st.caption(f"*{stage['verb']} → {stage['mechanism']}*")
         st.caption(stage["tool"])
+st.caption(
+    "Who each stage serves (FinScope Tanzania 2023, adults): Entry, ages 16–24; Active, business owners aged 25–64 whose business is not registered with any authority; "
+    "Enterprise, business owners aged 25–64 whose business is registered; Asset, non-business owners aged 45–64; Legacy, aged 65 and over. Non-business owners aged 25–44 "
+    "(wage earners, casual workers, farmers and dependants) have no stage of their own. \"Business owner\" follows FinScope's definition: main income from trading or providing a service."
+)
 
 st.divider()
 
@@ -71,7 +76,7 @@ fig = go.Figure(
                  text=[f"{v}%" for v in values], textposition="outside")]
 )
 fig.update_layout(
-    yaxis_title="Modelled probability that an adult holds a TIN (%)",
+    yaxis_title="Modelled probability that an adult reports a TIN (%), if every adult were reached",
     yaxis_range=[0, max(values) * 1.3 + 1],
     height=380,
     margin=dict(t=20, b=20),
@@ -82,10 +87,11 @@ evidence_tag("modelled")
 if _morale.available:
     _m = _morale.value
     st.caption(
-        "Modelled probability that an adult holds a TIN under the project's tax morale model, recalibrated so that today's value equals the observed adult TIN rate "
+        "Modelled probability that an adult reports a TIN under the project's tax morale model if every adult were reached, recalibrated so that today's value equals the observed (survey-reported) adult TIN rate "
         f"({_m['baseline_compliance_probability'] * 100:.2f}%, FinScope 2023). The intervention effects are assumed uplifts expressed as odds ratios (not measured). "
-        f"The combined effect ({_m['combined_intervention_probability'] * 100:.1f}%) sits below the naive sum of the solo effects ({_m['naive_sum_of_solo_effects_pct']:.1f}%), "
-        "which is not a meaningful probability at a low baseline."
+        f"The combined effect ({_m['combined_intervention_probability'] * 100:.2f}%) sits below what adding the six separate gains to today's rate would give "
+        f"({_m['baseline_compliance_probability'] * 100:.2f}% + {_m['naive_sum_of_solo_effects_pct'] - _m['baseline_compliance_probability'] * 100:.2f} percentage points = {_m['naive_sum_of_solo_effects_pct']:.2f}%): "
+        "the model assumes diminishing returns, so the gain comes from coverage, not from synergy."
     )
 else:
     st.caption("The tax morale model is not connected right now.")
@@ -93,7 +99,7 @@ else:
 st.divider()
 
 # ---- Mobile money and TIN holding (observational, real respondents) ----------
-st.markdown("### Mobile Money and TIN Holding in Tanzania's Own Data")
+st.markdown("### Mobile Money and Survey-Reported TIN Holding in Tanzania's Own Data")
 if _mm.available:
     _v = _mm.value
     _rates = {r["group"]: r for r in _v["descriptives"]["tin_rate_by_group"]}
@@ -103,22 +109,22 @@ if _mm.available:
     with c1:
         evidence_tag("computed")
         _u, _n = _rates["Mobile-money users"], _rates["Non-users of mobile money"]
-        st.metric("TIN holding: users vs non-users",
+        st.metric("Survey-reported TIN holding: users vs non-users",
                   f"{_u['tin_rate_pct']:.1f}% vs {_n['tin_rate_pct']:.2f}%",
-                  help="Share of adults holding a TIN among mobile-money users and non-users (survey-weighted). "
-                       "The non-user figure rests on fewer than 10 respondents holding a TIN: low precision.")
+                  help="Share of adults reporting a TIN among mobile-money users and non-users (survey-weighted). "
+                       "The non-user figure rests on fewer than 10 respondents reporting a TIN: low precision.")
     with c2:
         evidence_tag("computed")
         _lo, _hi = _ame["ci95_percentage_points"]
         st.metric("Association, adjusted (average marginal effect)", f"+{_ame['percentage_points']:.1f} pp",
                   delta=f"95% CI {_lo:.1f} to {_hi:.1f}", delta_color="off",
-                  help="Difference in the predicted probability of holding a TIN between mobile-money use and non-use, averaged "
+                  help="Difference in the predicted probability of reporting a TIN between mobile-money use and non-use, averaged "
                        "over respondents, from a survey-weighted Firth-penalised logistic regression (age, sex, residence, "
                        "education, income source, region). Observational, cross-sectional; not a causal estimate.")
     with c3:
         evidence_tag("computed")
-        st.metric("TIN holders who use mobile money", f"{_share['share_of_tin_holders_using_mm_pct']:.1f}%",
-                  help="Weighted share of adult TIN holders who use mobile money.")
+        st.metric("Adults reporting a TIN who use mobile money", f"{_share['share_of_tin_holders_using_mm_pct']:.1f}%",
+                  help="Weighted share of adults reporting a TIN who use mobile money.")
     st.caption(
         f"Observational, cross-sectional association from FinScope Tanzania 2023{_n_finscope}; not a causal "
         "estimate. Mobile-money users differ from non-users in ways the survey does not fully measure."
@@ -140,7 +146,7 @@ if _tb.available:
         evidence_tag("computed")
         k1.metric("Register data alone (age, sex, region, urban/rural)", f"{_reg['multiplier']['median']:.1f}×",
                   delta=f"95% interval {_reg['multiplier']['ci95'][0]:.1f}–{_reg['multiplier']['ci95'][1]:.1f}", delta_color="off",
-                  help="Top-decile Entry-age adults versus the Entry average, modelled TIN holding, respondent bootstrap refitting the model in every replicate. A ratio of model predictions, not a causal effect.")
+                  help="Top-decile Entry-age adults versus the Entry average, modelled survey-reported TIN holding, respondent bootstrap refitting the model in every replicate. A ratio of model predictions, not a causal effect.")
     with k2:
         evidence_tag("computed")
         k2.metric("Survey model (all questionnaire items)", f"{_sur['multiplier']['median']:.1f}×",
@@ -154,11 +160,11 @@ if _tb.available:
         evidence_tag("computed")
         k4.metric("Register-only AUC on a zone it never saw", f"{_lozo['pooled_loZo_auc_weighted']:.3f}",
                   delta=f"by zone {_lozo['range_by_zone'][0]:.2f}–{_lozo['range_by_zone'][1]:.2f}", delta_color="off",
-                  help="Leave-one-zone-out, nine zones; the held-out zone gets no region effect. Zones with few TIN holders are noisy.")
+                  help="Leave-one-zone-out, nine zones; the held-out zone gets no region effect. Zones with few respondents reporting a TIN are noisy.")
     _pair = _b["dashboard_pair_per_10000_reached"]["register_only"]
     st.caption(
-        f"Per 10,000 Entry-age adults reached, register data alone would find about {_pair['targeted']['median']:.0f} TIN holders (interval {_pair['targeted']['ci95'][0]:.0f}–{_pair['targeted']['ci95'][1]:.0f}) "
-        f"against about {_pair['random']:.0f} by random selection. The observed top-decile ratio is not shown: too few Entry-age TIN holders for it to be published as a number. "
+        f"Per 10,000 Entry-age adults reached, register data alone would find about {_pair['targeted']['median']:.0f} adults reporting a TIN (interval {_pair['targeted']['ci95'][0]:.0f}–{_pair['targeted']['ci95'][1]:.0f}) "
+        f"against about {_pair['random']:.0f} by random selection. The observed top-decile ratio is not shown: too few Entry-age respondents report a TIN for it to be published as a number. "
         "Modelled from FinScope Tanzania 2023; not a measured campaign result."
     )
 else:

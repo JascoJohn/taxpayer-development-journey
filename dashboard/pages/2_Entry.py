@@ -113,9 +113,9 @@ if targeting.available:
     _t = _tm["held_out_test"]["logistic_regression"]
     st.caption(
         f"Trained on {_tm['split']['train'] + _tm['split']['test']:,} real adult respondents of FinScope Tanzania 2023 "
-        f"(outcome: holds a Tax ID Number; survey weights used in fitting and evaluation). Held-out test ROC-AUC "
+        f"(outcome: reports holding a Tax ID Number, a survey-reported measure; survey weights used in fitting and evaluation). Held-out test ROC-AUC "
         f"{_t['roc_auc_weighted']:.2f} (weighted), {_t['roc_auc_unweighted']:.2f} (unweighted). "
-        "An observational ranking by how closely a profile matches current TIN holders: it is not a causal "
+        "An observational ranking by how closely a profile matches adults who report a TIN today: it is not a causal "
         "estimate and has not been checked against tax authority registration records."
     )
     _tbf = pipeline.targeting_bootstrap()
@@ -141,7 +141,7 @@ with tab_individual:
         evidence_tag("computed")
         st.write(
             "A small, interpretable scoring card fitted on the same real respondents (age, residence, business ownership, "
-            "mobile money and education). It returns a predicted probability of holding a TIN for a profile like this one. "
+            "mobile money and education). It returns a predicted probability of reporting a TIN for a profile like this one. "
             f"(The full model uses {_tm['features']['n_encoded_features']:,} survey features; the card is a reduced version "
             "meant for explanation.)"
         )
@@ -173,14 +173,14 @@ with tab_individual:
                     {"range": [25, 100], "color": "#9CC79F"},
                 ],
             },
-            title={"text": "Predicted probability of holding a TIN"},
+            title={"text": "Predicted probability of reporting a TIN"},
         ))
         gauge.update_layout(height=280, margin=dict(t=40, b=10))
         st.plotly_chart(gauge, width="stretch")
         st.caption(
             f"{card['fit']}; in-sample weighted ROC-AUC {card['in_sample_weighted_roc_auc']:.2f}. About "
-            f"{_tm['out_of_fold_all_adults']['base_rate_weighted'] * 100:.1f}% of Tanzanian adults hold a TIN. "
-            "The probability describes how common TINs are among adults with this profile; it is an association, not an "
+            f"{_tm['out_of_fold_all_adults']['base_rate_weighted'] * 100:.1f}% of Tanzanian adults report holding a TIN. "
+            "The probability describes how common survey-reported TINs are among adults with this profile; it is an association, not an "
             "effect of any action on the person."
         )
     else:
@@ -215,8 +215,8 @@ with tab_scale:
         multiple = (mean_top / mean_all) if mean_all else 0.0
 
         m1, m2, m3 = st.columns(3)
-        m1.metric(f"Targeted (per {reach:,} people reached)", f"~{expected_targeted:,.0f} TIN holders")
-        m2.metric(f"Random selection (per {reach:,} people)", f"~{expected_random:,.0f} TIN holders")
+        m1.metric(f"Targeted (per {reach:,} people reached)", f"~{expected_targeted:,.0f} adults reporting a TIN")
+        m2.metric(f"Random selection (per {reach:,} people)", f"~{expected_random:,.0f} adults reporting a TIN")
         m3.metric("Targeting multiplier", f"{multiple:.1f}×",
                   help="Mean predicted propensity of the reached share divided by the mean for the whole Entry segment")
 
@@ -229,7 +229,7 @@ with tab_scale:
         ))
         cmp_fig.update_layout(
             height=280, margin=dict(t=20, b=10),
-            yaxis_title="Modelled TIN holders per 10,000 reached", plot_bgcolor="white",
+            yaxis_title="Modelled adults reporting a TIN per 10,000 reached", plot_bgcolor="white",
         )
         st.plotly_chart(cmp_fig, width="stretch")
 
@@ -251,7 +251,7 @@ with tab_scale:
                 + (f" (raw mean prediction {_raw:.1f}%)" if _raw is not None else "")
                 + f". Predicted levels are recalibrated within the age band so that the mean predicted TIN rate ({_cal['mean_predicted_tin_rate_pct']:.2f}%) "
                 f"equals the rate observed in the survey ({_cal['observed_tin_rate_pct']:.2f}%, a low-precision figure resting on very few "
-                "TIN holders); the ranking is unchanged, so the multiplier is almost unaffected. The counts above are modelled, not observed."
+                "respondents reporting a TIN); the ranking is unchanged, so the multiplier is almost unaffected. The counts above are modelled, not observed."
             )
 
         with st.expander("Decile table (aggregates)"):
@@ -269,16 +269,16 @@ with tab_scale:
             if _tbs.available:
                 _sv, _rg = _tbs.value["models"]["survey"], _tbs.value["models"]["register"]
                 _pr = _tbs.value["dashboard_pair_per_10000_reached"]["register_only"]
-                st.caption("† low precision: fewer than 10 TIN holders among the unweighted respondents of that decile. "
+                st.caption("† low precision: fewer than 10 respondents reporting a TIN among the unweighted respondents of that decile. "
                            f"Multiplier at the top 10%, refit in every bootstrap replicate: survey model {_sv['multiplier']['median']:.1f}× "
                            f"(95% interval {_sv['multiplier']['ci95'][0]:.1f}–{_sv['multiplier']['ci95'][1]:.1f}); register data alone (what a tax authority holds) {_rg['multiplier']['median']:.1f}× "
                            f"(95% interval {_rg['multiplier']['ci95'][0]:.1f}–{_rg['multiplier']['ci95'][1]:.1f}), about {_pr['targeted']['median']:.0f} against {_pr['random']:.0f} TIN holders per 10,000 reached. "
-                           "The observed top-decile ratio is not shown: too few Entry-age TIN holders for it to be published as a number.")
+                           "The observed top-decile ratio is not shown: too few Entry-age respondents report a TIN for it to be published as a number.")
             else:
-                st.caption("† low precision: fewer than 10 TIN holders among the unweighted respondents of that decile. The bootstrap intervals are not connected (run `python run_all.py --full-bootstrap`).")
+                st.caption("† low precision: fewer than 10 respondents reporting a TIN among the unweighted respondents of that decile. The bootstrap intervals are not connected (run `python run_all.py --full-bootstrap`).")
 
         st.caption(
-            "\"TIN likelihood\" here means how closely someone's profile matches people who already hold a TIN in the "
+            "\"TIN likelihood\" here means how closely someone's profile matches people who already report a TIN in the "
             "survey, used as a targeting signal — not a causal claim that contacting a given person will cause them to register."
         )
 
