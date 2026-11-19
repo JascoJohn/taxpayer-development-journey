@@ -130,7 +130,7 @@ def mzani_adapter(region: str, sector: str, pipeline: Optional[PipelineData] = N
     level, geography, level_label = "region", region, ""
 
     def _usable(c):
-        return c.available and not c.value.get("suppressed")
+        return c.available and not c.value.get("suppressed") and not c.value.get("withheld")
 
     if not _usable(cell):
         zone = _zone_of(region)

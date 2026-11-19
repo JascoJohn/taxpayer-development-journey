@@ -117,7 +117,7 @@ def build():
                 lk["without_formal_product_columns"]["held_out_auc_weighted"], lk["source_columns_dropped"], lz["pooled_loZo_auc_weighted"], *lz["range_by_zone"]),
             status=ST_RE, script="src/04_models/targeting_model.py; src/04_models/targeting_bootstrap.py", out="outputs/stats/targeting_model.json; outputs/cache/targeting_bootstrap.json", reason="leakage-adjusted and leave-one-zone-out AUC published (owner decision 7)")
     put("C060", "Region cell shown only with at least %d businesses with receipts (Household Budget Survey 2017/18); otherwise the zone cell (nine NBS zones; labelled 'Zone estimate: ...'), otherwise the national (Mainland) cell. Of %d region x activity cells, %d are suppressed; zone cells suppressed: %d; national: %d. "
-        "Not covered: farmers and fishers; Zanzibar." % (mz["min_businesses_with_receipts_region_cell"], len(mz["region_activity"]), sum(1 for r in mz["region_activity"] if r["suppressed"]), sum(1 for r in mz["zone_activity"] if r["suppressed"]), sum(1 for r in mz["national_activity"] if r["suppressed"])),
+        "Not covered: farmers and fishers; Zanzibar." % (mz["min_businesses_with_receipts_region_cell"], len(mz["region_activity"]), sum(1 for r in mz["region_activity"] if r.get("suppressed") or r.get("withheld")), sum(1 for r in mz["zone_activity"] if r.get("suppressed") or r.get("withheld")), sum(1 for r in mz["national_activity"] if r.get("suppressed") or r.get("withheld"))),
         status=ST_RE, script="dashboard/tdj_lib/benchmark_adapters.py; src/03_features/hbs_turnover.py", out="outputs/stats/mzani_turnover.json", reason="Mzani wa Kodi rebuilt on HBS shilling bands (owner decision 6)")
 
     # ---------------------------------------------------------------- new claims

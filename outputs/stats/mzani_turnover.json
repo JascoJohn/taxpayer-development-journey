@@ -34,7 +34,6 @@
    "share_below_4m_pct": 98.52224207269488,
    "share_4m_to_11m_pct": 1.4777579273051142,
    "share_above_11m_pct": 0.0,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -51,7 +50,6 @@
    "share_below_4m_pct": 71.51518250350482,
    "share_4m_to_11m_pct": 22.23589318122519,
    "share_above_11m_pct": 6.248924315269963,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -68,8 +66,13 @@
    "share_below_4m_pct": 76.35028201356607,
    "share_4m_to_11m_pct": 11.387006298412919,
    "share_above_11m_pct": 12.262711688020994,
-   "low_precision": true,
    "suppressed": false,
+   "low_precision": true,
+   "low_precision_fields": [
+    "p25_tzs",
+    "median_tzs",
+    "p75_tzs"
+   ],
    "activity": "Service providers"
   },
   {
@@ -85,7 +88,6 @@
    "share_below_4m_pct": 75.77485581614555,
    "share_4m_to_11m_pct": 11.790374081863431,
    "share_above_11m_pct": 12.434770101991049,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -102,7 +104,6 @@
    "share_below_4m_pct": 79.8425778048234,
    "share_4m_to_11m_pct": 13.593936374410514,
    "share_above_11m_pct": 6.563485820766083,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -119,7 +120,6 @@
    "share_below_4m_pct": 60.47988891580165,
    "share_4m_to_11m_pct": 28.383930904508723,
    "share_above_11m_pct": 11.136180179689651,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -136,7 +136,6 @@
    "share_below_4m_pct": 87.57923173371637,
    "share_4m_to_11m_pct": 8.852757869534862,
    "share_above_11m_pct": 3.5680103967487518,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -153,7 +152,6 @@
    "share_below_4m_pct": 87.8450479281579,
    "share_4m_to_11m_pct": 8.566323228629498,
    "share_above_11m_pct": 3.5886288432126228,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -170,7 +168,6 @@
    "share_below_4m_pct": 87.75097490092168,
    "share_4m_to_11m_pct": 9.646740865134143,
    "share_above_11m_pct": 2.602284233944175,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -187,7 +184,6 @@
    "share_below_4m_pct": 92.05563917601758,
    "share_4m_to_11m_pct": 7.944360823982407,
    "share_above_11m_pct": 0.0,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -204,7 +200,6 @@
    "share_below_4m_pct": 74.3518336105322,
    "share_4m_to_11m_pct": 19.151825018649692,
    "share_above_11m_pct": 6.496341370818095,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -221,7 +216,6 @@
    "share_below_4m_pct": 88.84218997554927,
    "share_4m_to_11m_pct": 8.29975195432592,
    "share_above_11m_pct": 2.8580580701248146,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -238,8 +232,13 @@
    "share_below_4m_pct": 80.82745126456255,
    "share_4m_to_11m_pct": 12.14014401395396,
    "share_above_11m_pct": 7.032404721483483,
-   "low_precision": true,
    "suppressed": false,
+   "low_precision": true,
+   "low_precision_fields": [
+    "p25_tzs",
+    "median_tzs",
+    "p75_tzs"
+   ],
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
@@ -255,7 +254,6 @@
    "share_below_4m_pct": 73.48758534155672,
    "share_4m_to_11m_pct": 5.099573944260611,
    "share_above_11m_pct": 21.41284071418265,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -272,8 +270,13 @@
    "share_below_4m_pct": 69.91950696286867,
    "share_4m_to_11m_pct": 19.831959852435784,
    "share_above_11m_pct": 10.24853318469555,
-   "low_precision": true,
    "suppressed": false,
+   "low_precision": true,
+   "low_precision_fields": [
+    "p25_tzs",
+    "median_tzs",
+    "p75_tzs"
+   ],
    "activity": "Service providers"
   },
   {
@@ -289,7 +292,6 @@
    "share_below_4m_pct": 93.88315947958402,
    "share_4m_to_11m_pct": 1.6053715632985817,
    "share_above_11m_pct": 4.51146895711743,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -306,7 +308,6 @@
    "share_below_4m_pct": 76.75162259482686,
    "share_4m_to_11m_pct": 10.467614375579648,
    "share_above_11m_pct": 12.780763029593501,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -323,7 +324,6 @@
    "share_below_4m_pct": 67.8866698016909,
    "share_4m_to_11m_pct": 22.228580863951798,
    "share_above_11m_pct": 9.884749334357302,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -340,7 +340,6 @@
    "share_below_4m_pct": 96.79425418072267,
    "share_4m_to_11m_pct": 0.0,
    "share_above_11m_pct": 3.205745819277329,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -357,7 +356,6 @@
    "share_below_4m_pct": 88.18281042502775,
    "share_4m_to_11m_pct": 1.0890462808346568,
    "share_above_11m_pct": 10.728143294137594,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -374,7 +372,6 @@
    "share_below_4m_pct": 90.78011698278019,
    "share_4m_to_11m_pct": 4.671762463359668,
    "share_above_11m_pct": 4.548120553860146,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -391,8 +388,13 @@
    "share_below_4m_pct": 85.7902423897943,
    "share_4m_to_11m_pct": 14.209757610205703,
    "share_above_11m_pct": 0.0,
-   "low_precision": true,
    "suppressed": false,
+   "low_precision": true,
+   "low_precision_fields": [
+    "p25_tzs",
+    "median_tzs",
+    "p75_tzs"
+   ],
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
@@ -408,8 +410,13 @@
    "share_below_4m_pct": 88.00194806814244,
    "share_4m_to_11m_pct": 11.998051931857562,
    "share_above_11m_pct": 0.0,
-   "low_precision": true,
    "suppressed": false,
+   "low_precision": true,
+   "low_precision_fields": [
+    "p25_tzs",
+    "median_tzs",
+    "p75_tzs"
+   ],
    "activity": "Traders - non-agricultural"
   },
   {
@@ -425,8 +432,13 @@
    "share_below_4m_pct": 95.32345390126066,
    "share_4m_to_11m_pct": 0.0,
    "share_above_11m_pct": 4.676546098739333,
-   "low_precision": true,
    "suppressed": false,
+   "low_precision": true,
+   "low_precision_fields": [
+    "p25_tzs",
+    "median_tzs",
+    "p75_tzs"
+   ],
    "activity": "Service providers"
   }
  ],
@@ -435,32 +447,33 @@
    "region": "Arusha",
    "n_businesses": 48,
    "n_with_receipts": 19,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Arusha",
-   "n_businesses": 37,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Arusha",
    "n_businesses": 28,
    "n_with_receipts": 10,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Dar Es Salaam",
    "n_businesses": 49,
    "n_with_receipts": 22,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
@@ -476,7 +489,6 @@
    "share_below_4m_pct": 76.733936383508,
    "share_4m_to_11m_pct": 16.392811852637447,
    "share_above_11m_pct": 6.873251763854575,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -493,7 +505,6 @@
    "share_below_4m_pct": 41.033571750757126,
    "share_4m_to_11m_pct": 47.06366809000304,
    "share_above_11m_pct": 11.902760159239808,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -501,24 +512,24 @@
    "region": "Dodoma",
    "n_businesses": 45,
    "n_with_receipts": 20,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Dodoma",
    "n_businesses": 48,
    "n_with_receipts": 23,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Dodoma",
-   "n_businesses": 24,
-   "n_with_receipts": 8,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
@@ -534,7 +545,6 @@
    "share_below_4m_pct": 71.19636072205131,
    "share_4m_to_11m_pct": 23.56941461694044,
    "share_above_11m_pct": 5.2342246610082475,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -542,40 +552,45 @@
    "region": "Geita",
    "n_businesses": 46,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Geita",
    "n_businesses": 41,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Iringa",
    "n_businesses": 33,
    "n_with_receipts": 10,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Iringa",
    "n_businesses": 56,
    "n_with_receipts": 25,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Iringa",
    "n_businesses": 34,
    "n_with_receipts": 16,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
@@ -591,7 +606,6 @@
    "share_below_4m_pct": 95.99033384725206,
    "share_4m_to_11m_pct": 0.0,
    "share_above_11m_pct": 4.009666152747939,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -608,7 +622,6 @@
    "share_below_4m_pct": 95.84874257426893,
    "share_4m_to_11m_pct": 2.6006269920230283,
    "share_above_11m_pct": 1.5506304337080354,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -616,168 +629,165 @@
    "region": "Kagera",
    "n_businesses": 45,
    "n_with_receipts": 27,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Katavi",
    "n_businesses": 34,
    "n_with_receipts": 10,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Katavi",
-   "n_businesses": 30,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Katavi",
    "n_businesses": 33,
    "n_with_receipts": 11,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Kigoma",
-   "n_businesses": 44,
-   "n_with_receipts": 7,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Kigoma",
-   "n_businesses": 20,
-   "n_with_receipts": 5,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Kigoma",
    "n_businesses": 42,
    "n_with_receipts": 11,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Kilimanjaro",
    "n_businesses": 27,
    "n_with_receipts": 16,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Kilimanjaro",
    "n_businesses": 25,
    "n_with_receipts": 10,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Kilimanjaro",
    "n_businesses": 46,
    "n_with_receipts": 17,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Lindi",
-   "n_businesses": 26,
-   "n_with_receipts": 8,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Lindi",
    "n_businesses": 33,
    "n_with_receipts": 10,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Lindi",
-   "n_businesses": 25,
-   "n_with_receipts": 7,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Manyara",
-   "n_businesses": 25,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Manyara",
    "n_businesses": 27,
    "n_with_receipts": 18,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Manyara",
-   "n_businesses": 13,
-   "n_with_receipts": 6,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Mara",
    "n_businesses": 67,
    "n_with_receipts": 28,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Mara",
    "n_businesses": 52,
    "n_with_receipts": 24,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Mara",
    "n_businesses": 28,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Mbeya",
    "n_businesses": 53,
    "n_with_receipts": 17,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Mbeya",
-   "n_businesses": 33,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - non-agricultural"
   },
   {
@@ -793,7 +803,6 @@
    "share_below_4m_pct": 86.5130613395904,
    "share_4m_to_11m_pct": 9.44147082654778,
    "share_above_11m_pct": 4.045467833861825,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -801,8 +810,9 @@
    "region": "Morogoro",
    "n_businesses": 54,
    "n_with_receipts": 20,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
@@ -818,7 +828,6 @@
    "share_below_4m_pct": 90.02105378500268,
    "share_4m_to_11m_pct": 6.274408291530093,
    "share_above_11m_pct": 3.7045379234672366,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -826,104 +835,108 @@
    "region": "Morogoro",
    "n_businesses": 33,
    "n_with_receipts": 17,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Mtwara",
    "n_businesses": 22,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Mtwara",
    "n_businesses": 43,
    "n_with_receipts": 20,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Mtwara",
-   "n_businesses": 32,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Mwanza",
    "n_businesses": 65,
    "n_with_receipts": 28,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Mwanza",
    "n_businesses": 33,
    "n_with_receipts": 12,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Mwanza",
    "n_businesses": 39,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Njombe",
    "n_businesses": 30,
    "n_with_receipts": 16,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Njombe",
    "n_businesses": 43,
    "n_with_receipts": 17,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Njombe",
-   "n_businesses": 23,
-   "n_with_receipts": 8,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Pwani",
    "n_businesses": 62,
    "n_with_receipts": 29,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Pwani",
    "n_businesses": 39,
    "n_with_receipts": 13,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Pwani",
-   "n_businesses": 31,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
@@ -939,7 +952,6 @@
    "share_below_4m_pct": 100.0,
    "share_4m_to_11m_pct": 0.0,
    "share_above_11m_pct": 0.0,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -947,128 +959,129 @@
    "region": "Rukwa",
    "n_businesses": 47,
    "n_with_receipts": 21,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Rukwa",
    "n_businesses": 42,
    "n_with_receipts": 17,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Ruvuma",
    "n_businesses": 17,
    "n_with_receipts": 12,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Ruvuma",
    "n_businesses": 34,
    "n_with_receipts": 11,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Ruvuma",
-   "n_businesses": 12,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Shinyanga",
    "n_businesses": 40,
    "n_with_receipts": 12,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Shinyanga",
-   "n_businesses": 19,
-   "n_with_receipts": 5,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Shinyanga",
    "n_businesses": 37,
    "n_with_receipts": 11,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Simiyu",
    "n_businesses": 33,
    "n_with_receipts": 11,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Simiyu",
-   "n_businesses": 28,
-   "n_with_receipts": 7,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Simiyu",
    "n_businesses": 43,
    "n_with_receipts": 16,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   },
   {
    "region": "Singida",
-   "n_businesses": 18,
-   "n_with_receipts": 5,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Singida",
    "n_businesses": 43,
    "n_with_receipts": 21,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Singida",
-   "n_businesses": 34,
-   "n_with_receipts": 8,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Songwe",
    "n_businesses": 42,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Songwe",
    "n_businesses": 25,
    "n_with_receipts": 12,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
@@ -1084,7 +1097,6 @@
    "share_below_4m_pct": 94.14779706012291,
    "share_4m_to_11m_pct": 0.0,
    "share_above_11m_pct": 5.852202939877098,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   },
@@ -1092,32 +1104,33 @@
    "region": "Tabora",
    "n_businesses": 38,
    "n_with_receipts": 15,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
    "region": "Tabora",
    "n_businesses": 31,
    "n_with_receipts": 12,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - non-agricultural"
   },
   {
    "region": "Tabora",
-   "n_businesses": 31,
-   "n_with_receipts": 9,
    "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "reason": "base < 10",
    "activity": "Service providers"
   },
   {
    "region": "Tanga",
    "n_businesses": 51,
    "n_with_receipts": 24,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
   {
@@ -1133,7 +1146,6 @@
    "share_below_4m_pct": 74.1240998144596,
    "share_4m_to_11m_pct": 22.206836279259925,
    "share_above_11m_pct": 3.6690639062804653,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -1141,8 +1153,9 @@
    "region": "Tanga",
    "n_businesses": 30,
    "n_with_receipts": 14,
-   "suppressed": true,
-   "reason": "fewer than 30 businesses with receipts",
+   "suppressed": false,
+   "withheld": true,
+   "withheld_reason": "fewer than 30 businesses with receipts (region cells need 30)",
    "activity": "Service providers"
   }
  ],
@@ -1159,7 +1172,6 @@
    "share_below_4m_pct": 87.76722482456849,
    "share_4m_to_11m_pct": 7.378946819323931,
    "share_above_11m_pct": 4.853828356107571,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - agricultural products (fishers cannot be separated)"
   },
@@ -1175,7 +1187,6 @@
    "share_below_4m_pct": 79.46980411094574,
    "share_4m_to_11m_pct": 12.784064666468936,
    "share_above_11m_pct": 7.746131222585322,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Traders - non-agricultural"
   },
@@ -1191,7 +1202,6 @@
    "share_below_4m_pct": 78.80600505091819,
    "share_4m_to_11m_pct": 14.307628288597165,
    "share_above_11m_pct": 6.886366660484644,
-   "low_precision": false,
    "suppressed": false,
    "activity": "Service providers"
   }

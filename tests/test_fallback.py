@@ -42,10 +42,13 @@ def test_zone_and_national_cells_follow_the_disclosure_rule(pipeline_run):
 
 
 def _cell(level, key, activity, n, **kw):
-    base = {"activity": activity, "n_businesses": n + 5, "n_with_receipts": n}
-    if n < 30 and level == "region" or n < 10:
-        base.update({"suppressed": True, "reason": "fewer than %d businesses with receipts" % (30 if level == "region" else 10)})
+    base = {"activity": activity}
+    if n < 10:                                                                     # disclosure rule: no counts, no estimate
+        base.update({"suppressed": True, "reason": "base < 10"})
+    elif level == "region" and n < 30:                                             # publishable under the disclosure rule, below the region-band minimum
+        base.update({"n_businesses": n + 5, "n_with_receipts": n, "suppressed": False, "withheld": True, "withheld_reason": "fewer than 30 businesses with receipts"})
     else:
+        base.update({"n_businesses": n + 5, "n_with_receipts": n})
         base.update({"p25_tzs": 2e6, "median_tzs": 5e6, "p75_tzs": 12e6, "tax_at_p25_tzs": 0.0, "tax_at_median_tzs": 100000.0, "tax_at_p75_tzs": 480000.0, "share_below_4m_pct": 40.0, "share_4m_to_11m_pct": 40.0,
                      "share_above_11m_pct": 20.0, "low_precision": n < 30, "suppressed": False})
     if level == "region":
@@ -117,10 +120,15 @@ def test_the_published_mzani_file_follows_the_minimum_sizes_and_the_schedule():
     assert any("Farmers and fishers" in c for c in m["coverage"]) and any("Zanzibar" in c for c in m["coverage"])
     assert {r["activity"] for r in m["national_activity"]} == {"Traders - agricultural products (fishers cannot be separated)", "Traders - non-agricultural", "Service providers"}
     for r in m["region_activity"]:
-        assert r["suppressed"] == (r["n_with_receipts"] < 30), r
-        assert ("median_tzs" in r) == (not r["suppressed"])
+        if r["suppressed"]:                                                         # under 10: no counts, no estimate (the disclosure rule)
+            assert r["reason"] == "base < 10" and "n_with_receipts" not in r and "median_tzs" not in r, r
+        elif r.get("withheld"):                                                     # 10-29 businesses with receipts: counted, but no region band
+            assert 10 <= r["n_with_receipts"] < 30 and "median_tzs" not in r, r
+        else:
+            assert r["n_with_receipts"] >= 30 and "median_tzs" in r, r
     for r in m["zone_activity"] + m["national_activity"]:
-        assert r["suppressed"] == (r["n_with_receipts"] < 10), r
+        assert r["suppressed"] == ("n_with_receipts" not in r), r
+        assert r["suppressed"] or r["n_with_receipts"] >= 10, r
     import statutory_tax as st
     sch = yaml.safe_load(open(os.path.join(ROOT, "config.yaml"), encoding="utf-8"))["assumptions"]["tax.presumptive_schedule"]["value"]
     for r in [r for r in m["zone_activity"] if not r["suppressed"]][:6]:

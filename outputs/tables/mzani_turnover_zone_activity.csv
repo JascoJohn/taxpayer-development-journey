@@ -1,25 +1,25 @@
-zone,activity,n_businesses,n_with_receipts,suppressed,p25_tzs,median_tzs,p75_tzs,tax_at_p25_tzs,tax_at_median_tzs,tax_at_p75_tzs,share_below_4m_pct,share_4m_to_11m_pct,share_above_11m_pct,evidence_type
-Central,Traders - agricultural products (fishers cannot be separated),88,34,False,125820,377460,905905,0,0,0,98.5222,1.47776,0,COMPUTED
-Central,Traders - non-agricultural,118,62,False,226476,603937,4.90699e+06,0,0,27209.6,71.5152,22.2359,6.24892,COMPUTED
-Central,Service providers,71,22,False,150984,543543,3.1455e+06,0,0,0,76.3503,11.387,12.2627,COMPUTED
-Eastern,Traders - agricultural products (fishers cannot be separated),165,71,False,377460,905905,3.62362e+06,0,0,0,75.7749,11.7904,12.4348,COMPUTED
-Eastern,Traders - non-agricultural,319,130,False,603937,2.11378e+06,3.01968e+06,0,0,0,79.8426,13.5939,6.56349,COMPUTED
-Eastern,Service providers,171,72,False,566191,2.5164e+06,6.03937e+06,0,0,61181,60.4799,28.3839,11.1362,COMPUTED
-Lake,Traders - agricultural products (fishers cannot be separated),366,147,False,138402,466793,1.50984e+06,0,0,0,87.5792,8.85276,3.56801,COMPUTED
-Lake,Traders - non-agricultural,244,94,False,201312,634134,2.14398e+06,0,0,0,87.845,8.56632,3.58863,COMPUTED
-Lake,Service providers,233,96,False,241575,724724,1.8873e+06,0,0,0,87.751,9.64674,2.60228,COMPUTED
-Northern,Traders - agricultural products (fishers cannot be separated),126,59,False,301968,754921,2.01312e+06,0,0,0,92.0556,7.94436,0,COMPUTED
-Northern,Traders - non-agricultural,125,50,False,377460,905905,4.91453e+06,0,0,27436,74.3518,19.1518,6.49634,COMPUTED
-Northern,Service providers,104,41,False,113238,603937,1.35886e+06,0,0,0,88.8422,8.29975,2.85806,COMPUTED
-Southern,Traders - agricultural products (fishers cannot be separated),48,22,False,50328.1,754921,3.01968e+06,0,0,0,80.8275,12.1401,7.0324,COMPUTED
-Southern,Traders - non-agricultural,76,30,False,396333,2.26476e+06,8.75708e+06,0,0,142712,73.4876,5.09957,21.4128,COMPUTED
-Southern,Service providers,57,16,False,452953,880741,4.52953e+06,0,0,15885.8,69.9195,19.832,10.2485,COMPUTED
-Southern Highlands,Traders - agricultural products (fishers cannot be separated),80,38,False,135886,402624,1.50984e+06,0,0,0,93.8832,1.60537,4.51147,COMPUTED
-Southern Highlands,Traders - non-agricultural,133,53,False,301968,845511,3.01968e+06,0,0,0,76.7516,10.4676,12.7808,COMPUTED
-Southern Highlands,Service providers,69,33,False,845511,2.26476e+06,5.28445e+06,0,0,38533.4,67.8867,22.2286,9.88475,COMPUTED
-Southwest Highlands,Traders - agricultural products (fishers cannot be separated),192,74,False,301968,679429,1.15755e+06,0,0,0,96.7943,0,3.20575,COMPUTED
-Southwest Highlands,Traders - non-agricultural,135,51,False,201312,509572,1.08709e+06,0,0,0,88.1828,1.08905,10.7281,COMPUTED
-Southwest Highlands,Service providers,210,97,False,276804,566191,1.50984e+06,0,0,0,90.7801,4.67176,4.54812,COMPUTED
-Western,Traders - agricultural products (fishers cannot be separated),82,22,False,320841,1.50984e+06,2.76804e+06,0,0,0,85.7902,14.2098,0,COMPUTED
-Western,Traders - non-agricultural,51,17,False,251640,496990,1.81181e+06,0,0,0,88.0019,11.9981,0,COMPUTED
-Western,Service providers,73,20,False,135886,503281,2.5164e+06,0,0,0,95.3235,0,4.67655,COMPUTED
+zone,activity,n_businesses,n_with_receipts,suppressed,withheld,p25_tzs,median_tzs,p75_tzs,tax_at_p25_tzs,tax_at_median_tzs,tax_at_p75_tzs,share_below_4m_pct,share_4m_to_11m_pct,share_above_11m_pct,evidence_type
+Central,Traders - agricultural products (fishers cannot be separated),88,34,False,,125820,377460,905905,0,0,0,98.5222,1.47776,0,COMPUTED
+Central,Traders - non-agricultural,118,62,False,,226476,603937,4.90699e+06,0,0,27209.6,71.5152,22.2359,6.24892,COMPUTED
+Central,Service providers,71,22,False,,150984,543543,3.1455e+06,0,0,0,76.3503,11.387,12.2627,COMPUTED
+Eastern,Traders - agricultural products (fishers cannot be separated),165,71,False,,377460,905905,3.62362e+06,0,0,0,75.7749,11.7904,12.4348,COMPUTED
+Eastern,Traders - non-agricultural,319,130,False,,603937,2.11378e+06,3.01968e+06,0,0,0,79.8426,13.5939,6.56349,COMPUTED
+Eastern,Service providers,171,72,False,,566191,2.5164e+06,6.03937e+06,0,0,61181,60.4799,28.3839,11.1362,COMPUTED
+Lake,Traders - agricultural products (fishers cannot be separated),366,147,False,,138402,466793,1.50984e+06,0,0,0,87.5792,8.85276,3.56801,COMPUTED
+Lake,Traders - non-agricultural,244,94,False,,201312,634134,2.14398e+06,0,0,0,87.845,8.56632,3.58863,COMPUTED
+Lake,Service providers,233,96,False,,241575,724724,1.8873e+06,0,0,0,87.751,9.64674,2.60228,COMPUTED
+Northern,Traders - agricultural products (fishers cannot be separated),126,59,False,,301968,754921,2.01312e+06,0,0,0,92.0556,7.94436,0,COMPUTED
+Northern,Traders - non-agricultural,125,50,False,,377460,905905,4.91453e+06,0,0,27436,74.3518,19.1518,6.49634,COMPUTED
+Northern,Service providers,104,41,False,,113238,603937,1.35886e+06,0,0,0,88.8422,8.29975,2.85806,COMPUTED
+Southern,Traders - agricultural products (fishers cannot be separated),48,22,False,,50328.1,754921,3.01968e+06,0,0,0,80.8275,12.1401,7.0324,COMPUTED
+Southern,Traders - non-agricultural,76,30,False,,396333,2.26476e+06,8.75708e+06,0,0,142712,73.4876,5.09957,21.4128,COMPUTED
+Southern,Service providers,57,16,False,,452953,880741,4.52953e+06,0,0,15885.8,69.9195,19.832,10.2485,COMPUTED
+Southern Highlands,Traders - agricultural products (fishers cannot be separated),80,38,False,,135886,402624,1.50984e+06,0,0,0,93.8832,1.60537,4.51147,COMPUTED
+Southern Highlands,Traders - non-agricultural,133,53,False,,301968,845511,3.01968e+06,0,0,0,76.7516,10.4676,12.7808,COMPUTED
+Southern Highlands,Service providers,69,33,False,,845511,2.26476e+06,5.28445e+06,0,0,38533.4,67.8867,22.2286,9.88475,COMPUTED
+Southwest Highlands,Traders - agricultural products (fishers cannot be separated),192,74,False,,301968,679429,1.15755e+06,0,0,0,96.7943,0,3.20575,COMPUTED
+Southwest Highlands,Traders - non-agricultural,135,51,False,,201312,509572,1.08709e+06,0,0,0,88.1828,1.08905,10.7281,COMPUTED
+Southwest Highlands,Service providers,210,97,False,,276804,566191,1.50984e+06,0,0,0,90.7801,4.67176,4.54812,COMPUTED
+Western,Traders - agricultural products (fishers cannot be separated),82,22,False,,320841,1.50984e+06,2.76804e+06,0,0,0,85.7902,14.2098,0,COMPUTED
+Western,Traders - non-agricultural,51,17,False,,251640,496990,1.81181e+06,0,0,0,88.0019,11.9981,0,COMPUTED
+Western,Service providers,73,20,False,,135886,503281,2.5164e+06,0,0,0,95.3235,0,4.67655,COMPUTED

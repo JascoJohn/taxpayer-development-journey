@@ -25,6 +25,12 @@ EXPECTED = {
     "outputs/stats/stage_economics.json", "outputs/tables/table40_stage_economics.csv",
     # Block F
     "data/processed/ilfs_tax_base.json",
+    # Pass 6B-1
+    "data/processed/hbs_turnover.json", "data/processed/tra_collections_2024_25.json",
+    "outputs/stats/cited_facts.json", "outputs/stats/mzani_turnover.json", "outputs/stats/reach_scenarios.json", "outputs/stats/taxable_capacity.json",
+    "outputs/tables/cited_facts.csv", "outputs/tables/fig5_4_tornado_central.csv", "outputs/tables/mzani_turnover_region_activity.csv", "outputs/tables/mzani_turnover_zone_activity.csv",
+    "outputs/tables/reach_scenarios_by_year.csv", "outputs/tables/reach_scenarios_year10.csv", "outputs/tables/table5_1_nil_period_sensitivity.csv", "outputs/tables/table5_1_stage_economics.csv",
+    "outputs/tables/table5_2_persistence_sensitivity.csv", "outputs/tables/taxable_capacity.csv", "outputs/tables/taxable_capacity_by_zone.csv",
 } | {"outputs/figures/%s.%s" % (n, e) for n in ("fig_5_1_modelled_compliance", "fig_5_2_reach_scenarios", "fig_5_3_table40_roi_by_stage", "fig_5_4_tornado_central", "fig_a1_tin_by_segment",
                                               "fig_a2_tax_morale_components", "fig_a3_targeting_deciles", "fig_a4_targeting_variants", "fig_a5_macro_gap", "journey_graphic", "cover_poster", "theory_of_change") for e in ("png", "svg")}
 

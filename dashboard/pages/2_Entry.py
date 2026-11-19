@@ -271,7 +271,7 @@ with tab_scale:
                 _pr = _tbs.value["dashboard_pair_per_10000_reached"]["register_only"]
                 st.caption("† low precision: fewer than 10 TIN holders among the unweighted respondents of that decile. "
                            f"Multiplier at the top 10%, refit in every bootstrap replicate: survey model {_sv['multiplier']['median']:.1f}× "
-                           f"(95% interval {_sv['multiplier']['ci95'][0]:.1f}–{_sv['multiplier']['ci95'][1]:.1f}); register data alone (what TRA holds) {_rg['multiplier']['median']:.1f}× "
+                           f"(95% interval {_sv['multiplier']['ci95'][0]:.1f}–{_sv['multiplier']['ci95'][1]:.1f}); register data alone (what a tax authority holds) {_rg['multiplier']['median']:.1f}× "
                            f"(95% interval {_rg['multiplier']['ci95'][0]:.1f}–{_rg['multiplier']['ci95'][1]:.1f}), about {_pr['targeted']['median']:.0f} against {_pr['random']:.0f} TIN holders per 10,000 reached. "
                            "The observed top-decile ratio is not shown: too few Entry-age TIN holders for it to be published as a number.")
             else:

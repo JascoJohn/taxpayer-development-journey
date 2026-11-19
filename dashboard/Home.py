@@ -145,7 +145,7 @@ if _tb.available:
         evidence_tag("computed")
         k2.metric("Survey model (all questionnaire items)", f"{_sur['multiplier']['median']:.1f}×",
                   delta=f"95% interval {_sur['multiplier']['ci95'][0]:.1f}–{_sur['multiplier']['ci95'][1]:.1f}", delta_color="off",
-                  help="Same construction with the full FinScope feature set; it uses items TRA does not hold, so it is an upper reference.")
+                  help="Same construction with the full FinScope feature set; it uses items a tax authority does not hold, so it is an upper reference.")
     with k3:
         evidence_tag("computed")
         k3.metric("Survey model AUC without formal-product items", f"{_leak['without_formal_product_columns']['held_out_auc_weighted']:.3f}",

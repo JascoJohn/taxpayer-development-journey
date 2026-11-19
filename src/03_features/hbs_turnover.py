@@ -177,15 +177,21 @@ def mzani_tables(d):
         for key, g in df.groupby(keys):
             rep = g[g["reported"]]
             rec = dict(zip(keys, key if isinstance(key, tuple) else (key,)))
+            if disclosure.is_suppressed(len(rep)):                      # disclosure rule: a suppressed cell carries no counts and no estimate
+                rec.update({"suppressed": True, "reason": "base < %d" % disclosure.MIN_BASE})
+                out.append(rec)
+                continue
             rec.update({"n_businesses": int(len(g)), "n_with_receipts": int(len(rep))})
-            if len(rep) < min_n or disclosure.is_suppressed(len(rep)):
-                rec.update({"suppressed": True, "reason": "fewer than %d businesses with receipts" % min_n})
+            if len(rep) < min_n:                                        # enough to publish under the disclosure rule, not enough for a region band: withheld
+                rec.update({"suppressed": False, "withheld": True, "withheld_reason": "fewer than %d businesses with receipts (region cells need %d)" % (min_n, min_n)})
             else:
                 w, t_ = rep["w"].to_numpy(), rep["turnover"].to_numpy()
                 q = [_wq(t_, w, p) for p in (0.25, 0.5, 0.75)]
                 rec.update({"p25_tzs": q[0], "median_tzs": q[1], "p75_tzs": q[2], "tax_at_p25_tzs": tax_at(q[0]), "tax_at_median_tzs": tax_at(q[1]), "tax_at_p75_tzs": tax_at(q[2]),
                             "share_below_4m_pct": _wmean(t_ <= 4e6, w) * 100, "share_4m_to_11m_pct": _wmean((t_ > 4e6) & (t_ <= 11e6), w) * 100, "share_above_11m_pct": _wmean(t_ > 11e6, w) * 100,
-                            "low_precision": bool(len(rep) < min_region), "suppressed": False})
+                            "suppressed": False})
+                if len(rep) < min_region:                                    # flagged cells name their fields (the disclosure convention); an unflagged cell carries no flag
+                    rec.update({"low_precision": True, "low_precision_fields": ["p25_tzs", "median_tzs", "p75_tzs"]})
             out.append(rec)
         return out
     zone = cells(b.dropna(subset=["zone"]), ["zone", "cpc_group"], 10)
@@ -215,7 +221,7 @@ def write_outputs(result):
     os.makedirs(os.path.dirname(paths.MZANI_TURNOVER), exist_ok=True)
     with open(paths.MZANI_TURNOVER, "w", encoding="utf-8") as f:
         json.dump(doc, f, indent=1, ensure_ascii=False)
-    cols = ["n_businesses", "n_with_receipts", "suppressed", "p25_tzs", "median_tzs", "p75_tzs", "tax_at_p25_tzs", "tax_at_median_tzs", "tax_at_p75_tzs", "share_below_4m_pct", "share_4m_to_11m_pct", "share_above_11m_pct"]
+    cols = ["n_businesses", "n_with_receipts", "suppressed", "withheld", "p25_tzs", "median_tzs", "p75_tzs", "tax_at_p25_tzs", "tax_at_median_tzs", "tax_at_p75_tzs", "share_below_4m_pct", "share_4m_to_11m_pct", "share_above_11m_pct"]
     _write_csv(paths.MZANI_ZONE_CSV, mz["zone_activity"], ["zone", "activity"] + cols)
     _write_csv(paths.MZANI_REGION_CSV, mz["region_activity"], ["region", "activity"] + cols)
     cap, zcap = result["taxable_capacity"], result["taxable_capacity_by_zone"]
