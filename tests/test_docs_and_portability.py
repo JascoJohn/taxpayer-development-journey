@@ -56,7 +56,7 @@ def test_the_final_claims_map_has_the_agreed_columns_and_every_claim():
         rows = list(csv.DictReader(f))
     assert list(rows[0].keys()) == ["claim_id", "location", "current value", "type", "label", "source script", "output file", "status"]
     ids = [r["claim_id"] for r in rows]
-    assert ids == ["C%03d" % i for i in range(1, 111)]          # C080: the computed half of the informality claim C032 (split in Editing Pass 1); C081-C098: Pass 6B-1; C099-C108: Pass 6B-2; C109-C110: Pass 6B-3
+    assert ids == ["C%03d" % i for i in range(1, 115)]          # C080: the computed half of the informality claim C032 (split in Editing Pass 1); C081-C098: Pass 6B-1; C099-C108: Pass 6B-2; C109-C110: Pass 6B-3; C111-C114: Pass 6B-4
     assert {r["type"] for r in rows} == {"COMPUTED", "MODELLED", "CITED", "n/a"}                  # the type column holds exactly these four values; the detail is in the label column
     assert all(r["label"] and r["status"] for r in rows)
     by = {r["claim_id"]: r for r in rows}

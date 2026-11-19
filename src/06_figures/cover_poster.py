@@ -271,7 +271,7 @@ def make(out_dir=None):
     c.t(844, 830, "THE SOLUTION: WHY NGAZI IS DIFFERENT", 14.5, GREEN, "bold")
     prob = [["Current reforms improve transactions", "— registration, filing, enforcement —", "not relationships."],
             ["Each life-stage interaction", "resets to zero — we treat the same", "citizen as a stranger."],
-            ["High civic duty (65.7% say", "taxes should always be paid)", "but very low formal participation", "(3.83% report a TIN) — a relationship gap,", "not a willingness gap."]]
+            ["High civic duty (65.7% say", "taxes should always be paid)", "but very low formal participation", "(3.83% report a TIN) — a relationship gap:", "positive attitudes, low participation."]]
     sol = [["Relationship architecture,", "not standalone products."], ["Persistent taxpayer identity", "across the entire life journey."],
            ["Trust, history, and compliance", "compound over time — never", "reset at every encounter."]]
     prow = [(892, "gear"), (975, "cycle"), (1057, "chart_down")]
@@ -313,7 +313,7 @@ def make(out_dir=None):
             c.t(48, top + yy + 12 * j, ln, 9.6, INK, ha="left")
         yy += 12 * len(item) + 5
     c.t(133, top + 238, "Every number is labelled by evidence type:", 9.2, DARK, style="italic")
-    c.t(133, top + 251, "COMPUTED · MODELLED · CITED", 9.2, DARK, style="italic")
+    c.t(133, top + 251, "COMPUTED · MODELLED · CITED · ILLUSTRATIVE", 9.2, DARK, style="italic")
     c.box(266, top, 250, hbox, fc="white", ec="#CFD8DC", lw=1.0, r=10, z=2)
     c.t(391, top + 20, "DEMONSTRATED & LIVE", 13.5, INK, "bold")
     shot = os.path.join(ASSETS, "poster_dashboard_home.png")      # a copy of the dashboard home screenshot (a static asset, so the poster does not depend on the order of the pipeline steps)
