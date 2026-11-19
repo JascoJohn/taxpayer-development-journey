@@ -81,7 +81,7 @@ def test_the_twin_reads_the_series_and_the_other_base_parameters(pipeline_run):
                        ("base.msme_avg_revenue_tzs", "DATA"), ("base.adult_population", "DATA"), ("twin.growth.adult_population", "DATA"), ("twin.default.formalization_policy", "CALIBRATED")):
         e = assumptions.entry(key)
         assert e["basis"] == basis and "value" not in e and e["from"].endswith("twin_inputs.json"), key
-        assert assumptions.A(key) == tw["parameters"][key.replace(".", "_")]["value"]
+        assert assumptions.A(key) == pytest.approx(tw["parameters"][key.replace(".", "_")]["value"], rel=1e-12, abs=0)       # the calibrated slope can differ in the last digit between numpy builds (Pass 6B-2: rebuilt .venv)
     assert tw["parameters"]["twin_default_formalization_policy"]["calibration"]["method"].startswith("ordinary least squares")
     for key in ("twin.ussd.conversion", "twin.trust_multiplier.slope", "twin.presumptive.uplift_factor"):          # retired with the digital twin (Pass 6B-1)
         assert key not in assumptions.keys() and paths.CFG["retired_assumptions"][key]["retired_in"] == "Pass 6B-1", key
