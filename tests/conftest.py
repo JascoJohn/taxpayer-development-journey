@@ -36,6 +36,11 @@ def raw_documents_present():
     return all(os.path.isdir(os.path.join(ROOT, *d.split("/"))) and os.listdir(os.path.join(ROOT, *d.split("/"))) for d in RAW_DOCUMENTS)
 
 
+# Timeout of one full `run_all.py` in a throw-away copy. Raised from 900 s (run_all helper) and 1,800 s (shared pipeline run) to 2,400 s in Pass 6B-1: the pipeline now also reads the HBS 2017/18
+# microdata, computes the reach scenarios and the three income bases of Table 5.1, and the baseline suite on `main` already lost one test (test_idempotency::test_no_timestamps_in_data_outputs) to
+# the 900 s limit on this machine. The limit only guards against a hang; it does not change what is tested.
+PIPELINE_TIMEOUT_S = 2400
+
 SKIP_RAW_REASON = "restricted raw data not present (%s): see README.md, 'How to obtain the raw data'"
 requires_raw = pytest.mark.skipif(bool(missing_raw()), reason=SKIP_RAW_REASON % ", ".join(missing_raw()))
 requires_documents = pytest.mark.skipif(not raw_documents_present(), reason="the saved TRA / NBS / BoT / TCRA / MoF documents are not present (data/raw is not redistributed): see README.md, 'How to obtain the raw data'")
@@ -98,7 +103,7 @@ def pipeline_run(tmp_path_factory):
     dst = str(tmp_path_factory.mktemp("shared") / "proj")
     _copy_project(dst)
     r = subprocess.run([sys.executable, os.path.join(dst, "run_all.py"), "--clean"], cwd=os.path.dirname(dst), capture_output=True, text=True,
-                       encoding="utf-8", errors="replace", env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1", PYTHONUTF8="1"), timeout=1800)
+                       encoding="utf-8", errors="replace", env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1", PYTHONUTF8="1"), timeout=PIPELINE_TIMEOUT_S)
     assert r.returncode == 0, r.stderr[-3000:]
     return dst
 
@@ -116,7 +121,7 @@ def run_all(project_dir, *args, cwd=None):
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", PYTHONUTF8="1")
     return subprocess.run([sys.executable, os.path.join(project_dir, "run_all.py"), *args],
                           cwd=cwd or os.path.dirname(project_dir), capture_output=True, text=True,
-                          encoding="utf-8", errors="replace", env=env, timeout=900)
+                          encoding="utf-8", errors="replace", env=env, timeout=PIPELINE_TIMEOUT_S)
 
 
 def snapshot(project_dir, exclude=("run_meta.json",), only=None):
