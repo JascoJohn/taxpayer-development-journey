@@ -59,10 +59,10 @@ with st.expander("Why Entry exists"):
             f"{N.entry.swahili} addresses this from two directions. **Targeting** "
             "answers *who* the tax authority should reach first when outreach budget is "
             "limited. **Registration on the Ngazi Platform** answers what happens *once someone "
-            "is reached* — the document's own USSD channel was never built (real "
-            "telecom integration, out of scope for this pilot), so this is a "
-            "platform-native alternative that gives Juma something fast to do "
-            "right now instead of a channel that doesn't exist yet."
+            "is reached* — in the pilot the invitation is an SMS with a link to this "
+            "registration channel, which needs no cost-sharing with mobile operators; "
+            "USSD becomes the channel for scaling up once an agreement with operators "
+            "is in place. The prototype demonstrates the registration step within a session."
         )
     with c2:
         evidence_tag("modelled")

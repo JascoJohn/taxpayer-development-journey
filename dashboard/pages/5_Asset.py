@@ -176,7 +176,7 @@ with st.expander(f"Why {N.asset.swahili} exists"):
         st.write(
             "Fiscal Exchange Theory (Alm, Jackson & McKee, 1993): compliance rises when "
             "people perceive a genuine two-way exchange. "
-            f"{_evidence} — willingness is high; what's missing isn't attitude, it's the exchange itself."
+            f"{_evidence} — attitudes are positive; what's missing isn't attitude, it's the exchange itself."
         )
         if _morale.available:
             st.caption(f"Source: {_morale.value['citation'].split(' (form')[0]}. Components, not a composite index.")

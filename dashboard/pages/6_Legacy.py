@@ -413,7 +413,7 @@ st.write("")
 completed_count = sum(1 for *_, done in recap_rows if done)
 st.markdown(
     f'<div class="tdj-note-card"><div class="tdj-note-label">This session\'s record</div>'
-    f"<p>{completed_count} of 6 stages carried a real, continuous record forward — "
+    f"<p>{completed_count} of 6 stages carried a record forward within the demonstration session — "
     "the same thesis this whole project is built on: one relationship, not six "
     "resets.</p></div>",
     unsafe_allow_html=True,

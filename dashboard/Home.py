@@ -23,11 +23,11 @@ else:
     _n_finscope = ""
 callout(
     "AT A GLANCE",
-    "Willingness is already high; the barriers are friction and voice. "
+    "Most adults report positive attitudes to tax; the barriers are friction and voice. "
     "Six lifecycle stages — Seed, Entry, Active, Enterprise, Asset, Legacy — "
-    "anchored by one connective infrastructure that carries a taxpayer's record "
-    f"forward across all six. Evidence base: FinScope Tanzania 2023{_n_finscope}, "
-    "the Integrated Labour Force Survey 2024, the Census 2022 10% sample, "
+    "prototyped and linked in a live demonstration around one connective layer that is designed to carry a taxpayer's record "
+    f"forward across all six (within a single session in the prototype). Evidence base: FinScope Tanzania 2023{_n_finscope}, "
+    "the Integrated Labour Force Survey 2024, the Household Budget Survey 2017/18, the Census 2022 10% sample, "
     "published TRA, NBS, Bank of Tanzania and TCRA statistics, and an observational analysis of mobile money and TIN "
     "holding on the real FinScope respondents.",
 )
