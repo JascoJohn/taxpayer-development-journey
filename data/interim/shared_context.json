@@ -1,6 +1,6 @@
 {
   "meta": {
-    "pipeline_run_id": "a42600b4",
+    "pipeline_run_id": "839df448",
     "agents_completed": [],
     "agents_pending": [],
     "pipeline_status": "initialized"
@@ -85,13 +85,18 @@
       "source": "FinScope Tanzania 2023, weighted (tin_by_segment.csv)"
     },
     "active": {
-      "population": 12110886,
-      "age_range": "age 25-44, not a business owner (BusO != 'Business owners')",
+      "population": 2916165,
+      "age_range": "business owner (BusO == 'Business owners') with no formal step (D6_4a != 'Yes', including not asked), age 25-64",
       "source": "FinScope Tanzania 2023, weighted (tin_by_segment.csv)"
     },
     "enterprise": {
-      "population": 3488900,
-      "age_range": "age 25-64, business owner (BusO == 'Business owners')",
+      "population": 572735,
+      "age_range": "business owner (BusO == 'Business owners') with a formal step (D6_4a == 'Yes'), age 25-64",
+      "source": "FinScope Tanzania 2023, weighted (tin_by_segment.csv)"
+    },
+    "workers": {
+      "population": 12110886,
+      "age_range": "not a business owner, age 25-44 (wage, casual, farm and dependent adults; no revenue lever)",
       "source": "FinScope Tanzania 2023, weighted (tin_by_segment.csv)"
     },
     "asset": {
@@ -137,6 +142,7 @@
       "enterprise": [
         "INT-852F18"
       ],
+      "workers": [],
       "asset": [
         "INT-668A76"
       ],
@@ -163,6 +169,7 @@
       "entry": [],
       "active": [],
       "enterprise": [],
+      "workers": [],
       "asset": [],
       "legacy": []
     }
@@ -221,6 +228,14 @@
       "resolve_tax_disputes": null
     },
     "enterprise": {
+      "expand_tax_base": null,
+      "simplify_small_business_taxation": null,
+      "improve_digital_services": null,
+      "reduce_collection_costs": null,
+      "use_ai_blockchain_big_data": null,
+      "resolve_tax_disputes": null
+    },
+    "workers": {
       "expand_tax_base": null,
       "simplify_small_business_taxation": null,
       "improve_digital_services": null,

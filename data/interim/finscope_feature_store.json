@@ -109,8 +109,9 @@
       "mm_urban_pct": 81.3,
       "mm_rural_pct": 63.7,
       "mm_entry_pct": 60.2,
-      "mm_active_pct": 77.7,
-      "mm_enterprise_pct": 91.7,
+      "mm_active_pct": 91.4,
+      "mm_enterprise_pct": 93.7,
+      "mm_workers_pct": 77.7,
       "mm_asset_pct": 75.8,
       "mm_legacy_pct": 51.8,
       "mm_no_tin_count": 23140012,
@@ -211,8 +212,9 @@
       "no_ins_barrier_they_don’t_want_to_pay_out_when_you_clai_pct": 0.1,
       "no_ins_barrier_they_don’t_pay_out_on_time_when_you_clai_pct": 0.2,
       "insurance_entry_pct": 6.9,
-      "insurance_active_pct": 7.7,
-      "insurance_enterprise_pct": 11.4,
+      "insurance_active_pct": 8.4,
+      "insurance_enterprise_pct": 27.0,
+      "insurance_workers_pct": 7.7,
       "insurance_asset_pct": 11.8,
       "insurance_legacy_pct": 23.3
     },
@@ -222,8 +224,15 @@
       "pension_via_voluntary_private_pct": 10.3,
       "pension_longterm_member_pct": 69.5,
       "pension_entry_pct": 0.5,
-      "pension_active_pct": 5.6,
-      "pension_enterprise_pct": 1.1,
+      "pension_active_pct": {
+        "value": 0.6,
+        "low_precision": true
+      },
+      "pension_enterprise_pct": {
+        "value": 3.5,
+        "low_precision": true
+      },
+      "pension_workers_pct": 5.6,
       "pension_asset_pct": 6.1,
       "pension_legacy_pct": 8.2
     },
@@ -298,10 +307,12 @@
       "mm_rural_pct": 63.7,
       "tin_entry_pct": 0.8,
       "mm_no_tin_entry": 6304754,
-      "tin_active_pct": 4.6,
-      "mm_no_tin_active": 8848950,
-      "tin_enterprise_pct": 9.7,
-      "mm_no_tin_enterprise": 2860651,
+      "tin_active_pct": 6.4,
+      "mm_no_tin_active": 2476254,
+      "tin_enterprise_pct": 26.5,
+      "mm_no_tin_enterprise": 384397,
+      "tin_workers_pct": 4.6,
+      "mm_no_tin_workers": 8848950,
       "tin_asset_pct": 4.3,
       "mm_no_tin_asset": 4000631,
       "tin_legacy_pct": 3.7,
@@ -328,7 +339,7 @@
       "note": "Tax morale proxies derived from FinScope behavioral variables. Not direct tax attitude measures. Afrobarometer data needed for direct morale scores."
     }
   },
-  "total_indicators": 220,
+  "total_indicators": 225,
   "domains_count": 12,
   "disclosure_rule": "indicators whose unweighted base is below 10 are suppressed; those with an unweighted numerator below 10 are flagged low_precision"
 }

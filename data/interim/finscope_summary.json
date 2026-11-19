@@ -39,6 +39,28 @@
       "urban_pct": 38.9
     },
     "active": {
+      "population": 2916164,
+      "has_tin": 187769,
+      "tin_rate_pct": 6.4,
+      "uses_mm": 2664024,
+      "mm_rate_pct": 91.4,
+      "mm_no_tin": 2476254,
+      "intervention_target": 2728395,
+      "dropout_rate_pct": 93.6,
+      "urban_pct": 55.8
+    },
+    "enterprise": {
+      "population": 572735,
+      "has_tin": 151976,
+      "tin_rate_pct": 26.5,
+      "uses_mm": 536373,
+      "mm_rate_pct": 93.7,
+      "mm_no_tin": 384397,
+      "intervention_target": 420758,
+      "dropout_rate_pct": 73.5,
+      "urban_pct": 68.4
+    },
+    "workers": {
       "population": 12110885,
       "has_tin": 559050,
       "tin_rate_pct": 4.6,
@@ -48,17 +70,6 @@
       "intervention_target": 11551835,
       "dropout_rate_pct": 95.4,
       "urban_pct": 33.6
-    },
-    "enterprise": {
-      "population": 3488899,
-      "has_tin": 339746,
-      "tin_rate_pct": 9.7,
-      "uses_mm": 3200397,
-      "mm_rate_pct": 91.7,
-      "mm_no_tin": 2860651,
-      "intervention_target": 3149153,
-      "dropout_rate_pct": 90.3,
-      "urban_pct": 57.9
     },
     "asset": {
       "population": 5590836,
@@ -180,8 +191,9 @@
     "by_stage": {
       "seed": 0,
       "entry": 60.2,
-      "active": 77.7,
-      "enterprise": 91.7,
+      "active": 91.4,
+      "enterprise": 93.7,
+      "workers": 77.7,
       "asset": 75.8,
       "legacy": 51.8
     },
@@ -580,14 +592,27 @@
         "gap": 10549442
       },
       "active": {
+        "coverage_pct": 0.6,
+        "holders": 17920,
+        "gap": 2898244,
+        "low_precision": true,
+        "low_precision_fields": [
+          "coverage_pct"
+        ]
+      },
+      "enterprise": {
+        "coverage_pct": 3.5,
+        "holders": 20170,
+        "gap": 552564,
+        "low_precision": true,
+        "low_precision_fields": [
+          "coverage_pct"
+        ]
+      },
+      "workers": {
         "coverage_pct": 5.6,
         "holders": 676459,
         "gap": 11434426
-      },
-      "enterprise": {
-        "coverage_pct": 1.1,
-        "holders": 38090,
-        "gap": 3450808
       },
       "asset": {
         "coverage_pct": 6.1,
@@ -611,14 +636,19 @@
         "gap": 9873591
       },
       "active": {
+        "coverage_pct": 8.4,
+        "holders": 244753,
+        "gap": 2671410
+      },
+      "enterprise": {
+        "coverage_pct": 27.0,
+        "holders": 154479,
+        "gap": 418255
+      },
+      "workers": {
         "coverage_pct": 7.7,
         "holders": 927051,
         "gap": 11183834
-      },
-      "enterprise": {
-        "coverage_pct": 11.4,
-        "holders": 399233,
-        "gap": 3089666
       },
       "asset": {
         "coverage_pct": 11.8,

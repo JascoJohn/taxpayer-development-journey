@@ -114,6 +114,8 @@ def test_every_number_on_the_cover_poster_is_listed_with_a_claim_that_carries_it
 def test_the_theory_of_change_uses_the_owner_age_bands():
     """Editing Pass 2 (S1.3): role plus age band per stage."""
     src = open(os.path.join(FIG_SRC, "theory_of_change.py"), encoding="utf-8").read()
-    for needle in ("Ages 6\u201315", "Ages 16\u201324", "ages 25\u201344", "ages 25\u201364", "ages 45\u201364", "Ages 65+"):
+    for needle in ("Ages 6\u201315", "Ages 16\u201324", "ages 25\u201364", "ages 45\u201364", "Ages 65+"):
         assert needle in src, needle
+    assert "Informal business owners," in src and "Registered business owners," in src      # stage mapping B (Pass 6B-1): Active = informal owners 25-64, Enterprise = registered owners 25-64
+    assert "ages 25\u201344" not in src                                                      # Workers 25-44 are a named group with no tool, not a stage box
     assert "Birth" not in src and "Age 15" not in src

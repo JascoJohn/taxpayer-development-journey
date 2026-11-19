@@ -2,6 +2,14 @@
 
 Dated, factual, one line per change. Newest first.
 
+## 2026-11-19 - Pass 6B-1: stage mapping B, bracketed economics, new figures (branch `pass6b-1`; the report is not edited; Pass 6B-2 applies the text)
+- H1: HBS 2017/18 (Individual, Consumption Aggregate, Form I S10C1/S10A1), the TRA FY2024/25 collections workbook, the WDI consumer price index snapshot and the dated Tax Club page copied into `data/raw/` (git-ignored; SHA-256 checked); `data/raw/SOURCES.csv`, README and config updated.
+- H2: stage mapping B (`finscope_segments.py`): Active = business owners without a formal step (D6_4a), 25-64; Enterprise = owners with a formal step, 25-64; Workers 25-44 = non-owners, named group, no revenue lever; Asset = non-owners 45-64. Reconciles to 34,134,251 adults, 3.828%, 1,306,683 holders.
+- H3: `stage_economics.py` income bases (central HBS receipts of owners with receipts, high ILFS gross, low HBS all owners), new `hbs_turnover.py`, Tables 5.1 and 5.2, break-even revenue per registrant, P(ROI >= 1), nil-period sensitivity, central tornado (Figure 5.4), Figure 5.3 with the bracket.
+- H4: digital twin retired to `src/retired/`; `reach_scenarios.py` (Figure 5.2) with a scale check against TRA FY2024/25 (`tra_collections.py`).
+- H5: Mzani wa Kodi on HBS shilling bands (zone x activity; region cell only with 30 or more businesses with receipts). H6: `targeting_bootstrap.py` behind `--full-bootstrap`. H7: Figure 1.1 like for like, taxable capacity, CITED register facts (`cited_facts.py`).
+- H8: `docs/claims_map.csv` regenerated (C079 retired, C081-C098 new), `docs/pending_text_changes.csv`; H9: dashboard numbers from the regenerated outputs, `docs/pending_dashboard_text.csv`.
+
 ## 2026-11-16 - Editing Pass 5 and release v0.9.0 (code, aggregate data, outputs, dashboard, documentation; the report follows in v1.0.0)
 - Report working copy v6 (`report/working/Taxpayer_Development_Journey_working_v6.docx`, tracked changes by "Claude Code - Pass 5"): new front-matter order (cover, About this project, Executive Summary, pictorial summary, contents, Introduction); "Disclosures" page before the References; section 5.2 rewritten; header (date), two-line footer (contact, DOI placeholders, links); cover and poster re-lettered; layout rules applied. Published copy: `report/final/` with v1.0.0.
 - Poster (`src/06_figures/cover_poster.py`): telephone on the author line, small text darker and larger, "MODELLED IMPACT", a real QR code for the dashboard (`qrcode`, pinned in `environment/requirements.txt`).

@@ -56,11 +56,13 @@ def test_the_final_claims_map_has_the_agreed_columns_and_every_claim():
         rows = list(csv.DictReader(f))
     assert list(rows[0].keys()) == ["claim_id", "location", "current value", "type", "label", "source script", "output file", "status"]
     ids = [r["claim_id"] for r in rows]
-    assert ids == ["C%03d" % i for i in range(1, 81)]          # C080: the computed half of the informality claim C032 (split in Editing Pass 1)
+    assert ids == ["C%03d" % i for i in range(1, 99)]          # C080: the computed half of the informality claim C032 (split in Editing Pass 1); C081-C098: Pass 6B-1
     assert {r["type"] for r in rows} == {"COMPUTED", "MODELLED", "CITED", "n/a"}                  # the type column holds exactly these four values; the detail is in the label column
     assert all(r["label"] and r["status"] for r in rows)
     by = {r["claim_id"]: r for r in rows}
-    assert by["C079"]["label"] == "MODELLED" and "fig_5_2_digital_twin" in by["C079"]["output file"]
+    assert by["C079"]["status"] == "RETIRED" and "digital twin was retired" in by["C079"]["current value"] and "digital_twin_v0" in by["C079"]["output file"]       # Pass 6B-1
+    assert by["C081"]["status"].startswith("REPLACED") and "3.23x" in by["C081"]["current value"]                                                    # the 3.23x row now has an ID and its replacement
+    assert all(by["C%03d" % i]["status"].startswith("NEW") for i in range(82, 99)) and all(by["C%03d" % i]["label"] in ("COMPUTED", "MODELLED", "CITED") for i in range(81, 99))
     assert "BLOCKED" not in {r["status"] for r in rows}
     assert not os.path.exists(os.path.join(ROOT, "docs", "claims_map_draft.csv"))                 # the draft is kept in _archive
 

@@ -19,8 +19,9 @@
     "mobile_money_gdp_pct": 0.9660562446405148,
     "seed_stage_population": 16354370,
     "entry_stage_population": 10605005,
-    "active_stage_population": 12110885,
-    "enterprise_stage_population": 3488899,
+    "active_stage_population": 2916164,
+    "enterprise_stage_population": 572735,
+    "workers_stage_population": 12110885,
     "asset_stage_population": 5590836,
     "legacy_stage_population": 2338624,
     "tin_rate_pct": 3.8,
@@ -124,15 +125,15 @@
         },
         {
           "stage": "Active Stage",
-          "capturable_population": 3633266,
+          "capturable_population": 874849,
           "annual_tax_per_person_tzs": 407215.0,
-          "annual_revenue_tzs": 1997353925061.0,
-          "annual_revenue_usd": 768833906.0,
-          "cumulative_10yr_tzs": 25201464898609.0,
-          "tax_gdp_impact_pct": 0.97,
+          "annual_revenue_tzs": 480940036867.0,
+          "annual_revenue_usd": 185126433.0,
+          "cumulative_10yr_tzs": 6068225218050.0,
+          "tax_gdp_impact_pct": 0.234,
           "behavioral_uplift_applied": true,
           "assumptions": {
-            "population": 12110885,
+            "population": 2916164,
             "avg_income_tzs": 3918941.6025318606,
             "tax_per_person_tzs": 407215.2784770682,
             "effective_tax_rate": 0.10390950409007978,
@@ -144,15 +145,15 @@
         },
         {
           "stage": "Enterprise Stage",
-          "capturable_population": 1046670,
+          "capturable_population": 171820,
           "annual_tax_per_person_tzs": 729529.0,
-          "annual_revenue_tzs": 1030827802868.0,
-          "annual_revenue_usd": 396792655.0,
-          "cumulative_10yr_tzs": 13006393290913.0,
-          "tax_gdp_impact_pct": 0.501,
+          "annual_revenue_tzs": 169219365310.0,
+          "annual_revenue_usd": 65136971.0,
+          "cumulative_10yr_tzs": 2135112781722.0,
+          "tax_gdp_impact_pct": 0.082,
           "behavioral_uplift_applied": true,
           "assumptions": {
-            "population": 3488899,
+            "population": 572735,
             "avg_income_tzs": 10882713.795681896,
             "tax_per_person_tzs": 729529.030422979,
             "effective_tax_rate": 0.0670355799223945,
@@ -161,6 +162,11 @@
             "growth_rate": 0.050672191417340404,
             "years": 10
           }
+        },
+        {
+          "stage": "Workers 25-44 (no revenue lever)",
+          "annual_revenue_tzs": 0,
+          "note": "no revenue lever (stage mapping B)"
         },
         {
           "stage": "Asset Stage",
@@ -185,13 +191,13 @@
       ],
       "mobile_money_contribution_tzs": 268460041466.0,
       "property_tax_contribution_tzs": 247015791568.0,
-      "total_additional_annual_revenue_tzs": 4606936946548.0,
-      "total_additional_annual_revenue_usd": 1773330847.0,
-      "total_new_taxpayers": 9538689,
-      "new_total_revenue_tzs": 29845629816238.0,
-      "new_tax_to_gdp_pct": 14.5,
+      "total_additional_annual_revenue_tzs": 2228914620796.0,
+      "total_additional_annual_revenue_usd": 857967691.0,
+      "total_new_taxpayers": 5905422,
+      "new_total_revenue_tzs": 27467607490486.0,
+      "new_tax_to_gdp_pct": 13.34,
       "current_tax_to_gdp_pct": 12.26,
-      "improvement_pct_points": 2.24
+      "improvement_pct_points": 1.08
     },
     "moderate": {
       "capture_rate": 0.6,
@@ -223,15 +229,15 @@
         },
         {
           "stage": "Active Stage",
-          "capturable_population": 7266531,
+          "capturable_population": 1749698,
           "annual_tax_per_person_tzs": 407215.0,
-          "annual_revenue_tzs": 3994707300382.0,
-          "annual_revenue_usd": 1537667601.0,
-          "cumulative_10yr_tzs": 50402922860906.0,
-          "tax_gdp_impact_pct": 1.941,
+          "annual_revenue_tzs": 961880073733.0,
+          "annual_revenue_usd": 370252866.0,
+          "cumulative_10yr_tzs": 12136450436100.0,
+          "tax_gdp_impact_pct": 0.467,
           "behavioral_uplift_applied": true,
           "assumptions": {
-            "population": 12110885,
+            "population": 2916164,
             "avg_income_tzs": 3918941.6025318606,
             "tax_per_person_tzs": 407215.2784770682,
             "effective_tax_rate": 0.10390950409007978,
@@ -243,15 +249,15 @@
         },
         {
           "stage": "Enterprise Stage",
-          "capturable_population": 2093339,
+          "capturable_population": 343641,
           "annual_tax_per_person_tzs": 729529.0,
-          "annual_revenue_tzs": 2061654620872.0,
-          "annual_revenue_usd": 793584930.0,
-          "cumulative_10yr_tzs": 26012774155376.0,
-          "tax_gdp_impact_pct": 1.002,
+          "annual_revenue_tzs": 338439715484.0,
+          "annual_revenue_usd": 130274322.0,
+          "cumulative_10yr_tzs": 4270237989894.0,
+          "tax_gdp_impact_pct": 0.164,
           "behavioral_uplift_applied": true,
           "assumptions": {
-            "population": 3488899,
+            "population": 572735,
             "avg_income_tzs": 10882713.795681896,
             "tax_per_person_tzs": 729529.030422979,
             "effective_tax_rate": 0.0670355799223945,
@@ -260,6 +266,11 @@
             "growth_rate": 0.050672191417340404,
             "years": 10
           }
+        },
+        {
+          "stage": "Workers 25-44 (no revenue lever)",
+          "annual_revenue_tzs": 0,
+          "note": "no revenue lever (stage mapping B)"
         },
         {
           "stage": "Asset Stage",
@@ -284,13 +295,13 @@
       ],
       "mobile_money_contribution_tzs": 536920082931.0,
       "property_tax_contribution_tzs": 494031583136.0,
-      "total_additional_annual_revenue_tzs": 9213872056110.0,
-      "total_additional_annual_revenue_usd": 3546660987.0,
-      "total_new_taxpayers": 19077375,
-      "new_total_revenue_tzs": 34452564925800.0,
-      "new_tax_to_gdp_pct": 16.74,
+      "total_additional_annual_revenue_tzs": 4457829924073.0,
+      "total_additional_annual_revenue_usd": 1715935644.0,
+      "total_new_taxpayers": 11810844,
+      "new_total_revenue_tzs": 29696522793763.0,
+      "new_tax_to_gdp_pct": 14.43,
       "current_tax_to_gdp_pct": 12.26,
-      "improvement_pct_points": 4.48
+      "improvement_pct_points": 2.17
     },
     "ambitious": {
       "capture_rate": 0.9,
@@ -322,15 +333,15 @@
         },
         {
           "stage": "Active Stage",
-          "capturable_population": 10899796,
+          "capturable_population": 2624548,
           "annual_tax_per_person_tzs": 407215.0,
-          "annual_revenue_tzs": 5992060675702.0,
-          "annual_revenue_usd": 2306501295.0,
-          "cumulative_10yr_tzs": 75604380823204.0,
-          "tax_gdp_impact_pct": 2.911,
+          "annual_revenue_tzs": 1442820660340.0,
+          "annual_revenue_usd": 555379510.0,
+          "cumulative_10yr_tzs": 18204682590461.0,
+          "tax_gdp_impact_pct": 0.701,
           "behavioral_uplift_applied": true,
           "assumptions": {
-            "population": 12110885,
+            "population": 2916164,
             "avg_income_tzs": 3918941.6025318606,
             "tax_per_person_tzs": 407215.2784770682,
             "effective_tax_rate": 0.10390950409007978,
@@ -342,15 +353,15 @@
         },
         {
           "stage": "Enterprise Stage",
-          "capturable_population": 3140009,
+          "capturable_population": 515462,
           "annual_tax_per_person_tzs": 729529.0,
-          "annual_revenue_tzs": 3092482423741.0,
-          "annual_revenue_usd": 1190377585.0,
-          "cumulative_10yr_tzs": 39019167446290.0,
-          "tax_gdp_impact_pct": 1.502,
+          "annual_revenue_tzs": 507660065658.0,
+          "annual_revenue_usd": 195411673.0,
+          "cumulative_10yr_tzs": 6405363198067.0,
+          "tax_gdp_impact_pct": 0.247,
           "behavioral_uplift_applied": true,
           "assumptions": {
-            "population": 3488899,
+            "population": 572735,
             "avg_income_tzs": 10882713.795681896,
             "tax_per_person_tzs": 729529.030422979,
             "effective_tax_rate": 0.0670355799223945,
@@ -359,6 +370,11 @@
             "growth_rate": 0.050672191417340404,
             "years": 10
           }
+        },
+        {
+          "stage": "Workers 25-44 (no revenue lever)",
+          "annual_revenue_tzs": 0,
+          "note": "no revenue lever (stage mapping B)"
         },
         {
           "stage": "Asset Stage",
@@ -383,47 +399,47 @@
       ],
       "mobile_money_contribution_tzs": 805380124396.0,
       "property_tax_contribution_tzs": 741047374705.0,
-      "total_additional_annual_revenue_tzs": 13820808090168.0,
-      "total_additional_annual_revenue_usd": 5319991483.0,
-      "total_new_taxpayers": 28616061,
-      "new_total_revenue_tzs": 39059500959858.0,
-      "new_tax_to_gdp_pct": 18.98,
+      "total_additional_annual_revenue_tzs": 6686745716723.0,
+      "total_additional_annual_revenue_usd": 2573903785.0,
+      "total_new_taxpayers": 17716266,
+      "new_total_revenue_tzs": 31925438586413.0,
+      "new_tax_to_gdp_pct": 15.51,
       "current_tax_to_gdp_pct": 12.26,
-      "improvement_pct_points": 6.71
+      "improvement_pct_points": 3.25
     }
   },
   "monte_carlo": {
     "conservative": {
-      "mean_tzs": 4561434667175.0,
-      "median_tzs": 4377940305641.0,
-      "ci_80_low": 2598556647038.0,
-      "ci_80_high": 6872618460635.0,
-      "ci_95_low": 1954812179910.0,
-      "ci_95_high": 8093945608057.0,
-      "std_tzs": 1637042831378.0,
-      "prob_exceeds_africa_avg": 4.8,
+      "mean_tzs": 2177628281232.0,
+      "median_tzs": 2104168163798.0,
+      "ci_80_low": 1303351940287.0,
+      "ci_80_high": 3206723983718.0,
+      "ci_95_low": 981887974269.0,
+      "ci_95_high": 3729885026256.0,
+      "std_tzs": 730284881216.0,
+      "prob_exceeds_africa_avg": 0.0,
       "n_iterations": 1000
     },
     "moderate": {
-      "mean_tzs": 9022708817005.0,
-      "median_tzs": 8629083238714.0,
-      "ci_80_low": 5206547283811.0,
-      "ci_80_high": 13398230653326.0,
-      "ci_95_low": 3675375288271.0,
-      "ci_95_high": 16612889072872.0,
-      "std_tzs": 3297502013032.0,
-      "prob_exceeds_africa_avg": 62.9,
+      "mean_tzs": 4308559230711.0,
+      "median_tzs": 4146182496039.0,
+      "ci_80_low": 2577916280552.0,
+      "ci_80_high": 6260564413128.0,
+      "ci_95_low": 1845200403155.0,
+      "ci_95_high": 7702734118207.0,
+      "std_tzs": 1474136308612.0,
+      "prob_exceeds_africa_avg": 3.0,
       "n_iterations": 1000
     },
     "ambitious": {
-      "mean_tzs": 12542043366796.0,
-      "median_tzs": 12058374176528.0,
-      "ci_80_low": 7721964926870.0,
-      "ci_80_high": 18166768510723.0,
-      "ci_95_low": 5529459961761.0,
-      "ci_95_high": 20614934091211.0,
-      "std_tzs": 4058122093849.0,
-      "prob_exceeds_africa_avg": 90.7,
+      "mean_tzs": 5987249552068.0,
+      "median_tzs": 5818129251321.0,
+      "ci_80_low": 3891647086282.0,
+      "ci_80_high": 8442561011274.0,
+      "ci_95_low": 2735520161336.0,
+      "ci_95_high": 9451049777420.0,
+      "std_tzs": 1778051230869.0,
+      "prob_exceeds_africa_avg": 19.5,
       "n_iterations": 1000
     }
   },
@@ -709,8 +725,8 @@
     "initial_compliance_rate": 0.0385,
     "final_compliance_rate": 0.076,
     "compliance_improvement": 0.0374,
-    "cumulative_revenue_tzs": 6770114375735.0,
-    "average_annual_revenue_tzs": 677011437574.0,
+    "cumulative_revenue_tzs": 7467572775495.0,
+    "average_annual_revenue_tzs": 746757277550.0,
     "mean_index_non_registered_at_start": 0.7283542105961821,
     "mean_yearly_registration_probability_non_registered_at_start": 0.003989854788824807,
     "yearly_results": [
@@ -721,7 +737,7 @@
         "n_compliant": 21232,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 395934097461.0
+        "annual_revenue_tzs": 436723299341.0
       },
       {
         "year": 2,
@@ -730,7 +746,7 @@
         "n_compliant": 23169,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 447802239533.0
+        "annual_revenue_tzs": 493934906732.0
       },
       {
         "year": 3,
@@ -739,7 +755,7 @@
         "n_compliant": 24979,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 499521768620.0
+        "annual_revenue_tzs": 550982591001.0
       },
       {
         "year": 4,
@@ -748,7 +764,7 @@
         "n_compliant": 26868,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 554838388584.0
+        "annual_revenue_tzs": 611997939095.0
       },
       {
         "year": 5,
@@ -757,7 +773,7 @@
         "n_compliant": 28694,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 616283018949.0
+        "annual_revenue_tzs": 679772606324.0
       },
       {
         "year": 6,
@@ -766,7 +782,7 @@
         "n_compliant": 30541,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 685389194403.0
+        "annual_revenue_tzs": 755998112393.0
       },
       {
         "year": 7,
@@ -775,7 +791,7 @@
         "n_compliant": 32486,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 763897586610.0
+        "annual_revenue_tzs": 842594453276.0
       },
       {
         "year": 8,
@@ -784,7 +800,7 @@
         "n_compliant": 34323,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 848717616271.0
+        "annual_revenue_tzs": 936152657637.0
       },
       {
         "year": 9,
@@ -793,7 +809,7 @@
         "n_compliant": 36135,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 933645298285.0
+        "annual_revenue_tzs": 1029829604715.0
       },
       {
         "year": 10,
@@ -802,7 +818,7 @@
         "n_compliant": 37979,
         "mean_trust": 0.782,
         "mean_morale": 0.794,
-        "annual_revenue_tzs": 1024085167019.0
+        "annual_revenue_tzs": 1129586604981.0
       }
     ],
     "methodology": "Vectorised agent-based simulation. 500,000 synthetic agents, 10 years. Age, mobile money, urban residence and the starting TIN status are a weighted resample of real FinScope Tanzania 2023 respondents' attributes (aggregate cells, data/processed/agent_cells.json) with the real-data targeting model's predicted propensities; income (ILFS 2024 earnings by age band) and trust and morale (Afrobarometer Round 8 by age band and urban/rural) are drawn from aggregate survey cell distributions. Yearly registration probability of a non-registered agent = conversion_rate x clip(trust, morale, income-rank and mobile-money terms + intercept); trust and morale are the agent's survey-based values and do not evolve (Block E3.1). Interventions multiply the agent's yearly registration odds by the tax-morale model's odds ratios (the same mechanism as Fig 5.1). Random seed: 42 for reproducibility.",
@@ -811,8 +827,8 @@
       "initial_compliance_rate": 0.0385,
       "final_compliance_rate": 0.0698,
       "compliance_improvement": 0.0313,
-      "cumulative_revenue_tzs": 6385190888678.0,
-      "average_annual_revenue_tzs": 638519088868.0,
+      "cumulative_revenue_tzs": 7042994401621.0,
+      "average_annual_revenue_tzs": 704299440162.0,
       "yearly_results": [
         {
           "year": 1,
@@ -821,7 +837,7 @@
           "n_compliant": 20906,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 389795163373.0
+          "annual_revenue_tzs": 429951931161.0
         },
         {
           "year": 2,
@@ -830,7 +846,7 @@
           "n_compliant": 22534,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 436632585430.0
+          "annual_revenue_tzs": 481614552856.0
         },
         {
           "year": 3,
@@ -839,7 +855,7 @@
           "n_compliant": 24057,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 482389562637.0
+          "annual_revenue_tzs": 532085422078.0
         },
         {
           "year": 4,
@@ -848,7 +864,7 @@
           "n_compliant": 25639,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 531955351067.0
+          "annual_revenue_tzs": 586757486940.0
         },
         {
           "year": 5,
@@ -857,7 +873,7 @@
           "n_compliant": 27154,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 586732062308.0
+          "annual_revenue_tzs": 647177304819.0
         },
         {
           "year": 6,
@@ -866,7 +882,7 @@
           "n_compliant": 28702,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 648134052438.0
+          "annual_revenue_tzs": 714904939007.0
         },
         {
           "year": 7,
@@ -875,7 +891,7 @@
           "n_compliant": 30303,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 716747584955.0
+          "annual_revenue_tzs": 790587049976.0
         },
         {
           "year": 8,
@@ -884,7 +900,7 @@
           "n_compliant": 31822,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 788117336884.0
+          "annual_revenue_tzs": 869309326576.0
         },
         {
           "year": 9,
@@ -893,7 +909,7 @@
           "n_compliant": 33349,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 863439739261.0
+          "annual_revenue_tzs": 952391456383.0
         },
         {
           "year": 10,
@@ -902,343 +918,15 @@
           "n_compliant": 34902,
           "mean_trust": 0.782,
           "mean_morale": 0.794,
-          "annual_revenue_tzs": 941247450325.0
+          "annual_revenue_tzs": 1038214931825.0
         }
       ],
       "status": "CALIBRATED (Blocks E2.4 / E3.1): the no-intervention scenario reproduces TRA's registered-taxpayer trend 2017/18-2023/24 (RMSE 0.23 pp); intervention effects are the tax-morale model's odds ratios (ASSUMPTION uplifts)"
     },
     "intervention_effect_on_final_compliance_pp": 0.62
   },
-  "digital_twin_baseline": {
-    "label": "MODELLED scenario",
-    "type": "MODELLED",
-    "scenario_note": "A scenario of the model's own structure with ASSUMPTION inputs (policy strengths, trust and norm dynamics, penetration cap); not a forecast and not a measured outcome.",
-    "context_bot_active_mobile_money_accounts": {
-      "value": 63207569,
-      "year": 2024,
-      "annual_growth_factor_2019_2024": 1.209895260629974,
-      "note": "context only (Block E3.3): BoT counts accounts, not persons; the twin uses FinScope's adult mobile-money users"
-    },
-    "policy_scenario": {
-      "ussd_nudge_scale": 0.0,
-      "trust_improvement_annual": 0.01,
-      "formalization_policy": 0.01737470564258192,
-      "presumptive_tax_simplification": false,
-      "property_registry_reform": false
-    },
-    "n_years": 10,
-    "registered_taxpayers_definition": "registered_taxpayers = TRA's count of TIN registrations on the Mainland (a stock of registrations, individuals and entities, business and non-business, active or dormant; base: 6.27 million at the end of 2023/24, NBS Tax Statistics Report 2023/24 from TRA; series in data/processed/tra_registered_taxpayers.csv). It is NOT FinScope's 1.31 million ADULT TIN holders (a survey estimate of adults who say they hold a TIN) and the twin's compliance_rate (registered taxpayers divided by the adults of the Entry, Active and Enterprise stages) is therefore a registrations-per-adult ratio (adults = FinScope's adults 16+, grown with the population), not an adult TIN rate.",
-    "adults_in_final_year": 45503951.0,
-    "mm_users_in_final_year": 38036712.0,
-    "registered_taxpayers_never_exceed_adults": true,
-    "mm_users_never_exceed_adults": true,
-    "initial_tax_revenue_tzs": 25238692866451.0,
-    "final_tax_revenue_tzs": 44982761887859.0,
-    "revenue_growth_tzs": 19744069021408.0,
-    "final_compliance_rate": 0.3325,
-    "final_registered_taxpayers": 15131306.0,
-    "final_tax_to_gdp_pct": 13.33,
-    "final_trust_score": 0.85,
-    "yearly_states": [
-      {
-        "year": 1,
-        "gdp_tzs": 216277185868134.0,
-        "registered_taxpayers": 6923699.0,
-        "compliance_rate": 0.1971,
-        "trust_score": 0.795,
-        "mm_users": 25804433.0,
-        "adults": 35129847.0,
-        "mm_penetration": 0.7345,
-        "tax_revenue_tzs": 26782974532272.0,
-        "tax_to_gdp_pct": 12.38,
-        "new_registrations_yr": 651699
-      },
-      {
-        "year": 2,
-        "gdp_tzs": 227236424829647.0,
-        "registered_taxpayers": 7621847.0,
-        "compliance_rate": 0.2108,
-        "trust_score": 0.805,
-        "mm_users": 27155268.0,
-        "adults": 36154481.0,
-        "mm_penetration": 0.7511,
-        "tax_revenue_tzs": 28410975599885.0,
-        "tax_to_gdp_pct": 12.5,
-        "new_registrations_yr": 698148
-      },
-      {
-        "year": 3,
-        "gdp_tzs": 238750992445607.0,
-        "registered_taxpayers": 8369478.0,
-        "compliance_rate": 0.2249,
-        "trust_score": 0.815,
-        "mm_users": 28501386.0,
-        "adults": 37209000.0,
-        "mm_penetration": 0.766,
-        "tax_revenue_tzs": 30127215354549.0,
-        "tax_to_gdp_pct": 12.62,
-        "new_registrations_yr": 747631
-      },
-      {
-        "year": 4,
-        "gdp_tzs": 250849028435891.0,
-        "registered_taxpayers": 9169814.0,
-        "compliance_rate": 0.2395,
-        "trust_score": 0.825,
-        "mm_users": 29845903.0,
-        "adults": 38294277.0,
-        "mm_penetration": 0.7794,
-        "tax_revenue_tzs": 31936456035034.0,
-        "tax_to_gdp_pct": 12.73,
-        "new_registrations_yr": 800336
-      },
-      {
-        "year": 5,
-        "gdp_tzs": 263560098421648.0,
-        "registered_taxpayers": 10026277.0,
-        "compliance_rate": 0.2544,
-        "trust_score": 0.835,
-        "mm_users": 31191787.0,
-        "adults": 39411208.0,
-        "mm_penetration": 0.7914,
-        "tax_revenue_tzs": 33843716151916.0,
-        "tax_to_gdp_pct": 12.84,
-        "new_registrations_yr": 856463
-      },
-      {
-        "year": 6,
-        "gdp_tzs": 276915266178843.0,
-        "registered_taxpayers": 10942500.0,
-        "compliance_rate": 0.2698,
-        "trust_score": 0.845,
-        "mm_users": 32541868.0,
-        "adults": 40560716.0,
-        "mm_penetration": 0.8023,
-        "tax_revenue_tzs": 35854283825895.0,
-        "tax_to_gdp_pct": 12.95,
-        "new_registrations_yr": 916223
-      },
-      {
-        "year": 7,
-        "gdp_tzs": 290947169553042.0,
-        "registered_taxpayers": 11913382.0,
-        "compliance_rate": 0.2854,
-        "trust_score": 0.85,
-        "mm_users": 33898854.0,
-        "adults": 41743753.0,
-        "mm_penetration": 0.8121,
-        "tax_revenue_tzs": 37970083554988.0,
-        "tax_to_gdp_pct": 13.05,
-        "new_registrations_yr": 970882
-      },
-      {
-        "year": 8,
-        "gdp_tzs": 305690100220967.0,
-        "registered_taxpayers": 12933461.0,
-        "compliance_rate": 0.301,
-        "trust_score": 0.85,
-        "mm_users": 35265342.0,
-        "adults": 42961295.0,
-        "mm_penetration": 0.8209,
-        "tax_revenue_tzs": 40193095607566.0,
-        "tax_to_gdp_pct": 13.15,
-        "new_registrations_yr": 1020079
-      },
-      {
-        "year": 9,
-        "gdp_tzs": 321180087493749.0,
-        "registered_taxpayers": 14005229.0,
-        "compliance_rate": 0.3168,
-        "trust_score": 0.85,
-        "mm_users": 36643826.0,
-        "adults": 44214349.0,
-        "mm_penetration": 0.8288,
-        "tax_revenue_tzs": 42528752292450.0,
-        "tax_to_gdp_pct": 13.24,
-        "new_registrations_yr": 1071768
-      },
-      {
-        "year": 10,
-        "gdp_tzs": 337454986366671.0,
-        "registered_taxpayers": 15131306.0,
-        "compliance_rate": 0.3325,
-        "trust_score": 0.85,
-        "mm_users": 38036712.0,
-        "adults": 45503951.0,
-        "mm_penetration": 0.8359,
-        "tax_revenue_tzs": 44982761887859.0,
-        "tax_to_gdp_pct": 13.33,
-        "new_registrations_yr": 1126077
-      }
-    ],
-    "methodology": "System dynamics digital twin. Interacting: households, MSMEs, mobile money, TRA, local governments. Policy changes propagate through trust dynamics, social norms, and registration feedback loops."
-  },
-  "digital_twin_policy": {
-    "label": "MODELLED scenario",
-    "type": "MODELLED",
-    "scenario_note": "A scenario of the model's own structure with ASSUMPTION inputs (policy strengths, trust and norm dynamics, penetration cap); not a forecast and not a measured outcome.",
-    "context_bot_active_mobile_money_accounts": {
-      "value": 63207569,
-      "year": 2024,
-      "annual_growth_factor_2019_2024": 1.209895260629974,
-      "note": "context only (Block E3.3): BoT counts accounts, not persons; the twin uses FinScope's adult mobile-money users"
-    },
-    "policy_scenario": {
-      "ussd_nudge_scale": 0.6,
-      "trust_improvement_annual": 0.025,
-      "formalization_policy": 0.01737470564258192,
-      "presumptive_tax_simplification": true,
-      "property_registry_reform": false
-    },
-    "n_years": 10,
-    "registered_taxpayers_definition": "registered_taxpayers = TRA's count of TIN registrations on the Mainland (a stock of registrations, individuals and entities, business and non-business, active or dormant; base: 6.27 million at the end of 2023/24, NBS Tax Statistics Report 2023/24 from TRA; series in data/processed/tra_registered_taxpayers.csv). It is NOT FinScope's 1.31 million ADULT TIN holders (a survey estimate of adults who say they hold a TIN) and the twin's compliance_rate (registered taxpayers divided by the adults of the Entry, Active and Enterprise stages) is therefore a registrations-per-adult ratio (adults = FinScope's adults 16+, grown with the population), not an adult TIN rate.",
-    "adults_in_final_year": 45503951.0,
-    "mm_users_in_final_year": 38036712.0,
-    "registered_taxpayers_never_exceed_adults": true,
-    "mm_users_never_exceed_adults": true,
-    "initial_tax_revenue_tzs": 25238692866451.0,
-    "final_tax_revenue_tzs": 51135815934376.0,
-    "revenue_growth_tzs": 25897123067925.0,
-    "final_compliance_rate": 0.6579,
-    "final_registered_taxpayers": 29938239.0,
-    "final_tax_to_gdp_pct": 15.15,
-    "final_trust_score": 0.85,
-    "yearly_states": [
-      {
-        "year": 1,
-        "gdp_tzs": 216277185868134.0,
-        "registered_taxpayers": 8788682.0,
-        "compliance_rate": 0.2502,
-        "trust_score": 0.81,
-        "mm_users": 25804433.0,
-        "adults": 35129847.0,
-        "mm_penetration": 0.7345,
-        "tax_revenue_tzs": 27665868805503.0,
-        "tax_to_gdp_pct": 12.79,
-        "new_registrations_yr": 2516682
-      },
-      {
-        "year": 2,
-        "gdp_tzs": 227236424829647.0,
-        "registered_taxpayers": 11345400.0,
-        "compliance_rate": 0.3138,
-        "trust_score": 0.835,
-        "mm_users": 27155268.0,
-        "adults": 36154481.0,
-        "mm_penetration": 0.7511,
-        "tax_revenue_tzs": 30050707973236.0,
-        "tax_to_gdp_pct": 13.22,
-        "new_registrations_yr": 2556718
-      },
-      {
-        "year": 3,
-        "gdp_tzs": 238750992445607.0,
-        "registered_taxpayers": 13886215.0,
-        "compliance_rate": 0.3732,
-        "trust_score": 0.85,
-        "mm_users": 28501386.0,
-        "adults": 37209000.0,
-        "mm_penetration": 0.766,
-        "tax_revenue_tzs": 32497159649820.0,
-        "tax_to_gdp_pct": 13.61,
-        "new_registrations_yr": 2540815
-      },
-      {
-        "year": 4,
-        "gdp_tzs": 250849028435891.0,
-        "registered_taxpayers": 16345783.0,
-        "compliance_rate": 0.4268,
-        "trust_score": 0.85,
-        "mm_users": 29845903.0,
-        "adults": 38294277.0,
-        "mm_penetration": 0.7794,
-        "tax_revenue_tzs": 34982064951243.0,
-        "tax_to_gdp_pct": 13.95,
-        "new_registrations_yr": 2459568
-      },
-      {
-        "year": 5,
-        "gdp_tzs": 263560098421648.0,
-        "registered_taxpayers": 18734548.0,
-        "compliance_rate": 0.4754,
-        "trust_score": 0.85,
-        "mm_users": 31191787.0,
-        "adults": 39411208.0,
-        "mm_penetration": 0.7914,
-        "tax_revenue_tzs": 37513301853766.0,
-        "tax_to_gdp_pct": 14.23,
-        "new_registrations_yr": 2388765
-      },
-      {
-        "year": 6,
-        "gdp_tzs": 276915266178843.0,
-        "registered_taxpayers": 21062284.0,
-        "compliance_rate": 0.5193,
-        "trust_score": 0.85,
-        "mm_users": 32541868.0,
-        "adults": 40560716.0,
-        "mm_penetration": 0.8023,
-        "tax_revenue_tzs": 40098659187114.0,
-        "tax_to_gdp_pct": 14.48,
-        "new_registrations_yr": 2327736
-      },
-      {
-        "year": 7,
-        "gdp_tzs": 290947169553042.0,
-        "registered_taxpayers": 23338156.0,
-        "compliance_rate": 0.5591,
-        "trust_score": 0.85,
-        "mm_users": 33898854.0,
-        "adults": 41743753.0,
-        "mm_penetration": 0.8121,
-        "tax_revenue_tzs": 42745870782467.0,
-        "tax_to_gdp_pct": 14.69,
-        "new_registrations_yr": 2275872
-      },
-      {
-        "year": 8,
-        "gdp_tzs": 305690100220967.0,
-        "registered_taxpayers": 25570775.0,
-        "compliance_rate": 0.5952,
-        "trust_score": 0.85,
-        "mm_users": 35265342.0,
-        "adults": 42961295.0,
-        "mm_penetration": 0.8209,
-        "tax_revenue_tzs": 45462647648810.0,
-        "tax_to_gdp_pct": 14.87,
-        "new_registrations_yr": 2232619
-      },
-      {
-        "year": 9,
-        "gdp_tzs": 321180087493749.0,
-        "registered_taxpayers": 27768251.0,
-        "compliance_rate": 0.628,
-        "trust_score": 0.85,
-        "mm_users": 36643826.0,
-        "adults": 44214349.0,
-        "mm_penetration": 0.8288,
-        "tax_revenue_tzs": 48256709830398.0,
-        "tax_to_gdp_pct": 15.02,
-        "new_registrations_yr": 2197476
-      },
-      {
-        "year": 10,
-        "gdp_tzs": 337454986366671.0,
-        "registered_taxpayers": 29938239.0,
-        "compliance_rate": 0.6579,
-        "trust_score": 0.85,
-        "mm_users": 38036712.0,
-        "adults": 45503951.0,
-        "mm_penetration": 0.8359,
-        "tax_revenue_tzs": 51135815934376.0,
-        "tax_to_gdp_pct": 15.15,
-        "new_registrations_yr": 2169988
-      }
-    ],
-    "methodology": "System dynamics digital twin. Interacting: households, MSMEs, mobile money, TRA, local governments. Policy changes propagate through trust dynamics, social norms, and registration feedback loops."
-  },
   "sensitivity_analysis": {
-    "base_revenue_tzs": 9213872056110.0,
+    "base_revenue_tzs": 4457829924073.0,
     "parameters_tested": 5,
     "most_sensitive": "income_scale",
     "least_sensitive": "gdp_growth_rate",
@@ -1247,130 +935,130 @@
         "values_tested": [
           {
             "value": 1.0,
-            "revenue_tzs": 7092374177209.0,
-            "pct_change": -23.0
+            "revenue_tzs": 3569380005330.0,
+            "pct_change": -19.9
           },
           {
             "value": 1.1,
-            "revenue_tzs": 7698516428324.0,
-            "pct_change": -16.4
+            "revenue_tzs": 3823222839257.0,
+            "pct_change": -14.2
           },
           {
             "value": 1.2,
-            "revenue_tzs": 8304658679439.0,
-            "pct_change": -9.9
+            "revenue_tzs": 4077065673183.0,
+            "pct_change": -8.5
           },
           {
             "value": 1.35,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 1.5,
-            "revenue_tzs": 10123085432781.0,
-            "pct_change": 9.9
+            "revenue_tzs": 4838594174961.0,
+            "pct_change": 8.5
           },
           {
             "value": 1.7,
-            "revenue_tzs": 11335369935009.0,
-            "pct_change": 23.0
+            "revenue_tzs": 5346279842814.0,
+            "pct_change": 19.9
           }
         ],
-        "revenue_range_tzs": 4242995757800.0,
+        "revenue_range_tzs": 1776899837484.0,
         "sensitivity_rank": 3
       },
       "moderate_capture": {
         "values_tested": [
           {
             "value": 0.3,
-            "revenue_tzs": 4606936946548.0,
+            "revenue_tzs": 2228914620796.0,
             "pct_change": -50.0
           },
           {
             "value": 0.4,
-            "revenue_tzs": 6142581987072.0,
+            "revenue_tzs": 2971886942297.0,
             "pct_change": -33.3
           },
           {
             "value": 0.5,
-            "revenue_tzs": 7678227087962.0,
+            "revenue_tzs": 3714858774426.0,
             "pct_change": -16.7
           },
           {
             "value": 0.6,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 0.7,
-            "revenue_tzs": 10749517646374.0,
+            "revenue_tzs": 5200801260711.0,
             "pct_change": 16.7
           },
           {
             "value": 0.8,
-            "revenue_tzs": 12285163049645.0,
+            "revenue_tzs": 5943773395220.0,
             "pct_change": 33.3
           }
         ],
-        "revenue_range_tzs": 7678226103097.0,
+        "revenue_range_tzs": 3714858774424.0,
         "sensitivity_rank": 2
       },
       "income_scale": {
         "values_tested": [
           {
             "value": 0.5,
-            "revenue_tzs": 3983670698895.0,
-            "pct_change": -56.8
+            "revenue_tzs": 2293251229229.0,
+            "pct_change": -48.6
           },
           {
             "value": 0.75,
-            "revenue_tzs": 6345835189794.0,
-            "pct_change": -31.1
+            "revenue_tzs": 3266106000402.0,
+            "pct_change": -26.7
           },
           {
             "value": 1.0,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 1.25,
-            "revenue_tzs": 12250490533965.0,
-            "pct_change": 33.0
+            "revenue_tzs": 5765686345138.0,
+            "pct_change": 29.3
           },
           {
             "value": 1.5,
-            "revenue_tzs": 15588633211228.0,
-            "pct_change": 69.2
+            "revenue_tzs": 7299423250598.0,
+            "pct_change": 63.7
           }
         ],
-        "revenue_range_tzs": 11604962512333.0,
+        "revenue_range_tzs": 5006172021369.0,
         "sensitivity_rank": 1
       },
       "gdp_growth_rate": {
         "values_tested": [
           {
             "value": 0.02,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 0.035,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 0.055,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 0.07,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           },
           {
             "value": 0.09,
-            "revenue_tzs": 9213872056110.0,
+            "revenue_tzs": 4457829924073.0,
             "pct_change": 0.0
           }
         ],
@@ -1381,28 +1069,28 @@
         "values_tested": [
           {
             "value": 0.3,
-            "revenue_tzs": 8843687632488.0,
-            "pct_change": -4.0
+            "revenue_tzs": 4087645500451.0,
+            "pct_change": -8.3
           },
           {
             "value": 0.4,
-            "revenue_tzs": 8899266185591.0,
-            "pct_change": -3.4
+            "revenue_tzs": 4143224053554.0,
+            "pct_change": -7.1
           },
           {
             "value": 0.49,
-            "revenue_tzs": 8949286883384.0,
-            "pct_change": -2.9
+            "revenue_tzs": 4193244751347.0,
+            "pct_change": -5.9
           },
           {
             "value": 0.6,
-            "revenue_tzs": 9010423291797.0,
-            "pct_change": -2.2
+            "revenue_tzs": 4254381159760.0,
+            "pct_change": -4.6
           },
           {
             "value": 0.7,
-            "revenue_tzs": 9066001844900.0,
-            "pct_change": -1.6
+            "revenue_tzs": 4309959712863.0,
+            "pct_change": -3.3
           }
         ],
         "revenue_range_tzs": 222314212412.0,

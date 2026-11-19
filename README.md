@@ -62,6 +62,7 @@ Optional, only for dashboard screenshots: `pip install -r environment/requiremen
 python run_all.py                    # --from-raw (default): every step, from the files in data/raw/
 python run_all.py --clean            # empty the generated folders first (never data/raw, docs, report), then run
 python run_all.py --from-processed   # no raw data needed: read data/interim, data/processed and the tracked outputs; regenerate the model outputs, Table 40, the figures
+python run_all.py --full-bootstrap  # also recompute the targeting multiplier bootstrap (1,000 respondent replicates x 2 models; tens of minutes; cache in outputs/cache/); a normal run reads the cache
 python run_all.py --fetch            # refresh the World Bank WDI snapshots (the only network call; nothing else touches the network)
 python run_all.py --screenshots      # also take Playwright screenshots of the 7 dashboard pages (outputs/figures/dashboard_*.png)
 python -m pytest                     # the tests

@@ -84,7 +84,8 @@
     "PA.NUS.FCRF": "PA.NUS.FCRF_2026-11-12.json",
     "NY.GDP.MKTP.KD.ZG": "NY.GDP.MKTP.KD.ZG_2026-11-12.json",
     "SP.POP.GROW": "SP.POP.GROW_2026-11-12.json",
-    "SP.POP.TOTL": "SP.POP.TOTL_2026-11-12.json"
+    "SP.POP.TOTL": "SP.POP.TOTL_2026-11-12.json",
+    "FP.CPI.TOTL": "FP.CPI.TOTL_2026-11-18.json"
   },
   "snapshots_lastupdated_by_wdi": {
     "GC.TAX.TOTL.GD.ZS": "2026-11-11",

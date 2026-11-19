@@ -40,20 +40,28 @@ BY LIFECYCLE STAGE
     Urban:          38.9%
 
   ACTIVE
+    Population:      2,916,164
+    Has TIN:           187,769  (6.4%)
+    Uses MM:         2,664,024  (91.4%)
+    MM no TIN:       2,476,254  ← intervention target
+    Dropout rate:   93.6%
+    Urban:          55.8%
+
+  ENTERPRISE
+    Population:        572,735
+    Has TIN:           151,976  (26.5%)
+    Uses MM:           536,373  (93.7%)
+    MM no TIN:         384,397  ← intervention target
+    Dropout rate:   73.5%
+    Urban:          68.4%
+
+  WORKERS
     Population:     12,110,885
     Has TIN:           559,050  (4.6%)
     Uses MM:         9,408,001  (77.7%)
     MM no TIN:       8,848,950  ← intervention target
     Dropout rate:   95.4%
     Urban:          33.6%
-
-  ENTERPRISE
-    Population:      3,488,899
-    Has TIN:           339,746  (9.7%)
-    Uses MM:         3,200,397  (91.7%)
-    MM no TIN:       2,860,651  ← intervention target
-    Dropout rate:   90.3%
-    Urban:          57.9%
 
   ASSET
     Population:      5,590,836
