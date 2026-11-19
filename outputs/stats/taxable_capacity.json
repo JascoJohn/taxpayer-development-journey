@@ -1,0 +1,199 @@
+{
+ "label": "COMPUTED from HBS 2017/18 microdata (Mainland); CPI-uprated to 2024; share of persons whose annual turnover from a household business exceeds the threshold",
+ "type": "COMPUTED (survey data)",
+ "thresholds_tzs": {
+  "presumptive_start": 4000000.0,
+  "top_rate_start": 11000000.0
+ },
+ "all_adults": {
+  "share_above_4m_pct": 1.1947705704560037,
+  "share_above_11m_pct": 0.4401554975544874,
+  "adults_above_4m_at_finscope_scale": 407825.9901726664,
+  "adults_above_11m_at_finscope_scale": 150243.7840861696
+ },
+ "business_owners": {
+  "share_above_4m_pct": 7.39955858688653,
+  "share_above_11m_pct": 2.6535315682331917
+ },
+ "owners_with_receipts_in_the_reference_month": {
+  "share_above_4m_pct": 18.006576467369854,
+  "share_above_11m_pct": 6.4572796513359805
+ },
+ "by_stage": {
+  "entry": {
+   "share_above_4m_pct": 0.2857033791906333,
+   "share_above_11m_pct": 0.049752677067701645,
+   "low_precision_4m": false,
+   "low_precision_11m": true
+  },
+  "active": {
+   "share_above_4m_pct": 4.467838886928799,
+   "share_above_11m_pct": 0.9831335986205149,
+   "low_precision_4m": false,
+   "low_precision_11m": false
+  },
+  "enterprise": {
+   "share_above_4m_pct": 26.601223528386303,
+   "share_above_11m_pct": 13.363547754738372,
+   "low_precision_4m": false,
+   "low_precision_11m": false
+  },
+  "workers": {
+   "share_above_4m_pct": 0.05521695511164957,
+   "share_above_11m_pct": 0.05521695511164957,
+   "low_precision_4m": true,
+   "low_precision_11m": true
+  },
+  "asset": {
+   "share_above_4m_pct": 0.0,
+   "share_above_11m_pct": 0.0,
+   "low_precision_4m": true,
+   "low_precision_11m": true
+  },
+  "legacy": {
+   "share_above_4m_pct": 0.23291868123165738,
+   "share_above_11m_pct": 0.09676735706923087,
+   "low_precision_4m": true,
+   "low_precision_11m": true
+  }
+ },
+ "by_zone": [
+  {
+   "zone": "Central",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 2366,
+   "n_above_unweighted": 24,
+   "share_pct": 1.1148636579701803
+  },
+  {
+   "zone": "Central",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 2366,
+   "n_above_unweighted": null,
+   "share_pct": 0.3466948565327309,
+   "low_precision": true,
+   "low_precision_fields": [
+    "share_pct"
+   ]
+  },
+  {
+   "zone": "Eastern",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 3741,
+   "n_above_unweighted": 80,
+   "share_pct": 2.2836190153711877
+  },
+  {
+   "zone": "Eastern",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 3741,
+   "n_above_unweighted": 32,
+   "share_pct": 0.8823567860195876
+  },
+  {
+   "zone": "Lake",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 6992,
+   "n_above_unweighted": 48,
+   "share_pct": 0.6236541369348462
+  },
+  {
+   "zone": "Lake",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 6992,
+   "n_above_unweighted": 14,
+   "share_pct": 0.17339172147786744
+  },
+  {
+   "zone": "Northern",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 2932,
+   "n_above_unweighted": 27,
+   "share_pct": 1.2131131191359978
+  },
+  {
+   "zone": "Northern",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 2932,
+   "n_above_unweighted": null,
+   "share_pct": 0.2408944258028216,
+   "low_precision": true,
+   "low_precision_fields": [
+    "share_pct"
+   ]
+  },
+  {
+   "zone": "Southern",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 1335,
+   "n_above_unweighted": 13,
+   "share_pct": 1.4770467503584002
+  },
+  {
+   "zone": "Southern",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 1335,
+   "n_above_unweighted": null,
+   "share_pct": 0.8896022477585445,
+   "low_precision": true,
+   "low_precision_fields": [
+    "share_pct"
+   ]
+  },
+  {
+   "zone": "Southern Highlands",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 2078,
+   "n_above_unweighted": 24,
+   "share_pct": 1.3989455851154469
+  },
+  {
+   "zone": "Southern Highlands",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 2078,
+   "n_above_unweighted": 13,
+   "share_pct": 0.615568657655333
+  },
+  {
+   "zone": "Southwest Highlands",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 3372,
+   "n_above_unweighted": 21,
+   "share_pct": 0.7523037083013255
+  },
+  {
+   "zone": "Southwest Highlands",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 3372,
+   "n_above_unweighted": 12,
+   "share_pct": 0.4312119376421878
+  },
+  {
+   "zone": "Western",
+   "threshold_tzs": 4000000.0,
+   "n_unweighted": 1648,
+   "n_above_unweighted": null,
+   "share_pct": 0.33020624109266467,
+   "low_precision": true,
+   "low_precision_fields": [
+    "share_pct"
+   ]
+  },
+  {
+   "zone": "Western",
+   "threshold_tzs": 11000000.0,
+   "n_unweighted": 1648,
+   "n_above_unweighted": null,
+   "share_pct": 0.052735384490813116,
+   "low_precision": true,
+   "low_precision_fields": [
+    "share_pct"
+   ]
+  }
+ ],
+ "notes": [
+  "wage and salary income is not recorded in HBS 2017/18: the share of ADULTS above the thresholds counts business turnover only and understates taxable capacity from employment",
+  "Mainland only; Zanzibar is not covered; farm businesses are outside section 10",
+  "turnover is a survey estimate; a cell with fewer than 10 respondents is suppressed and a numerator under 10 is flagged low precision"
+ ]
+}

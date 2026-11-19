@@ -218,6 +218,22 @@ def write_outputs(result):
     cols = ["n_businesses", "n_with_receipts", "suppressed", "p25_tzs", "median_tzs", "p75_tzs", "tax_at_p25_tzs", "tax_at_median_tzs", "tax_at_p75_tzs", "share_below_4m_pct", "share_4m_to_11m_pct", "share_above_11m_pct"]
     _write_csv(paths.MZANI_ZONE_CSV, mz["zone_activity"], ["zone", "activity"] + cols)
     _write_csv(paths.MZANI_REGION_CSV, mz["region_activity"], ["region", "activity"] + cols)
+    cap, zcap = result["taxable_capacity"], result["taxable_capacity_by_zone"]
+    ccols = ["group", "threshold_tzs", "n_unweighted", "n_above_unweighted", "share_pct", "adults_above_hbs_weighted_2017_18", "adults_above_at_finscope_scale", "low_precision", "suppressed"]
+    _write_csv(paths.TAXABLE_CAPACITY_CSV, cap, ccols)
+    _write_csv(paths.TAXABLE_CAPACITY_ZONE_CSV, zcap, ["zone", "threshold_tzs", "n_unweighted", "n_above_unweighted", "share_pct", "low_precision", "suppressed"])
+    pick = lambda g, thr: next(r for r in cap if r["group"] == g and r["threshold_tzs"] == thr)
+    summ = {"label": "COMPUTED from HBS 2017/18 microdata (Mainland); CPI-uprated to 2024; share of persons whose annual turnover from a household business exceeds the threshold", "type": "COMPUTED (survey data)",
+            "thresholds_tzs": {"presumptive_start": 4e6, "top_rate_start": 11e6},
+            "all_adults": {"share_above_4m_pct": pick("all adults", 4e6)["share_pct"], "share_above_11m_pct": pick("all adults", 11e6)["share_pct"],
+                           "adults_above_4m_at_finscope_scale": pick("all adults", 4e6)["adults_above_at_finscope_scale"], "adults_above_11m_at_finscope_scale": pick("all adults", 11e6)["adults_above_at_finscope_scale"]},
+            "business_owners": {"share_above_4m_pct": pick("business owners", 4e6)["share_pct"], "share_above_11m_pct": pick("business owners", 11e6)["share_pct"]},
+            "owners_with_receipts_in_the_reference_month": {"share_above_4m_pct": pick("owners with receipts in the reference month", 4e6)["share_pct"], "share_above_11m_pct": pick("owners with receipts in the reference month", 11e6)["share_pct"]},
+            "by_stage": {s: {"share_above_4m_pct": pick(s, 4e6).get("share_pct"), "share_above_11m_pct": pick(s, 11e6).get("share_pct"), "low_precision_4m": bool(pick(s, 4e6).get("low_precision")), "low_precision_11m": bool(pick(s, 11e6).get("low_precision"))} for s in STAGES},
+            "by_zone": zcap, "notes": ["wage and salary income is not recorded in HBS 2017/18: the share of ADULTS above the thresholds counts business turnover only and understates taxable capacity from employment",
+                                      "Mainland only; Zanzibar is not covered; farm businesses are outside section 10", "turnover is a survey estimate; a cell with fewer than %d respondents is suppressed and a numerator under %d is flagged low precision" % (disclosure.MIN_BASE, disclosure.MIN_BASE)]}
+    with open(paths.TAXABLE_CAPACITY_JSON, "w", encoding="utf-8") as f:
+        json.dump(summ, f, indent=1, ensure_ascii=False)
 
 
 def run_hbs_turnover(from_processed=False, json_path=None):

@@ -1,0 +1,17 @@
+zone,threshold_tzs,n_unweighted,n_above_unweighted,share_pct,low_precision,suppressed,evidence_type
+Central,4e+06,2366,24,1.11486,,,COMPUTED
+Central,1.1e+07,2366,,0.346695,True,,COMPUTED
+Eastern,4e+06,3741,80,2.28362,,,COMPUTED
+Eastern,1.1e+07,3741,32,0.882357,,,COMPUTED
+Lake,4e+06,6992,48,0.623654,,,COMPUTED
+Lake,1.1e+07,6992,14,0.173392,,,COMPUTED
+Northern,4e+06,2932,27,1.21311,,,COMPUTED
+Northern,1.1e+07,2932,,0.240894,True,,COMPUTED
+Southern,4e+06,1335,13,1.47705,,,COMPUTED
+Southern,1.1e+07,1335,,0.889602,True,,COMPUTED
+Southern Highlands,4e+06,2078,24,1.39895,,,COMPUTED
+Southern Highlands,1.1e+07,2078,13,0.615569,,,COMPUTED
+Southwest Highlands,4e+06,3372,21,0.752304,,,COMPUTED
+Southwest Highlands,1.1e+07,3372,12,0.431212,,,COMPUTED
+Western,4e+06,1648,,0.330206,True,,COMPUTED
+Western,1.1e+07,1648,,0.0527354,True,,COMPUTED

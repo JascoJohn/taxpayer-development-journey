@@ -1,0 +1,19 @@
+group,threshold_tzs,n_unweighted,n_above_unweighted,share_pct,adults_above_hbs_weighted_2017_18,adults_above_at_finscope_scale,low_precision,suppressed,evidence_type
+all adults,4e+06,24464,242,1.19477,342310,407826,,,COMPUTED
+all adults,1.1e+07,24464,95,0.440155,126107,150244,,,COMPUTED
+entry,4e+06,6878,16,0.285703,22724.7,30298.9,,,COMPUTED
+entry,1.1e+07,6878,,0.0497527,3957.29,5276.27,True,,COMPUTED
+active,4e+06,2498,106,4.46784,143510,130290,,,COMPUTED
+active,1.1e+07,2498,28,0.983134,31578.8,28669.8,,,COMPUTED
+enterprise,4e+06,498,114,26.6012,165275,152355,,,COMPUTED
+enterprise,1.1e+07,498,59,13.3635,83028.5,76537.7,,,COMPUTED
+workers,4e+06,7988,,0.055217,5227.54,6687.26,True,,COMPUTED
+workers,1.1e+07,7988,,0.055217,5227.54,6687.26,True,,COMPUTED
+asset,4e+06,4433,,0,0,0,True,,COMPUTED
+asset,1.1e+07,4433,,0,0,0,True,,COMPUTED
+legacy,4e+06,2169,,0.232919,5572.9,5447.09,True,,COMPUTED
+legacy,1.1e+07,2169,,0.0967674,2315.29,2263.02,True,,COMPUTED
+business owners,4e+06,3610,240,7.39956,337082,,,,COMPUTED
+business owners,1.1e+07,3610,93,2.65353,120880,,,,COMPUTED
+owners with receipts in the reference month,4e+06,1427,240,18.0066,337082,,,,COMPUTED
+owners with receipts in the reference month,1.1e+07,1427,93,6.45728,120880,,,,COMPUTED

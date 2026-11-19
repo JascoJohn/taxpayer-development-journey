@@ -461,6 +461,44 @@ stage_economics:
     asset: {pdf_page: 40, table40_label: "Mali-Alama za Kodi", morale_model_key: visible_tax_returns}
     legacy: {pdf_page: 47, table40_label: "Urithi wa Kodi", morale_model_key: civic_tax_education}
 
+# Pass 6B-1: facts CITED from published documents (not estimated). Each carries its source, page and what it does NOT show. Read by src/03_features/cited_facts.py.
+cited_facts:
+  tra_active_business_tins_fy2023_24:
+    value: 1851184
+    unit: "active business TINs"
+    source: "TRA audited financial statements for the year ended 30 June 2024 (Controller and Auditor General report), printed pp. 107-108"
+    does_not_show: "business TINs only: no individual / non-individual split, no TINs issued by year, no filers or nil returns"
+  tra_active_business_tins_fy2022_23:
+    value: 1655920
+    unit: "active business TINs"
+    source: "same statements, prior-year column, printed pp. 107-108"
+    does_not_show: "business TINs only"
+  tra_dormant_business_tins_fy2023_24:
+    value: 123993
+    unit: "dormant business TINs"
+    source: "same statements, printed pp. 107-108"
+    does_not_show: "business TINs only"
+  tra_dormant_business_tins_fy2022_23:
+    value: 131888
+    unit: "dormant business TINs"
+    source: "same statements, prior-year column, printed pp. 107-108"
+    does_not_show: "business TINs only"
+  tra_tin_stock_mainland_fy2023_24:
+    value: 6272000
+    unit: "TIN registrations (stock), Mainland"
+    source: "NBS Tax Statistics Report 2023/24, Mainland Tanzania, Table 3.1 (source TRA), printed p. 14 (also data/processed/tra_registered_taxpayers.csv)"
+    does_not_show: "entities and dormant TINs are included: it is NOT a count of adult taxpayers and not comparable with FinScope's 1.31 million adult TIN holders; the audited statements' registered-business growth (+6%) and VAT-trader change (-20%) conflict with NBS Table 3.1 (VAT +18%) and are unreconciled"
+  nin_to_tin_provision:
+    value: "from 1 January 2023 TRA must issue a TIN to every citizen who has a National Identification Number (NIN)"
+    unit: "legal provision"
+    source: "Finance Act 2022 s. 106, amending the Tax Administration Act s. 22(2)"
+    does_not_show: "no count of NIN-linked TINs exists in the published statistics"
+  afrobarometer_r9_r10_tax_module:
+    value: "absent: the Round 8 tax module (the source of the report's tax-morale items) is not in Round 9, and only 3 of the 6 report items exist in Round 10 (Tanzania 2024, n = 2,400), none with identical wording"
+    unit: "note"
+    source: "Afrobarometer Data, Tanzania, Round 9 and Round 10 questionnaires, codebooks and .sav labels (PASS6A D6.1)"
+    does_not_show: "no change since 2021 can be stated; R8 values stay labelled 2021"
+
 # Folders that `run_all.py --clean` empties (never data/raw, docs or report/).
 clean_dirs:
   - outputs/stats
@@ -523,6 +561,12 @@ files:
   agent_calibration:           data/processed/agent_calibration.json      # E2.4 calibrated parameters and fit diagnostics
   stage_economics:             outputs/stats/stage_economics.json
   table40_csv:                 outputs/tables/table40_stage_economics.csv
+  taxable_capacity_json:       outputs/stats/taxable_capacity.json                  # Pass 6B-1: adults / owners above TZS 4M and 11M turnover (src/03_features/hbs_turnover.py)
+  taxable_capacity_csv:        outputs/tables/taxable_capacity.csv
+  taxable_capacity_zone_csv:   outputs/tables/taxable_capacity_by_zone.csv
+  cited_facts_json:            outputs/stats/cited_facts.json                       # Pass 6B-1: CITED register facts (src/03_features/cited_facts.py)
+  cited_facts_csv:             outputs/tables/cited_facts.csv
+  targeting_bootstrap:         outputs/cache/targeting_bootstrap.json                # Pass 6B-1: cached bootstrap (outside the folders --clean empties); recomputed by run_all.py --full-bootstrap
   mzani_turnover:              outputs/stats/mzani_turnover.json                      # Pass 6B-1: Mzani wa Kodi turnover bands (src/03_features/hbs_turnover.py)
   mzani_zone_csv:              outputs/tables/mzani_turnover_zone_activity.csv
   mzani_region_csv:            outputs/tables/mzani_turnover_region_activity.csv

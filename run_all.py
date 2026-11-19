@@ -131,6 +131,7 @@ def main(argv=None):
     import twin_inputs
     import agent_calibration
     import hbs_turnover
+    import cited_facts
     import tra_collections
     import reach_scenarios
     import stage_economics
@@ -247,6 +248,7 @@ def main(argv=None):
     print("=" * 60)
     hbs_turnover.run_hbs_turnover(from_processed=args.from_processed)           # with --from-processed the aggregates are read from data/processed/hbs_turnover.json (no microdata)
     tra_collections.run_tra_collections(from_processed=args.from_processed)    # TRA FY2024/25 collections (CITED aggregates) for the scale check
+    cited_facts.run_cited_facts()                                               # register facts CITED from published documents (config.yaml cited_facts)
 
     print("\n" + "=" * 60)
     print("STEP 8b: Table 40 stage economics (costs, revenue, NPV, ROI for the six stages; Monte Carlo)")

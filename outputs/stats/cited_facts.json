@@ -1,0 +1,63 @@
+{
+ "label": "CITED from published documents (TRA audited statements FY2023/24; NBS Tax Statistics 2023/24; Finance Act 2022; Afrobarometer R9/R10); not estimated",
+ "type": "CITED",
+ "facts": {
+  "tra_active_business_tins_fy2023_24": {
+   "value": 1851184,
+   "unit": "active business TINs",
+   "source": "TRA audited financial statements for the year ended 30 June 2024 (Controller and Auditor General report), printed pp. 107-108",
+   "does_not_show": "business TINs only: no individual / non-individual split, no TINs issued by year, no filers or nil returns",
+   "evidence_type": "CITED"
+  },
+  "tra_active_business_tins_fy2022_23": {
+   "value": 1655920,
+   "unit": "active business TINs",
+   "source": "same statements, prior-year column, printed pp. 107-108",
+   "does_not_show": "business TINs only",
+   "evidence_type": "CITED"
+  },
+  "tra_dormant_business_tins_fy2023_24": {
+   "value": 123993,
+   "unit": "dormant business TINs",
+   "source": "same statements, printed pp. 107-108",
+   "does_not_show": "business TINs only",
+   "evidence_type": "CITED"
+  },
+  "tra_dormant_business_tins_fy2022_23": {
+   "value": 131888,
+   "unit": "dormant business TINs",
+   "source": "same statements, prior-year column, printed pp. 107-108",
+   "does_not_show": "business TINs only",
+   "evidence_type": "CITED"
+  },
+  "tra_tin_stock_mainland_fy2023_24": {
+   "value": 6272000,
+   "unit": "TIN registrations (stock), Mainland",
+   "source": "NBS Tax Statistics Report 2023/24, Mainland Tanzania, Table 3.1 (source TRA), printed p. 14 (also data/processed/tra_registered_taxpayers.csv)",
+   "does_not_show": "entities and dormant TINs are included: it is NOT a count of adult taxpayers and not comparable with FinScope's 1.31 million adult TIN holders; the audited statements' registered-business growth (+6%) and VAT-trader change (-20%) conflict with NBS Table 3.1 (VAT +18%) and are unreconciled",
+   "evidence_type": "CITED"
+  },
+  "nin_to_tin_provision": {
+   "value": "from 1 January 2023 TRA must issue a TIN to every citizen who has a National Identification Number (NIN)",
+   "unit": "legal provision",
+   "source": "Finance Act 2022 s. 106, amending the Tax Administration Act s. 22(2)",
+   "does_not_show": "no count of NIN-linked TINs exists in the published statistics",
+   "evidence_type": "CITED"
+  },
+  "afrobarometer_r9_r10_tax_module": {
+   "value": "absent: the Round 8 tax module (the source of the report's tax-morale items) is not in Round 9, and only 3 of the 6 report items exist in Round 10 (Tanzania 2024, n = 2,400), none with identical wording",
+   "unit": "note",
+   "source": "Afrobarometer Data, Tanzania, Round 9 and Round 10 questionnaires, codebooks and .sav labels (PASS6A D6.1)",
+   "does_not_show": "no change since 2021 can be stated; R8 values stay labelled 2021",
+   "evidence_type": "CITED"
+  }
+ },
+ "derived": {
+  "business_tins_active_plus_dormant_fy2023_24": 1975177,
+  "active_share_of_business_tins_pct": 93.72243601459515,
+  "tin_stock_fy2023_24": 6272000,
+  "tin_stock_matches_pipeline_series": true,
+  "note": "COMPUTED from the cited counts: arithmetic only"
+ },
+ "reading": "TRA's own active business TINs (1.85 million) and the TIN stock (6.27 million, entities and dormant TINs included) are not counts of adult taxpayers; FinScope's 1.31 million adult TIN holders is a survey estimate of persons"
+}
