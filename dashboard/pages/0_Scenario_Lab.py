@@ -12,6 +12,7 @@ from common import inject_base_style, evidence_tag, callout, PipelineData
 
 st.set_page_config(page_title="Scenario lab — The Taxpayer Development Journey", page_icon="🧪", layout="wide")
 inject_base_style()
+st.markdown("<style>[data-testid=stMetricValue] { font-size: 1.7rem; }</style>", unsafe_allow_html=True)
 
 st.title("Scenario lab")
 st.caption("Change the assumptions behind Table 5.1 and see the discounted revenue and return on cost move.")
@@ -66,7 +67,7 @@ def _reset():
 
 HORIZONS = {f"{sh['horizon_years']} years": int(sh["horizon_years"]), f"{sh['long_horizon_years']} years, with ageing": int(sh["long_horizon_years"])}
 
-ctrl, out = st.columns([1.2, 2.2], gap="large")
+ctrl, out = st.columns([1.3, 2.4], gap="large")
 
 with ctrl:
     with st.container(border=True):
@@ -156,29 +157,31 @@ with out:
     for s in ("seed", "entry", "active", "enterprise", "legacy"):
         d, label = res["stages"][s], getattr(N, s).swahili
         if not d["on"]:
-            rows.append({"Stage": f"{STAGE_LABEL[s]} · {label}", "New registrants (median)": "off", "Discounted revenue, TZS (median, 80% interval)": "off", "Cost, TZS (median, 80% interval)": "off", "ROI (median, 80% interval)": "off"})
+            rows.append({"Stage": f"{STAGE_LABEL[s]} · {label}", "New registrants": "off", "Discounted revenue, TZS": "off", "Cost, TZS": "off", "ROI": "off"})
         elif s == "seed":
-            rows.append({"Stage": f"{STAGE_LABEL[s]} · {label}", "New registrants (median)": "none claimed", "Discounted revenue, TZS (median, 80% interval)": "none claimed", "Cost, TZS (median, 80% interval)": _iv(d["cost"], _tzs), "ROI (median, 80% interval)": "cost only"})
+            rows.append({"Stage": f"{STAGE_LABEL[s]} · {label}", "New registrants": "none claimed", "Discounted revenue, TZS": "none claimed", "Cost, TZS": _iv(d["cost"], _tzs), "ROI": "cost only"})
         else:
-            rows.append({"Stage": f"{STAGE_LABEL[s]} · {label}", "New registrants (median)": f"{d['registrants']['median']:,.0f}", "Discounted revenue, TZS (median, 80% interval)": _iv(d["revenue_pv"], _tzs),
-                         "Cost, TZS (median, 80% interval)": _iv(d["cost"], _tzs), "ROI (median, 80% interval)": _iv(d["roi"], _x)})
+            rows.append({"Stage": f"{STAGE_LABEL[s]} · {label}", "New registrants": f"{d['registrants']['median']:,.0f}", "Discounted revenue, TZS": _iv(d["revenue_pv"], _tzs),
+                         "Cost, TZS": _iv(d["cost"], _tzs), "ROI": _iv(d["roi"], _x)})
     if pf is not None:
-        rows.append({"Stage": "Portfolio (without Asset)", "New registrants (median)": f"{pf['registrants']['median']:,.0f}", "Discounted revenue, TZS (median, 80% interval)": _iv(pf["revenue_pv"], _tzs),
-                     "Cost, TZS (median, 80% interval)": _iv(pf["cost"], _tzs), "ROI (median, 80% interval)": _iv(pf["roi"], _x)})
+        rows.append({"Stage": "Portfolio (without Asset)", "New registrants": f"{pf['registrants']['median']:,.0f}", "Discounted revenue, TZS": _iv(pf["revenue_pv"], _tzs),
+                     "Cost, TZS": _iv(pf["cost"], _tzs), "ROI": _iv(pf["roi"], _x)})
     st.markdown("#### By stage")
-    st.dataframe(rows, hide_index=True, width="stretch")
+    cols_ = list(rows[0])
+    _nl = chr(10)
+    st.markdown(_nl.join(["| " + " | ".join(cols_) + " |", "|" + "---|" * len(cols_)] + ["| " + " | ".join(str(r[c]) for c in cols_) + " |" for r in rows]))      # a wrapping table: every column stays visible
     evidence_tag("modelled")
-    st.caption("Discounted revenue is the present value of the income and presumptive tax of the new registrants over the horizon; ROI = discounted revenue / cost. Constant TZS, no wage growth or inflation.")
+    st.caption("Each cell shows the median, then the 80% interval (10th to 90th percentile) in brackets. Discounted revenue is the present value of the income and presumptive tax of the new registrants over the horizon; ROI = discounted revenue / cost. Constant TZS, no wage growth or inflation.")
 
     # ---- chart ----
     bars = [(STAGE_LABEL[s], res["stages"][s]["roi"], CHART_GREEN) for s in sh["revenue_stages"] if res["stages"][s]["on"]]
     if pf is not None:
         bars.append(("Portfolio", pf["roi"], CHART_NAVY))
+    bars = [(f"{b[0]}<br>{_x(b[1]['median'])}", b[1], b[2]) for b in bars]
     if bars:
         fig = go.Figure(go.Bar(
             x=[b[0] for b in bars], y=[b[1]["median"] for b in bars], marker_color=[b[2] for b in bars],
             error_y=dict(type="data", symmetric=False, array=[b[1]["p90"] - b[1]["median"] for b in bars], arrayminus=[b[1]["median"] - b[1]["p10"] for b in bars]),
-            text=[_x(b[1]["median"]) for b in bars], textposition="outside", cliponaxis=False,
             hovertemplate="%{x}: median %{y:.2f}×<extra></extra>"))
         fig.add_hline(y=1.0, line_dash="dash", line_color="#E39A3B", annotation_text="Break-even 1.0×", annotation_position="top left")
         themed(fig, height=360, margin=dict(t=30, b=10), yaxis_title="ROI: median and 80% interval (×)", showlegend=False)

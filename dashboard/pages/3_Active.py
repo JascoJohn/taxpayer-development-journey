@@ -210,7 +210,7 @@ else:
             evidence_tag("computed")
             st.markdown(f"**Position in the band:** TZS {_chk['turnover']:,.0f} is {_chk['position_text']} ({_where}).")
             if _chk["approx_percentile"] is not None:
-                st.caption(f"Approximate percentile: about the {_chk['approx_percentile']:.0f}th (approximate: interpolated from the three quartiles only).")
+                st.caption(f"Approximate percentile: about {_chk['approx_percentile']:.0f} out of 100 (approximate: interpolated from the three quartiles only).")
             st.markdown(f"**Presumptive tax under the schedule in force:** {_chk['tax_text']}.")
             st.caption(presumptive_caption())
 

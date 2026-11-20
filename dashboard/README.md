@@ -1,6 +1,6 @@
 ﻿# The Taxpayer Development Journey — Interactive Dashboard
 
-A 6-page Streamlit app, one page per lifecycle stage, matching the figures and
+A Streamlit app: one page per lifecycle stage (six) plus a Scenario lab, matching the figures and
 mechanisms in the report. Most pages now read **real, live data**
 from this project's own pipeline (`../outputs/stats/` and `../data/processed/`) rather than hardcoded
 numbers — every page still captions clearly which figures are real and which
@@ -18,10 +18,16 @@ remain illustrative, and why.
     ├── Home.py
     ├── common.py              ← thin re-export shim, kept for backward compatibility
     ├── tdj_lib/               ← the actual reusable code
-    │   ├── styling.py         ← palette, CSS, evidence-label tags: COMPUTED, MODELLED, CITED, ILLUSTRATIVE (no data dependency)
+    │   ├── styling.py         ← palette, theme-aware CSS tokens (light-dark), evidence-label tags: COMPUTED, MODELLED, CITED, ILLUSTRATIVE (no data dependency)
+    │   ├── charts.py          ← one look for every Plotly chart (transparent background, neutral grid)
+    │   ├── layout.py          ← stage header with persona thumbnail and the collapsed "About this stage" section
+    │   ├── scenario_lab.py    ← pure-NumPy copy of the Table 5.1 Monte Carlo; reads only outputs/stats/scenario_lab_inputs.json
+    │   ├── fig51.py           ← interactive Figure 5.1 (the tax morale model's combination rule); reads outputs/stats/figure_5_1_inputs.json
+    │   ├── turnover_check.py  ← Mzani wa Kodi turnover check (pure functions; nothing is stored)
     │   ├── stages.py          ← 6-stage registry + cross-page nav (no data dependency)
     │   └── pipeline_data.py   ← reads the pipeline's JSON output (via config.yaml), never guesses
     ├── pages/
+    │   ├── 0_Scenario_Lab.py  (MODELLED: change reach, uptake, persistence, horizon, discount rate, income basis)
     │   ├── 1_Seed.py       (illustrative — see "Current status" below)
     │   ├── 2_Entry.py      (live)
     │   ├── 3_Active.py     (live)
@@ -30,6 +36,10 @@ remain illustrative, and why.
     │   └── 6_Legacy.py     (partially live)
     └── requirements.txt
 ```
+
+## Theme
+
+`.streamlit/config.toml` (repository root, where Community Cloud reads it for the entry point `dashboard/Home.py`) defines a light and a dark theme, so the app menu offers System, Light and Dark. A single `[theme]` section would lock the app to one mode. All custom CSS uses `light-dark()` colour tokens (`tdj_lib/styling.py`) and every chart goes through `tdj_lib/charts.py`, so both themes are readable. Run the app from the repository root: `streamlit run dashboard/Home.py`.
 
 ## Run locally
 

@@ -2,6 +2,9 @@
 
 Dated, factual, one line per change. Newest first.
 
+## 2026-11-20 - Dashboard v1.1, part 1 (branch `dashboard-v1.1`; no tag, no release, no new DOI)
+- Dashboard only: dark theme with the light switch kept in the app menu (`.streamlit/config.toml`, theme-aware CSS, transparent charts); Scenario lab page (`outputs/stats/scenario_lab_inputs.json`, `dashboard/tdj_lib/scenario_lab.py`, reproduces `stage_economics.json`); interactive Figure 5.1 (`outputs/stats/figure_5_1_inputs.json`); turnover check on the Active page; year slider on the Enterprise simulation; the main tool of every page moved to the top, the rest under "About this stage". No existing output or report file changed.
+
 ## 2026-11-20 - Release v1.0.0 (report, code and aggregate data)
 - The three Zenodo DOIs are entered: report 10.5281/zenodo.24387574, dataset 10.5281/zenodo.24387022, code (all versions) 10.5281/zenodo.24386968 (version DOI of v0.9.0: 10.5281/zenodo.24386969). They appear on the About page ("Project materials", with the GitHub and dashboard addresses), in the suggested citation of the Disclosures page and the references of the report, and in the report footer (report DOI and dashboard); the cover carries no links, in `README.md` (links, badges, how to cite), `CITATION.cff` (version 1.0.0, date released 2026-11-20, identifiers, preferred citation = the report) and `.zenodo.json` (version 1.0.0; related identifiers: supplement to the report, supplemented by the dataset).
 - Publication copy of the report added to `report/final/` (Word and PDF, 114 pages); the aggregate data package is rebuilt as `taxpayer-development-journey-aggregate-data-v1.0.0.zip` with the DOIs in its `DATA_README.md`.

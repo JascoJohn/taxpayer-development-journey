@@ -1,4 +1,29 @@
 # Streamlit Community Cloud runs the app from the repository root (entry point dashboard/Home.py) and reads this file from there.
-# Dark is the default; Light stays available from the app menu (Settings > Theme).
+# Dark is the default theme; Light stays available from the app menu (Settings > Theme). Streamlit offers the switch only when BOTH [theme.light] and [theme.dark]
+# are defined (a single [theme] section locks the app to one mode), so both are defined. Explicit colours keep the frontend from logging empty-colour warnings.
 [theme]
 base = "dark"
+
+[theme.light]
+primaryColor = "#256E29"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor = "#31333F"
+
+[theme.light.sidebar]
+primaryColor = "#256E29"
+backgroundColor = "#F0F2F6"
+secondaryBackgroundColor = "#E4E7EE"
+textColor = "#31333F"
+
+[theme.dark]
+primaryColor = "#FF4B4B"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#262730"
+textColor = "#FAFAFA"
+
+[theme.dark.sidebar]
+primaryColor = "#FF4B4B"
+backgroundColor = "#262730"
+secondaryBackgroundColor = "#31333F"
+textColor = "#FAFAFA"

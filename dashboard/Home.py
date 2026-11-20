@@ -83,7 +83,8 @@ except FileNotFoundError:
     _f51 = None
 if _morale.available and _f51 is not None:
     _m = _morale.value
-    _names = list(_f51["interventions"])
+    _stage_order = [x["key"] for x in STAGES]
+    _names = sorted(_f51["interventions"], key=lambda k: _stage_order.index(_f51["interventions"][k]["stage"]) if _f51["interventions"][k]["stage"] in _stage_order else len(_stage_order))      # stage order; the intervention with no stage tool last
     _label = lambda k: k.replace("_", " ")[:1].upper() + k.replace("_", " ")[1:]
     _stage_label = lambda k: (_f51["interventions"][k]["stage"] or "").capitalize()
     st.markdown("**Switch each stage on or off** (all on is the report's Figure 5.1)")
@@ -109,7 +110,7 @@ fig = go.Figure(
 )
 themed(
     fig,
-    yaxis_title="Modelled probability that an adult reports a TIN (%), if every adult were reached",
+    yaxis_title="Modelled probability that an adult<br>reports a TIN (%), if every adult were reached",
     yaxis_range=[0, max(values) * 1.3 + 1],
     height=380,
     margin=dict(t=20, b=20),
