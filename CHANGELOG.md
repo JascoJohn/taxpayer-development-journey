@@ -2,6 +2,11 @@
 
 Dated, factual, one line per change. Newest first.
 
+## 2026-11-20 - Release v1.0.0 (report, code and aggregate data)
+- The three Zenodo DOIs are entered: report 10.5281/zenodo.24387574, dataset 10.5281/zenodo.24387022, code (all versions) 10.5281/zenodo.24386968 (version DOI of v0.9.0: 10.5281/zenodo.24386969). They appear on the About page ("Project materials", with the GitHub and dashboard addresses), in the suggested citation of the Disclosures page and the references of the report, and in the report footer (report DOI and dashboard); the cover carries no links, in `README.md` (links, badges, how to cite), `CITATION.cff` (version 1.0.0, date released 2026-11-20, identifiers, preferred citation = the report) and `.zenodo.json` (version 1.0.0; related identifiers: supplement to the report, supplemented by the dataset).
+- Publication copy of the report added to `report/final/` (Word and PDF, 114 pages); the aggregate data package is rebuilt as `taxpayer-development-journey-aggregate-data-v1.0.0.zip` with the DOIs in its `DATA_README.md`.
+- Earlier in the publishing preparation: README, publishing checklist and data terms aligned with the final report (stage mapping B, central income basis, reach scenarios, Household Budget Survey 2017/18 and the TRA collections workbook added to the data terms); provenance text reworded; commit messages cleaned of co-author lines (history rewritten once, before any release, file contents unchanged).
+
 ## 2026-11-19 - Pass 6B-1: stage mapping B, bracketed economics, new figures (branch `pass6b-1`; the report is not edited; Pass 6B-2 applies the text)
 - H1: HBS 2017/18 (Individual, Consumption Aggregate, Form I S10C1/S10A1), the TRA FY2024/25 collections workbook, the WDI consumer price index snapshot and the dated Tax Club page copied into `data/raw/` (git-ignored; SHA-256 checked); `data/raw/SOURCES.csv`, README and config updated.
 - H2: stage mapping B (`finscope_segments.py`): Active = business owners without a formal step (D6_4a), 25-64; Enterprise = owners with a formal step, 25-64; Non-business owners 25-44 = non-owners, named group, no revenue lever; Asset = non-owners 45-64. Reconciles to 34,134,251 adults, 3.828%, 1,306,683 holders.

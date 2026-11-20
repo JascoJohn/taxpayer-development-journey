@@ -8,7 +8,7 @@ Three Zenodo records are involved:
 * **Dataset** (CC BY 4.0): the aggregate data only (`data/processed/`, `data/interim/`, `outputs/stats/`, `outputs/tables/`, the World Bank snapshots, `data/raw/SOURCES.csv`, `docs/data_terms.md`, `docs/claims_map.csv`, `docs/assumptions_register.csv` and a `DATA_README.md`).
 * **Report** (CC BY-NC-ND 4.0): the final PDF.
 
-The DOIs appear in the README, `CITATION.cff` and the report as the placeholders `[Report DOI]`, `[Dataset DOI]` and `[Code DOI]` (and `[date-released]`) until step 7.
+Until step 7 the DOIs are not yet entered in the README, `CITATION.cff`, `.zenodo.json` and the report; step 7 enters them (done for v1.0.0).
 
 ## What is checked before the first push
 
@@ -60,7 +60,7 @@ share.streamlit.io > Create app > deploy from GitHub: repository `JascoJohn/taxp
 
 ### 7. Fill in the DOIs and prepare v1.0.0
 
-Replace `[Report DOI]`, `[Dataset DOI]`, `[Code DOI]` and `[date-released]` in the report, `README.md`, `CITATION.cff` and `DATA_README.md`; set the version to 1.0.0; rebuild the dataset zip (its checksum changes); rebuild the final report PDF; run the tests; commit; tag `v1.0.0`.
+Enter the report, dataset and code (concept) DOIs and the release date in the report, `README.md`, `CITATION.cff`, `.zenodo.json` and `DATA_README.md`; set the version to 1.0.0; rebuild the dataset zip (its checksum changes); rebuild the final report PDF; run the tests; commit; tag `v1.0.0`.
 
 ### 8. Release v1.0.0 and publish the records
 

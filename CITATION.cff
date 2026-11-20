@@ -10,15 +10,40 @@ abstract: "A behavioural lifecycle architecture for tax compliance in Tanzania (
 license: MIT
 repository-code: "https://github.com/JascoJohn/taxpayer-development-journey"
 url: "https://taxpayer-development-journey.streamlit.app"
-doi: "[Code DOI]"
+doi: "10.5281/zenodo.24386968"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24387574"
+    description: "The report: The Taxpayer Development Journey (Zenodo, CC BY-NC-ND 4.0)."
+  - type: doi
+    value: "10.5281/zenodo.24387022"
+    description: "The aggregate data (Zenodo, CC BY 4.0)."
+  - type: doi
+    value: "10.5281/zenodo.24386968"
+    description: "The code, all versions (Zenodo concept DOI, MIT); release v0.9.0 is 10.5281/zenodo.24386969."
+  - type: url
+    value: "https://taxpayer-development-journey.streamlit.app"
+    description: "The dashboard."
 keywords:
   - tax compliance
   - Tanzania
   - behavioural economics
   - TIN registration
   - mobile money
-date-released: "[date-released]"
-version: "0.9.0"
+date-released: "2026-11-20"
+version: "1.0.0"
+preferred-citation:
+  type: report
+  authors:
+    - family-names: "John"
+      given-names: "Jasco"
+      orcid: "https://orcid.org/0009-0007-3630-7943"
+  title: "The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania"
+  year: 2026
+  publisher:
+    name: "Zenodo"
+  doi: "10.5281/zenodo.24387574"
+  license: CC-BY-NC-ND-4.0
 references:
   - type: report
     authors:
@@ -29,7 +54,7 @@ references:
     year: 2026
     publisher:
       name: "Zenodo"
-    doi: "[Report DOI]"
+    doi: "10.5281/zenodo.24387574"
     license: CC-BY-NC-ND-4.0
   - type: dataset
     authors:
@@ -40,5 +65,5 @@ references:
     year: 2026
     publisher:
       name: "Zenodo"
-    doi: "[Dataset DOI]"
+    doi: "10.5281/zenodo.24387022"
     license: CC-BY-4.0

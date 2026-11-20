@@ -72,7 +72,7 @@ def test_the_publishing_checklist_is_the_fresh_repository_plan_in_public_wording
     assert "- [x]" in t and "claims_map.csv" in t and "data_terms.md" in t
     for step in ("### %d. " % i for i in range(1, 10)):
         assert step in t, step
-    for needle in ("taxpayer-development-journey", "v0.9.0", "v1.0.0", "[Report DOI]", "[Dataset DOI]", "[Code DOI]", "Reserve the DOI", "no force-push"):
+    for needle in ("taxpayer-development-journey", "v0.9.0", "v1.0.0", "Reserve the DOI", "no force-push"):
         assert needle in t, needle
     for private in ("D:\\", "C:\\", "_archive\\", "--force", "force-with-lease", "TRA_Innovation", "git_pre_pass5"):
         assert private not in t, private                          # public wording: no personal paths, no history-rewrite commands

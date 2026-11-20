@@ -34,14 +34,13 @@ def test_the_three_licences_are_stated_the_same_way_everywhere():
     assert "CC BY 4.0" in _text("data/processed/README.md") and "CC BY-NC-ND 4.0" in _text("dashboard/README.md")
     assert "## 8. Licences of what is published" in _text("docs/data_terms.md")
     cff = yaml.safe_load(_text("CITATION.cff"))
-    assert cff["license"] == "MIT" and cff["version"] == "0.9.0"
+    assert cff["license"] == "MIT" and cff["version"] == "1.0.0"
     lic_by_type = {r["type"]: r["license"] for r in cff["references"]}
     assert lic_by_type == {"report": "CC-BY-NC-ND-4.0", "dataset": "CC-BY-4.0"}
     assert cff["repository-code"] == "https://github.com/JascoJohn/taxpayer-development-journey" and cff["url"] == "https://taxpayer-development-journey.streamlit.app"
 
 
-def test_only_the_three_doi_placeholders_remain_in_the_public_files():
-    allowed = {"[Report DOI]", "[Dataset DOI]", "[Code DOI]", "[date-released]"}
+def test_no_doi_placeholder_remains_and_the_three_dois_are_entered():
     found = set()
     for f in _public_text_files():
         if f == "tests/test_pass5.py":
@@ -50,16 +49,24 @@ def test_only_the_three_doi_placeholders_remain_in_the_public_files():
         for old in ("[Package DOI]", "[Zenodo DOI]", "[Dashboard link]", "[GitHub link]"):
             assert old not in t, (f, old)
         found |= set(re.findall(r"\[(?:Report|Dataset|Code) DOI\]|\[date-released\]", t))
-    assert {"[Report DOI]", "[Dataset DOI]", "[Code DOI]"} <= found <= allowed
+    assert found == set()                                              # version 1.0.0: the three DOIs are entered
+    cff = yaml.safe_load(_text("CITATION.cff"))
+    assert cff["version"] == "1.0.0" and str(cff["date-released"]) == "2026-11-20" and cff["doi"] == "10.5281/zenodo.24386968"
+    assert {i["value"] for i in cff["identifiers"] if i["type"] == "doi"} == {"10.5281/zenodo.24387574", "10.5281/zenodo.24387022", "10.5281/zenodo.24386968"}
+    assert cff["preferred-citation"]["type"] == "report" and cff["preferred-citation"]["doi"] == "10.5281/zenodo.24387574"
+    readme = _text("README.md")
+    for doi in ("10.5281/zenodo.24387574", "10.5281/zenodo.24387022", "10.5281/zenodo.24386968"):
+        assert "https://doi.org/" + doi in readme, doi
 
 
 def test_the_zenodo_metadata_file_describes_the_code_record():
     z = json.loads(_text(".zenodo.json"))
     assert z["title"] == "The Taxpayer Development Journey: Code" and z["upload_type"] == "software" and z["license"] == "MIT"
     assert z["creators"][0]["name"] == "John, Jasco" and z["creators"][0]["orcid"] == "0009-0007-3630-7943"
-    # Zenodo validates identifiers: only resolvable ones go into related_identifiers (the DOIs are named in the description until version 1.0.0)
-    assert all(r["identifier"].startswith("https://") for r in z.get("related_identifiers", []))
-    assert "[Dataset DOI]" in z["description"] and "[Report DOI]" in z["description"]
+    assert z["version"] == "1.0.0"
+    rel = {(r["identifier"], r["relation"]) for r in z["related_identifiers"]}
+    assert ("10.5281/zenodo.24387574", "isSupplementTo") in rel and ("10.5281/zenodo.24387022", "isSupplementedBy") in rel
+    assert "10.5281/zenodo.24387574" in z["description"] and "10.5281/zenodo.24387022" in z["description"]
 
 
 def test_the_poster_has_a_real_qr_code_the_phone_and_the_british_spelling():

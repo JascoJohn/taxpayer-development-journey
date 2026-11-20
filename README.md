@@ -4,14 +4,14 @@ Author: Jasco John, MBA, CPA(T) (ORCID https://orcid.org/0009-0007-3630-7943). C
 
 ## Links
 
-* **Report** (Zenodo record, PDF): DOI [Report DOI]
-* **Dataset** (Zenodo record, aggregate data only): DOI [Dataset DOI]
-* **Archived code** (Zenodo record created automatically from each GitHub release; first release v0.9.0): DOI [Code DOI]
+* **Report** (Zenodo record, PDF): https://doi.org/10.5281/zenodo.24387574 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24387574.svg)](https://doi.org/10.5281/zenodo.24387574)
+* **Dataset** (Zenodo record, aggregate data only): https://doi.org/10.5281/zenodo.24387022 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24387022.svg)](https://doi.org/10.5281/zenodo.24387022)
+* **Archived code** (Zenodo record created automatically from each GitHub release; this DOI always resolves to the latest version): https://doi.org/10.5281/zenodo.24386968 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24386968.svg)](https://doi.org/10.5281/zenodo.24386968) (version DOI of release v0.9.0: https://doi.org/10.5281/zenodo.24386969)
 * **Dashboard**: https://taxpayer-development-journey.streamlit.app
 * **Repository**: https://github.com/JascoJohn/taxpayer-development-journey
-* The publication copy of the report is added to `report/final/` (Word and PDF) with release v1.0.0; release v0.9.0 holds the code, the aggregate data, the outputs, the dashboard and the documentation.
+* The publication copy of the report (Word and PDF) is in `report/final/`, added with release v1.0.0; release v0.9.0 holds the code, the aggregate data, the outputs, the dashboard and the documentation.
 
-(The DOIs are filled in when the Zenodo records exist; the literal strings `[Report DOI]`, `[Dataset DOI]` and `[Code DOI]` stand in until then. `.zenodo.json` holds the metadata of the automatic code record.)
+(`.zenodo.json` holds the metadata of the automatic code record.)
 
 ## Purpose
 
@@ -134,9 +134,9 @@ The raw data are not redistributed (terms: `docs/data_terms.md`; file-by-file pr
 
 Cite the report, and the dataset or the code where you use them (the machine-readable form is `CITATION.cff`):
 
-* **Report**: John, J. (2026). *The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania*. Independent project report. Zenodo. [Report DOI]
-* **Dataset (aggregate data)**: John, J. (2026). *The Taxpayer Development Journey: Aggregate Data* [Data set]. Zenodo. [Dataset DOI]
-* **Code**: John, J. (2026). *The Taxpayer Development Journey: Code* [Computer software]. Zenodo. [Code DOI]
+* **Report**: John, J. (2026). *The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania*. Independent project report. Zenodo. https://doi.org/10.5281/zenodo.24387574
+* **Dataset (aggregate data)**: John, J. (2026). *The Taxpayer Development Journey: Aggregate Data* [Data set]. Zenodo. https://doi.org/10.5281/zenodo.24387022
+* **Code**: John, J. (2026). *The Taxpayer Development Journey: Code* [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24386968 (all versions)
 
 Cite the datasets that underlie the analysis as each owner requires (`docs/data_terms.md`, section 4; `data/raw/SOURCES.csv`, column `citation`).
 
