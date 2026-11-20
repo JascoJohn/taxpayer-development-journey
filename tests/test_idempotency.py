@@ -22,7 +22,7 @@ EXPECTED = {
     "outputs/tables/tax_morale_components.csv", "data/processed/agent_trust_morale.json", "data/processed/agent_income.json",
     # Block E2
     "data/processed/tra_registered_taxpayers.csv", "data/processed/twin_inputs.json", "data/processed/agent_calibration.json",
-    "outputs/stats/stage_economics.json", "outputs/tables/table40_stage_economics.csv",
+    "outputs/stats/stage_economics.json", "outputs/stats/scenario_lab_inputs.json", "outputs/stats/figure_5_1_inputs.json", "outputs/tables/table40_stage_economics.csv",
     # Block F
     "data/processed/ilfs_tax_base.json",
     # Pass 6B-1
