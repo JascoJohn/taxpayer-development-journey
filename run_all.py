@@ -137,6 +137,7 @@ def main(argv=None):
     import tra_collections
     import reach_scenarios
     import stage_economics
+    import dashboard_inputs
 
     mode = "from-processed" if args.from_processed else "from-raw"
     run_meta.record_run(mode=mode, clean=bool(args.clean), started_at=run_meta.now(),
@@ -264,6 +265,11 @@ def main(argv=None):
     print("STEP 8b: Table 5.1 stage economics (costs, revenue, NPV, ROI for the six stages; Monte Carlo)")
     print("=" * 60)
     stage_economics.run_stage_economics(from_processed=args.from_processed)      # with --from-processed the ILFS tax base is read from data/processed/ilfs_tax_base.json (no microdata)
+
+    print("\n" + "=" * 60)
+    print("STEP 8b2: Dashboard inputs (Scenario lab parameters, interactive Figure 5.1)")
+    print("=" * 60)
+    dashboard_inputs.run_dashboard_inputs()                                      # reads data/processed/ilfs_tax_base.json (written just above) and economic_model.json; aggregates only
 
     print("\n" + "=" * 60)
     print("STEP 8c: Reach scenarios (Figure 5.2) with the scale check against TRA FY2024/25")

@@ -1,0 +1,390 @@
+{
+ "label": "Parameters of the Table 5.1 Monte Carlo (src/04_models/stage_economics.py), read from config.yaml, the assumptions register and the pipeline; no respondent-level rows. Read only by dashboard/tdj_lib/scenario_lab.py. MODELLED scenario inputs, not a forecast.",
+ "evidence_type": "MODELLED (scenario); revenue per registrant COMPUTED from survey data with the statutory schedules CITED",
+ "shared": {
+  "stage_order": [
+   "seed",
+   "entry",
+   "active",
+   "enterprise",
+   "asset",
+   "legacy"
+  ],
+  "portfolio_stages": [
+   "seed",
+   "entry",
+   "active",
+   "enterprise",
+   "legacy"
+  ],
+  "revenue_stages": [
+   "entry",
+   "active",
+   "enterprise",
+   "legacy"
+  ],
+  "owner_stages": [
+   "active",
+   "enterprise"
+  ],
+  "n_draws": 10000,
+  "seed": 20260112,
+  "persistence_triangle": [
+   0.5,
+   0.75,
+   0.9
+  ],
+  "ramp_years": 5,
+  "uptake_log_odds_sd": 0.3,
+  "cost_overrun_sigma": 0.25,
+  "discount_rate": 0.1,
+  "discount_sensitivities": [
+   0.05,
+   0.12
+  ],
+  "horizon_years": 10,
+  "long_horizon_years": 20,
+  "income_bases": {
+   "central": "hbs_receipts_owners",
+   "high": "ilfs_gross",
+   "low": "hbs_all_owners"
+  },
+  "income_basis_labels": {
+   "central": "HBS 2017/18 receipts of owners with receipts in the reference month (central)",
+   "high": "ILFS 2024 gross receipts of owners (bracket high; never shown alone)",
+   "low": "HBS 2017/18 receipts of all owners, zeros kept (bracket low)"
+  },
+  "central_income_basis": "central",
+  "persistence_fixed_sensitivities": [
+   0.75,
+   0.9,
+   0.95
+  ],
+  "distributions": {
+   "reach": "triangular(low, mode, high) of the stage's reach_triangle",
+   "persistence": "triangular(persistence_triangle), or a fixed value",
+   "p": "normal(p, p_se), clipped to [1e-4, 0.5]",
+   "log_odds_ratio": "normal(ln(odds_ratio), shared.uptake_log_odds_sd), floored at 0",
+   "tax_per_registrant": "normal(mean, se), floored at 0",
+   "cost": "stated cost x exp(normal(0, shared.cost_overrun_sigma)); Seed: uniform(cost_range_tzs)",
+   "draw_order": "one generator, seeded once; stages in stage_order, within a stage: reach, persistence, p, log odds ratio, tax, overrun (Seed: cost only)"
+  }
+ },
+ "signoff": {
+  "stage.cost.seed_tzs": "approved (John, 2026-11-12)",
+  "stage.cost.entry_tzs": "approved (John, 2026-11-12)",
+  "stage.cost.active_tzs": "approved (John, 2026-11-12)",
+  "stage.cost.enterprise_tzs": "approved (John, 2026-11-12)",
+  "stage.cost.legacy_tzs": "approved (John, 2026-11-12)",
+  "stage.cost_overrun_sigma": "approved (John, 2026-11-12)",
+  "stage.reach_share": "approved (John, 2026-11-12)",
+  "stage.uptake_log_odds_sd": "approved (John, 2026-11-12)",
+  "stage.persistence": "approved (John, 2026-11-12)",
+  "stage.ramp_years": "approved (John, 2026-11-12)",
+  "stage.horizon_years": "approved (John, 2026-11-12)",
+  "stage.discount_rate": "approved (John, 2026-11-12)"
+ },
+ "assumptions_awaiting_signoff": [
+  {
+   "key": "hbs.cpi_uprating",
+   "basis_class": "ASSUMPTION",
+   "label": "technical/design parameter"
+  },
+  {
+   "key": "hbs.owners_with_receipts_central",
+   "basis_class": "ASSUMPTION",
+   "label": "technical/design parameter"
+  },
+  {
+   "key": "hbs.receipts_annualisation",
+   "basis_class": "ASSUMPTION",
+   "label": "technical/design parameter"
+  },
+  {
+   "key": "stage.formal_step_if_not_asked",
+   "basis_class": "ASSUMPTION",
+   "label": "Table 5.1 scenario assumption"
+  },
+  {
+   "key": "stage.income_basis_bracket",
+   "basis_class": "ASSUMPTION",
+   "label": "Table 5.1 scenario assumption"
+  },
+  {
+   "key": "stage.workers_unpriced",
+   "basis_class": "ASSUMPTION",
+   "label": "Table 5.1 scenario assumption"
+  },
+  {
+   "key": "tax.pit_schedule",
+   "basis_class": "DATA",
+   "label": ""
+  },
+  {
+   "key": "tax.presumptive_schedule",
+   "basis_class": "DATA",
+   "label": ""
+  }
+ ],
+ "stages": {
+  "seed": {
+   "name": "Michezo ya Kodi (Tax Learning Games)",
+   "population": 16354370.0,
+   "cost_range_tzs": [
+    260000000.0,
+    1060000000.0
+   ],
+   "revenue": "none claimed: Seed counts as cost only"
+  },
+  "entry": {
+   "name": "Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration Tool)",
+   "population": 10605005.23,
+   "p": 0.007695,
+   "p_se": 0.002952,
+   "mapped_intervention": "USSD_registration_nudge",
+   "odds_ratio": 1.2166813118525936,
+   "reach_triangle": [
+    0.02,
+    0.05,
+    0.1
+   ],
+   "stated_cost_tzs": 420000000.0,
+   "tax_per_registrant_tzs": {
+    "central": {
+     "mean": 125887.97347965605,
+     "se": 41142.9440449189
+    },
+    "high": {
+     "mean": 125887.97347965605,
+     "se": 41142.9440449189
+    },
+    "low": {
+     "mean": 125887.97347965605,
+     "se": 41142.9440449189
+    }
+   },
+   "age_earnings_multiplier": [
+    1.0,
+    1.198978100915395,
+    1.3979562018307898,
+    1.5969343027461849,
+    1.79591240366158,
+    1.8739570703173412,
+    2.013012055926237,
+    2.1520670415351337,
+    2.29112202714403,
+    2.4301770127529263,
+    2.467560192121001,
+    2.4849815877189525,
+    2.5024029833169044,
+    2.519824378914856,
+    2.5372457745128076,
+    2.505966656260897,
+    2.5376819445094196,
+    2.569397232757942,
+    2.6011125210064647,
+    2.6328278092549877
+   ]
+  },
+  "active": {
+   "name": "Mzani wa Kodi (Presumptive Tax Estimator)",
+   "population": 2916164.67,
+   "p": 0.064389,
+   "p_se": 0.013838,
+   "mapped_intervention": "presumptive_tax_simplification",
+   "odds_ratio": 1.4803134146113475,
+   "reach_triangle": [
+    0.01,
+    0.03,
+    0.08
+   ],
+   "stated_cost_tzs": 600000000.0,
+   "tax_per_registrant_tzs": {
+    "central": {
+     "mean": 31916.052197620742,
+     "se": 7960.859207134147
+    },
+    "high": {
+     "mean": 299588.28648986795,
+     "se": 40303.34590059089
+    },
+    "low": {
+     "mean": 12966.46728641005,
+     "se": 3248.2342744168623
+    }
+   },
+   "age_earnings_multiplier": [
+    1.0,
+    1.0262141123040422,
+    1.0524282246080847,
+    1.0786423369121272,
+    1.1048564492161694,
+    1.1310705615202121,
+    1.1392427977481365,
+    1.1474150339760614,
+    1.155587270203986,
+    1.1637595064319108,
+    1.1719317426598355,
+    1.1917084045013915,
+    1.2114850663429475,
+    1.2312617281845033,
+    1.2510383900260593,
+    1.2708150518676153,
+    1.2745976160395034,
+    1.2783801802113917,
+    1.2821627443832795,
+    1.2859453085551678
+   ]
+  },
+  "enterprise": {
+   "name": "Hatua za Kodi (Tax Progression Dashboard)",
+   "population": 572735.05,
+   "p": 0.265353,
+   "p_se": 0.051042,
+   "mapped_intervention": "community_compliance_norms",
+   "odds_ratio": 1.4421046030958133,
+   "reach_triangle": [
+    0.01,
+    0.03,
+    0.08
+   ],
+   "stated_cost_tzs": 750000000.0,
+   "tax_per_registrant_tzs": {
+    "central": {
+     "mean": 316526.04295372486,
+     "se": 51581.90328587816
+    },
+    "high": {
+     "mean": 2446436.2371182293,
+     "se": 615290.3267029601
+    },
+    "low": {
+     "mean": 161790.58044093053,
+     "se": 28750.9184896349
+    }
+   },
+   "age_earnings_multiplier": [
+    1.0,
+    1.0262141123040422,
+    1.0524282246080847,
+    1.0786423369121272,
+    1.1048564492161694,
+    1.1310705615202121,
+    1.1392427977481365,
+    1.1474150339760614,
+    1.155587270203986,
+    1.1637595064319108,
+    1.1719317426598355,
+    1.1917084045013915,
+    1.2114850663429475,
+    1.2312617281845033,
+    1.2510383900260593,
+    1.2708150518676153,
+    1.2745976160395034,
+    1.2783801802113917,
+    1.2821627443832795,
+    1.2859453085551678
+   ]
+  },
+  "asset": {
+   "name": "Mali-Alama za Kodi (Tax Asset Score)",
+   "population": 5590836.37,
+   "p": 0.04304,
+   "p_se": 0.007149,
+   "mapped_intervention": "visible_tax_returns",
+   "odds_ratio": 1.4316184908861909,
+   "reach_triangle": [
+    0.005,
+    0.02,
+    0.05
+   ],
+   "stated_cost_tzs": null,
+   "tax_per_registrant_tzs": {
+    "central": {
+     "mean": 412016.4480484175,
+     "se": 45394.41248016876
+    },
+    "high": {
+     "mean": 412016.4480484175,
+     "se": 45394.41248016876
+    },
+    "low": {
+     "mean": 412016.4480484175,
+     "se": 45394.41248016876
+    }
+   },
+   "age_earnings_multiplier": [
+    1.0,
+    0.9708316698672476,
+    0.9416633397344951,
+    0.9124950096017425,
+    0.88332667946899,
+    0.8541583493362378,
+    0.821493521873142,
+    0.7888286944100462,
+    0.7561638669469504,
+    0.7234990394838545,
+    0.6908342120207588,
+    0.6794735990849108,
+    0.668112986149063,
+    0.6567523732132152,
+    0.6453917602773673,
+    0.6340311473415196,
+    0.6093978276344117,
+    0.584764507927304,
+    0.5601311882201961,
+    0.5354978685130883
+   ]
+  },
+  "legacy": {
+   "name": "Urithi wa Kodi (Tax Legacy Score)",
+   "population": 2338624.3,
+   "p": 0.036625,
+   "p_se": 0.011850000000000001,
+   "mapped_intervention": "civic_tax_education",
+   "odds_ratio": 1.2708813994936043,
+   "reach_triangle": [
+    0.005,
+    0.02,
+    0.05
+   ],
+   "stated_cost_tzs": 700000000.0,
+   "tax_per_registrant_tzs": {
+    "central": {
+     "mean": 230069.67713258165,
+     "se": 57898.440640073204
+    },
+    "high": {
+     "mean": 230069.67713258165,
+     "se": 57898.440640073204
+    },
+    "low": {
+     "mean": 230069.67713258165,
+     "se": 57898.440640073204
+    }
+   },
+   "age_earnings_multiplier": [
+    1.0,
+    0.8900029517472999,
+    0.7800059034946,
+    0.6700088552419,
+    0.5600118069892001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001,
+    0.4500147587365001
+   ]
+  }
+ }
+}

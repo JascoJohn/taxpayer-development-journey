@@ -560,6 +560,8 @@ files:
   agent_income:                data/processed/agent_income.json           # aggregates only (cell distributions)
   agent_calibration:           data/processed/agent_calibration.json      # E2.4 calibrated parameters and fit diagnostics
   stage_economics:             outputs/stats/stage_economics.json
+  scenario_lab_inputs:         outputs/stats/scenario_lab_inputs.json                # Dashboard v1.1: parameters of the Table 5.1 simulation for the Scenario lab (src/04_models/dashboard_inputs.py)
+  figure_5_1_inputs:           outputs/stats/figure_5_1_inputs.json                  # Dashboard v1.1: inputs of the interactive Figure 5.1 (src/04_models/dashboard_inputs.py)
   table40_csv:                 outputs/tables/table40_stage_economics.csv
   taxable_capacity_json:       outputs/stats/taxable_capacity.json                  # Pass 6B-1: adults / owners above TZS 4M and 11M turnover (src/03_features/hbs_turnover.py)
   taxable_capacity_csv:        outputs/tables/taxable_capacity.csv

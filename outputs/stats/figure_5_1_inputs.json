@@ -1,0 +1,95 @@
+{
+ "label": "Inputs of the interactive Figure 5.1: the tax morale model's driver scores, weights, intervention deltas, fitted alpha and beta and the combined discount (economic_model.py build_tax_morale_model). MODELLED; the effects are assumed uplifts.",
+ "evidence_type": "MODELLED",
+ "form": "p = expit(alpha + beta * index(driver scores))",
+ "alpha": -5.78732722557362,
+ "beta": 4.358375910954723,
+ "combined_discount": 0.6,
+ "baseline_scores": {
+  "trust": 0.7852115476909747,
+  "simplicity": 0.3646399079258213,
+  "enforcement": 0.4,
+  "social_norm": 0.5351267177299509,
+  "fairness": 0.7511631191756918
+ },
+ "weights": {
+  "trust": 0.3,
+  "simplicity": 0.2,
+  "enforcement": 0.15,
+  "social_norm": 0.2,
+  "fairness": 0.15
+ },
+ "drivers": [
+  "trust",
+  "simplicity",
+  "enforcement",
+  "social_norm",
+  "fairness"
+ ],
+ "observed_adult_tin_rate": 0.038281,
+ "observed_anchor_source": "FinScope Tanzania 2023, weighted adult (16+) TIN rate, outputs/tables/tin_by_segment.csv (361 of 9,915 respondents)",
+ "interventions": {
+  "USSD_registration_nudge": {
+   "deltas": {
+    "trust": 0.05,
+    "simplicity": 0.15
+   },
+   "stage": "entry",
+   "stage_name": "Ujumuishaji wa Kikodi (Taxpayer Targeting and Registration Tool)"
+  },
+  "civic_tax_education": {
+   "deltas": {
+    "social_norm": 0.2,
+    "fairness": 0.1
+   },
+   "stage": "legacy",
+   "stage_name": "Urithi wa Kodi (Tax Legacy Score)"
+  },
+  "mobile_money_TIN_bridge": {
+   "deltas": {
+    "trust": 0.1,
+    "simplicity": 0.25
+   },
+   "stage": null,
+   "stage_name": null
+  },
+  "community_compliance_norms": {
+   "deltas": {
+    "trust": 0.08,
+    "social_norm": 0.3
+   },
+   "stage": "enterprise",
+   "stage_name": "Hatua za Kodi (Tax Progression Dashboard)"
+  },
+  "visible_tax_returns": {
+   "deltas": {
+    "trust": 0.15,
+    "fairness": 0.25
+   },
+   "stage": "asset",
+   "stage_name": "Mali-Alama za Kodi (Tax Asset Score)"
+  },
+  "presumptive_tax_simplification": {
+   "deltas": {
+    "trust": 0.1,
+    "simplicity": 0.3
+   },
+   "stage": "active",
+   "stage_name": "Mzani wa Kodi (Presumptive Tax Estimator)"
+  }
+ },
+ "reported": {
+  "baseline_compliance_probability": 0.038281,
+  "combined_intervention_probability": 0.10174,
+  "naive_sum_of_solo_effects_pct": 12.018,
+  "solo_new_compliance_prob": {
+   "USSD_registration_nudge": 0.046193,
+   "civic_tax_education": 0.048151,
+   "mobile_money_TIN_bridge": 0.053398,
+   "community_compliance_norms": 0.054286,
+   "visible_tax_returns": 0.053913,
+   "presumptive_tax_simplification": 0.055645
+  }
+ },
+ "combination_rule": "one active intervention: its solo odds ratio exp(beta x index change); two or more: the drivers' deltas are summed after multiplying each by tax_morale.combined_discount (0.6), capped at 1, then exp(beta x index change) (the rule that gives the combined effect of all six). Block E3.1: the agent and tier simulations multiply each agent's yearly registration odds by the odds ratio of the set of interventions that reach the agent"
+}

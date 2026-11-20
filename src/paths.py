@@ -84,6 +84,8 @@ AGENT_TRUST_MORALE = resolve(_F["agent_trust_morale"])
 AGENT_INCOME = resolve(_F["agent_income"])
 TWIN_INPUTS = resolve(_F["twin_inputs"])
 STAGE_ECONOMICS = resolve(_F["stage_economics"])
+SCENARIO_LAB_INPUTS = resolve(_F["scenario_lab_inputs"])
+FIGURE_5_1_INPUTS = resolve(_F["figure_5_1_inputs"])
 TABLE40_CSV = resolve(_F["table40_csv"])
 TABLE51_CSV = resolve(_F["table5_1_csv"])
 REACH_SCENARIOS = resolve(_F["reach_scenarios"])
@@ -146,6 +148,8 @@ PIPELINE_FILES = {
     "tin_mobile_money.json": TIN_MOBILE_MONEY,
     "afrobarometer_morale.json": AFROBAROMETER_MORALE,
     "stage_economics.json": STAGE_ECONOMICS,
+    "scenario_lab_inputs.json": SCENARIO_LAB_INPUTS,
+    "figure_5_1_inputs.json": FIGURE_5_1_INPUTS,
 }
 
 
