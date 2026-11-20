@@ -270,7 +270,7 @@ def make(out_dir=None):
     c.box(648, 808, 392, 290, fc=GREENBG, ec="#D3E2D0", lw=1.0, r=14, z=2)
     c.t(844, 830, "THE SOLUTION: WHY NGAZI IS DIFFERENT", 14.5, GREEN, "bold")
     prob = [["Current reforms improve transactions", "— registration, filing, enforcement —", "not relationships."],
-            ["Each life-stage interaction", "resets to zero — we treat the same", "citizen as a stranger."],
+            ["Records exist but aren't used to", "carry the relationship forward —", "the same citizen is met as", "a stranger."],
             ["High civic duty (65.7% say", "taxes should always be paid)", "but very low formal participation", "(3.83% report a TIN) — a relationship gap:", "positive attitudes, low participation."]]
     sol = [["Relationship architecture,", "not standalone products."], ["Persistent taxpayer identity", "across the entire life journey."],
            ["Trust, history, and compliance", "compound over time — never", "reset at every encounter."]]
