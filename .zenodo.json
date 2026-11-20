@@ -8,13 +8,14 @@
     }
   ],
   "license": "MIT",
-  "description": "<p>Code of the project <em>The Taxpayer Development Journey: A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania</em>: the pipeline that regenerates every model output from survey and published data (run_all.py, src/), the scripted figures, the tests and the Streamlit dashboard. Every number is labelled COMPUTED, MODELLED or CITED. The raw survey data are not included. Companion records: the report [Report DOI] and the aggregate data [Dataset DOI] (the two DOIs are filled in when version 1.0.0 is released; see the README).</p>",
+  "description": "<p>Code of the project <em>The Taxpayer Development Journey: A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania</em>: the pipeline that regenerates every model output from survey and published data (run_all.py, src/), the scripted figures, the tests and the Streamlit dashboard. Every number is labelled COMPUTED, MODELLED, CITED or ILLUSTRATIVE. The raw survey data are not included. Companion records: the report [Report DOI] and the aggregate data [Dataset DOI] (the two DOIs are filled in when version 1.0.0 is released; see the README).</p>",
   "keywords": [
     "tax compliance",
     "Tanzania",
     "Taxpayer Identification Number",
     "tax morale",
     "behavioural economics",
+    "taxpayer lifecycle",
     "mobile money",
     "digital tax administration",
     "presumptive tax",

@@ -6,7 +6,7 @@ authors:
   - family-names: "John"
     given-names: "Jasco"
     orcid: "https://orcid.org/0009-0007-3630-7943"
-abstract: "A behavioural lifecycle architecture for tax compliance in Tanzania (Seed, Entry, Active, Enterprise, Asset, Legacy), with the pipeline that regenerates its model outputs, the figures, and the Streamlit dashboard that reads them. Every number is COMPUTED from data, MODELLED from stated assumptions, or CITED."
+abstract: "A behavioural lifecycle architecture for tax compliance in Tanzania (Seed, Entry, Active, Enterprise, Asset, Legacy), with the pipeline that regenerates its model outputs, the figures, and the Streamlit dashboard that reads them. Every number is COMPUTED from data, MODELLED from stated assumptions, CITED from a published source, or ILLUSTRATIVE."
 license: MIT
 repository-code: "https://github.com/JascoJohn/taxpayer-development-journey"
 url: "https://taxpayer-development-journey.streamlit.app"
