@@ -1,6 +1,6 @@
 """Statutory income-tax schedules applied to the DISTRIBUTION of ILFS 2024 earnings (Blocks E2.5 and F1).
 
-One place for the schedules, used by Table 40 (stage_economics.py), the digital twin and the agent simulation (economic_model.py):
+One place for the schedules, used by Table 5.1 (stage_economics.py) and the agent simulation (economic_model.py):
 
   pit(income)                resident individual income tax on annual income (Income Tax Act Cap. 332 R.E. 2023, First Schedule para 1(1); unchanged by the Finance Acts
                              2024, 2025 and 2026: config.yaml assumptions tax.pit_schedule)
@@ -10,7 +10,7 @@ One place for the schedules, used by Table 40 (stage_economics.py), the digital 
 
 Schedule year used by every output: the schedule in force in 2026/27 (resident schedule of the R.E. 2023 text, presumptive schedule of the Finance Act 2026). The ILFS earnings are 2024
 values in TZS and are not inflated; the thresholds are not indexed. The Finance Act 2026's twelve-month holiday for individuals who obtain a TIN to start a business (para 2(3) item 2 of
-the new table) is NOT applied: the registrants modelled are existing informal workers and owners, not new businesses; Table 40 reports it as a sensitivity.
+the new table) is NOT applied: the registrants modelled are existing informal workers and owners, not new businesses; Table 5.1 reports it as a sensitivity (the nil-period sensitivity).
 
 The mean tax of a group is computed from AGGREGATE QUANTILE CELLS of the earnings distribution (data/processed/twin_inputs.json `tax_base_cells`: 100 weighted cells of the
 group, each with the mean of the earnings variables of the respondents in it): the schedule is applied to every cell, so the tax follows the distribution and not its mean.

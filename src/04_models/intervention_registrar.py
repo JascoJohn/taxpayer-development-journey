@@ -3,11 +3,11 @@ intervention_registrar.py
 
 Builds the intervention register (outputs/stats/intervention_register.json and the interventions block of data/interim/shared_context.json) from
 docs/interventions.yaml (Block F4). The YAML holds the six stage tools (the names of config.yaml `names:`, with the report's old names in `old_names`; one sentence of its mechanism, the target group and the cost
-reference of Table 40). The earlier inputs are gone: the frozen LLM-generated section (report_sections.json, now in _archive/frozen/) and the cost-benefit block of the economic model
+reference of the first version's Table 40). The earlier inputs are gone: the frozen LLM-generated section (report_sections.json, now in _archive/frozen/) and the cost-benefit block of the economic model
 (removed in Block F0). The YAML was reviewed by the owner on 2026-11-13; the eight LLM-drafted interventions are in _archive/interventions_llm_drafts.yaml and are not registered.
 
 Every run REPLACES the register (no accumulation); ids are derived from stage and title (shared_context._stable_intervention_id); validation_status stays 'pending' (no critic
-process has run); scores stay 0 (nothing is scored); revenue is not estimated here (Table 40 is computed by src/04_models/stage_economics.py).
+process has run); scores stay 0 (nothing is scored); revenue is not estimated here (Table 5.1 is computed by src/04_models/stage_economics.py).
 
 Usage:
     python intervention_registrar.py
@@ -64,7 +64,7 @@ def register_all(yaml_path=YAML_FILE, register_path=REGISTER_FILE, force=False):
             lifecycle_stage=item["stage"],
             objectives=[],                                        # not stated in the report per tool: left empty, not guessed
             cost_estimate_tzs=cost,
-            revenue_estimate_tzs=None,                            # revenue is computed in Table 40 (stage_economics.py), not here
+            revenue_estimate_tzs=None,                            # revenue is computed in Table 5.1 (stage_economics.py), not here
             timeframe=_timeframe(cost),
             creating_agent="docs/interventions.yaml",
             tags=["report_stage_tool"],

@@ -1,4 +1,4 @@
-"""E2.2 - TRA registered taxpayers and the base parameters of the digital twin, each from data.
+"""E2.2 - TRA registered taxpayers and the base parameters of the reach scenarios, each from data.
 
 Writes
   data/processed/tra_registered_taxpayers.csv   the longest available annual series of TRA registered taxpayers (published figures), with definitions

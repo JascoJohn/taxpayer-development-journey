@@ -216,7 +216,7 @@ def main(argv=None):
         print("  skipped (--from-processed): using", os.path.relpath(paths.ILFS_INDICATORS, paths.ROOT))
 
     print("\n" + "=" * 60)
-    print("STEP 5b: TRA registered taxpayers and the digital twin's base parameters (published figures, WDI, Census, ILFS)")
+    print("STEP 5b: TRA registered taxpayers and the base parameters of the reach scenarios (published figures, WDI, Census, ILFS)")
     print("=" * 60)
     if not args.from_processed:
         twin_inputs.run_twin_inputs()
@@ -261,12 +261,12 @@ def main(argv=None):
     cited_facts.run_cited_facts()                                               # register facts CITED from published documents (config.yaml cited_facts)
 
     print("\n" + "=" * 60)
-    print("STEP 8b: Table 40 stage economics (costs, revenue, NPV, ROI for the six stages; Monte Carlo)")
+    print("STEP 8b: Table 5.1 stage economics (costs, revenue, NPV, ROI for the six stages; Monte Carlo)")
     print("=" * 60)
     stage_economics.run_stage_economics(from_processed=args.from_processed)      # with --from-processed the ILFS tax base is read from data/processed/ilfs_tax_base.json (no microdata)
 
     print("\n" + "=" * 60)
-    print("STEP 8c: Reach scenarios (Figure 5.2; the digital twin is retired) with the scale check against TRA FY2024/25")
+    print("STEP 8c: Reach scenarios (Figure 5.2) with the scale check against TRA FY2024/25")
     print("=" * 60)
     reach_scenarios.run_reach_scenarios(from_processed=args.from_processed)
 

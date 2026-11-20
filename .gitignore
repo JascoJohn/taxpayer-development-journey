@@ -30,7 +30,7 @@ data/raw/**
 !data/raw/worldbank/**
 
 # Private working material: never published (Publishing prep, 2026-11-15)
-# Everything under report/ is private except report/final/ (submission_v1, working copies, the original parts)
+# Everything under report/ is private except report/final/ (earlier versions, working copies, source parts)
 report/*
 !report/final/
 !report/final/**

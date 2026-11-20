@@ -1,38 +1,74 @@
-# Publishing checklist (started 2026-11-12, Block D0.4; rewritten in Editing Pass 5, 2026-11-17)
+# Publishing checklist: a fresh GitHub repository, three Zenodo records
 
-Do these before the repository and the Streamlit app are made public again. History rewriting, visibility changes and the sending of copies are the owner's actions; nothing below marked `[ ]` has been done by the pipeline work.
+This is the plan for publishing the project: the code and the aggregate data first (release v0.9.0), then the report once the three DOIs exist (release v1.0.0). Publishing steps are actions of the maintainer; nothing in this repository pushes, publishes or uploads by itself.
 
-## Done in the project (ticked by Block F)
+Three Zenodo records are involved:
+
+* **Code** (MIT): created automatically from each GitHub release; `.zenodo.json` holds its metadata.
+* **Dataset** (CC BY 4.0): the aggregate data only (`data/processed/`, `data/interim/`, `outputs/stats/`, `outputs/tables/`, the World Bank snapshots, `data/raw/SOURCES.csv`, `docs/data_terms.md`, `docs/claims_map.csv`, `docs/assumptions_register.csv` and a `DATA_README.md`).
+* **Report** (CC BY-NC-ND 4.0): the final PDF.
+
+The DOIs appear in the README, `CITATION.cff` and the report as the placeholders `[Report DOI]`, `[Dataset DOI]` and `[Code DOI]` (and `[date-released]`) until step 7.
+
+## What is checked before the first push
 
 - [x] **Raw data are not tracked**: `.gitignore` excludes `data/raw/**` except `SOURCES.csv`, READMEs and the World Bank snapshots; provenance, hashes and citations of every raw file are in `data/raw/SOURCES.csv`; terms in `docs/data_terms.md`.
-- [x] **README** (purpose, structure, install, run modes, how to obtain each raw dataset, output-to-report map, evidence types, citation, licences), **LICENSE** (MIT for the code, CC BY 4.0 note for the report and figures), **CITATION.cff**, `data/processed/README.md`.
-- [x] **Final claims map** `docs/claims_map.csv` (79 claims: current value, type, label, source script, output file, status); the working draft is in `_archive/`.
-- [x] **Every assumption classified and signed**: `docs/assumptions_register.csv` (class, label, feeds with current values, sensitivity, sign-off); none awaits sign-off (the levy lever was removed from the policy twin in Editing Pass 1).
-- [x] **Figures are scripted** (`src/06_figures`, run by `run_all.py`; PNG and SVG; byte-reproducible) and **dashboard screenshots are scripted** (`run_all.py --screenshots`, Playwright).
-- [x] **No absolute paths** in code, tests or config; tests that need restricted raw data skip with a message when it is absent (`tests/conftest.py`).
-- [x] **`run_all.py --from-processed`** regenerates the model outputs, Table 40 and the figures without the restricted raw data (steps that need them are skipped with a message).
-- [x] **Outsider simulation**: a copy of the files git would track, a fresh virtual environment from `environment/requirements.txt`, `run_all.py --from-processed` and the full test suite (result in `_archive/process_records/BLOCK_F_REPORT.md`).
-- [x] Frozen LLM report sections and `src/imported/` are out of the pipeline (`_archive/frozen`, `_archive/imported`); the interventions come from `docs/interventions.yaml` (reviewed by the owner 2026-11-13; the LLM drafts are in `_archive/interventions_llm_drafts.yaml`).
+- [x] **No respondent-level data** anywhere in the tracked files; cells with fewer than 10 unweighted respondents carry no estimate (disclosure rule in `config.yaml`).
+- [x] **No file over 10 MB; no keys, tokens or `.env` files** (`.env.example` holds no secrets).
+- [x] **Nothing from the private working folders** (`_archive/`, `report/`) is tracked.
+- [x] **Licences**: code MIT; report and figures CC BY-NC-ND 4.0; aggregate data CC BY 4.0 (`LICENSE`, README, `CITATION.cff`, `docs/data_terms.md` section 8).
+- [x] **Claims and assumptions**: every number of the report is in `docs/claims_map.csv`; every assumption is in `docs/assumptions_register.csv`.
+- [x] **Reproducibility**: the pipeline (`python run_all.py --from-raw`, or `--from-processed` without restricted data) and the test suite (`python -m pytest`) pass; figures and tables are byte-reproducible; no absolute paths in code, tests or configuration.
 
-## Done in Editing Pass 5 (release v0.9.0 prepared, nothing pushed)
+## Steps
 
-- [x] **History cleaned and rebuilt locally**: `pipeline/FinScope.csv`, `pipeline/FinScope Datamap.xlsx` and two local editor-configuration files were removed from every commit (git-filter-repo) and neutral wording replaced the competition wording; the 8 earlier commits keep their authors, dates and messages; the later work is recreated as logical commits; the annotated tag `v0.9.0` is on the last commit (no tag `v1.0.0` yet). Checks are in `_archive/publishing/history_p5_verification.md`.
-- [x] **Licences**: code MIT; report and figures CC BY-NC-ND 4.0; aggregate data CC BY 4.0 (README, LICENSE, CITATION.cff, `data/processed/README.md`, `dashboard/README.md`, `docs/data_terms.md` section 8, the report).
-- [x] **Placeholders** that stay until the Zenodo records exist: `[Report DOI]`, `[Dataset DOI]`, `[Code DOI]` (yellow in the report) and `[date-released]` in CITATION.cff.
-- [x] **Zenodo**: `.zenodo.json` (code record), the data-only dataset package and the metadata of the three records are in `_archive/publishing/zenodo/` (git-ignored; not published by git).
-- [x] **ORCID, repository URL, dashboard URL and version (0.9.0)** are set in `CITATION.cff` (ORCID since Editing Pass 1).
-- [x] **Report**: working copy v6 (Track Changes by "Claude Code - Pass 5"), claims check `docs/claims_map_v5_check.csv` (80 OK), publication candidate `report/final/` (untracked until release v1.0.0).
+### 1. Create the repository
 
-## To do by the owner (in this order; the exact commands are in `_archive/publishing/OWNER_STEPS.md`)
+GitHub > New repository: name `taxpayer-development-journey`, visibility **Private**. Do not add a README, licence or `.gitignore` (the project has them). Check: the new page shows "Quick setup" and no files.
 
-- [ ] **A. During the review of the report**: rename the repository to `taxpayer-development-journey`, point the remote at it, force-push the cleaned history with lease and the tag `v0.9.0`; send the GitHub Support request to purge the old cached views and forks; keep the repository PRIVATE until GitHub confirms.
-- [ ] **B. After the confirmation**: make the repository public, switch the GitHub-Zenodo integration ON, publish the release `v0.9.0` (creates the code DOI), check the record against `.zenodo.json`.
-- [ ] **C. Dataset record**: upload `record_B_dataset/` (zip and DATA_README.md) to Zenodo with `metadata_B.md`; reserve the report record with `metadata_A.md` to obtain the reserved DOI.
-- [ ] **D. Dashboard**: deploy on Streamlit Community Cloud (repository, branch `main`, main file `dashboard/Home.py`, Python 3.14, subdomain `taxpayer-development-journey`), make it public, delete the old app.
-- [ ] **E. Final pass**: give the three DOIs (Report, Dataset, Code) so the placeholders are replaced, the final report is added to `report/final/`, and release v1.0.0 is made.
-- [ ] **Send an electronic copy of the publication to NBS and FSDT** (and to the Ministry of Finance, whose reliefs workbook is used). Clause 6 of the National Data Archive terms (`docs/data_terms.md`). Contacts printed in the sources: NBS Statistician General sg@nbs.go.tz; FSDT info@fsdt.or.tz.
-- [ ] **Cite each dataset per its Citation Requirement** (`data/raw/SOURCES.csv`, column `citation`; `docs/data_terms.md` section 4). NBS also requires acknowledging NBS as the original collector of the data.
-- [ ] **Resolve the citation wording** of the ILFS 2024 (ask NBS) and of FinScope (ask FSDT); open items in `data/raw/SOURCES.csv`.
-- [ ] **Retrieve the texts not retrieved in Block F2** if the report will cite them: Finance Act 2023 (levy on transfers removed), GN 496A and GN 642A of 2021 (`docs/mobile_money_levy.md`).
-- [ ] **Decide whether to request the FinScope 2017 microdata** (variable Q27, code 13) for a 2017 TIN level as a third calibration target.
-- [ ] **Decide the open wording items** listed in `docs/known_issues.md` (items 17 and 18).
+### 2. Push `main` and the tag
+
+```bash
+cd <project folder>
+git status --short
+git remote add origin https://github.com/JascoJohn/taxpayer-development-journey.git
+git push -u origin main
+git push origin v0.9.0
+```
+
+`git status --short` should list only the untracked `report/` folder. Never run `git add .` or `git add report`. The repository is empty, so no force-push is needed. Check: GitHub shows the full history, the tag `v0.9.0`, and no `report/` or `_archive/` folder.
+
+### 3. Make it public, link Zenodo, publish the release v0.9.0
+
+1. Settings > General > Danger Zone > Change repository visibility > Make public.
+2. https://zenodo.org/account/settings/github/ : find the repository (use "Sync now" if needed) and switch it **ON**.
+3. GitHub > Releases > Draft a new release: tag `v0.9.0`, target `main`, title `v0.9.0: code and aggregate data`, notes: first public release (code, aggregate data, outputs, dashboard, documentation; the report follows in v1.0.0; code MIT, report and figures CC BY-NC-ND 4.0, aggregate data CC BY 4.0; no respondent-level data). Publish.
+
+Check: Zenodo creates the code record within a minute or two; compare it with `.zenodo.json` (title "The Taxpayer Development Journey: Code", Software, MIT, creator, version 0.9.0). Copy the **code DOI**.
+
+### 4. Dataset record (upload and reserve the DOI; do not publish yet)
+
+Zenodo > New upload: the dataset zip `taxpayer-development-journey-aggregate-data-v1.0.0.zip` and `DATA_README.md`; fill the form from the dataset metadata; licence CC BY 4.0; version 1.0.0; add the code DOI under related works. Reserve the DOI and copy it. A published record cannot be deleted or have its files changed (only given a new version), so it is published in step 8, after the DOIs are in the files.
+
+### 5. Report record (reserve the DOI; do not publish yet)
+
+Zenodo > New upload: resource type Publication > Report; licence CC BY-NC-ND 4.0; version 1.0.0; no file yet. Reserve the DOI and copy it.
+
+### 6. Dashboard on Streamlit Community Cloud
+
+share.streamlit.io > Create app > deploy from GitHub: repository `JascoJohn/taxpayer-development-journey`, branch `main`, main file `dashboard/Home.py`, Python 3.14 (the pinned packages need 3.12 or newer), requirements from `dashboard/requirements.txt`, no secrets, custom subdomain `taxpayer-development-journey`. Open all seven pages (Home, Seed, Entry, Active, Enterprise, Asset, Legacy), check there are no error boxes and that they match the committed screenshots in `outputs/figures/dashboard_*.png`, then set the app to public.
+
+### 7. Fill in the DOIs and prepare v1.0.0
+
+Replace `[Report DOI]`, `[Dataset DOI]`, `[Code DOI]` and `[date-released]` in the report, `README.md`, `CITATION.cff` and `DATA_README.md`; set the version to 1.0.0; rebuild the dataset zip (its checksum changes); rebuild the final report PDF; run the tests; commit; tag `v1.0.0`.
+
+### 8. Release v1.0.0 and publish the records
+
+1. `git push origin main` and `git push origin v1.0.0`; publish the GitHub release `v1.0.0` (a new version of the code record, same concept DOI).
+2. Dataset draft: replace the files with the rebuilt ones, check the SHA-256, publish.
+3. Report draft: upload the final PDF, check the DOI printed in it matches the reserved one, publish.
+4. Check that each record lists the other two DOIs under related works and that the dashboard still loads.
+
+### 9. Send copies
+
+Send the publication copy (the report PDF and the DOIs) to NBS, FSDT and the Ministry of Finance, as clause 6 of the data terms requires (contacts in `docs/data_terms.md`).

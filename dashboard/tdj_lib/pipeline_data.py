@@ -226,7 +226,7 @@ class PipelineData:
         return Figure(value=self._econ["tax_morale_model"], available=True)
 
     def stage_economics(self, stage: str) -> Figure:
-        """Table 40 row of one stage (cost, discounted revenue, NPV, ROI: median and 80% interval of the Monte Carlo) from stage_economics.json (Block E2.5)."""
+        """Table 5.1 row of one stage (cost, discounted revenue, NPV, ROI: median and 80% interval of the Monte Carlo) from stage_economics.json (Block E2.5)."""
         if not self._stage_economics:
             return Figure(value=None, available=False, note="stage_economics.json not found in pipeline directory")
         s = self._stage_economics["stages"].get(stage)

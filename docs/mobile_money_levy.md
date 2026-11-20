@@ -46,9 +46,9 @@ The GSMA 2023 report prints a "Sep-22" column that is offset by one band against
 * Published estimates: budget target 2021/22 TZS 1.254 trillion (Hansard, 23 June 2021, via Twaweza); about TZS 48.5 billion in the first four weeks (reported by the Minister, secondary); **TZS 360.45 billion for July-December 2021 and TZS 252 billion in calendar 2022** (GSMA estimates from operator data: Impact Analysis p. 12 and Impact Assessment 2023 p. 15). Proceeds spent in 2021/22 about TZS 358.8 billion (Minister's statement p. 2, a use-of-proceeds figure, not a collection total).
 * **Effective rate.** Collections / BoT value of mobile payments for the same year exists only for **2022** (GSMA estimate TZS 252 billion; BoT NPS Annual Report value of mobile payments 2022 TZS 114,316 billion): **about 0.22%**, for the regime then in force (transfers and withdrawals; top band TZS 4,000 until 30 September, TZS 2,000 after). It is an industry estimate over a base wider than the levied transactions, so it understates the rate on levied value. **No effective rate can be derived for the current regime** (withdrawals only since July 2023): no collection figure exists for 2023, 2024 or 2025 and the BoT value does not separate withdrawals.
 
-## 5. What the digital twin does with it
+## 5. What the model does with it
 
-Nothing. The policy twin has **no mobile-money levy lever**: the owner removed it (Editing Pass 1, 2026-11-13: "not a framework lever"). The levy already exists, so its revenue is inside the observed tax-to-GDP baseline of the twin. The former lever (`twin.policy.mobile_money_levy`, then `twin.policy.hypothetical_additional_levy`, 0.3% of mobile-money payments, ASSUMPTION) is RETIRED in `config.yaml retired_assumptions`. This document is kept as the record of the statute, its history and the schedule.
+Nothing. The model has **no mobile-money levy lever**: the owner removed it (Editing Pass 1, 2026-11-13: "not a framework lever"). The levy already exists, so its revenue is inside the observed tax-to-GDP baseline. The former lever (`twin.policy.mobile_money_levy`, then `twin.policy.hypothetical_additional_levy`, 0.3% of mobile-money payments, ASSUMPTION) is RETIRED in `config.yaml retired_assumptions`. This document is kept as the record of the statute, its history and the schedule.
 
 ## 6. The passage the data user quoted: citation
 

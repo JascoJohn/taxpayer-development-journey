@@ -1,4 +1,4 @@
-"""Cost / revenue / ROI card of a stage, read from outputs/stats/stage_economics.json (Block E2.5, Table 40; 20-year sensitivity added in Block E3.4). Since Pass 6B-1 the figures are the CENTRAL case
+"""Cost / revenue / ROI card of a stage, read from outputs/stats/stage_economics.json (Block E2.5, Table 5.1; 20-year sensitivity added in Block E3.4). Since Pass 6B-1 the figures are the CENTRAL case
 (HBS 2017/18 receipts of owners with receipts) with the bracket of the median (HBS all owners ... ILFS gross) for Active and Enterprise, and P(ROI >= 1).
 
 Replaces the typed cost and revenue figures the stage pages used to show (Entry 420M / 8.7-9B / 20.7x, Active 600M / 12.8-13B / 21.3x, Enterprise 750M / 4.1B / ~5.5x,

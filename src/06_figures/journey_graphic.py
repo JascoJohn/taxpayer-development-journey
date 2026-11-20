@@ -1,6 +1,6 @@
 """The six-stage journey graphic of Chapter 4 (Learn -> Join -> Understand -> Progress -> Reveal -> Preserve), redrawn in Editing Pass 1 with the agreed tool names.
 
-Not a data figure: it draws no number. It recreates, as closely as the bundled fonts allow, the graphic of the submitted report (report/submission_v1, PDF p. 14): the six stage
+Not a data figure: it draws no number. It recreates, as closely as the bundled fonts allow, the graphic of the first version of the report (PDF p. 14): the six stage
 colours, the timeline with its arrows and dotted connectors, six cards (coloured header, stage name, divider, tool name, tagline), the taglines unchanged. Only the tool names change:
 they are read from config.yaml `names:` (Swahili name in bold, the English descriptor in brackets underneath).
 

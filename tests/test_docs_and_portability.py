@@ -67,11 +67,15 @@ def test_the_final_claims_map_has_the_agreed_columns_and_every_claim():
     assert not os.path.exists(os.path.join(ROOT, "docs", "claims_map_draft.csv"))                 # the draft is kept in _archive
 
 
-def test_the_publishing_checklist_ticks_what_is_done_and_adds_what_is_new():
+def test_the_publishing_checklist_is_the_fresh_repository_plan_in_public_wording():
     t = _read("docs/publishing_checklist.md")
-    assert "- [x]" in t and "- [ ]" in t
-    for needle in ("ORCID", "Playwright", "claims_map.csv", "Editing Pass 1"):
+    assert "- [x]" in t and "claims_map.csv" in t and "data_terms.md" in t
+    for step in ("### %d. " % i for i in range(1, 10)):
+        assert step in t, step
+    for needle in ("taxpayer-development-journey", "v0.9.0", "v1.0.0", "[Report DOI]", "[Dataset DOI]", "[Code DOI]", "Reserve the DOI", "no force-push"):
         assert needle in t, needle
+    for private in ("D:\\", "C:\\", "_archive\\", "--force", "force-with-lease", "TRA_Innovation", "git_pre_pass5"):
+        assert private not in t, private                          # public wording: no personal paths, no history-rewrite commands
     assert "report_sections" not in _read("docs/known_issues.md").split("## Open")[0]
 
 

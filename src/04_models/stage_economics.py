@@ -1,6 +1,6 @@
-"""E2.5 / E3.4 - W11 Table 40: costs, revenues, NPV and ROI for the stages, rebuilt without typed revenue.
+"""E2.5 / E3.4 - W11 Table 5.1 (called Table 40 in the first version of the report): costs, revenues, NPV and ROI for the stages, rebuilt without typed revenue.
 
-Replaces the report's Table 40 revenue column (Entry 8.7-9B, Active 12.8-13B, Enterprise 4.1B, Legacy 2.5B; ROI 20.7x, 21.3x, ~5.5x, ~3.6x), which came from typed
+Replaces the first version's Table 40 revenue column (Entry 8.7-9B, Active 12.8-13B, Enterprise 4.1B, Legacy 2.5B; ROI 20.7x, 21.3x, ~5.5x, ~3.6x), which came from typed
 constants (the Entry / Active revenues) or had no source (Enterprise, Legacy), with a calculation whose every uncertain input is an explicit, documented
 distribution in config.yaml (assumptions: stage.*).
 
@@ -83,7 +83,7 @@ def cfg():
 
 
 def names():
-    """Page and Table 40 label of each stage in the report, with the stage tool's name from the top-level `names:` block (Editing Pass 1)."""
+    """Page and table label of each stage in the first version of the report, with the stage tool's name from the top-level `names:` block (Editing Pass 1)."""
     out = {}
     for s, v in cfg()["report_names"].items():
         out[s] = dict(v, name=paths.CFG["names"][s]["full"])
@@ -474,7 +474,7 @@ def compute_results(specs, inputs, central, defs, rates):
 
 
 def load_tax_base(sav_path=None, from_processed=False):
-    """The ILFS tax base of Table 40 (mean statutory tax per person of each group, standard errors, age-earnings profiles): computed from the ILFS 2024 microdata and written to
+    """The ILFS tax base of Table 5.1 (mean statutory tax per person of each group, standard errors, age-earnings profiles): computed from the ILFS 2024 microdata and written to
     data/processed/ilfs_tax_base.json (aggregates only), or, with from_processed (the outsider's run without the restricted microdata), read back from that file."""
     path = paths.ILFS_TAX_BASE
     if from_processed:
@@ -764,7 +764,7 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=1, ensure_ascii=False)
     pw = results[V10][base_rate]["portfolio"]
-    print("  Table 40 (10%% discount, %d draws): portfolio excl. Asset cost median TZS %.2fB, PV revenue median %.2fB, ROI median %.3f; 20-year ROI median %.3f; %s" % (
+    print("  Table 5.1 (10%% discount, %d draws): portfolio excl. Asset cost median TZS %.2fB, PV revenue median %.2fB, ROI median %.3f; 20-year ROI median %.3f; %s" % (
         draws, pw["cost"]["median"] / 1e9, pw["revenue_pv"]["median"] / 1e9, pw["roi"]["median"], results[V20][base_rate]["portfolio"]["roi"]["median"], be_headline["statement_10_years"]))
     return result
 

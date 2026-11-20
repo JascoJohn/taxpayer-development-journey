@@ -13,7 +13,7 @@ value the change is reported as "no effect". The tier-migration simulation is ru
 (both the unperturbed and the perturbed runs), so its values differ slightly from the published ones; the comparison is
 like with like. Random seeds are fixed, so the results are reproducible.
 (Block D: the segmentation and causal groups were retired with their constants; the tier-migration runs resample the real FinScope agent cells.)
-Block E3: the group "stage_economics" (stage.*, tax.*) re-runs the Table 40 Monte Carlo (stage_economics.run_stage_economics with 4,000 draws, outputs to a temporary
+Block E3: the group "stage_economics" (stage.*, tax.*) re-runs the Table 5.1 Monte Carlo (stage_economics.run_stage_economics with 4,000 draws, outputs to a temporary
 folder) and compares the published stage values (10-year and 20-year ROI medians, discounted revenue, portfolio ROI / NPV, Asset break-even cost); the agent / tier runner
 reads the morale model's odds ratios. The "design" rows (simulation size and seed) are perturbed through the tier-migration runner.
 
@@ -64,7 +64,7 @@ def run_tier():
 
 
 def run_stage():
-    """Published Table 40 values (Block E3.4): per stage the median ROI at 10 and 20 years and the discounted revenue, the portfolio ROI / NPV, the Asset break-even cost."""
+    """Published Table 5.1 values (Block E3.4): per stage the median ROI at 10 and 20 years and the discounted revenue, the portfolio ROI / NPV, the Asset break-even cost."""
     import tempfile
     saved = paths.CFG["stage_economics"]["n_draws"]
     paths.CFG["stage_economics"]["n_draws"] = 4000
