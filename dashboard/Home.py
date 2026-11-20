@@ -19,6 +19,7 @@ inject_base_style()
 
 st.title("The Taxpayer Development Journey")
 st.caption("A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania")
+st.caption("An interactive companion to the report: a working prototype tool for each of six stages of a taxpayer’s life, and a Scenario lab to test the report’s assumptions.")
 
 _mm = PipelineData().tin_mobile_money()
 if _mm.available:                                        # the respondent count is read from the pipeline output, not typed

@@ -92,6 +92,9 @@ def schedule():
 
 def test_presumptive_tax_matches_the_pipelines_schedule(schedule):
     import paths  # noqa: F401  (puts the src/<stage> folders on sys.path)
+    stage_dir = os.path.join(ROOT, "src", "04_models")
+    if stage_dir not in sys.path:                       # another test's monkeypatch can restore sys.path after `paths` was first imported, so do not rely on the import alone
+        sys.path.insert(0, stage_dir)
     import statutory_tax
     for t in [0, 1_000_000, 4_000_000, 4_000_001, 5_500_000, 7_000_000, 9_000_000, 11_000_000, 11_000_001, 50_000_000, 199_999_999, 200_000_000]:
         got = tc.presumptive_tax(t, schedule)
