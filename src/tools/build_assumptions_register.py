@@ -49,7 +49,7 @@ INTERNALS = {
     "run_sensitivity_analysis": ("sensitivity_analysis", "not quoted in the report, not displayed (test grids of the scenario model)"),
     "build_compliance_funnel_model": ("compliance_funnel", "not quoted in the report and not displayed; its Payment stage now reads the MoF rate (tax_exemption_rate.json) and the 65% filing share is a TRA estimate typed in the code"),
     "build_segmentation_model": ("(removed)", "RETIRED in Block D3: synthetic 50,000-record segmentation model removed (seg.*, lifecycle.* listed as RETIRED); replaced by src/04_models/targeting_model.py on real FinScope respondents"),
-    "run_economic_model": ("assembly of economic_model.json", "assembly of the model file (the digital twin was retired in Pass 6B-1)"),
+    "run_economic_model": ("assembly of economic_model.json", "assembly of the model file (the twin model is retired; see src/retired/README.md)"),
     "(module)": ("shared_context.json (agent infrastructure: macro stats table, personas, stage labels)", "not read by the model or the dashboard; typed copies of macro statistics there are stale (gdp, tax-to-GDP of peers) and are not used"),
 }
 
@@ -78,7 +78,7 @@ LABEL_RULES = [
     (r"^tier\.(threshold\.|filing\.clip|initial_tenure)", "Ngazi design definition"),
     (r"^twin\.", "twin scenario assumption"),
     (r"^(simulation|disclosure|dashboard)\.", "technical/design parameter"),
-    (r"^stage\.", "Table 40 scenario assumption"),
+    (r"^stage\.", "Table 5.1 scenario assumption"),
     (r"^(agents|tier)\.", "technical/design parameter"),
 ]
 # notes appended to the sensitivity text of a row

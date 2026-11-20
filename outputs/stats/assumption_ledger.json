@@ -336,17 +336,17 @@
     {
       "assumption_id": "ASS-66A2D738",
       "key": "base.adult_population",
-      "assumption_text": "base.adult_population = read from data/processed/twin_inputs.json: FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the twin's registrations and mobile-money users, which can never exceed it (Block E3.3).",
+      "assumption_text": "base.adult_population = read from data/processed/twin_inputs.json: FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the registrations and mobile-money users of the twin model (retired (see src/retired/README.md)), which can never exceed it (Block E3.3).",
       "made_by_agent": "config.yaml assumptions",
       "category": "economic",
       "confidence": "HIGH",
-      "evidence_support": "FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the twin's registrations and mobile-money users, which can never exceed it (Block E3.3).",
+      "evidence_support": "FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the registrations and mobile-money users of the twin model (retired (see src/retired/README.md)), which can never exceed it (Block E3.3).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -359,10 +359,10 @@
       "evidence_support": "GDP growth: mean of the last 5 years of World Bank WDI NY.GDP.MKTP.KD.ZG (annual %), Tanzania. Replaced the typed 5.53% (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -375,10 +375,10 @@
       "evidence_support": "ILFS 2024: weighted mean annual earnings of employed persons in informal employment with positive earnings (median in data/processed/twin_inputs.json). Replaced the typed 2,400,000 (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "section_reference": "C079 (retired; see src/retired/README.md); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
+      "feeds": "C079 (retired; see src/retired/README.md); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)",
       "group": "twin"
     },
     {
@@ -391,10 +391,10 @@
       "evidence_support": "Value of mobile payments 2024 (BoT: TZS 198.86 trillion) divided by nominal GDP 2024 (WDI NY.GDP.MKTP.CN); a gross flow over GDP (0.97). Replaced the typed 0.49 (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -407,10 +407,10 @@
       "evidence_support": "FinScope Tanzania 2023, weighted number of ADULTS (16+) who use mobile money (about 24.5 million, 71.7% of adults): persons, not accounts, computed in the pipeline (src/03_features/twin_inputs.py). Bank of Tanzania ACTIVE accounts (63.2 million in 2024) are kept as a context figure only (Block E3.3). Replaced the typed 35,000,000 (UNKNOWN) and, in Block E2, the BoT account count.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -423,10 +423,10 @@
       "evidence_support": "ILFS 2024: weighted mean annual gross receipts of self-employed persons in non-agricultural main jobs, winsorised at the 99th percentile; describes household enterprises, not registered MSMEs (no published MSME revenue figure was found). Replaced the typed 12,000,000 (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -439,26 +439,26 @@
       "evidence_support": "Mean presumptive tax per household enterprise (Block F1): the presumptive schedule applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual gross receipts of non-agricultural self-employed with turnover. Replaces the flat 3% rate on mean receipts (retired).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
       "assumption_id": "ASS-226049AD",
       "key": "base.new_taxpayer_mean_tax_tzs",
-      "assumption_text": "base.new_taxpayer_mean_tax_tzs = read from data/processed/twin_inputs.json: Mean statutory income tax per new taxpayer in the twin (Block F1): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired).",
+      "assumption_text": "base.new_taxpayer_mean_tax_tzs = read from data/processed/twin_inputs.json: Mean statutory income tax per new taxpayer in the twin model (Block F1; retired (see src/retired/README.md)): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired).",
       "made_by_agent": "config.yaml assumptions",
       "category": "economic",
       "confidence": "HIGH",
-      "evidence_support": "Mean statutory income tax per new taxpayer in the twin (Block F1): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired).",
+      "evidence_support": "Mean statutory income tax per new taxpayer in the twin model (Block F1; retired (see src/retired/README.md)): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -471,10 +471,10 @@
       "evidence_support": "Census 2022 10% sample total (x10: 61.7 million) projected to the base year 2024 with the mean WDI population growth SP.POP.GROW. Replaced the typed 68,560,157 (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -487,10 +487,10 @@
       "evidence_support": "TRA registered taxpayers (Mainland TIN registrations, stock at the end of fiscal year 2023/24: 6,272,000), NBS Tax Statistics Report 2023/24 Table 3.1 (source TRA); series 2011/12-2023/24 in data/processed/tra_registered_taxpayers.csv. NOT comparable with FinScope's 1.31 million adult TIN holders. Replaced the typed 3,200,000 (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -503,10 +503,10 @@
       "evidence_support": "Census 2022 10% sample, ages 15-64 (x10), projected to 2024 with the same growth. Replaced the typed 28,000,000 (UNKNOWN).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -624,11 +624,11 @@
     {
       "assumption_id": "ASS-E70A62C8",
       "key": "stage.cost.active_tzs",
-      "assumption_text": "stage.cost.active_tzs = 600000000: Active (Band calculator) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 600M); whole programme cost at the start of year 1.",
+      "assumption_text": "stage.cost.active_tzs = 600000000: Active (Band calculator) cost: programme cost assumption (signed off; composition not recorded), 600M; whole programme cost at the start of year 1.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Active (Band calculator) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 600M); whole programme cost at the start of year 1.",
+      "evidence_support": "Active (Band calculator) cost: programme cost assumption (signed off; composition not recorded), 600M; whole programme cost at the start of year 1.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -649,20 +649,20 @@
         "headline_most_affected": "roi_median_10y_active",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 600000000,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
       "assumption_id": "ASS-2FB5392B",
       "key": "stage.cost.enterprise_tzs",
-      "assumption_text": "stage.cost.enterprise_tzs = 750000000: Enterprise (Tier tool, Ngazi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 750M); whole programme cost at the start of year 1.",
+      "assumption_text": "stage.cost.enterprise_tzs = 750000000: Enterprise (Tier tool, Ngazi) cost: programme cost assumption (signed off; composition not recorded), 750M; whole programme cost at the start of year 1.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Enterprise (Tier tool, Ngazi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 750M); whole programme cost at the start of year 1.",
+      "evidence_support": "Enterprise (Tier tool, Ngazi) cost: programme cost assumption (signed off; composition not recorded), 750M; whole programme cost at the start of year 1.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -683,20 +683,20 @@
         "headline_most_affected": "roi_median_10y_enterprise",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 750000000,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
       "assumption_id": "ASS-55A4315C",
       "key": "stage.cost.entry_tzs",
-      "assumption_text": "stage.cost.entry_tzs = 420000000: Entry (Targeting tool) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 420M); treated as the whole programme cost, incurred at the start of year 1. Report-stated figure, not independently sourced.",
+      "assumption_text": "stage.cost.entry_tzs = 420000000: Entry (Targeting tool) cost: programme cost assumption (signed off; composition not recorded), 420M; treated as the whole programme cost, incurred at the start of year 1. Not independently sourced.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Entry (Targeting tool) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 420M); treated as the whole programme cost, incurred at the start of year 1. Report-stated figure, not independently sourced.",
+      "evidence_support": "Entry (Targeting tool) cost: programme cost assumption (signed off; composition not recorded), 420M; treated as the whole programme cost, incurred at the start of year 1. Not independently sourced.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -717,20 +717,20 @@
         "headline_most_affected": "roi_median_10y_entry",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 420000000,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
       "assumption_id": "ASS-356ED31A",
       "key": "stage.cost.legacy_tzs",
-      "assumption_text": "stage.cost.legacy_tzs = 700000000: Legacy (Urithi wa Kodi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 700M); whole programme cost at the start of year 1.",
+      "assumption_text": "stage.cost.legacy_tzs = 700000000: Legacy (Urithi wa Kodi) cost: programme cost assumption (signed off; composition not recorded), 700M; whole programme cost at the start of year 1.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Legacy (Urithi wa Kodi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 700M); whole programme cost at the start of year 1.",
+      "evidence_support": "Legacy (Urithi wa Kodi) cost: programme cost assumption (signed off; composition not recorded), 700M; whole programme cost at the start of year 1.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -751,20 +751,20 @@
         "headline_most_affected": "roi_median_10y_legacy",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 700000000,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
       "assumption_id": "ASS-969F34E3",
       "key": "stage.cost.seed_tzs",
-      "assumption_text": "stage.cost.seed_tzs = [260000000, 1060000000]: Seed (Michezo ya Kodi) cost range stated in the report's Table 40 (submission_v1 PDF p. 52: 260M-1.06B); drawn uniformly between the bounds. Report-stated figure, not independently sourced.",
+      "assumption_text": "stage.cost.seed_tzs = [260000000, 1060000000]: Seed (Michezo ya Kodi) cost range: programme cost assumption (signed off; composition not recorded), 260M-1.06B; drawn uniformly between the bounds. Not independently sourced.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Seed (Michezo ya Kodi) cost range stated in the report's Table 40 (submission_v1 PDF p. 52: 260M-1.06B); drawn uniformly between the bounds. Report-stated figure, not independently sourced.",
+      "evidence_support": "Seed (Michezo ya Kodi) cost range: programme cost assumption (signed off; composition not recorded), 260M-1.06B; drawn uniformly between the bounds. Not independently sourced.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -785,13 +785,13 @@
         "headline_most_affected": "portfolio_roi_median_10y",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": [
         260000000,
         1060000000
       ],
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -822,10 +822,10 @@
         "headline_most_affected": "roi_median_10y_entry",
         "flag": "<=5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 0.25,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -856,10 +856,10 @@
         "headline_most_affected": "roi_median_10y_legacy",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 0.1,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -890,13 +890,13 @@
         "headline_most_affected": null,
         "flag": "no effect"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": [
         0.05,
         0.12
       ],
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -918,11 +918,11 @@
     {
       "assumption_id": "ASS-BD066F7A",
       "key": "stage.horizon_years",
-      "assumption_text": "stage.horizon_years = 10: Evaluation horizon of Table 40: 10 years (brief E2.5).",
+      "assumption_text": "stage.horizon_years = 10: Evaluation horizon of Table 5.1: 10 years (brief E2.5).",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "MEDIUM",
-      "evidence_support": "Evaluation horizon of Table 40: 10 years (brief E2.5).",
+      "evidence_support": "Evaluation horizon of Table 5.1: 10 years (brief E2.5).",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -943,10 +943,10 @@
         "headline_most_affected": "roi_median_10y_legacy",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 10,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -997,7 +997,7 @@
         "headline_most_affected": null,
         "flag": "no effect"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": {
         "entry": "USSD_registration_nudge",
@@ -1006,7 +1006,7 @@
         "asset": "visible_tax_returns",
         "legacy": "civic_tax_education"
       },
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -1037,14 +1037,14 @@
         "headline_most_affected": "roi_median_10y_enterprise",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": [
         0.5,
         0.75,
         0.9
       ],
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -1075,10 +1075,10 @@
         "headline_most_affected": "roi_median_10y_legacy",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 5,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -1109,7 +1109,7 @@
         "headline_most_affected": null,
         "flag": "no effect"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": {
         "entry": [
@@ -1138,7 +1138,7 @@
           0.05
         ]
       },
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -1169,10 +1169,10 @@
         "headline_most_affected": "roi_median_10y_entry",
         "flag": ">5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "ASSUMPTION",
       "value": 0.3,
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -1219,7 +1219,7 @@
         "headline_most_affected": null,
         "flag": "no effect"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "DATA",
       "value": [
         [
@@ -1248,17 +1248,17 @@
           0.3
         ]
       ],
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
       "assumption_id": "ASS-4BFDDCD6",
       "key": "tax.presumptive_schedule",
-      "assumption_text": "tax.presumptive_schedule = {\"threshold_turnover\": 200000000, \"bands\": [[4000000, 7000000, 100000, 0, 0.03], [7000000, 11000000, 250000, 90000, 0.03]], \"above_11m_rate\": 0.04}: Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 40 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%.",
+      "assumption_text": "tax.presumptive_schedule = {\"threshold_turnover\": 200000000, \"bands\": [[4000000, 7000000, 100000, 0, 0.03], [7000000, 11000000, 250000, 90000, 0.03]], \"above_11m_rate\": 0.04}: Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 5.1 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%.",
       "made_by_agent": "config.yaml assumptions",
       "category": "technical",
       "confidence": "HIGH",
-      "evidence_support": "Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 40 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%.",
+      "evidence_support": "Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 5.1 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%.",
       "stress_tested": true,
       "stress_test_result": {
         "group": "stage_economics",
@@ -1279,7 +1279,7 @@
         "headline_most_affected": null,
         "flag": "<=5%"
       },
-      "section_reference": "C041-C053 (Table 40)",
+      "section_reference": "C041-C053 (Table 5.1)",
       "basis": "DATA",
       "value": {
         "threshold_turnover": 200000000,
@@ -1301,7 +1301,7 @@
         ],
         "above_11m_rate": 0.04
       },
-      "feeds": "C041-C053 (Table 40)",
+      "feeds": "C041-C053 (Table 5.1)",
       "group": "stage_economics"
     },
     {
@@ -1332,10 +1332,10 @@
         "headline_most_affected": null,
         "flag": "no effect"
       },
-      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "basis": "ASSUMPTION",
       "value": 0.4,
-      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "group": "morale"
     },
     {
@@ -1348,10 +1348,10 @@
       "evidence_support": "Starting score (0-1) of the fairness driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47C: the government usually uses tax revenues for the well-being of citizens), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "group": "morale"
     },
     {
@@ -1364,10 +1364,10 @@
       "evidence_support": "Starting score (0-1) of the simplicity driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q46A: how easy or difficult to find out what taxes and fees you are supposed to pay), reversed and rescaled 0-1, weighted mean (withinwt_hh), computed in src/03_features/afrobarometer_morale.py. LABEL: information burden only (does not cover registration or filing costs). Mapping decided by the owner in Block E2.0; replaced the typed 0.25.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "group": "morale"
     },
     {
@@ -1380,10 +1380,10 @@
       "evidence_support": "Starting score (0-1) of the social norm driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47D: perceived behaviour of others (how often people avoid paying the taxes they owe), reversed), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "group": "morale"
     },
     {
@@ -1396,10 +1396,10 @@
       "evidence_support": "Starting score (0-1) of the trust driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q41J: trust in the tax/revenue office), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.35 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "section_reference": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (Fig 5.2 digital twin)",
+      "feeds": "C008, C054, C055, C069, C078 (Fig 5.1: baseline 3.83%, solo effects 4.6-5.6%, best single 5.6%, combined 10.2%, naive sum 12.0%); C079 (retired; see src/retired/README.md)",
       "group": "morale"
     },
     {
@@ -2534,10 +2534,10 @@
       "evidence_support": "New registrations per working-age adult per year in the no-policy scenario: slope of the least-squares line through TRA registered taxpayers 2017/18-2023/24 (608,107 a year) divided by the 2024 working-age population. Replaced the assumed 0.005.",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "CALIBRATED",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     },
     {
@@ -2550,10 +2550,10 @@
       "evidence_support": "Yearly growth factor of the adult population = 1 + the mean World Bank WDI population growth (SP.POP.GROW, last 5 years with data). Replaced the account-based mobile-money growth (Block E3.3).",
       "stress_tested": false,
       "stress_test_result": null,
-      "section_reference": "C079 (Fig 5.2 digital twin)",
+      "section_reference": "C079 (retired; see src/retired/README.md)",
       "basis": "DATA",
       "value": null,
-      "feeds": "C079 (Fig 5.2 digital twin)",
+      "feeds": "C079 (retired; see src/retired/README.md)",
       "group": "twin"
     }
   ]

@@ -36,7 +36,7 @@ worldbank:
     - {indicator: NY.GDP.MKTP.CN,    countries: [TZA]}                       # GDP, current LCU (TZS)
     - {indicator: NY.GDP.MKTP.CD,    countries: [TZA]}                       # GDP, current US$ (only where a US$ figure is reported)
     - {indicator: PA.NUS.FCRF,       countries: [TZA]}                       # official exchange rate, LCU per US$, period average
-    - {indicator: NY.GDP.MKTP.KD.ZG, countries: [TZA]}                       # GDP growth, annual % (Block E2: digital-twin base parameter)
+    - {indicator: NY.GDP.MKTP.KD.ZG, countries: [TZA]}                       # GDP growth, annual % (Block E2: base parameter of the twin model, retired (see src/retired/README.md))
     - {indicator: SP.POP.GROW,       countries: [TZA]}                       # population growth, annual % (Block E2)
     - {indicator: SP.POP.TOTL,       countries: [TZA]}                       # population, total (Block E2, context)
     - {indicator: FP.CPI.TOTL,       countries: [TZA]}                       # consumer price index (2010 = 100): CPI uprating of HBS 2017/18 turnover to 2024 prices (Pass 6B-1)
@@ -55,7 +55,7 @@ macro:
   country: TZA
   peers: [GHA, KEN, RWA, UGA]
   # benchmark policy: peer_average (default; simple mean of the peers in the latest year all five countries report)
-  #                   | cited_target (a published Tanzanian target; none adopted yet, see _archive/process_records/BLOCK_C_REPORT.md)
+  #                   | cited_target (a published Tanzanian target; none adopted yet)
   benchmark_source: peer_average
   cited_target_pct: null          # fill only together with cited_target_source when a citable target is adopted
   cited_target_source: null
@@ -323,7 +323,7 @@ zones:
     Eastern: [Dar es Salaam, Pwani, Morogoro]
     Zanzibar: [Kaskazini Unguja, Kusini Unguja, Mjini Magharibi, Kaskazini Pemba, Kusini Pemba]
 
-# E2.2: TRA registered taxpayers and digital-twin base parameters (src/03_features/twin_inputs.py).
+# E2.2: TRA registered taxpayers and base parameters (src/03_features/twin_inputs.py); the twin model they first fed is retired (see src/retired/README.md).
 # Published figures are transcribed here WITH their provenance; tests/test_tra_series.py re-reads the saved source documents in data/raw/ and checks every value.
 twin_inputs:
   base_year: 2024
@@ -425,8 +425,8 @@ agent_calibration:
     platinum_share_pct_max: 5.0
     year10_registered_share_vs_trend: 1.0    # year-10 registered share above the TRA trend continued for 10 years (x this factor)
 
-# E2.5: Table 40 stage economics (src/04_models/stage_economics.py); the uncertain inputs are assumptions: stage.* below
-# Editing Pass 1 (2026-11-13): the single source of truth for the names of the six stage tools and of the platform. Read by stage_economics.py (Table 40 names), the
+# E2.5: Table 5.1 stage economics (src/04_models/stage_economics.py); the uncertain inputs are assumptions: stage.* below
+# Editing Pass 1 (2026-11-13): the single source of truth for the names of the six stage tools and of the platform. Read by stage_economics.py (Table 5.1 names), the
 # intervention register (docs/interventions.yaml uses the same strings), dashboard/tdj_lib/names.py (every page, card, caption and generated PDF), the figure scripts and the report
 # renaming tests. `full` is the first-mention form (Swahili name with the English in brackets); `swahili` is the running form; `english` is the English descriptor alone.
 names:
@@ -453,7 +453,7 @@ stage_economics:
   long_horizon_years: 20                 # E3.4: 20-year (lifecycle) sensitivity next to the signed-off 10-year horizon
   persistence_sensitivity: [0.75, 0.90, 0.95]   # E3.4: FIXED yearly persistence values for the 20-year results, next to the signed-off triangular distribution (unchanged)
   age_bands: [[16, 19], [20, 24], [25, 29], [30, 34], [35, 39], [40, 44], [45, 49], [50, 54], [55, 59], [60, 64], [65, 69], [70, 97]]   # ILFS age bands of the age-earnings path
-  report_names:                          # E3.4 / Editing Pass 1: PDF page and Table 40 row label of each stage's tool in the report; the NAME itself is read from the top-level `names:` block
+  report_names:                          # E3.4 / Editing Pass 1: PDF page and Table 5.1 row label of each stage's tool in the report; the NAME itself is read from the top-level `names:` block
     seed: {pdf_page: 17, table40_label: "Michezo ya Kodi", morale_model_key: null}
     entry: {pdf_page: 23, table40_label: "Ujumuishaji wa Kikodi", morale_model_key: USSD_registration_nudge}
     active: {pdf_page: 29, table40_label: "Mzani wa Kodi", morale_model_key: presumptive_tax_simplification}
@@ -579,13 +579,13 @@ files:
   fig5_4_tornado_csv:          outputs/tables/fig5_4_tornado_central.csv
   hbs_turnover:                data/processed/hbs_turnover.json           # aggregates of HBS 2017/18 owner turnover (Pass 6B-1; src/03_features/hbs_turnover.py)
   tra_collections:             data/processed/tra_collections_2024_25.json  # aggregates of the TRA FY2024/25 workbook (src/03_features/tra_collections.py)
-  ilfs_tax_base:               data/processed/ilfs_tax_base.json   # aggregates only: mean statutory tax per person of each Table 40 group and the age-earnings profiles (src/04_models/stage_economics.py)
-  twin_inputs:                 data/processed/twin_inputs.json            # E2.2 base parameters of the digital twin (published figures, aggregates)
+  ilfs_tax_base:               data/processed/ilfs_tax_base.json   # aggregates only: mean statutory tax per person of each Table 5.1 group and the age-earnings profiles (src/04_models/stage_economics.py)
+  twin_inputs:                 data/processed/twin_inputs.json            # E2.2 base parameters (published figures, aggregates); the twin model they first fed is retired (see src/retired/README.md)
   tra_registered_taxpayers_csv: data/processed/tra_registered_taxpayers.csv
   agent_cells:                 data/processed/agent_cells.json          # aggregates only (cells of >= disclosure.min_base respondents)
   assumption_sensitivity:      docs/assumption_sensitivity.json   # written by src/tools/assumption_sensitivity.py (not by run_all.py)
   assumptions_register:        docs/assumptions_register.csv      # generated by src/tools/build_assumptions_register.py
-  # authored interventions (Block F4): extracted once from the frozen LLM-generated report sections (now in _archive/frozen/); a DRAFT for the owner's review
+  # authored interventions (Block F4): extracted once from the frozen LLM-generated report sections (kept privately, not in this repository); a DRAFT for the owner's review
   interventions_yaml:          docs/interventions.yaml
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -627,7 +627,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_gdp_growth_rate.value"
     source: "GDP growth: mean of the last 5 years of World Bank WDI NY.GDP.MKTP.KD.ZG (annual %), Tanzania. Replaced the typed 5.53% (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.population:
     basis: DATA
@@ -635,7 +635,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_population.value"
     source: "Census 2022 10% sample total (x10: 61.7 million) projected to the base year 2024 with the mean WDI population growth SP.POP.GROW. Replaced the typed 68,560,157 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.working_age_population:
     basis: DATA
@@ -643,7 +643,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_working_age_population.value"
     source: "Census 2022 10% sample, ages 15-64 (x10), projected to 2024 with the same growth. Replaced the typed 28,000,000 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.registered_taxpayers:
     basis: DATA
@@ -651,7 +651,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_registered_taxpayers.value"
     source: "TRA registered taxpayers (Mainland TIN registrations, stock at the end of fiscal year 2023/24: 6,272,000), NBS Tax Statistics Report 2023/24 Table 3.1 (source TRA); series 2011/12-2023/24 in data/processed/tra_registered_taxpayers.csv. NOT comparable with FinScope's 1.31 million adult TIN holders. Replaced the typed 3,200,000 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.mobile_money_users:
     basis: DATA
@@ -659,7 +659,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_mobile_money_users.value"
     source: "FinScope Tanzania 2023, weighted number of ADULTS (16+) who use mobile money (about 24.5 million, 71.7% of adults): persons, not accounts, computed in the pipeline (src/03_features/twin_inputs.py). Bank of Tanzania ACTIVE accounts (63.2 million in 2024) are kept as a context figure only (Block E3.3). Replaced the typed 35,000,000 (UNKNOWN) and, in Block E2, the BoT account count."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.mobile_money_gdp_pct:
     basis: DATA
@@ -667,15 +667,15 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_mobile_money_gdp_pct.value"
     source: "Value of mobile payments 2024 (BoT: TZS 198.86 trillion) divided by nominal GDP 2024 (WDI NY.GDP.MKTP.CN); a gross flow over GDP (0.97). Replaced the typed 0.49 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.new_taxpayer_mean_tax_tzs:
     basis: DATA
     from: "data/processed/twin_inputs.json"
     data_file: twin_inputs
     data_path: "parameters.base_new_taxpayer_mean_tax_tzs.value"
-    source: "Mean statutory income tax per new taxpayer in the twin (Block F1): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    source: "Mean statutory income tax per new taxpayer in the twin model (Block F1; retired (see src/retired/README.md)): the resident individual schedule (non-owners) and the presumptive schedule (business owners; Finance Act 2026) applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual earnings of informal earners (src/04_models/statutory_tax.py). Replaces the flat 15% rate on the mean (retired)."
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.msme_mean_presumptive_tax_tzs:
     basis: DATA
@@ -683,7 +683,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_msme_mean_presumptive_tax_tzs.value"
     source: "Mean presumptive tax per household enterprise (Block F1): the presumptive schedule applied to the DISTRIBUTION (100 quantile cells) of ILFS 2024 annual gross receipts of non-agricultural self-employed with turnover. Replaces the flat 3% rate on mean receipts (retired)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   base.informal_worker_avg_income_tzs:
     basis: DATA
@@ -691,7 +691,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_informal_worker_avg_income_tzs.value"
     source: "ILFS 2024: weighted mean annual earnings of employed persons in informal employment with positive earnings (median in data/processed/twin_inputs.json). Replaced the typed 2,400,000 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
+    feeds: "C079 (retired; see src/retired/README.md); C062 (tier-migration percentages), dashboard Enterprise page (tier chart)"
     group: twin
   base.msme_avg_revenue_tzs:
     basis: DATA
@@ -699,7 +699,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.base_msme_avg_revenue_tzs.value"
     source: "ILFS 2024: weighted mean annual gross receipts of self-employed persons in non-agricultural main jobs, winsorised at the 99th percentile; describes household enterprises, not registered MSMEs (no published MSME revenue figure was found). Replaced the typed 12,000,000 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   tax_morale.baseline.trust:
     basis: DATA
@@ -707,7 +707,7 @@ assumptions:
     data_file: afrobarometer_morale
     data_path: "baseline_scores.trust.value"
     source: "Starting score (0-1) of the trust driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q41J: trust in the tax/revenue office), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.35 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping."
-    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (retired; see src/retired/README.md)"
     group: morale
   tax_morale.baseline.simplicity:
     basis: DATA
@@ -715,13 +715,13 @@ assumptions:
     data_file: afrobarometer_morale
     data_path: "baseline_scores.simplicity.value"
     source: "Starting score (0-1) of the simplicity driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q46A: how easy or difficult to find out what taxes and fees you are supposed to pay), reversed and rescaled 0-1, weighted mean (withinwt_hh), computed in src/03_features/afrobarometer_morale.py. LABEL: information burden only (does not cover registration or filing costs). Mapping decided by the owner in Block E2.0; replaced the typed 0.25."
-    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (retired; see src/retired/README.md)"
     group: morale
   tax_morale.baseline.enforcement:
     value: 0.4
     basis: ASSUMPTION
     source: "Starting score (0-1) of the enforcement driver. No defensible measure found (Block E2.1): no Afrobarometer, FinScope or ILFS item asks about the likelihood of audit, detection or penalty for not paying or registering, and the TRA publications reachable give only an audit-yield share of revenue (17.0% baseline, 14.5% actual 2022/23, TRA Sixth Corporate Plan p. 48) and no audit coverage rate. Closest item Q40G (ordinary people who break the law go unpunished) is general, not about tax. Kept at the former typed 0.40 as an ASSUMPTION for the owner's sign-off; the full search list is in config.yaml afrobarometer.baseline_mapping.enforcement."
-    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (retired; see src/retired/README.md)"
     group: morale
     signoff: "approved (John, 2026-11-12)"
   tax_morale.baseline.social_norm:
@@ -730,7 +730,7 @@ assumptions:
     data_file: afrobarometer_morale
     data_path: "baseline_scores.social_norm.value"
     source: "Starting score (0-1) of the social norm driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47D: perceived behaviour of others (how often people avoid paying the taxes they owe), reversed), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping."
-    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (retired; see src/retired/README.md)"
     group: morale
   tax_morale.baseline.fairness:
     basis: DATA
@@ -738,7 +738,7 @@ assumptions:
     data_file: afrobarometer_morale
     data_path: "baseline_scores.fairness.value"
     source: "Starting score (0-1) of the fairness driver, from Afrobarometer Round 8 Tanzania 2021 (variable Q47C: the government usually uses tax revenues for the well-being of citizens), weighted mean of the item rescaled to 0-1 (withinwt_hh), computed in src/03_features/afrobarometer_morale.py with a 95% CI in the file. Replaced the typed 0.3 (UNKNOWN). Mapping rationale in config.yaml afrobarometer.baseline_mapping."
-    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (Fig 5.2 digital twin)"
+    feeds: "C008, C054, C055, C069, C078 ({FIG51}); C079 (retired; see src/retired/README.md)"
     group: morale
   tax_morale.weight.trust:
     value: 0.3
@@ -871,8 +871,8 @@ assumptions:
     from: "data/processed/twin_inputs.json"
     data_file: twin_inputs
     data_path: "parameters.base_adult_population.value"
-    source: "FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the twin's registrations and mobile-money users, which can never exceed it (Block E3.3)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    source: "FinScope Tanzania 2023, weighted number of adults aged 16 and over (34.1 million; Mainland and Zanzibar), computed in the pipeline (src/03_features/twin_inputs.py). The universe of the registrations and mobile-money users of the twin model (retired (see src/retired/README.md)), which can never exceed it (Block E3.3)."
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   twin.growth.adult_population:
     basis: DATA
@@ -880,7 +880,7 @@ assumptions:
     data_file: twin_inputs
     data_path: "parameters.twin_growth_adult_population.value"
     source: "Yearly growth factor of the adult population = 1 + the mean World Bank WDI population growth (SP.POP.GROW, last 5 years with data). Replaced the account-based mobile-money growth (Block E3.3)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   twin.default.formalization_policy:
     basis: CALIBRATED
@@ -889,7 +889,7 @@ assumptions:
     data_path: "parameters.twin_default_formalization_policy.value"
     source: "New registrations per working-age adult per year in the no-policy scenario: slope of the least-squares line through TRA registered taxpayers 2017/18-2023/24 (608,107 a year) divided by the 2024 working-age population. Replaced the assumed 0.005."
     calibration: {target: "TRA registered taxpayers, Mainland, 7 fiscal years 2017/18-2023/24 (NBS Tax Statistics)", method: "ordinary least squares, one free parameter (the slope) against 7 points, closed form (src/03_features/twin_inputs.py)", output: "data/processed/twin_inputs.json"}
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
   agents.income_lognormal_sigma:
     basis: DATA
@@ -1109,104 +1109,104 @@ assumptions:
 # so that nothing disappears without a record. docs/assumptions_register.csv lists them with basis_class RETIRED.
 # No code reads this block.
 # ---------------------------------------------------------------------------------------------------------------------
-  # ---- Block E2.5: Table 40 stage economics (src/04_models/stage_economics.py). Costs are the report's own figures (submission_v1 PDF p. 52); reach, uptake and risk
+  # ---- Block E2.5: Table 5.1 stage economics (src/04_models/stage_economics.py). Costs are programme cost assumptions (signed off; composition not recorded); reach, uptake and risk
   # distributions are ASSUMPTIONS for the owner's sign-off; the tax schedules are statute (DATA); revenue per registrant is derived from them and ILFS earnings.
   stage.cost.seed_tzs:
     value: [260000000, 1060000000]
     basis: ASSUMPTION
-    source: "Seed (Michezo ya Kodi) cost range stated in the report's Table 40 (submission_v1 PDF p. 52: 260M-1.06B); drawn uniformly between the bounds. Report-stated figure, not independently sourced."
-    feeds: "C041-C053 (Table 40)"
+    source: "Seed (Michezo ya Kodi) cost range: programme cost assumption (signed off; composition not recorded), 260M-1.06B; drawn uniformly between the bounds. Not independently sourced."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.cost.entry_tzs:
     value: 420000000
     basis: ASSUMPTION
-    source: "Entry (Targeting tool) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 420M); treated as the whole programme cost, incurred at the start of year 1. Report-stated figure, not independently sourced."
-    feeds: "C041-C053 (Table 40)"
+    source: "Entry (Targeting tool) cost: programme cost assumption (signed off; composition not recorded), 420M; treated as the whole programme cost, incurred at the start of year 1. Not independently sourced."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.cost.active_tzs:
     value: 600000000
     basis: ASSUMPTION
-    source: "Active (Band calculator) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 600M); whole programme cost at the start of year 1."
-    feeds: "C041-C053 (Table 40)"
+    source: "Active (Band calculator) cost: programme cost assumption (signed off; composition not recorded), 600M; whole programme cost at the start of year 1."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.cost.enterprise_tzs:
     value: 750000000
     basis: ASSUMPTION
-    source: "Enterprise (Tier tool, Ngazi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 750M); whole programme cost at the start of year 1."
-    feeds: "C041-C053 (Table 40)"
+    source: "Enterprise (Tier tool, Ngazi) cost: programme cost assumption (signed off; composition not recorded), 750M; whole programme cost at the start of year 1."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.cost.legacy_tzs:
     value: 700000000
     basis: ASSUMPTION
-    source: "Legacy (Urithi wa Kodi) cost stated in the report's Table 40 (submission_v1 PDF p. 52: 700M); whole programme cost at the start of year 1."
-    feeds: "C041-C053 (Table 40)"
+    source: "Legacy (Urithi wa Kodi) cost: programme cost assumption (signed off; composition not recorded), 700M; whole programme cost at the start of year 1."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.cost_overrun_sigma:
     value: 0.25
     basis: ASSUMPTION
     source: "Cost risk: each stated cost (except Seed, which has its own range) is multiplied by a log-normal factor with median 1 and this log-standard-deviation in the Monte Carlo. A design choice; no cost-overrun data are held."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.reach_share:
     value: {entry: [0.02, 0.05, 0.10], active: [0.01, 0.03, 0.08], enterprise: [0.01, 0.03, 0.08], asset: [0.005, 0.02, 0.05], legacy: [0.005, 0.02, 0.05]}
     basis: ASSUMPTION
     source: "Share of each stage's adult population (FinScope 2023, stage mapping B: Entry 10.6M, Active 2.9M, Enterprise 0.57M, Asset 5.6M, Legacy 2.3M; Non-business owners 25-44, 12.1M, have no reach share) actually reached by the tool within the ramp period: triangular (low, mode, high). Proposed values with the rationale that a digital nudge (Entry) can reach a larger share than officer-assisted tools (Active, Enterprise) or voluntary scores (Asset, Legacy); no uptake data exist for any of the tools. For the owner's sign-off."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.intervention_for_uptake:
     value: {entry: USSD_registration_nudge, active: presumptive_tax_simplification, enterprise: community_compliance_norms, asset: visible_tax_returns, legacy: civic_tax_education}
     basis: ASSUMPTION
     source: "Which of the six morale-model interventions stands for each stage's tool when converting the recalibrated morale model into registrations (odds ratio at the stage's observed TIN rate, E2.3). A judgement mapping; Seed has no registrations claimed. For the owner's sign-off."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.uptake_log_odds_sd:
     value: 0.3
     basis: ASSUMPTION
     source: "Uncertainty of the uptake effect: the log odds ratio of the mapped intervention gets a normal error with this standard deviation in the Monte Carlo (the odds ratios themselves are ASSUMPTION uplifts of the morale model)."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.persistence:
     value: [0.5, 0.75, 0.9]
     basis: ASSUMPTION
     source: "Yearly persistence of a new registrant (share still compliant the next year): triangular (low, mode, high). No filing-persistence data exist in the project; for the owner's sign-off."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.ramp_years:
     value: 5
     basis: ASSUMPTION
     source: "The reach of a tool is spread evenly over the first 5 years; registrants then persist (with the persistence rate) to the end of the horizon."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.horizon_years:
     value: 10
     basis: ASSUMPTION
-    source: "Evaluation horizon of Table 40: 10 years (brief E2.5)."
-    feeds: "C041-C053 (Table 40)"
+    source: "Evaluation horizon of Table 5.1: 10 years (brief E2.5)."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.discount_rate:
     value: 0.10
     basis: ASSUMPTION
     source: "Discount rate 10% (brief E2.5), with sensitivities at 5% and 12%. Annuity factors are computed from the formula, never typed (the 4.33 used earlier for '10%' is the 5-year factor at 5%)."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.discount_sensitivities:
     value: [0.05, 0.12]
     basis: ASSUMPTION
     source: "Alternative discount rates reported next to the 10% base case."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     signoff: "approved (John, 2026-11-12)"
   stage.formal_step_if_not_asked:
@@ -1249,13 +1249,13 @@ assumptions:
     value: [[0, 0, 0.0], [3240000, 0, 0.08], [6240000, 240000, 0.20], [9120000, 816000, 0.25], [12000000, 1536000, 0.30]]
     basis: DATA
     source: "Resident individual income tax, annual total income: [lower bound, tax at the bound, marginal rate]: nil to 3,240,000; 8% of the excess to 6,240,000; 240,000 + 20% to 9,120,000; 816,000 + 25% to 12,000,000; 1,536,000 + 30% above. Income Tax Act Cap. 332 R.E. 2023, First Schedule para 1(1), printed p. 675 (PDF p. 131), data/raw/tra/The_Income_Tax_Act.pdf. Amendments by later Finance Acts were not checked (the Finance Act 2025 text holds no change to this paragraph). Checked against the Finance Acts 2024, 2025 and 2026 (data/raw/tra/): none amends paragraph 1 of the First Schedule, so the schedule is unchanged in 2026/27. (TRA, Taxes and Duties at a Glance 2025/26, p. 7 shows the same table monthly.)"
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
   tax.presumptive_schedule:
     value: {threshold_turnover: 200000000, bands: [[4000000, 7000000, 100000, 0, 0.03], [7000000, 11000000, 250000, 90000, 0.03]], above_11m_rate: 0.04}
     basis: DATA
-    source: "Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 40 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%."
-    feeds: "C041-C053 (Table 40)"
+    source: "Presumptive income tax for resident individuals (First Schedule para 2(3) of the Income Tax Act Cap. 332), schedule in force from 1 July 2026 (Finance Act 2026, s. 27, PDF pp. 31-32; data/raw/tra/THE_FINANCE_ACT,_2026.pdf): nil up to TZS 4,000,000; 4-7M: TZS 100,000 (section 43 of the Tax Administration Act not complied with) or 3% of the turnover above 4M (complied with); 7-11M: TZS 250,000 or 90,000 + 3% of the turnover above 7M; above 11M up to the ceiling of TZS 200,000,000 (raised from 100,000,000): 4.0% of turnover (was 3.5%). The Finance Act 2026 also makes the tax NIL for the first twelve months from obtaining a TIN for an individual who obtains it to commence a business (on application to the Commissioner): NOT applied in the headline (the modelled registrants are existing informal workers and owners); Table 5.1 reports it as a sensitivity. The Finance Acts 2024 and 2025 did not change this table. Earlier schedule (R.E. 2023): ceiling 100M, 3.5%."
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
 # Register rows of constants that live outside `assumptions:` (simulation size, disclosure rule, dashboard design parameters): the owner's sign-off is recorded here.
 register_extra_signoffs:
@@ -1274,91 +1274,91 @@ retired_assumptions:
   twin.mm.penetration_cap:
     value: 0.90
     basis: ASSUMPTION
-    source: "Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    source: "Ceiling of mobile-money penetration, as a share of ADULTS (0.90): users can never exceed adults, and penetration rises toward this cap. A structural assumption of the twin model (retired (see src/retired/README.md)) (FinScope 2023: 71.7% of adults use mobile money today); no study fixes the ceiling. NEW in Block E3.3, not yet signed off."
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.mm.penetration_gap_closure:
     value: 0.10
     basis: ASSUMPTION
-    source: "Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin, not measured. NEW in Block E3.3, not yet signed off."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    source: "Share of the remaining gap between mobile-money penetration and its cap that closes each year (0.10, i.e. about 1.8 percentage points a year from 71.7% toward 90%). A structural assumption of the twin model (retired (see src/retired/README.md)), not measured. NEW in Block E3.3, not yet signed off."
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.default.trust_improvement_annual:
     value: 0.01
     basis: ASSUMPTION
     source: "Slow annual drift of the trust score in the no-new-policy scenario."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.cap.trust:
     value: 0.85
     basis: ASSUMPTION
     source: "Structural ceiling for the trust score."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.cap.compliance_rate:
     value: 0.8
     basis: ASSUMPTION
     source: "Structural ceiling for the compliance rate."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.ussd.conversion:
     value: 0.15
     basis: ASSUMPTION
     source: "Share of non-compliant mobile-money users who register per year when the USSD nudge is fully scaled (15%): a scenario input; the project holds no trial or administrative evidence of USSD registration conversion. Kept for sign-off; the registration trend cannot identify it because no USSD nudge was in place."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.trust_multiplier.slope:
     value: 2
     basis: ASSUMPTION
     source: "Registration rises by 2 x (trust - baseline trust): a structural elasticity of the model; no panel or trial data link trust to registration here. Kept for sign-off."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.msme.tin_rate:
     value: 0.097
     basis: DATA
     source: "Enterprise-stage TIN rate, FinScope 2023: 9.74% in outputs/tables/tin_by_segment.csv (typed 0.097 is its rounded value)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.presumptive.uplift_factor:
     value: 0.5
     basis: ASSUMPTION
     source: "Share of registered MSME presumptive-tax potential collected once simplification is on (0.5): a scenario input with no collection data behind it. Kept for sign-off."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.policy.ussd_nudge_scale:
     value: 0.6
     basis: ASSUMPTION
     source: "Policy scenario: USSD nudge deployed at 60% of full scale."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   twin.policy.trust_improvement_annual:
     value: 0.025
     basis: ASSUMPTION
     source: "Policy scenario: annual trust gain of 2.5 points."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Pass 6B-1"
-    retired_reason: "digital twin retired (PASS6A D2, PASS6C E1, PASS6D F4/F5); the constant only fed the twin simulation (src/retired/digital_twin_v0.py)"
+    retired_reason: "retired (see src/retired/README.md): the constant only fed the retired twin simulation"
   synthetic.urban_share:
     value: 0.36
     basis: ASSUMPTION
@@ -1917,7 +1917,7 @@ retired_assumptions:
     data_file: twin_inputs
     data_path: "parameters.twin_growth_mm_users.value"
     source: "Compound annual growth of BoT active mobile-money accounts 2019-2024 (x1.21). Replaced the typed 1.08 (UNKNOWN)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block E3"
     retired_reason: "account-based growth retired (E3.3): mobile-money users now grow with the adult population plus a rise in penetration toward a cap (twin.growth.adult_population, twin.mm.penetration_cap, twin.mm.penetration_gap_closure); the Bank of Tanzania account growth (x1.21 a year) described accounts, not persons, and could take users above the number of adults"
@@ -1925,7 +1925,7 @@ retired_assumptions:
     value: 0.85
     basis: ASSUMPTION
     source: "Structural ceiling: mobile-money users cannot exceed 85% of the population."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block E3"
     retired_reason: "superseded in E3.3 by twin.mm.penetration_cap (a share of ADULTS, not of the population)"
@@ -1933,7 +1933,7 @@ retired_assumptions:
     value: 617500000
     basis: ASSUMPTION
     source: "The report states NO cost for Asset (Asset Score: 'Not yet modeled'). Set to the mean of the four stated adult-stage costs (420M, 600M, 750M, 700M) = 617.5M as a placeholder; no budget exists to cite. For the owner's sign-off."
-    feeds: "C041-C053 (Table 40)"
+    feeds: "C041-C053 (Table 5.1)"
     group: stage_economics
     retired_in: "Block E3"
     retired_reason: "the 617.5M placeholder (mean of the four stated costs) is removed in E3.4: the report states no Asset cost; Asset now reports a break-even cost (the programme cost at which ROI = 1) and is excluded from the portfolio cost and ROI"
@@ -1957,7 +1957,7 @@ retired_assumptions:
     value: 0.9
     basis: ASSUMPTION
     source: "Structural ceiling for the social-norm score."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block F0"
     retired_reason: "dead twin state removed (Block F0): the social-norm score was updated but never entered registrations or revenue"
@@ -1965,7 +1965,7 @@ retired_assumptions:
     value: 5
     basis: ASSUMPTION
     source: "Year from which the school curriculum is assumed to affect trust."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block F0"
     retired_reason: "dead twin state removed (Block F0): the school-curriculum policy is switched off in both published scenarios, so these constants never acted"
@@ -1973,7 +1973,7 @@ retired_assumptions:
     value: 0.02
     basis: ASSUMPTION
     source: "Extra yearly trust gain once a school tax curriculum has run for 5 years: a policy-scenario input of the intervention, with no historical series or study behind it in the project; kept as the typed value for the owner's sign-off (the effect applies only when the curriculum intervention is switched on)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block F0"
     retired_reason: "dead twin state removed (Block F0): the school-curriculum policy is switched off in both published scenarios, so these constants never acted"
@@ -1981,7 +1981,7 @@ retired_assumptions:
     value: 0.05
     basis: ASSUMPTION
     source: "Share of the compliance rate added to the social-norm score each year: a feedback loop of the model's design; no data series measures it (Afrobarometer gives the level of the norm, not its dynamics). Kept for sign-off."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block F0"
     retired_reason: "dead twin state removed (Block F0): the social-norm score was updated but never entered registrations or revenue"
@@ -1989,135 +1989,135 @@ retired_assumptions:
     value: 350000000
     basis: UNKNOWN
     source: "Implementation cost of 'Community compliance norms' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.community_compliance_norms.revenue_tzs:
     value: 5600000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'Community compliance norms' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.dispute_fast_track.cost_tzs:
     value: 900000000
     basis: UNKNOWN
     source: "Implementation cost of 'Dispute fast-track tribunal' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.dispute_fast_track.revenue_tzs:
     value: 6300000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'Dispute fast-track tribunal' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.mobile_money_tin_bridge.cost_tzs:
     value: 1200000000
     basis: UNKNOWN
     source: "Implementation cost of 'Mobile money TIN bridge' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.mobile_money_tin_bridge.revenue_tzs:
     value: 15400000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'Mobile money TIN bridge' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.presumptive_tax_simplification.cost_tzs:
     value: 600000000
     basis: UNKNOWN
     source: "Implementation cost of 'Presumptive tax simplification' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.presumptive_tax_simplification.revenue_tzs:
     value: 12800000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'Presumptive tax simplification' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.property_registry.cost_tzs:
     value: 3500000000
     basis: UNKNOWN
     source: "Implementation cost of 'Property registry reform' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.property_registry.revenue_tzs:
     value: 18200000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'Property registry reform' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.school_tax_curriculum.cost_tzs:
     value: 800000000
     basis: UNKNOWN
     source: "Implementation cost of 'School tax curriculum' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.school_tax_curriculum.revenue_tzs:
     value: 3200000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'School tax curriculum' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.ussd_tin_nudge.cost_tzs:
     value: 420000000
     basis: UNKNOWN
     source: "Implementation cost of 'USSD TIN registration nudge' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.ussd_tin_nudge.revenue_tzs:
     value: 8700000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'USSD TIN registration nudge' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.visible_tax_returns.cost_tzs:
     value: 250000000
     basis: UNKNOWN
     source: "Implementation cost of 'Visible tax returns campaign' (TZS). The code's own ledger entry calls it a fixed placeholder, 'ILLUSTRATIVE ESTIMATE, NOT YET EVIDENCE-DERIVED'."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.visible_tax_returns.revenue_tzs:
     value: 4100000000
     basis: UNKNOWN
     source: "Expected annual additional revenue of 'Visible tax returns campaign' (TZS); fixed placeholder, no source or derivation (W11 rebuilds it)."
-    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 40 claims (those come from src/04_models/stage_economics.py)"
+    feeds: "cost_benefit and intervention_optimizer blocks of economic_model.json (not quoted in the report, not displayed); since Block E2.5 NOT a source of the Table 5.1 claims (those come from src/04_models/stage_economics.py)"
     group: cost
     retired_in: "Block F0"
-    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 40 (stage_economics) replaced them"
+    retired_reason: "typed cost / revenue of the old intervention list: the unpublished cost-benefit and optimiser blocks that read them were removed (Block F0); Table 5.1 (stage_economics) replaced them"
   interventions.mobile_money_tin_bridge.beneficiaries:
     value: 23140012
     basis: DATA
     source: "Mobile-money users without a TIN, FinScope 2023: finscope_summary.json mm_no_tin = 23,140,012 (typed copy of the same number)."
-    feeds: "C041-C053 (Table 40 costs, revenues, ROI), dashboard cost/revenue figures"
+    feeds: "C041-C053 (Table 5.1 costs, revenues, ROI), dashboard cost/revenue figures"
     group: cost
     retired_in: "Block F0"
     retired_reason: "typed copy of a FinScope count whose only reader was the cost-benefit block removed in Block F0"
@@ -2125,7 +2125,7 @@ retired_assumptions:
     value: 0.15
     basis: ASSUMPTION
     source: "A flat 15% applied to informal income as a modelling simplification; the statutory resident PIT schedule is graduated and was not matched to this value."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block F1"
     retired_reason: "flat 15% rate on mean earnings replaced (Block F1) by the statutory resident schedule applied to the DISTRIBUTION of ILFS 2024 earnings (the effective average rate is a small fraction of the typed 15%: see data/processed/twin_inputs.json base_new_taxpayer_mean_tax_tzs)"
@@ -2133,7 +2133,7 @@ retired_assumptions:
     value: 0.03
     basis: ASSUMPTION
     source: "Simplified flat presumptive rate; the report cites a statutory 3.5% band for TZS 11-100M turnover (C033, not yet cited) and this value was not matched to it."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     signoff: "approved (John, 2026-11-12)"
     retired_in: "Block F1"
@@ -2141,8 +2141,8 @@ retired_assumptions:
   twin.policy.hypothetical_additional_levy:
     value: 0.003
     basis: ASSUMPTION
-    source: "Policy scenario: a HYPOTHETICAL ADDITIONAL levy of 0.3% of the value of mobile-money payments (the twin's mobile_money_gdp_pct x GDP), on top of the levy that already exists. Context (Block F2, docs/mobile_money_levy.md): Tanzania already levies mobile-money transactions under section 46A of the National Payment Systems Act (Cap. 437), a TIERED FIXED FEE per transaction (TZS 10 to TZS 2,000 by value band, GN 596C of 5 October 2022), on cash WITHDRAWALS ONLY since the Finance Act 2023 (1 July 2023); its revenue is already inside the observed tax-to-GDP baseline. No collection figure for the current levy was found, so no effective rate (collections / transaction value) could be derived for it and the lever is not expressed as a change relative to it. The only published collection estimate is for the earlier regime (GSMA: TZS 252 billion in 2022 on BoT mobile payments of TZS 114.3 trillion, about 0.22%, transfers and withdrawals). The 0.3% is a scenario input with no evidence behind it."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    source: "Policy scenario: a HYPOTHETICAL ADDITIONAL levy of 0.3% of the value of mobile-money payments (the twin model's mobile_money_gdp_pct x GDP; retired (see src/retired/README.md)), on top of the levy that already exists. Context (Block F2, docs/mobile_money_levy.md): Tanzania already levies mobile-money transactions under section 46A of the National Payment Systems Act (Cap. 437), a TIERED FIXED FEE per transaction (TZS 10 to TZS 2,000 by value band, GN 596C of 5 October 2022), on cash WITHDRAWALS ONLY since the Finance Act 2023 (1 July 2023); its revenue is already inside the observed tax-to-GDP baseline. No collection figure for the current levy was found, so no effective rate (collections / transaction value) could be derived for it and the lever is not expressed as a change relative to it. The only published collection estimate is for the earlier regime (GSMA: TZS 252 billion in 2022 on BoT mobile payments of TZS 114.3 trillion, about 0.22%, transfers and withdrawals). The 0.3% is a scenario input with no evidence behind it."
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Editing Pass 1 (P0)"
     retired_reason: "removed by owner: not a framework lever"
@@ -2150,7 +2150,7 @@ retired_assumptions:
     value: 0.003
     basis: ASSUMPTION
     source: "Policy scenario: 0.3% levy on mobile-money flows (comparable to the 0.3% Kenya excise noted in the code; not verified)."
-    feeds: "C079 (Fig 5.2 digital twin)"
+    feeds: "C079 (retired; see src/retired/README.md)"
     group: twin
     retired_in: "Block F2"
     retired_reason: "replaced by twin.policy.hypothetical_additional_levy: a mobile-money levy already exists in Tanzania (National Payment Systems Act Cap. 437 s.46A; a tiered fixed fee per transaction, on withdrawals only since 1 July 2023), so a 0.3% levy cannot be called a new policy; no effective rate of the current levy could be derived (no collection figure for the withdrawal-only levy), so the lever is labelled a hypothetical ADDITIONAL levy; see docs/mobile_money_levy.md"

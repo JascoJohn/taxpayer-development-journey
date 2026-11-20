@@ -26,7 +26,7 @@ def test_the_yaml_holds_the_six_stage_tools_with_the_agreed_names_and_is_marked_
     names, labels = paths.CFG["names"], paths.CFG["stage_economics"]["report_names"]
     for i in items:
         assert i["name"] == names[i["stage"]]["full"] and i["old_names"], i["stage"]                                    # the names of Editing Pass 1; the old names stay for traceability
-        assert i["mechanism"] and i["target_group"] and i["cost_reference"]["source"].startswith("report/submission_v1 Table 40")
+        assert i["mechanism"] and i["target_group"] and i["cost_reference"]["source"].startswith("programme cost assumption (signed off; composition not recorded)")   # no citation of a private file
         assert i["report_pdf_page"] == labels[i["stage"]]["pdf_page"]
         assert "eNgazi" not in i["mechanism"] and "ENgazi" not in i["mechanism"]
     for stage in ("entry", "active", "enterprise", "legacy"):

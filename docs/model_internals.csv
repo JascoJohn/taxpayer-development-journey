@@ -9,7 +9,7 @@ economic_model.py,load_base_params,42,"economic_model.json base_parameters, scen
 economic_model.py,run_agent_based_simulation,7,agent_based_simulation,"its output is not quoted or displayed; the population constants it shares with the tier-migration simulation moved (agents.*); Block E1: trust and morale come from Afrobarometer and income from ILFS aggregate cell distributions (DATA), non-earners enter with zero income (ASSUMPTION); Block E3.1: interventions multiply the agents' yearly registration odds by the tax-morale model's odds ratios (the trust / morale uplift path and the norm feedback are retired)"
 economic_model.py,run_causal_inference_analysis,22,(removed),"RETIRED in Block D2: difference-in-differences, simulated propensity-score matching and typed synthetic control removed; 30 constants listed as RETIRED in the register; replaced by the observational association in src/04_models/tin_mobile_money.py"
 economic_model.py,run_digital_twin,12,,
-economic_model.py,run_economic_model,5,assembly of economic_model.json,assembly of the model file (the digital twin was retired in Pass 6B-1)
+economic_model.py,run_economic_model,5,assembly of economic_model.json,assembly of the model file (the twin model is retired; see src/retired/README.md)
 economic_model.py,run_intervention_optimizer,20,,
 economic_model.py,run_monte_carlo_simulation,9,monte_carlo,"not quoted in the report, not displayed"
 economic_model.py,run_scenario_analysis,14,scenarios (conservative / moderate / ambitious),"not quoted in the report, not displayed (its totals feed only the sensitivity analysis)"

@@ -1,7 +1,7 @@
 {
  "label": "scenario calculation: statutory tax on survey earnings x assumed reach and uptake; not a forecast",
  "type": "MODELLED (scenario); revenue per registrant DATA-derived (statute x ILFS earnings)",
- "report_table": "submission_v1 PDF p. 52, '5. Portfolio-Level Impact' Table 40",
+ "report_table": "Table 5.1",
  "horizon_years": 10,
  "long_horizon_years": 20,
  "discount_rate": 0.1,
@@ -589,7 +589,7 @@
    "morale_model_key": null,
    "report_table40": "260M-1.06B / not scored",
    "population": 16354370.0,
-   "cost_basis": "report-stated range, uniform",
+   "cost_basis": "programme cost assumption (signed off; composition not recorded): range, uniform",
    "monte_carlo_at_10pct": {
     "registrants": {
      "mean": 0.0,
@@ -1858,7 +1858,7 @@
    "morale_model_key": "USSD_registration_nudge",
    "report_table40": "420M / 8.7-9B / 20.7x",
    "population": 10605005.23,
-   "cost_basis": "report-stated figure (submission_v1 PDF p. 52)",
+   "cost_basis": "programme cost assumption (signed off; composition not recorded)",
    "monte_carlo_at_10pct": {
     "registrants": {
      "mean": 1421.1389168075332,
@@ -3178,7 +3178,7 @@
    "morale_model_key": "presumptive_tax_simplification",
    "report_table40": "600M / 12.8-13B / 21.3x",
    "population": 2916164.67,
-   "cost_basis": "report-stated figure (submission_v1 PDF p. 52)",
+   "cost_basis": "programme cost assumption (signed off; composition not recorded)",
    "monte_carlo_at_10pct": {
     "registrants": {
      "mean": 3701.4320751795753,
@@ -4498,7 +4498,7 @@
    "morale_model_key": "community_compliance_norms",
    "report_table40": "750M / 4.1B / ~5.5x",
    "population": 572735.05,
-   "cost_basis": "report-stated figure (submission_v1 PDF p. 52)",
+   "cost_basis": "programme cost assumption (signed off; composition not recorded)",
    "monte_carlo_at_10pct": {
     "registrants": {
      "mean": 1863.445031073147,
@@ -6556,7 +6556,7 @@
    "morale_model_key": "civic_tax_education",
    "report_table40": "700M / 2.5B / ~3.6x",
    "population": 2338624.3,
-   "cost_basis": "report-stated figure (submission_v1 PDF p. 52)",
+   "cost_basis": "programme cost assumption (signed off; composition not recorded)",
    "monte_carlo_at_10pct": {
     "registrants": {
      "mean": 717.5667954154461,

@@ -1,6 +1,6 @@
 # docs/interventions.yaml - reviewed by the owner 2026-11-13 (first written by src/tools/extract_interventions_once.py, now maintained by hand; read by src/04_models/intervention_registrar.py)
-status: REVIEWED by the owner (John, 2026-11-13). Names follow config.yaml `names:` (Editing Pass 1); `old_names` keeps the names of the submitted report for traceability.
-  The eight LLM-drafted interventions that this file listed under llm_drafts_not_adopted are in _archive/interventions_llm_drafts.yaml; none is registered by the
+status: REVIEWED by the owner (John, 2026-11-13). Names follow config.yaml `names:` (Editing Pass 1); `old_names` keeps the names the tools had in the first version of the report, for traceability.
+  The eight LLM-drafted interventions that this file listed under llm_drafts_not_adopted are kept privately and are not part of this repository; none is registered by the
   pipeline.
 reviewed_by: owner (John), 2026-11-13
 interventions:
@@ -11,7 +11,7 @@ interventions:
   mechanism: A gamified digital learning platform developed and promoted by TRA, designed to create familiarity with taxes before tax obligations begin.
   target_group: children aged 6-15 (the Seed age band, config.yaml seed_age_band)
   cost_reference:
-    source: report/submission_v1 Table 40, PDF p. 52 ('5. Portfolio-Level Impact')
+    source: programme cost assumption (signed off; composition not recorded)
     stated: true
     cost_tzs: null
     cost_range_tzs:
@@ -28,7 +28,7 @@ interventions:
     channel; the tool prioritises whom to reach.'
   target_group: young adults aged 16-24 (FinScope Entry segment)
   cost_reference:
-    source: report/submission_v1 Table 40, PDF p. 52 ('5. Portfolio-Level Impact')
+    source: programme cost assumption (signed off; composition not recorded)
     stated: true
     cost_tzs: 420000000
     cost_range_tzs: null
@@ -43,7 +43,7 @@ interventions:
     empirical benchmark for assessments.'
   target_group: adults aged 25-44 who are not business owners (FinScope Active segment)
   cost_reference:
-    source: report/submission_v1 Table 40, PDF p. 52 ('5. Portfolio-Level Impact')
+    source: programme cost assumption (signed off; composition not recorded)
     stated: true
     cost_tzs: 600000000
     cost_range_tzs: null
@@ -58,7 +58,7 @@ interventions:
     TRA service benefits as they meet compliance milestones.'
   target_group: business owners aged 25-64 (FinScope Enterprise segment)
   cost_reference:
-    source: report/submission_v1 Table 40, PDF p. 52 ('5. Portfolio-Level Impact')
+    source: programme cost assumption (signed off; composition not recorded)
     stated: true
     cost_tzs: 750000000
     cost_range_tzs: null
@@ -72,7 +72,7 @@ interventions:
   mechanism: A verified ownership credibility rating built from a citizen's history of declared and verifiable asset ownership; it rewards transparency, not wealth.
   target_group: adults aged 45-64 who are not business owners (FinScope Asset segment)
   cost_reference:
-    source: report/submission_v1 Table 40, PDF p. 52 ('5. Portfolio-Level Impact')
+    source: programme cost assumption (signed off; composition not recorded)
     stated: false
     note: no cost stated in the report ('Not yet modeled')
   report_pdf_page: 40
@@ -85,7 +85,7 @@ interventions:
   mechanism: A lifetime compliance index that preserves a taxpayer's verified compliance history and enables its structured transfer to an approved successor.
   target_group: adults aged 65 and over (FinScope Legacy segment)
   cost_reference:
-    source: report/submission_v1 Table 40, PDF p. 52 ('5. Portfolio-Level Impact')
+    source: programme cost assumption (signed off; composition not recorded)
     stated: true
     cost_tzs: 700000000
     cost_range_tzs: null

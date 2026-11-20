@@ -549,7 +549,7 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
         b = results[V10][base_rate]["stages"][s]
         entry = {"report_name": rn[s]["name"], "report_pdf_page": rn[s]["pdf_page"], "report_table40_label": rn[s]["table40_label"], "morale_model_key": rn[s]["morale_model_key"],
                  "report_table40": REPORT_TABLE40[s], "population": specs[s]["population"],
-                 "cost_basis": ("report-stated range, uniform" if s == "seed" else ("NOT STATED in the report (placeholder retired in Block E3.4): no cost is assumed; see break_even_cost" if s == "asset" else "report-stated figure (submission_v1 PDF p. 52)")),
+                 "cost_basis": ("programme cost assumption (signed off; composition not recorded): range, uniform" if s == "seed" else ("NOT STATED in the report (placeholder retired in Block E3.4): no cost is assumed; see break_even_cost" if s == "asset" else "programme cost assumption (signed off; composition not recorded)")),
                  "monte_carlo_at_10pct": {k: b[k] for k in ("registrants", "revenue_pv", "cost", "npv", "roi") if k in b}, "central_at_10pct": b["central"],
                  "sensitivity_to_discount_rate": {"%g" % r: {k: results[V10][r]["stages"][s][k] for k in ("npv", "roi", "revenue_pv") if k in results[V10][r]["stages"][s]} for r in rates[1:]},
                  "variants": {v: stage_variant_block(s, v) for v in defs}}
@@ -639,7 +639,7 @@ def run_stage_economics(sav_path=None, json_path=None, csv_path=None, from_proce
     def port_block(vname_list):
         return {v: {"%g" % r: {k: x for k, x in results[v][r]["portfolio"].items() if k != "central"} for r in rates} for v in vname_list}
     result = {
-        "label": LABEL, "type": "MODELLED (scenario); revenue per registrant DATA-derived (statute x ILFS earnings)", "report_table": "submission_v1 PDF p. 52, '5. Portfolio-Level Impact' Table 40",
+        "label": LABEL, "type": "MODELLED (scenario); revenue per registrant DATA-derived (statute x ILFS earnings)", "report_table": "Table 5.1",
         "horizon_years": n_years, "long_horizon_years": n_long, "discount_rate": base_rate, "discount_sensitivities": rates[1:], "n_draws": draws, "seed": seed,
         "annuity_factors": {"%g" % r: {"years_%d" % n: annuity_factor(r, n) for n in (5, n_years, n_long)} for r in rates},
         "npv_factor_fix": "the earlier cost-benefit code used 4.33 for a '10%%' 5-year NPV; 4.33 is the 5-year annuity factor at 5%%; at 10%% it is %.4f, and the 10-year factor at 10%% is %.4f" % (annuity_factor(0.10, 5), annuity_factor(0.10, 10)),
