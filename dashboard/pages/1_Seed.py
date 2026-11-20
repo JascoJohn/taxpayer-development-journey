@@ -6,14 +6,16 @@ import streamlit as st
 
 from tdj_lib.names import N
 
+from tdj_lib.charts import themed
+from tdj_lib.layout import stage_top, about_stage, scenario_lab_link
+from tdj_lib.styling import CHART_GREEN, CHART_GREEN_DARK, CHART_AMBER
 from common import (
-    inject_base_style, stage_header, callout, evidence_tag, stage_nav_footer,
+    inject_base_style, callout, evidence_tag, stage_nav_footer,
     demo_safety_banner, looks_like_nida,
 )
 
 st.set_page_config(page_title=f"Seed — {N.seed.full}", page_icon="🌱", layout="wide")
 inject_base_style()
-stage_header("🌱", "Seed", "Learn", "Experience", "1")
 
 # ---------------------------------------------------------------------------
 # Seed-stage palette. Sampled directly from the report's own
@@ -76,21 +78,21 @@ st.markdown(
         color: {SEED_TINT}; font-size: 1.02rem; max-width: 46rem; margin: 0;
     }}
     .seed-card {{
-        background: {SEED_TINT_LIGHT};
-        border: 1px solid {SEED_TINT};
+        background: var(--tdj-card-bg);
+        border: 1px solid var(--tdj-card-border);
         border-radius: 8px;
         padding: 1rem 1.2rem;
         margin: 0.6rem 0;
     }}
     .seed-tra-card {{
-        background: #FDF3E7;
-        border-left: 5px solid {SEED_AMBER};
+        background: var(--tdj-note-bg);
+        border-left: 5px solid var(--tdj-amber);
         border-radius: 6px;
         padding: 0.9rem 1.1rem;
         margin: 0.8rem 0;
     }}
     .seed-tra-label {{
-        color: {SEED_AMBER}; font-weight: 700; font-size: 0.74rem;
+        color: var(--tdj-amber); font-weight: 700; font-size: 0.74rem;
         letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.3rem;
     }}
     .seed-badge {{
@@ -100,16 +102,18 @@ st.markdown(
         margin: 0.2rem 0.3rem 0.2rem 0;
     }}
     .seed-mission-tag {{
-        display: inline-block; color: {SEED_GREEN}; font-weight: 700;
+        display: inline-block; color: var(--tdj-green); font-weight: 700;
         font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase;
-        border: 1px solid {SEED_GREEN}; border-radius: 99px;
+        border: 1px solid var(--tdj-green); border-radius: 99px;
         padding: 0.15rem 0.7rem; margin-bottom: 0.6rem;
     }}
-    .seed-demo-note {{ color: #7A7A7A; font-size: 0.8rem; }}
+    .seed-demo-note {{ color: var(--tdj-muted); font-size: 0.8rem; }}
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+stage_top("🌱", "Seed", "Learn", "Experience", "1", "seed", _PERSONA_PATH)
 
 # ---------------------------------------------------------------------------
 # Session state
@@ -138,11 +142,9 @@ def _reset_game():
         st.session_state.pop(key, None)
 
 
-# ---------------------------------------------------------------------------
-# About this pilot (kept from the original page, tucked away so the game
-# itself gets top billing on this page)
-# ---------------------------------------------------------------------------
-with st.expander(f"Why {N.seed.swahili} exists"):
+def _about_seed():
+    """"Why Michezo ya Kodi exists" and the pilot-cost card: moved here from the top of the page (wording unchanged)."""
+    st.markdown(f"#### Why {N.seed.swahili} exists")
     c1, c2 = st.columns([3, 2])
     with c1:
         st.markdown("**The problem**")
@@ -157,7 +159,7 @@ with st.expander(f"Why {N.seed.swahili} exists"):
             "Not tax education — identity formation. Children get repeated, first-hand "
             "experience of *being someone who helps their community*, so that identity "
             "is already theirs by the time an adult obligation ever appears. The game "
-            "below is a simplified, playable slice of that mechanic."
+            "on this page is a simplified, playable slice of that mechanic."
         )
     with c2:
         evidence_tag("modelled")
@@ -166,6 +168,8 @@ with st.expander(f"Why {N.seed.swahili} exists"):
             "formation, not immediate compliance gain."
         )
         st.metric("Estimated pilot cost", "TZS 260M – 1.06B")
+    scenario_lab_link()
+
 
 # ---------------------------------------------------------------------------
 # Tabs: the game itself, and what the tax authority would see in aggregate
@@ -196,11 +200,7 @@ with play_tab:
             """,
             unsafe_allow_html=True,
         )
-        col1, col2 = st.columns([1, 2])
-        with col1:
-            if os.path.exists(_PERSONA_PATH):
-                st.image(_PERSONA_PATH, width="stretch")
-        with col2:
+        with st.container():
             st.write(
                 "You're playing as **Amina**, 12, from Dodoma. She's just started "
                 "helping decide what her village spends its shared savings on this "
@@ -548,13 +548,13 @@ with tra_tab:
     fig = go.Figure(
         data=[go.Bar(
             x=counts, y=stages, orientation="h",
-            marker_color=[SEED_GREEN_DARK, SEED_GREEN, SEED_GREEN, SEED_AMBER],
+            marker_color=[CHART_GREEN_DARK, CHART_GREEN, CHART_GREEN, CHART_AMBER],
             text=[f"{c:,}" for c in counts], textposition="outside",
         )]
     )
-    fig.update_layout(
-        xaxis_title="Simulated players (mock)", height=320,
-        margin=dict(t=20, b=20, l=10, r=40), plot_bgcolor="white",
+    themed(
+        fig, xaxis_title="Simulated players (mock)", height=320,
+        margin=dict(t=20, b=20, l=10, r=40),
     )
     st.plotly_chart(fig, width="stretch")
     st.caption(
@@ -562,6 +562,9 @@ with tra_tab:
         "short missions) is illustrative of what a real cohort funnel would look "
         "like, not a measured result."
     )
+
+with about_stage():
+    _about_seed()
 
 st.divider()
 callout(

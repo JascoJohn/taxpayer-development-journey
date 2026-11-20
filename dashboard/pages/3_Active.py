@@ -8,15 +8,18 @@ from tdj_lib.names import N
 
 from tdj_lib.stage_card import show_stage_economics
 from tdj_lib.benchmark_adapters import presumptive_caption
+from tdj_lib.charts import themed
+from tdj_lib.layout import stage_top, about_stage
+from tdj_lib.styling import CHART_GREEN, CHART_GREEN_DARK, CHART_GREEN_LIGHT
+from tdj_lib import turnover_check
 from common import (
-    inject_base_style, inject_hero_style, stage_header, callout, evidence_tag,
-    stage_nav_footer, GREEN, GREEN_DARK, AMBER,
+    inject_base_style, inject_hero_style, callout, evidence_tag,
+    stage_nav_footer,
     PipelineData, mzani_adapter,
 )
 
 st.set_page_config(page_title=f"Active — {N.active.full}", page_icon="⚖️", layout="wide")
 inject_base_style()
-stage_header("⚖️", "Active", "Understand", "Calculation", "3")
 
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 _PERSONA_PATH = os.path.join(ASSETS_DIR, "active_persona_neema.png")
@@ -32,6 +35,7 @@ def _b64_file(path: str) -> str:
 inject_hero_style(_b64_file(_TEXTURE_PATH) if os.path.exists(_TEXTURE_PATH) else "")
 
 pipeline = PipelineData()
+stage_top("⚖️", "Active", "Understand", "Calculation", "3", "active", _PERSONA_PATH)
 
 # ---------------------------------------------------------------------------
 # Part C: acknowledge a registration handoff from Entry (Ngazi Platform), if present.
@@ -47,10 +51,20 @@ if st.session_state.get("ngazi_reg_business_registered"):
         unsafe_allow_html=True,
     )
 
-# ---------------------------------------------------------------------------
-# About this pilot -- same treatment as Seed's "Why this exists" expander
-# ---------------------------------------------------------------------------
-with st.expander("Why Mzani wa Kodi exists"):
+def _about_active():
+    """Hero banner, "Why Mzani wa Kodi exists", the economics card and the limitation note: moved here from the top of the page (wording unchanged)."""
+    st.markdown(
+        """
+        <div class="tdj-hero"><div class="tdj-hero-inner">
+            <div class="tdj-hero-title">A shared reference point, not a verdict</div>
+            <p class="tdj-hero-sub">Mzani wa Kodi doesn't tell anyone what they owe.
+            It shows where a business sits next to real, comparable businesses —
+            so an assessment can be discussed, not just handed down.</p>
+        </div></div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown("#### Why Mzani wa Kodi exists")
     c1, c2 = st.columns([3, 2])
     with c1:
         st.markdown("**The problem**")
@@ -79,37 +93,16 @@ with st.expander("Why Mzani wa Kodi exists"):
     with c2:
         evidence_tag("modelled")
         show_stage_economics(st, pipeline, "active")
-
-# ---------------------------------------------------------------------------
-# Hero
-# ---------------------------------------------------------------------------
-hc1, hc2 = st.columns([2, 1])
-with hc1:
+    st.markdown("#### What this tool does not do")
     st.markdown(
-        """
-        <div class="tdj-hero"><div class="tdj-hero-inner">
-            <div class="tdj-hero-title">A shared reference point, not a verdict</div>
-            <p class="tdj-hero-sub">Mzani wa Kodi doesn't tell anyone what they owe.
-            It shows where a business sits next to real, comparable businesses —
-            so an assessment can be discussed, not just handed down.</p>
-        </div></div>
-        """,
+        '<span class="tdj-demo-note">This tool does not estimate any one business\'s turnover or tax. '
+        "Mzani wa Kodi is a reference for assessment and review, shown in shadow mode for officers; it is not a determination of liability. "
+        "The bands on this page are survey figures for businesses like it: Household Budget Survey 2017/18, "
+        "CPI-uprated to 2024, last-month receipts annualised by months operated, owners with receipts. "
+        "Farmers and fishers are not covered, and Zanzibar is not covered.</span>",
         unsafe_allow_html=True,
     )
-with hc2:
-    if os.path.exists(_PERSONA_PATH):
-        st.image(_PERSONA_PATH, width="stretch")
 
-st.markdown(
-    '<span class="tdj-demo-note">This tool does not estimate any one business\'s turnover or tax. '
-    "Mzani wa Kodi is a reference for assessment and review, shown in shadow mode for officers; it is not a determination of liability. "
-    "The bands below are survey figures for businesses like it: Household Budget Survey 2017/18, "
-    "CPI-uprated to 2024, last-month receipts annualised by months operated, owners with receipts. "
-    "Farmers and fishers are not covered, and Zanzibar is not covered.</span>",
-    unsafe_allow_html=True,
-)
-
-st.divider()
 
 # ---------------------------------------------------------------------------
 # Framing toggle -- same computation, different audience copy
@@ -198,6 +191,29 @@ else:
         if result.low_precision:
             st.caption("⚠ " + result.low_precision_note)
 
+        # ---- Turnover check: where an entered turnover sits in this band (not stored) ----------------------------------------------------------------------------------
+        st.markdown("#### Check a turnover")
+        tc1, tc2 = st.columns([1, 1.4])
+        with tc1:
+            # No key, no cache and no session-state write: Streamlit holds the entered value for this page view only; it is never logged or kept in the handoff state.
+            _turnover = st.number_input("Enter a turnover to see where it sits (not stored)", min_value=0.0, value=None, step=100_000.0, format="%.0f",
+                                        placeholder="Yearly turnover, TZS",
+                                        help="Yearly turnover in TZS. The value is used only to draw this result: it is not stored, cached or logged.")
+        with tc2:
+            st.markdown(
+                '<div class="tdj-note-card"><div class="tdj-note-label">Shadow mode</div>'
+                "<p>Mzani wa Kodi is a reference for assessment and review, shown in shadow mode for officers; not a determination of liability.</p></div>",
+                unsafe_allow_html=True,
+            )
+        if _turnover is not None:
+            _chk = turnover_check.check(_turnover, result.p25_tzs, result.median_tzs, result.p75_tzs)
+            evidence_tag("computed")
+            st.markdown(f"**Position in the band:** TZS {_chk['turnover']:,.0f} is {_chk['position_text']} ({_where}).")
+            if _chk["approx_percentile"] is not None:
+                st.caption(f"Approximate percentile: about the {_chk['approx_percentile']:.0f}th (approximate: interpolated from the three quartiles only).")
+            st.markdown(f"**Presumptive tax under the schedule in force:** {_chk['tax_text']}.")
+            st.caption(presumptive_caption())
+
         st.markdown("#### Presumptive tax at these turnovers")
         evidence_tag("computed")
 
@@ -211,10 +227,10 @@ else:
         fig = go.Figure(go.Bar(
             y=["Above TZS 11M", "TZS 4M – 11M", "Up to TZS 4M"],
             x=[result.share_above_11m_pct, result.share_4m_to_11m_pct, result.share_below_4m_pct], orientation="h",
-            marker_color=[GREEN_DARK, GREEN, "#9CC79F"],
+            marker_color=[CHART_GREEN_DARK, CHART_GREEN, CHART_GREEN_LIGHT],
             text=[f"{v:.1f}%" for v in (result.share_above_11m_pct, result.share_4m_to_11m_pct, result.share_below_4m_pct)], textposition="outside",
         ))
-        fig.update_layout(height=200, margin=dict(t=10, b=10, l=10, r=40), xaxis_title="% of businesses like this, by yearly turnover", plot_bgcolor="white")
+        themed(fig, height=200, margin=dict(t=10, b=10, l=10, r=40), xaxis_title="% of businesses like this, by yearly turnover")
         st.plotly_chart(fig, width="stretch")
 
         with st.expander("How is this estimated?"):
@@ -258,6 +274,9 @@ else:
         )
         st.page_link("pages/4_Enterprise.py", label="See my Ngazi progression →", icon="📈")
 
+with about_stage():
+    _about_active()
+
 st.divider()
 
 # ---------------------------------------------------------------------------
@@ -284,11 +303,11 @@ with st.expander("See the full region × activity picture"):
         fig2 = go.Figure(go.Bar(
             y=activities_sorted,
             x=[prevalence.value[a]["pct"] for a in activities_sorted],
-            orientation="h", marker_color=GREEN,
+            orientation="h", marker_color=CHART_GREEN,
             text=[f"{prevalence.value[a]['pct']:.1f}%" for a in activities_sorted],
             textposition="outside",
         ))
-        fig2.update_layout(height=240, margin=dict(t=10, b=10), xaxis_title="% of region's business-activity population")
+        themed(fig2, height=240, margin=dict(t=10, b=10), xaxis_title="% of region's business-activity population")
         st.plotly_chart(fig2, width="stretch")
         for a in hidden:
             st.caption(f"{a}: suppressed (fewer than 10 respondents)")

@@ -7,15 +7,17 @@ import streamlit as st
 from tdj_lib.names import N
 
 from tdj_lib.stage_card import show_stage_economics
+from tdj_lib.charts import themed
+from tdj_lib.layout import stage_top, about_stage
+from tdj_lib.styling import CHART_GREEN, CHART_GREEN_LIGHT, CHART_AMBER
 from common import (
-    inject_base_style, inject_hero_style, stage_header, callout, evidence_tag,
-    stage_nav_footer, GREEN, GREEN_DARK, AMBER,
+    inject_base_style, inject_hero_style, callout, evidence_tag,
+    stage_nav_footer,
     PipelineData,
 )
 
 st.set_page_config(page_title=f"Enterprise — {N.enterprise.full}", page_icon="📈", layout="wide")
 inject_base_style()
-stage_header("📈", "Enterprise", "Progress", "Status", "4")
 
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 _PERSONA_PATH = os.path.join(ASSETS_DIR, "enterprise_persona_asha.png")
@@ -31,6 +33,7 @@ def _b64_file(path: str) -> str:
 inject_hero_style(_b64_file(_TEXTURE_PATH) if os.path.exists(_TEXTURE_PATH) else "")
 
 pipeline = PipelineData()
+stage_top("📈", "Enterprise", "Progress", "Status", "4", "enterprise", _PERSONA_PATH)
 
 # ---------------------------------------------------------------------------
 # The real 6-milestone benefit ladder, verbatim from the document's own
@@ -68,26 +71,6 @@ for k, v in _self_report_defaults.items():
     if k not in st.session_state:
         st.session_state[k] = v
 
-# ---------------------------------------------------------------------------
-# Hero
-# ---------------------------------------------------------------------------
-hc1, hc2 = st.columns([2, 1])
-with hc1:
-    st.markdown(
-        """
-        <div class="tdj-hero"><div class="tdj-hero-inner">
-            <div class="tdj-hero-title">Every step unlocks something real</div>
-            <p class="tdj-hero-sub">Ngazi isn't a badge for staying compliant — it's a
-            ladder where each rung hands you something you can actually use, the moment
-            you reach it.</p>
-        </div></div>
-        """,
-        unsafe_allow_html=True,
-    )
-with hc2:
-    if os.path.exists(_PERSONA_PATH):
-        st.image(_PERSONA_PATH, width="stretch")
-
 if came_from_chain:
     st.markdown(
         '<div class="tdj-note-card"><div class="tdj-note-label">Welcome</div>'
@@ -97,7 +80,20 @@ if came_from_chain:
         unsafe_allow_html=True,
     )
 
-with st.expander("Why Ngazi exists"):
+def _about_enterprise():
+    """Hero banner, "Why Ngazi exists", the economics card and the limitation note: moved here from the top of the page (wording unchanged)."""
+    st.markdown(
+            """
+            <div class="tdj-hero"><div class="tdj-hero-inner">
+                <div class="tdj-hero-title">Every step unlocks something real</div>
+                <p class="tdj-hero-sub">Ngazi isn't a badge for staying compliant — it's a
+                ladder where each rung hands you something you can actually use, the moment
+                you reach it.</p>
+            </div></div>
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown("#### Why Ngazi exists")
     c1, c2 = st.columns([3, 2])
     with c1:
         st.markdown("**The problem**")
@@ -119,15 +115,15 @@ with st.expander("Why Ngazi exists"):
     with c2:
         evidence_tag("modelled")
         show_stage_economics(st, pipeline, "enterprise")
+    st.markdown("#### Important limitation")
+    st.markdown(
+        '<span class="tdj-demo-note">Important limitation: Ngazi\'s long-term effect on '
+        "compliance hasn't been empirically tested yet. This is a pilot design grounded "
+        "in the Malawi finding above, not a mechanism already proven to work here.</span>",
+        unsafe_allow_html=True,
+    )
 
-st.markdown(
-    '<span class="tdj-demo-note">Important limitation: Ngazi\'s long-term effect on '
-    "compliance hasn't been empirically tested yet. This is a pilot design grounded "
-    "in the Malawi finding above, not a mechanism already proven to work here.</span>",
-    unsafe_allow_html=True,
-)
 
-st.divider()
 
 # ===========================================================================
 # Individual dashboard — Where am I? / What's next? / What happens if I
@@ -184,10 +180,7 @@ for i, (name, _) in enumerate(LADDER):
     with ladder_cols[i]:
         done = i < position or (i == 5 and reached_established)
         st.markdown(
-            f'<div style="text-align:center; padding:0.5rem 0.2rem; '
-            f'background:{GREEN if done else "#EFEFEF"}; '
-            f'color:{"white" if done else "#888"}; border-radius:6px; '
-            f'font-size:0.72rem; font-weight:700;">{i+1}. {name}</div>',
+            f'<div class="tdj-ladder-tile{" done" if done else ""}">{i+1}. {name}</div>',
             unsafe_allow_html=True,
         )
 
@@ -195,7 +188,7 @@ st.write("")
 lc1, lc2 = st.columns(2)
 with lc1:
     st.markdown(
-        f'<div class="tdj-card"><div class="tdj-note-label" style="color:{GREEN};">WHERE YOU ARE</div>'
+        f'<div class="tdj-card"><div class="tdj-note-label" style="color:var(--tdj-green);">WHERE YOU ARE</div>'
         f"<p style='font-size:1.1rem;'><b>{current_label}</b></p></div>",
         unsafe_allow_html=True,
     )
@@ -204,10 +197,10 @@ if reached_established:
     name, benefit = LADDER[5]
     with lc2:
         st.markdown(
-            f'<div class="tdj-card"><div class="tdj-note-label" style="color:{GREEN};">'
+            f'<div class="tdj-card"><div class="tdj-note-label" style="color:var(--tdj-green);">'
             f'YOU\'VE REACHED THE TOP OF THE LADDER</div>'
-            f"<p style='font-size:1.35rem; font-weight:700; color:{GREEN_DARK};'>{benefit}</p>"
-            f"<p style='font-size:0.85rem; color:#666;'>{name}</p></div>",
+            f"<p style='font-size:1.35rem; font-weight:700; color:var(--tdj-green-strong);'>{benefit}</p>"
+            f"<p style='font-size:0.85rem; color:var(--tdj-text-muted);'>{name}</p></div>",
             unsafe_allow_html=True,
         )
 else:
@@ -220,9 +213,9 @@ else:
         # never gets to be the headline.
         st.markdown(
             f'<div class="tdj-note-card"><div class="tdj-note-label">WHAT YOU GET NEXT</div>'
-            f"<p style='font-size:1.35rem; font-weight:700; color:{GREEN_DARK}; margin:0.2rem 0;'>"
+            f"<p style='font-size:1.35rem; font-weight:700; color:var(--tdj-green-strong); margin:0.2rem 0;'>"
             f"{next_benefit}</p>"
-            f"<p style='font-size:0.85rem; color:#666;'>Unlocked by: {next_name}</p></div>",
+            f"<p style='font-size:0.85rem; color:var(--tdj-text-muted);'>Unlocked by: {next_name}</p></div>",
             unsafe_allow_html=True,
         )
 
@@ -247,6 +240,9 @@ if reached_established:
     )
     st.page_link("pages/5_Asset.py", label="See your verified economic identity →", icon="🏠")
 
+with about_stage():
+    _about_enterprise()
+
 st.divider()
 
 # ===========================================================================
@@ -268,49 +264,64 @@ if tier_sim.available:
         "two aren't reconciled into one figure)."
     )
 
-    final_year = yearly[-1]
-    disengaged = final_year["not_registered_pct"]                       # adults not yet registered at year 10
+    years = [y["year"] for y in yearly]
+    year = st.slider("Year of the simulation", min_value=int(years[0]), max_value=int(years[-1]), value=int(years[-1]), step=1,
+                     help="Moves the three figures and the bar below to the chosen year of the simulation that was already run; nothing is re-run.")
+    chosen = yearly[years.index(year)]
+    disengaged = chosen["not_registered_pct"]                           # adults not yet registered in the chosen year
     registered_pct = 100.0 - disengaged
-    below_silver = (final_year["level_1_entry_pct"] + final_year["level_2_bronze_pct"]) / registered_pct * 100.0     # share of REGISTERED taxpayers
-    silver_up = (final_year["level_3_silver_pct"] + final_year["level_4_gold_pct"] + final_year["level_5_platinum_pct"]) / registered_pct * 100.0
+    below_silver = (chosen["level_1_entry_pct"] + chosen["level_2_bronze_pct"]) / registered_pct * 100.0 if registered_pct > 0 else 0.0     # share of REGISTERED taxpayers
+    silver_up = (chosen["level_3_silver_pct"] + chosen["level_4_gold_pct"] + chosen["level_5_platinum_pct"]) / registered_pct * 100.0 if registered_pct > 0 else 0.0
 
     d1, d2, d3 = st.columns(3)
     d1.metric(
-        f"Adults not yet registered (year {v['n_years']})", f"{disengaged:.1f}%",
-        help="Share of all simulated adults still without a TIN at the end of the simulation.",
+        f"Adults not yet registered (year {year})", f"{disengaged:.1f}%",
+        help="Share of all simulated adults still without a TIN in year %d." % year,
     )
     d2.metric(
         "Below Silver (of registered)", f"{below_silver:.1f}%",
-        help="Entry + Bronze, as a share of registered taxpayers at year %d." % v["n_years"],
+        help="Entry + Bronze, as a share of registered taxpayers at year %d." % year,
     )
     d3.metric(
         "Silver or above (of registered)", f"{silver_up:.1f}%",
-        help="Silver + Gold + Platinum, as a share of registered taxpayers at year %d." % v["n_years"],
+        help="Silver + Gold + Platinum, as a share of registered taxpayers at year %d." % year,
     )
 
-    tier_fig = go.Figure()
     tier_series = [
-        ("level_1_entry_pct", "Level 1 Entry", "#B7D8B9"),
-        ("level_2_bronze_pct", "Level 2 Bronze", GREEN),
-        ("level_3_silver_pct", "Level 3 Silver", "#5FA867"),
-        ("level_4_gold_pct", "Level 4 Gold", AMBER),
-        ("level_5_platinum_pct", "Level 5 Platinum", GREEN_DARK),
+        ("level_1_entry_pct", "Level 1 Entry", "#BFE3C2"),
+        ("level_2_bronze_pct", "Level 2 Bronze", CHART_GREEN_LIGHT),
+        ("level_3_silver_pct", "Level 3 Silver", CHART_GREEN),
+        ("level_4_gold_pct", "Level 4 Gold", CHART_AMBER),
+        ("level_5_platinum_pct", "Level 5 Platinum", "#2C7A33"),
     ]
-    years = [y["year"] for y in yearly]
     reg = [100.0 - y["not_registered_pct"] for y in yearly]
+
+    # one bar: the tier shares among registered taxpayers in the chosen year
+    bar_fig = go.Figure()
+    for key, label, color in tier_series:
+        share = (chosen[key] / registered_pct * 100.0) if registered_pct > 0 else 0.0
+        bar_fig.add_trace(go.Bar(y=[f"Year {year}"], x=[share], name=label, orientation="h", marker_color=color,
+                                 text=[f"{share:.0f}%" if share >= 4 else ""], textposition="inside", hovertemplate=label + ": %{x:.1f}%<extra></extra>"))
+    themed(bar_fig, barmode="stack", height=130, margin=dict(t=10, b=10, l=10, r=10), xaxis=dict(range=[0, 100], title=f"Tier shares among registered taxpayers, year {year} (%)"),
+           legend=dict(orientation="h", yanchor="bottom", y=1.02))
+    st.plotly_chart(bar_fig, width="stretch")
+
+    tier_fig = go.Figure()
     for key, label, color in tier_series:
         tier_fig.add_trace(go.Scatter(
             x=years, y=[(y[key] / r * 100.0) if r > 0 else 0.0 for y, r in zip(yearly, reg)], mode="lines", name=label,
             stackgroup="one", line=dict(color=color, width=0.5),
         ))
-    tier_fig.update_layout(
-        height=340, margin=dict(t=20, b=10),
+    tier_fig.add_vline(x=year, line_dash="dash", line_color="#E39A3B", annotation_text=f"Year {year}", annotation_position="top")
+    themed(
+        tier_fig,
+        height=340, margin=dict(t=30, b=10),
         xaxis_title="Year", yaxis_title="% of registered taxpayers",
-        yaxis_range=[0, 100], plot_bgcolor="white",
+        yaxis_range=[0, 100],
     )
     st.plotly_chart(tier_fig, width="stretch")
     st.caption(
-        f"Registration rate beside the chart: {registered_pct:.1f}% of adults are registered by year {v['n_years']} "
+        f"Registration rate beside the chart: {registered_pct:.1f}% of adults are registered by year {year} "
         f"(year 1: {100.0 - yearly[0]['not_registered_pct']:.1f}%). The chart shows the tier distribution among registered taxpayers only. "
         "A modelled outcome: agents start from the FinScope population; interventions multiply registration odds by the "
         "tax-morale model's assumed odds ratios, calibrated to TRA's registration trend; tier thresholds are the Ngazi design "

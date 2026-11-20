@@ -7,8 +7,11 @@ import streamlit as st
 
 from tdj_lib.names import N
 
+from tdj_lib.charts import themed
+from tdj_lib.layout import stage_top, about_stage
+from tdj_lib.styling import CHART_GREEN
 from common import (
-    inject_base_style, inject_hero_style, stage_header, callout, evidence_tag,
+    inject_base_style, inject_hero_style, callout, evidence_tag,
     stage_nav_footer, GREEN, GREEN_DARK, AMBER,
     demo_safety_banner,
     build_asset_verification_report, build_digital_asset_profile, PipelineData,
@@ -16,7 +19,6 @@ from common import (
 
 st.set_page_config(page_title=f"Asset — {N.asset.full}", page_icon="🏠", layout="wide")
 inject_base_style()
-stage_header("🏠", "Asset", "Reveal", "Reciprocity", "5")
 
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 _PERSONA_PATH = os.path.join(ASSETS_DIR, "asset_persona_joseph.png")
@@ -102,6 +104,8 @@ def _confidence_band(total: int) -> str:
 # in pages/4_Enterprise.py). Strictly additive: a session with neither key
 # present sees none of this and Asset works exactly standalone.
 # ---------------------------------------------------------------------------
+stage_top("🏠", "Asset", "Reveal", "Reciprocity", "5", "asset", _PERSONA_PATH)
+
 enterprise_milestone = st.session_state.get("ngazi_current_milestone")
 enterprise_graduated = bool(st.session_state.get("ngazi_established_status_reached"))
 came_from_enterprise = enterprise_milestone is not None
@@ -112,26 +116,6 @@ elif came_from_enterprise:
     ngazi_points = NGAZI_STANDING_SCALE.get(enterprise_milestone, 0)
 else:
     ngazi_points = 0
-
-# ---------------------------------------------------------------------------
-# Hero
-# ---------------------------------------------------------------------------
-hc1, hc2 = st.columns([2, 1])
-with hc1:
-    st.markdown(
-        """
-        <div class="tdj-hero"><div class="tdj-hero-inner">
-            <div class="tdj-hero-title">You're building a verified economic identity</div>
-            <p class="tdj-hero-sub">Mali-Alama za Kodi, the Tax Asset Score, is one legible piece of
-            it: a record that turns what you already own and already comply with into
-            something you can show, not just something the tax authority can see.</p>
-        </div></div>
-        """,
-        unsafe_allow_html=True,
-    )
-with hc2:
-    if os.path.exists(_PERSONA_PATH):
-        st.image(_PERSONA_PATH, width="stretch")
 
 if enterprise_graduated:
     st.markdown(
@@ -152,7 +136,20 @@ elif came_from_enterprise:
         unsafe_allow_html=True,
     )
 
-with st.expander(f"Why {N.asset.swahili} exists"):
+def _about_asset():
+    """Hero banner, "Why Mali-Alama za Kodi exists" and the limitation note: moved here from the top of the page (wording unchanged except "below" to "on this page")."""
+    st.markdown(
+            """
+            <div class="tdj-hero"><div class="tdj-hero-inner">
+                <div class="tdj-hero-title">You're building a verified economic identity</div>
+                <p class="tdj-hero-sub">Mali-Alama za Kodi, the Tax Asset Score, is one legible piece of
+                it: a record that turns what you already own and already comply with into
+                something you can show, not just something the tax authority can see.</p>
+            </div></div>
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown(f"#### Why {N.asset.swahili} exists")
     c1, c2 = st.columns([3, 2])
     with c1:
         st.markdown("**The problem**")
@@ -184,17 +181,17 @@ with st.expander(f"Why {N.asset.swahili} exists"):
         evidence_tag("modelled")
         st.caption("Reciprocity mechanism — revenue impact secondary; reported as a break-even programme cost")
         st.metric("Data source", "Vehicle + rental (TRA-owned)")
+    st.markdown("#### Important limitation")
+    st.markdown(
+        '<span class="tdj-demo-note">Important limitation: the Core Tax Asset Score on this page runs '
+        "entirely on data the tax authority already holds. The <b>Full</b> Tax Asset Score — land, building, "
+        "and property records — depends on future data-sharing agreements with the "
+        "Ministry of Lands and local government registries. Named future expansion, not "
+        "current scope; nothing here implies those records are available today.</span>",
+        unsafe_allow_html=True,
+    )
 
-st.markdown(
-    '<span class="tdj-demo-note">Important limitation: the Core Tax Asset Score below runs '
-    "entirely on data the tax authority already holds. The <b>Full</b> Tax Asset Score — land, building, "
-    "and property records — depends on future data-sharing agreements with the "
-    "Ministry of Lands and local government registries. Named future expansion, not "
-    "current scope; nothing here implies those records are available today.</span>",
-    unsafe_allow_html=True,
-)
 
-st.divider()
 
 # ===========================================================================
 # Self-reported inputs
@@ -287,20 +284,20 @@ with sc1:
         number={"suffix": f" / {MAX_SCORE}", "font": {"size": 26}},
         gauge={
             "axis": {"range": [0, MAX_SCORE], "tickvals": [0, 700, 800, 1000]},
-            "bar": {"color": GREEN},
+            "bar": {"color": CHART_GREEN},
             "steps": [
-                {"range": [0, 700], "color": "#EFEFEF"},
-                {"range": [700, 734], "color": "#F4F4F4"},
-                {"range": [734, 768], "color": "#D8E7D8"},
-                {"range": [768, 1000], "color": "#9CC79F"},
+                {"range": [0, 700], "color": "rgba(128,128,128,0.25)"},
+                {"range": [700, 734], "color": "rgba(128,128,128,0.15)"},
+                {"range": [734, 768], "color": "rgba(63,155,70,0.30)"},
+                {"range": [768, 1000], "color": "rgba(63,155,70,0.55)"},
             ],
         },
     ))
-    gauge.update_layout(height=260, margin=dict(t=20, b=10))
+    themed(gauge, height=260, margin=dict(t=20, b=10))
     st.plotly_chart(gauge, width="stretch")
 with sc2:
     st.markdown(
-        f'<div class="tdj-card"><div class="tdj-note-label" style="color:{GREEN};">{band.upper()}</div>'
+        f'<div class="tdj-card"><div class="tdj-note-label" style="color:var(--tdj-green);">{band.upper()}</div>'
         f"<p style='font-size:0.95rem;'>Score reflects a neutral baseline plus what you've "
         "verified above — not a judgement, a legible summary of what's on record. "
         f"Achievable maximum this session: {max_achievable} / {MAX_SCORE}.</p></div>",
@@ -308,16 +305,19 @@ with sc2:
     )
     st.markdown("###### Component breakdown")
     for c in components:
-        tag_col = GREEN if c["tier"] == "real" else "#8A8A8A"
+        tag_col = "var(--tdj-green)" if c["tier"] == "real" else "var(--tdj-muted)"
         tag_txt = "COMPUTED" if c["tier"] == "real" else "ILLUSTRATIVE"
         st.markdown(
             f"<div style='display:flex; justify-content:space-between; padding:0.25rem 0; "
-            f"border-bottom:1px solid #eee; font-size:0.88rem;'>"
+            f"border-bottom:1px solid var(--tdj-hairline); font-size:0.88rem;'>"
             f"<span><span style='color:{tag_col}; font-weight:700; font-size:0.68rem; "
             f"margin-right:0.5rem;'>{tag_txt}</span>{c['name']}</span>"
             f"<b>{c['points']} / {c['max_points']}</b></div>",
             unsafe_allow_html=True,
         )
+
+with about_stage():
+    _about_asset()
 
 st.divider()
 
@@ -342,12 +342,12 @@ benefits += [
 ]
 
 for title, note, is_real in benefits:
-    tag_col = GREEN if is_real else AMBER
+    tag_col = "var(--tdj-green)" if is_real else "var(--tdj-amber)"
     tag_txt = "COMPUTED" if is_real else "ILLUSTRATIVE"
     st.markdown(
         f"<div class='tdj-card' style='padding:0.7rem 1rem; margin:0.4rem 0;'>"
         f"<span style='color:{tag_col}; font-weight:700; font-size:0.68rem;'>{tag_txt}</span> "
-        f"<b>{title}</b><br><span style='font-size:0.82rem; color:#666;'>{note}</span></div>",
+        f"<b>{title}</b><br><span style='font-size:0.82rem; color:var(--tdj-text-muted);'>{note}</span></div>",
         unsafe_allow_html=True,
     )
 

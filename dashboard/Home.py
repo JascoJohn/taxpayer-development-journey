@@ -1,9 +1,14 @@
 import streamlit as st
 import plotly.graph_objects as go
 from common import (
-    STAGES, NAVY, GOLD, SLATE, CREAM, inject_base_style, callout, evidence_tag,
+    STAGES, inject_base_style, callout, evidence_tag,
     EVIDENCE_TIER_HELP, PipelineData,
 )
+from tdj_lib import fig51
+from tdj_lib.charts import themed
+from tdj_lib.layout import SCENARIO_LAB_PAGE
+from tdj_lib.names import N
+from tdj_lib.styling import CHART_GREY, CHART_NAVY
 
 st.set_page_config(
     page_title="The Taxpayer Development Journey — A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania",
@@ -21,17 +26,6 @@ if _mm.available:                                        # the respondent count 
     _n_finscope = f" (n = {int(_all_adults['n_unweighted_base']):,})"
 else:
     _n_finscope = ""
-callout(
-    "AT A GLANCE",
-    "Most adults report positive attitudes to tax; the barriers are friction and voice. "
-    "Six lifecycle stages — Seed, Entry, Active, Enterprise, Asset, Legacy — "
-    "prototyped and linked in a live demonstration around one connective layer that is designed to carry a taxpayer's record "
-    f"forward across all six (within a single session in the prototype). Evidence base: FinScope Tanzania 2023{_n_finscope}, "
-    "the Integrated Labour Force Survey 2024, the Household Budget Survey 2017/18, the Census 2022 10% sample, "
-    "published TRA, NBS, Bank of Tanzania and TCRA statistics, and an observational analysis of mobile money and TIN "
-    "holding on the real FinScope respondents.",
-)
-
 st.markdown("### The Journey")
 st.write(
     "The tax authority meets a young mobile money user, a small trader, an informal business "
@@ -55,7 +49,26 @@ st.caption(
 
 st.divider()
 
-# ---- Portfolio impact chart --------------------------------------------------
+# ---- Scenario lab summary ---------------------------------------------------------------------------------------------------------------------------------------------------
+st.markdown("### Scenario Lab")
+_port = PipelineData().stage_economics_portfolio()
+if _port.available:
+    _p = _port.value["monte_carlo_at_10pct"]["roi"]
+    evidence_tag("modelled")
+    l1, l2, l3, l4 = st.columns([1, 1, 1, 1.3], vertical_alignment="center")
+    l1.metric("Portfolio ROI (median)", f"{_p['median']:.2f}×", help="Table 5.1: discounted revenue / cost of the report's portfolio (Seed's cost plus Entry, Active, Enterprise and Legacy revenue; Asset excluded). 1.0× = break-even.")
+    l2.metric("80% interval", f"{_p['p10']:.2f}–{_p['p90']:.2f}×")
+    if _port.value.get("p_roi_ge_1") is not None:
+        l3.metric("Chance ROI ≥ 1", f"{_port.value['p_roi_ge_1'] * 100:.0f}%")
+    with l4:
+        st.page_link(SCENARIO_LAB_PAGE, label="Open the Scenario lab →", icon="🧪")
+    st.caption("At the report's settings. Change reach, uptake, persistence, horizon, discount rate and income basis in the lab. A scenario calculation, not a forecast.")
+else:
+    st.page_link(SCENARIO_LAB_PAGE, label="Open the Scenario lab →", icon="🧪")
+
+st.divider()
+
+# ---- Interactive Figure 5.1 ------------------------------------------------------------------------------------------------------------------------------------------------
 st.markdown("### Portfolio-Level Impact")
 st.write(
     "In the project's model, the six stages together reach more than any single stage, "
@@ -64,34 +77,50 @@ st.write(
 )
 
 _morale = PipelineData().tax_morale_model()
-if _morale.available:
+try:
+    _f51 = fig51.load_inputs()
+except FileNotFoundError:
+    _f51 = None
+if _morale.available and _f51 is not None:
     _m = _morale.value
-    _best = max(_m["intervention_effects"].values(), key=lambda e: e["new_compliance_prob"])["new_compliance_prob"]
-    scenarios = ["Today\n(observed adult TIN rate)", "Best single module\n(presumptive tax simplification)", "Full combined system\n(all six stages)"]
-    values = [round(_m["baseline_compliance_probability"] * 100, 2), round(_best * 100, 2), round(_m["combined_intervention_probability"] * 100, 2)]
+    _names = list(_f51["interventions"])
+    _label = lambda k: k.replace("_", " ")[:1].upper() + k.replace("_", " ")[1:]
+    _stage_label = lambda k: (_f51["interventions"][k]["stage"] or "").capitalize()
+    st.markdown("**Switch each stage on or off** (all on is the report's Figure 5.1)")
+    _cols = st.columns(3)
+    _active = []
+    for i, k in enumerate(_names):
+        with _cols[i % 3]:
+            _tag = _stage_label(k) or "No stage tool"
+            if st.toggle(f"{_tag}: {_label(k)}", value=True, key=f"fig51_{k}",
+                         help=("The stage's mapped intervention in the tax morale model." if _f51["interventions"][k]["stage"] else
+                               "In the model this intervention maps to no stage tool, and Seed carries no uplift; it is part of the report's six-intervention combined system.")):
+                _active.append(k)
+    _best_name, _best = fig51.best_single(_f51)
+    _today = fig51.baseline_probability(_f51)
+    _sel = fig51.combined_probability(_f51, _active)
+    scenarios = ["Today<br>(observed adult TIN rate)", f"Best single module<br>({_label(_best_name).lower()})", f"Selected stages<br>({len(_active)} of {len(_names)} on)"]
+    values = [round(_today * 100, 2), round(_best * 100, 2), round(_sel * 100, 2)]
 else:
     scenarios, values = ["Model not connected"], [0]
 fig = go.Figure(
-    data=[go.Bar(x=scenarios, y=values, marker_color=[SLATE, SLATE, NAVY][:len(values)],
+    data=[go.Bar(x=scenarios, y=values, marker_color=[CHART_GREY, CHART_GREY, CHART_NAVY][:len(values)],
                  text=[f"{v}%" for v in values], textposition="outside")]
 )
-fig.update_layout(
+themed(
+    fig,
     yaxis_title="Modelled probability that an adult reports a TIN (%), if every adult were reached",
     yaxis_range=[0, max(values) * 1.3 + 1],
     height=380,
     margin=dict(t=20, b=20),
-    plot_bgcolor="white",
 )
 st.plotly_chart(fig, width="stretch")
 evidence_tag("modelled")
-if _morale.available:
-    _m = _morale.value
+if _morale.available and _f51 is not None:
     st.caption(
         "Modelled probability that an adult reports a TIN under the project's tax morale model if every adult were reached, recalibrated so that today's value equals the observed (survey-reported) adult TIN rate "
-        f"({_m['baseline_compliance_probability'] * 100:.2f}%, FinScope 2023). The intervention effects are assumed uplifts expressed as odds ratios (not measured). "
-        f"The combined effect ({_m['combined_intervention_probability'] * 100:.2f}%) sits below what adding the six separate gains to today's rate would give "
-        f"({_m['baseline_compliance_probability'] * 100:.2f}% + {_m['naive_sum_of_solo_effects_pct'] - _m['baseline_compliance_probability'] * 100:.2f} percentage points = {_m['naive_sum_of_solo_effects_pct']:.2f}%): "
-        "the model assumes diminishing returns, so the gain comes from coverage, not from synergy."
+        f"({_today * 100:.2f}%, FinScope 2023). The intervention effects are assumed uplifts expressed as odds ratios (not measured). "
+        + fig51.explain(_f51, _active)
     )
 else:
     st.caption("The tax morale model is not connected right now.")
@@ -170,11 +199,23 @@ if _tb.available:
 else:
     st.info(f"The targeting intervals are not connected right now ({_tb.note}).")
 
+with st.expander("About this project", expanded=False):
+    callout(
+        "AT A GLANCE",
+        "Most adults report positive attitudes to tax; the barriers are friction and voice. "
+        "Six lifecycle stages — Seed, Entry, Active, Enterprise, Asset, Legacy — "
+        "prototyped and linked in a live demonstration around one connective layer that is designed to carry a taxpayer's record "
+        f"forward across all six (within a single session in the prototype). Evidence base: FinScope Tanzania 2023{_n_finscope}, "
+        "the Integrated Labour Force Survey 2024, the Household Budget Survey 2017/18, the Census 2022 10% sample, "
+        "published TRA, NBS, Bank of Tanzania and TCRA statistics, and an observational analysis of mobile money and TIN "
+        "holding on the real FinScope respondents.",
+    )
+
 st.caption(EVIDENCE_TIER_HELP)
 
 st.divider()
 st.markdown(
-    f"<p style='color:{SLATE}; font-size:0.85rem;'>Most stage pages (Entry, Active, "
+    f"<p style='color:var(--tdj-text-muted); font-size:0.85rem;'>Most stage pages (Entry, Active, "
     "Enterprise, Legacy) read live cost/revenue/model figures from this project's own "
     "pipeline (see the README) rather than fixed numbers — each page captions exactly "
     "which of its figures are COMPUTED, MODELLED or CITED and which remain ILLUSTRATIVE, and why.</p>",

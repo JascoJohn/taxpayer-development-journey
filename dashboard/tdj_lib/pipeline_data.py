@@ -234,6 +234,14 @@ class PipelineData:
             return Figure(value=None, available=False, note=f"stage '{stage}' not in stage_economics.json")
         return Figure(value=s, available=True)
 
+    def stage_economics_portfolio(self) -> Figure:
+        """The portfolio row of Table 5.1 (Seed as cost, Entry, Active, Enterprise, Legacy; Asset excluded) from stage_economics.json: Monte Carlo summaries, central case, P(ROI >= 1) of the central income basis."""
+        if not self._stage_economics or "portfolio" not in self._stage_economics:
+            return Figure(value=None, available=False, note="stage_economics.json has no portfolio")
+        p = dict(self._stage_economics["portfolio"])
+        p["p_roi_ge_1"] = self._stage_economics.get("income_bases", {}).get("central", {}).get("portfolio_excluding_asset", {}).get("p_roi_ge_1")
+        return Figure(value=p, available=True)
+
     def stage_economics_bases(self, stage: str) -> Figure:
         """Table 5.1 bracket of one stage: {"central": ..., "high": ..., "low": ...}, each with the income basis, revenue per registrant, share owing tax, ROI (median, 80% interval) and P(ROI >= 1), from
         stage_economics.json (income_bases). Only Active and Enterprise differ between bases."""

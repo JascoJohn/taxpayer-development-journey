@@ -8,15 +8,17 @@ import streamlit as st
 from tdj_lib.names import N
 
 from tdj_lib.stage_card import show_stage_economics
+from tdj_lib.charts import themed
+from tdj_lib.layout import stage_top, about_stage
+from tdj_lib.styling import CHART_GREEN, CHART_GREY
 from common import (
-    inject_base_style, inject_hero_style, stage_header, callout, evidence_tag,
-    stage_nav_footer, GREEN,
+    inject_base_style, inject_hero_style, callout, evidence_tag,
+    stage_nav_footer,
     PipelineData, demo_safety_banner, looks_like_nida, looks_like_phone,
 )
 
 st.set_page_config(page_title=f"Entry — {N.entry.full}", page_icon="🚪", layout="wide")
 inject_base_style()
-stage_header("🚪", "Entry", "Join", "Targeting", "2")
 
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 _PERSONA_PATH = os.path.join(ASSETS_DIR, "entry_persona_juma.png")
@@ -32,6 +34,7 @@ def _b64_file(path: str) -> str:
 inject_hero_style(_b64_file(_TEXTURE_PATH) if os.path.exists(_TEXTURE_PATH) else "")
 
 pipeline = PipelineData()
+stage_top("🚪", "Entry", "Join", "Targeting", "2", "entry", _PERSONA_PATH)
 
 # ---------------------------------------------------------------------------
 # A3: recognize a handoff from Seed, without requiring one
@@ -39,10 +42,20 @@ pipeline = PipelineData()
 came_from_seed = st.session_state.get("seed_handoff_complete", False)
 seed_nida = st.session_state.get("seed_handoff_nida", "")
 
-# ---------------------------------------------------------------------------
-# About this pilot -- same treatment as Seed and Active
-# ---------------------------------------------------------------------------
-with st.expander("Why Entry exists"):
+def _about_entry():
+    """Hero banner, "Why Entry exists" and the economics card: moved here from the top of the page (wording unchanged)."""
+    st.markdown(
+            """
+            <div class="tdj-hero"><div class="tdj-hero-inner">
+                <div class="tdj-hero-title">Two ways in: get found, or come in yourself</div>
+                <p class="tdj-hero-sub">On this page: the real model that decides who the tax authority should
+                reach first, and registration on the Ngazi Platform — a way to join the tax authority's records the
+                moment someone is ready, no phone channel required.</p>
+            </div></div>
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown("#### Why Entry exists")
     c1, c2 = st.columns([3, 2])
     with c1:
         st.markdown("**The problem**")
@@ -68,25 +81,6 @@ with st.expander("Why Entry exists"):
         evidence_tag("modelled")
         show_stage_economics(st, pipeline, "entry")
 
-# ---------------------------------------------------------------------------
-# Hero
-# ---------------------------------------------------------------------------
-hc1, hc2 = st.columns([2, 1])
-with hc1:
-    st.markdown(
-        """
-        <div class="tdj-hero"><div class="tdj-hero-inner">
-            <div class="tdj-hero-title">Two ways in: get found, or come in yourself</div>
-            <p class="tdj-hero-sub">Below: the real model that decides who the tax authority should
-            reach first, and registration on the Ngazi Platform — a way to join the tax authority's records the
-            moment someone is ready, no phone channel required.</p>
-        </div></div>
-        """,
-        unsafe_allow_html=True,
-    )
-with hc2:
-    if os.path.exists(_PERSONA_PATH):
-        st.image(_PERSONA_PATH, width="stretch")
 
 if came_from_seed:
     st.markdown(
@@ -96,8 +90,6 @@ if came_from_seed:
         "ready.</p></div>",
         unsafe_allow_html=True,
     )
-
-st.divider()
 
 # ---------------------------------------------------------------------------
 # Section 1: Targeting
@@ -166,16 +158,16 @@ with tab_individual:
             number={"suffix": "%"},
             gauge={
                 "axis": {"range": [0, 100]},
-                "bar": {"color": GREEN},
+                "bar": {"color": CHART_GREEN},
                 "steps": [
-                    {"range": [0, 5], "color": "#EFEFEF"},
-                    {"range": [5, 25], "color": "#D8E7D8"},
-                    {"range": [25, 100], "color": "#9CC79F"},
+                    {"range": [0, 5], "color": "rgba(128,128,128,0.25)"},
+                    {"range": [5, 25], "color": "rgba(63,155,70,0.30)"},
+                    {"range": [25, 100], "color": "rgba(63,155,70,0.55)"},
                 ],
             },
             title={"text": "Predicted probability of reporting a TIN"},
         ))
-        gauge.update_layout(height=280, margin=dict(t=40, b=10))
+        themed(gauge, height=280, margin=dict(t=40, b=10))
         st.plotly_chart(gauge, width="stretch")
         st.caption(
             f"{card['fit']}; in-sample weighted ROC-AUC {card['in_sample_weighted_roc_auc']:.2f}. About "
@@ -223,13 +215,13 @@ with tab_scale:
         cmp_fig = go.Figure(go.Bar(
             x=["Random selection", "Targeted (top-scoring)"],
             y=[expected_random, expected_targeted],
-            marker_color=["#B9B9B9", GREEN],
+            marker_color=[CHART_GREY, CHART_GREEN],
             text=[f"~{expected_random:,.0f}", f"~{expected_targeted:,.0f}"],
             textposition="outside",
         ))
-        cmp_fig.update_layout(
-            height=280, margin=dict(t=20, b=10),
-            yaxis_title="Modelled adults reporting a TIN per 10,000 reached", plot_bgcolor="white",
+        themed(
+            cmp_fig, height=280, margin=dict(t=20, b=10),
+            yaxis_title="Modelled adults reporting a TIN per 10,000 reached",
         )
         st.plotly_chart(cmp_fig, width="stretch")
 
@@ -281,6 +273,9 @@ with tab_scale:
             "\"TIN likelihood\" here means how closely someone's profile matches people who already report a TIN in the "
             "survey, used as a targeting signal — not a causal claim that contacting a given person will cause them to register."
         )
+
+with about_stage():
+    _about_entry()
 
 st.divider()
 

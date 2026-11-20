@@ -41,21 +41,57 @@ _TIER_NAMES = {
 }
 
 
+# Theme-aware colour tokens. Streamlit sets `color-scheme` on .stApp from the theme (Settings > Theme, or .streamlit/config.toml), so CSS light-dark(light, dark)
+# follows the app's own Light / Dark choice. Pages use var(--tdj-...) for any colour of their own, never a fixed light colour.
+THEME_TOKENS = {
+    "--tdj-heading":      f"light-dark({NAVY}, #A9C7E8)",
+    "--tdj-text-muted":   "light-dark(#595959, #AEB4C0)",
+    "--tdj-muted":        "light-dark(#6B6B6B, #A3A8B3)",
+    "--tdj-green":        f"light-dark({GREEN}, #7CC480)",
+    "--tdj-green-strong": f"light-dark({GREEN_DARK}, #A5D6A7)",
+    "--tdj-amber":        f"light-dark({AMBER}, #E8A04C)",
+    "--tdj-callout-bg":   f"light-dark({CREAM}, #2B2618)",
+    "--tdj-callout-bar":  f"light-dark({GOLD}, #D9953F)",
+    "--tdj-card-bg":      f"light-dark({TINT_LIGHT}, #1B2A1E)",
+    "--tdj-card-border":  f"light-dark({TINT}, #2F4A33)",
+    "--tdj-note-bg":      "light-dark(#FDF3E7, #33281A)",
+    "--tdj-quiet-bg":     "light-dark(#F4F4F4, #24262B)",
+    "--tdj-quiet-border": "light-dark(#9A9A9A, #6A6D75)",
+    "--tdj-quiet-text":   "light-dark(#555555, #B8BBC2)",
+    "--tdj-tile-off-bg":  "light-dark(#EFEFEF, #2B2E36)",
+    "--tdj-tile-off-text": "light-dark(#707070, #9CA3AF)",
+    "--tdj-hairline":     "light-dark(#E6E6E6, #343842)",
+    "--tdj-dot-off":      "light-dark(#CFCFCF, #4A4E58)",
+    "--tdj-strong-text":  "light-dark(#222222, #ECEFF4)",
+    "--tdj-tag-cited":    f"light-dark({NAVY}, #2F5F96)",
+    "--tdj-tag-modelled": f"light-dark({GOLD}, #A8691F)",
+}
+_TOKEN_CSS = " ".join(f"{k}: {v};" for k, v in THEME_TOKENS.items())
+
+# Colours for Plotly traces: mid-tones that read on both a light and a dark background (the chart background itself is transparent, see charts.py).
+CHART_GREEN = "#3F9B46"
+CHART_GREEN_DARK = "#2C7A33"
+CHART_GREEN_LIGHT = "#8FCB93"
+CHART_GREY = "#8E959F"
+CHART_AMBER = "#E39A3B"
+CHART_NAVY = "#4C7DB8"
+
+
 def inject_base_style():
     st.markdown(
         f"""
         <style>
-        .stApp {{ background-color: #FFFFFF; }}
-        h1, h2, h3 {{ color: {NAVY}; font-family: Georgia, 'Cambria', serif; }}
+        .stApp {{ {_TOKEN_CSS} }}
+        h1, h2, h3 {{ color: var(--tdj-heading); font-family: Georgia, 'Cambria', serif; }}
         .tdj-callout {{
-            background-color: {CREAM};
-            border-left: 6px solid {GOLD};
+            background-color: var(--tdj-callout-bg);
+            border-left: 6px solid var(--tdj-callout-bar);
             padding: 0.9rem 1.1rem;
             border-radius: 2px;
             margin: 0.6rem 0 1.1rem 0;
         }}
         .tdj-callout .label {{
-            color: {NAVY}; font-weight: 700; letter-spacing: 0.05em;
+            color: var(--tdj-heading); font-weight: 700; letter-spacing: 0.05em;
             font-size: 0.78rem; text-transform: uppercase; margin-bottom: 0.3rem;
         }}
         .tdj-tag {{
@@ -65,12 +101,27 @@ def inject_base_style():
             margin-right: 0.4rem;
         }}
         .tier-computed {{ background-color: #2E7D32; }}
-        .tier-modelled {{ background-color: {GOLD}; }}
-        .tier-cited {{ background-color: {NAVY}; }}
-        .tier-illustrative {{ background-color: transparent; color: #6B6B6B !important; border: 1.5px dashed #8A8A8A; }}
+        .tier-modelled {{ background-color: var(--tdj-tag-modelled); }}
+        .tier-cited {{ background-color: var(--tdj-tag-cited); }}
+        .tier-illustrative {{ background-color: transparent; color: var(--tdj-muted) !important; border: 1.5px dashed var(--tdj-quiet-border); }}
         .tdj-stagehead {{
             background-color: {NAVY}; color: white; padding: 0.6rem 1rem;
-            border-radius: 4px; font-size: 0.95rem; margin-bottom: 1rem;
+            border-radius: 4px; font-size: 0.95rem; margin-bottom: 0.4rem;
+            border: 1px solid light-dark(transparent, #3A4F6B);
+        }}
+        /* persona thumbnail beside the stage header (about 160-200 px): a rounded container, so no image shows a hard box on a dark background */
+        .stApp [data-testid="stImage"] img {{ border-radius: 12px; }}
+        .tdj-thumb {{ border-radius: 12px; overflow: hidden; border: 1px solid var(--tdj-hairline); }}
+        .tdj-kicker {{ color: var(--tdj-text-muted); font-size: 0.85rem; margin: 0 0 0.6rem 0; }}
+        .tdj-linkline {{ font-size: 0.9rem; margin: 0.2rem 0 0.6rem 0; }}
+        .tdj-ladder-tile {{
+            text-align: center; padding: 0.5rem 0.2rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700;
+            background: var(--tdj-tile-off-bg); color: var(--tdj-tile-off-text);
+        }}
+        .tdj-ladder-tile.done {{ background: {GREEN}; color: white; }}
+        .tdj-badge-ok {{
+            display: inline-block; background: #2E7D32; color: white; font-weight: 700; font-size: 0.8rem;
+            padding: 0.15rem 0.7rem; border-radius: 99px; margin: 0.2rem 0.4rem 0.2rem 0;
         }}
         </style>
         """,
@@ -116,23 +167,23 @@ def inject_hero_style(texture_b64: str = ""):
         }}
         .tdj-hero-sub {{ color: {TINT}; font-size: 1.02rem; max-width: 46rem; margin: 0; }}
         .tdj-card {{
-            background: {TINT_LIGHT}; border: 1px solid {TINT}; border-radius: 8px;
+            background: var(--tdj-card-bg); border: 1px solid var(--tdj-card-border); border-radius: 8px;
             padding: 1rem 1.2rem; margin: 0.6rem 0;
         }}
         .tdj-note-card {{
-            background: #FDF3E7; border-left: 5px solid {AMBER}; border-radius: 6px;
+            background: var(--tdj-note-bg); border-left: 5px solid var(--tdj-amber); border-radius: 6px;
             padding: 0.9rem 1.1rem; margin: 0.8rem 0;
         }}
         .tdj-note-label {{
-            color: {AMBER}; font-weight: 700; font-size: 0.74rem;
+            color: var(--tdj-amber); font-weight: 700; font-size: 0.74rem;
             letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.3rem;
         }}
         .tdj-insufficient-card {{
-            background: #F4F4F4; border: 1px dashed #9A9A9A; border-radius: 8px;
-            padding: 1rem 1.2rem; margin: 0.8rem 0; color: #555;
+            background: var(--tdj-quiet-bg); border: 1px dashed var(--tdj-quiet-border); border-radius: 8px;
+            padding: 1rem 1.2rem; margin: 0.8rem 0; color: var(--tdj-quiet-text);
         }}
         .tdj-insufficient-label {{
-            color: #767676; font-weight: 700; font-size: 0.74rem;
+            color: var(--tdj-muted); font-weight: 700; font-size: 0.74rem;
             letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.3rem;
         }}
         .tdj-badge {{
@@ -142,12 +193,12 @@ def inject_hero_style(texture_b64: str = ""):
             margin: 0.2rem 0.3rem 0.2rem 0;
         }}
         .tdj-section-tag {{
-            display: inline-block; color: {GREEN}; font-weight: 700;
+            display: inline-block; color: var(--tdj-green); font-weight: 700;
             font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase;
-            border: 1px solid {GREEN}; border-radius: 99px;
+            border: 1px solid var(--tdj-green); border-radius: 99px;
             padding: 0.15rem 0.7rem; margin-bottom: 0.6rem;
         }}
-        .tdj-demo-note {{ color: #7A7A7A; font-size: 0.8rem; }}
+        .tdj-demo-note {{ color: var(--tdj-muted); font-size: 0.8rem; }}
         </style>
         """,
         unsafe_allow_html=True,

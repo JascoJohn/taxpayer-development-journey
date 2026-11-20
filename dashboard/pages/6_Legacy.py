@@ -8,9 +8,12 @@ import streamlit as st
 from tdj_lib.names import N
 
 from tdj_lib.stage_card import show_stage_economics
+from tdj_lib.charts import themed
+from tdj_lib.layout import stage_top, about_stage
+from tdj_lib.styling import CHART_GREEN, CHART_GREEN_LIGHT, CHART_AMBER
 from common import (
     PipelineData,
-    inject_base_style, inject_hero_style, stage_header, callout, evidence_tag,
+    inject_base_style, inject_hero_style, callout, evidence_tag,
     stage_nav_footer, GREEN, GREEN_DARK, AMBER,
     demo_safety_banner,
     build_legacy_certificate,
@@ -18,7 +21,6 @@ from common import (
 
 st.set_page_config(page_title=f"Legacy — {N.legacy.full}", page_icon="🕊️", layout="wide")
 inject_base_style()
-stage_header("🕊️", "Legacy", "Preserve", "Continuity", "6")
 
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 _PERSONA_PATH = os.path.join(ASSETS_DIR, "legacy_persona_mzeehamisi.png")
@@ -95,25 +97,7 @@ else:
 
 asset_pts = _asset_score_points(asset_summary["total_score"]) if came_from_asset else 0
 
-# ---------------------------------------------------------------------------
-# Hero
-# ---------------------------------------------------------------------------
-hc1, hc2 = st.columns([2, 1])
-with hc1:
-    st.markdown(
-        """
-        <div class="tdj-hero"><div class="tdj-hero-inner">
-            <div class="tdj-hero-title">A record that doesn't have to end</div>
-            <p class="tdj-hero-sub">Urithi wa Kodi preserves verified compliance history and
-            enables responsible succession — a designated successor continues the
-            relationship, they don't inherit a free score.</p>
-        </div></div>
-        """,
-        unsafe_allow_html=True,
-    )
-with hc2:
-    if os.path.exists(_PERSONA_PATH):
-        st.image(_PERSONA_PATH, width="stretch")
+stage_top("🕊️", "Legacy", "Preserve", "Continuity", "6", "legacy", _PERSONA_PATH)
 
 if came_from_enterprise or came_from_asset:
     bits = []
@@ -128,7 +112,20 @@ if came_from_enterprise or came_from_asset:
         unsafe_allow_html=True,
     )
 
-with st.expander(f"Why {N.legacy.swahili} exists"):
+def _about_legacy():
+    """Hero banner, "Why Urithi wa Kodi exists" and the economics card: moved here from the top of the page (wording unchanged)."""
+    st.markdown(
+            """
+            <div class="tdj-hero"><div class="tdj-hero-inner">
+                <div class="tdj-hero-title">A record that doesn't have to end</div>
+                <p class="tdj-hero-sub">Urithi wa Kodi preserves verified compliance history and
+                enables responsible succession — a designated successor continues the
+                relationship, they don't inherit a free score.</p>
+            </div></div>
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown(f"#### Why {N.legacy.swahili} exists")
     c1, c2 = st.columns([3, 2])
     with c1:
         st.markdown("**The problem**")
@@ -152,7 +149,7 @@ with st.expander(f"Why {N.legacy.swahili} exists"):
         evidence_tag("modelled")
         show_stage_economics(st, PipelineData(), "legacy")
 
-st.divider()
+
 
 # ===========================================================================
 # Score dashboard
@@ -216,10 +213,10 @@ components = [
 score_fig = go.Figure(go.Bar(
     y=[c["name"] for c in components][::-1], x=[c["points"] for c in components][::-1],
     orientation="h",
-    marker_color=[GREEN if c["tier"] == "real" else "#9CC79F" for c in components][::-1],
+    marker_color=[CHART_GREEN if c["tier"] == "real" else CHART_GREEN_LIGHT for c in components][::-1],
     text=[f"{c['points']} / {c['max_points']}" for c in components][::-1], textposition="outside",
 ))
-score_fig.update_layout(xaxis_range=[0, 50], height=280, margin=dict(t=10, b=10), xaxis_title="Points contributed")
+themed(score_fig, xaxis_range=[0, 50], height=280, margin=dict(t=10, b=10), xaxis_title="Points contributed")
 st.plotly_chart(score_fig, width="stretch")
 
 lc1, lc2 = st.columns([1, 2])
@@ -227,7 +224,7 @@ with lc1:
     st.metric("Tax Legacy Score", f"{total} / {LEGACY_MAX}")
 with lc2:
     for c in components:
-        tag_col = GREEN if c["tier"] == "real" else "#8A8A8A"
+        tag_col = "var(--tdj-green)" if c["tier"] == "real" else "var(--tdj-muted)"
         tag_txt = "COMPUTED" if c["tier"] == "real" else "ILLUSTRATIVE"
         st.markdown(
             f"<div style='display:flex; justify-content:space-between; padding:0.2rem 0; "
@@ -236,6 +233,9 @@ with lc2:
             f"<b>{c['points']} / {c['max_points']}</b></div>",
             unsafe_allow_html=True,
         )
+
+with about_stage():
+    _about_legacy()
 
 st.divider()
 
@@ -285,18 +285,19 @@ live_score_active = round(total * (1 - min(months_since / 36, 1)) + successor_sc
 blend_fig = go.Figure()
 blend_fig.add_trace(go.Scatter(
     x=months_range, y=sustained_curve, mode="lines+markers", name="Successor sustains compliance",
-    line=dict(color=GREEN, width=3),
+    line=dict(color=CHART_GREEN, width=3),
 ))
 blend_fig.add_trace(go.Scatter(
     x=months_range, y=lapsed_curve, mode="lines+markers", name="Successor lets compliance lapse",
-    line=dict(color=AMBER, width=3, dash="dash"),
+    line=dict(color=CHART_AMBER, width=3, dash="dash"),
 ))
 blend_fig.add_hline(y=total, line_dash="dot", line_color="#888", annotation_text="Inherited reference (historical only)")
-blend_fig.add_vline(x=months_since, line_dash="dash", line_color="#444")
-blend_fig.update_layout(
+blend_fig.add_vline(x=months_since, line_dash="dash", line_color="#9AA0AA")
+themed(
+    blend_fig,
     height=340, margin=dict(t=20, b=10),
     xaxis_title="Months since succession", yaxis_title="Live eligibility score",
-    yaxis_range=[0, 100], plot_bgcolor="white",
+    yaxis_range=[0, 100],
     legend=dict(orientation="h", yanchor="bottom", y=1.02),
 )
 st.plotly_chart(blend_fig, width="stretch")
@@ -382,27 +383,27 @@ recap_rows = [
 ]
 
 for icon, stage, status, detail, done in recap_rows:
-    dot_color = GREEN if done else "#CFCFCF"
-    text_color = GREEN_DARK if done else "#888"
+    dot_color = "var(--tdj-green)" if done else "var(--tdj-dot-off)"
+    text_color = "var(--tdj-green-strong)" if done else "var(--tdj-tile-off-text)"
     # Built as one single-line string, deliberately -- a blank/empty line
     # inside a raw unsafe_allow_html block (e.g. from an empty `detail`
     # slotted into a multi-line f-string) makes Streamlit's markdown
     # parser drop out of HTML-passthrough mode partway through, leaking
     # literal "</div>" text onto the page. Caught by reading the rendered
     # page during verification, not assumed safe.
-    detail_html = f'<div style="font-size:0.82rem; color:#666;">{detail}</div>' if detail else ""
+    detail_html = f'<div style="font-size:0.82rem; color:var(--tdj-text-muted);">{detail}</div>' if detail else ""
     row_html = (
         f'<div style="display:flex; align-items:flex-start; gap:0.9rem; '
         f'border-left:3px solid {dot_color}; margin-left:0.6rem; padding:0.7rem 0 0.7rem 1.1rem; '
         f'position:relative;">'
         f'<div style="position:absolute; left:-9px; top:1.05rem; width:14px; height:14px; '
-        f'border-radius:50%; background:{dot_color}; border:2px solid white; '
+        f'border-radius:50%; background:{dot_color}; border:2px solid light-dark(white, #0E1117); '
         f'box-shadow:0 0 0 2px {dot_color};"></div>'
         f'<div style="font-size:1.3rem; line-height:1.4rem;">{icon}</div>'
         f'<div>'
         f'<div style="font-weight:700; color:{text_color}; font-size:0.78rem; '
         f'text-transform:uppercase; letter-spacing:0.04em;">{stage}</div>'
-        f'<div style="font-size:1rem; color:#222;">{status}</div>'
+        f'<div style="font-size:1rem; color:var(--tdj-strong-text);">{status}</div>'
         f'{detail_html}'
         f'</div>'
         f'</div>'

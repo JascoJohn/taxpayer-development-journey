@@ -47,3 +47,5 @@ def show_stage_economics(st, pipeline, stage: str) -> None:
             st.caption(f"Chance the programme pays for itself (ROI >= 1) in the Monte Carlo: {c_['p_roi_ge_1'] * 100:.0f}%.")
     st.caption(f"Mechanism in the report: {s.get('report_name', '')} (internal reference: {s.get('morale_model_key')}).")
     st.caption("Scenario calculation (MODELLED): statutory tax on survey receipts (revenue per registrant COMPUTED) x reach and uptake (assumptions, sign-off pending), 10% discount rate. Not a forecast.")
+    from .layout import scenario_lab_link
+    scenario_lab_link()
