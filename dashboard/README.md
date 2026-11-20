@@ -1,6 +1,6 @@
 ﻿# The Taxpayer Development Journey — Interactive Dashboard
 
-A Streamlit app: one page per lifecycle stage (six) plus a Scenario lab, matching the figures and
+A Streamlit app: one page per lifecycle stage (six) plus a Scenario Lab, matching the figures and
 mechanisms in the report. Most pages now read **real, live data**
 from this project's own pipeline (`../outputs/stats/` and `../data/processed/`) rather than hardcoded
 numbers — every page still captions clearly which figures are real and which

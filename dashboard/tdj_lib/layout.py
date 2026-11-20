@@ -28,5 +28,5 @@ def about_stage():
     return st.expander("About this stage", expanded=False)
 
 
-def scenario_lab_link(label="Change these assumptions in the Scenario lab →"):
+def scenario_lab_link(label="Change these assumptions in the Scenario Lab →"):
     st.page_link(SCENARIO_LAB_PAGE, label=label, icon="🧪")

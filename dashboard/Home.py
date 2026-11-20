@@ -19,7 +19,7 @@ inject_base_style()
 
 st.title("The Taxpayer Development Journey")
 st.caption("A Behavioral Lifecycle Architecture for Tax Compliance: Evidence from Tanzania")
-st.caption("An interactive companion to the report: a working prototype tool for each of six stages of a taxpayer’s life, and a Scenario lab to test the report’s assumptions.")
+st.caption("An interactive companion to the report: a working prototype tool for each of six stages of a taxpayer’s life, and a Scenario Lab to test the report’s assumptions.")
 
 _mm = PipelineData().tin_mobile_money()
 if _mm.available:                                        # the respondent count is read from the pipeline output, not typed
@@ -32,7 +32,7 @@ st.write(
     "The tax authority meets a young mobile money user, a small trader, an informal business "
     "owner, an asset owner, and an heir as though each is a stranger — even when, "
     "over the span of one life, they are the same person. Six real, built "
-    "artifacts anchor this journey. Click a stage below to open its tool."
+    "artefacts anchor this journey. Click a stage below to open its tool."
 )
 
 # ---- Lifecycle strip --------------------------------------------------------
@@ -50,7 +50,7 @@ st.caption(
 
 st.divider()
 
-# ---- Scenario lab summary ---------------------------------------------------------------------------------------------------------------------------------------------------
+# ---- Scenario Lab summary ---------------------------------------------------------------------------------------------------------------------------------------------------
 st.markdown("### Scenario Lab")
 _port = PipelineData().stage_economics_portfolio()
 if _port.available:
@@ -62,10 +62,10 @@ if _port.available:
     if _port.value.get("p_roi_ge_1") is not None:
         l3.metric("Chance ROI ≥ 1", f"{_port.value['p_roi_ge_1'] * 100:.0f}%")
     with l4:
-        st.page_link(SCENARIO_LAB_PAGE, label="Open the Scenario lab →", icon="🧪")
+        st.page_link(SCENARIO_LAB_PAGE, label="Open the Scenario Lab →", icon="🧪")
     st.caption("At the report's settings. Change reach, uptake, persistence, horizon, discount rate and income basis in the lab. A scenario calculation, not a forecast.")
 else:
-    st.page_link(SCENARIO_LAB_PAGE, label="Open the Scenario lab →", icon="🧪")
+    st.page_link(SCENARIO_LAB_PAGE, label="Open the Scenario Lab →", icon="🧪")
 
 st.divider()
 

@@ -1,9 +1,10 @@
 """Dashboard v1.1, A: the Scenario lab's pure-NumPy simulator (dashboard/tdj_lib/scenario_lab.py, reading only outputs/stats/scenario_lab_inputs.json) reproduces the pipeline's
-outputs/stats/stage_economics.json, stage by stage and for the portfolio, with the pipeline's own seed and number of draws. Tolerance: relative 1e-9 (the same operations in the same
+outputs/stats/stage_economics.json, stage by stage and for the portfolio, with the pipeline's own seed and number of draws. Tolerance: math.isclose with rel_tol = abs_tol = 1e-9 (ROI values near zero, such as an ROI p10 of 5e-16, differ in the last digits between Windows and Linux; the same operations in the same
 order give the same bits; the tolerance only guards against the order of float sums).
 
 These tests read the tracked outputs of the repository (no raw data needed)."""
 import json
+import math
 import os
 import sys
 import time
@@ -15,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "dashboard"))
 from tdj_lib import scenario_lab as sl  # noqa: E402
 
-RTOL = 1e-9
+TOL = 1e-9
 
 
 @pytest.fixture(scope="module")
@@ -35,7 +36,7 @@ def lab(inputs):
 
 
 def close(a, b):
-    assert np.isclose(a, b, rtol=RTOL, atol=0.0), (a, b)
+    assert math.isclose(a, b, rel_tol=TOL, abs_tol=TOL), (a, b)
 
 
 def test_inputs_carry_the_pipeline_seed_and_draws(inputs, report):

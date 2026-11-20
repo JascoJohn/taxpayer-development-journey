@@ -1,4 +1,4 @@
-"""Scenario lab simulator: a pure-NumPy copy of the Table 5.1 Monte Carlo (src/04_models/stage_economics.py: draw_inputs, central_inputs, simulate, _portfolio).
+"""Scenario Lab simulator: a pure-NumPy copy of the Table 5.1 Monte Carlo (src/04_models/stage_economics.py: draw_inputs, central_inputs, simulate, _portfolio).
 
 Reads ONLY outputs/stats/scenario_lab_inputs.json (written by src/04_models/dashboard_inputs.py); nothing is typed here and nothing is imported from the pipeline, so it runs on the
 deployed app. With the pipeline's own seed and number of draws and the default controls it reproduces stage_economics.json (tests/test_scenario_lab.py).

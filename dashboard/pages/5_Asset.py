@@ -366,7 +366,7 @@ st.divider()
 # ===========================================================================
 st.markdown("## Your documents")
 st.caption(
-    "Two different artifacts for two different audiences — an internal-style audit "
+    "Two different artefacts for two different audiences — an internal-style audit "
     "trail, and a shareable summary someone could plausibly hand to a lender."
 )
 

@@ -322,7 +322,7 @@ st.divider()
 st.markdown(f"## Your {N.legacy.swahili} Certificate")
 st.caption(
     "A real, downloadable document — component breakdown, succession status if "
-    "simulated above, and a visible demo-safety mark since this is the one artifact "
+    "simulated above, and a visible demo-safety mark since this is the one artefact "
     "here most easily mistaken for something with legal effect once downloaded."
 )
 

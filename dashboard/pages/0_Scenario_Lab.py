@@ -1,4 +1,5 @@
 import json
+import math
 
 import plotly.graph_objects as go
 import streamlit as st
@@ -10,11 +11,11 @@ from tdj_lib.stage_card import _tzs
 from tdj_lib.styling import CHART_GREEN, CHART_NAVY
 from common import inject_base_style, evidence_tag, callout, PipelineData
 
-st.set_page_config(page_title="Scenario lab — The Taxpayer Development Journey", page_icon="🧪", layout="wide")
+st.set_page_config(page_title="Scenario Lab — The Taxpayer Development Journey", page_icon="🧪", layout="wide")
 inject_base_style()
 st.markdown("<style>[data-testid=stMetricValue] { font-size: 1.7rem; }</style>", unsafe_allow_html=True)
 
-st.title("Scenario lab")
+st.title("Scenario Lab")
 st.caption("Change the assumptions behind Table 5.1 and see the discounted revenue and return on cost move.")
 evidence_tag("modelled")
 st.caption("A scenario calculation from stated assumptions, not a forecast: statutory tax on survey earnings (revenue per registrant, COMPUTED) × assumed reach and uptake (MODELLED).")
@@ -38,7 +39,7 @@ def _run(n_draws: int, controls_json: str):
 try:
     inputs = _inputs()
 except FileNotFoundError:
-    st.warning("The Scenario lab's inputs are not connected right now (outputs/stats/scenario_lab_inputs.json is missing). Run `python run_all.py` to write them.")
+    st.warning("The Scenario Lab's inputs are not connected right now (outputs/stats/scenario_lab_inputs.json is missing). Run `python run_all.py` to write them.")
     st.stop()
 
 sh = inputs["shared"]
@@ -106,17 +107,17 @@ res = _run(n_draws, json.dumps(controls, sort_keys=True))
 
 
 def _matches_report(res) -> bool:
-    """True when every stage's ROI and the portfolio's (median, 80% interval) equal stage_economics.json (relative 1e-9)."""
+    """True when every stage's ROI and the portfolio's (median, 80% interval) equal stage_economics.json (math.isclose, relative and absolute tolerance 1e-9: ROI values near zero differ in the last digits between platforms)."""
     pipe = PipelineData()
     try:
         for s in sh["revenue_stages"]:
             fig = pipe.stage_economics(s)
             for k in ("median", "p10", "p90"):
                 a, b = res["stages"][s]["roi"][k], fig.value["monte_carlo_at_10pct"]["roi"][k]
-                if abs(a - b) > 1e-9 * abs(b):
+                if not math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-9):
                     return False
         port = pipe.stage_economics_portfolio().value["monte_carlo_at_10pct"]["roi"]
-        return all(abs(res["portfolio"]["roi"][k] - port[k]) <= 1e-9 * abs(port[k]) for k in ("median", "p10", "p90"))
+        return all(math.isclose(res["portfolio"]["roi"][k], port[k], rel_tol=1e-9, abs_tol=1e-9) for k in ("median", "p10", "p90"))
     except Exception:
         return False
 
