@@ -66,7 +66,7 @@ def test_no_old_evidence_wording_or_superseded_numbers_remain_in_the_dashboard_t
 def test_every_page_renders_without_an_exception(dash):
     from streamlit.testing.v1 import AppTest
     pages = ["Home.py"] + ["pages/" + f for f in sorted(os.listdir(os.path.join(DASH, "pages"))) if f.endswith(".py")]
-    assert len(pages) == 7
+    assert len(pages) == 8                                        # Home, the Scenario lab (Dashboard v1.1) and the six stage pages
     for p in pages:
         at = AppTest.from_file(os.path.join(DASH, p), default_timeout=180)
         at.run()

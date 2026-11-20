@@ -87,43 +87,35 @@
  "assumptions_awaiting_signoff": [
   {
    "key": "hbs.cpi_uprating",
-   "basis_class": "ASSUMPTION",
-   "label": "technical/design parameter"
+   "basis_class": "ASSUMPTION"
   },
   {
    "key": "hbs.owners_with_receipts_central",
-   "basis_class": "ASSUMPTION",
-   "label": "technical/design parameter"
+   "basis_class": "ASSUMPTION"
   },
   {
    "key": "hbs.receipts_annualisation",
-   "basis_class": "ASSUMPTION",
-   "label": "technical/design parameter"
+   "basis_class": "ASSUMPTION"
   },
   {
    "key": "stage.formal_step_if_not_asked",
-   "basis_class": "ASSUMPTION",
-   "label": "Table 5.1 scenario assumption"
+   "basis_class": "ASSUMPTION"
   },
   {
    "key": "stage.income_basis_bracket",
-   "basis_class": "ASSUMPTION",
-   "label": "Table 5.1 scenario assumption"
+   "basis_class": "ASSUMPTION"
   },
   {
    "key": "stage.workers_unpriced",
-   "basis_class": "ASSUMPTION",
-   "label": "Table 5.1 scenario assumption"
+   "basis_class": "ASSUMPTION"
   },
   {
    "key": "tax.pit_schedule",
-   "basis_class": "DATA",
-   "label": ""
+   "basis_class": "DATA"
   },
   {
    "key": "tax.presumptive_schedule",
-   "basis_class": "DATA",
-   "label": ""
+   "basis_class": "DATA"
   }
  ],
  "stages": {

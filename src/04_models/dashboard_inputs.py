@@ -27,15 +27,18 @@ FIGURE_5_1_INPUTS = paths.FIGURE_5_1_INPUTS
 
 
 def _pending_signoffs():
-    """Assumptions of the register that feed the lab and have no sign-off yet (john_signoff empty), read from docs/assumptions_register.csv."""
+    """Assumptions that feed the lab and have no sign-off yet, read from config.yaml (the `signoff` field of the entry, or register_extra_signoffs); retired ones are left out.
+    The same rule as the `john_signoff` column of the assumptions register, without reading a file outside the pipeline's own inputs."""
+    extra = paths.CFG.get("register_extra_signoffs") or {}
     out = []
-    with open(paths.ASSUMPTIONS_REGISTER, encoding="utf-8-sig", newline="") as f:
-        for r in csv.DictReader(f):
-            k = r["key"]
-            retired = "retired_in" in paths.CFG["assumptions"].get(k, {}) or "RETIRED" in r.get("basis_class", "")
-            if (k.startswith("stage.") or k.startswith("hbs.") or k.startswith("tax.")) and not r["john_signoff"].strip() and not retired:
-                out.append({"key": k, "basis_class": r["basis_class"], "label": r["label"]})
-    return out
+    for k, e in paths.CFG["assumptions"].items():
+        if not (k.startswith("stage.") or k.startswith("hbs.") or k.startswith("tax.")):
+            continue
+        if "retired_in" in e or str(e.get("basis", "")).upper() == "RETIRED":
+            continue
+        if not str(e.get("signoff", "") or extra.get(k, "")).strip():
+            out.append({"key": k, "basis_class": e.get("basis", "")})
+    return sorted(out, key=lambda r: r["key"])
 
 
 def _signoff_of(key):
